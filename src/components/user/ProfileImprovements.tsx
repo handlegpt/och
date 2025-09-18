@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useTranslation } from '../../../i18n/context';
+// import { useTranslation } from '../../../i18n/context';
 
 interface ImprovementSuggestion {
   id: string;
