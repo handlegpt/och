@@ -43,6 +43,7 @@ jobs:
         echo "Connecting to server..."
         echo "User: ${{ secrets.SERVER_USER }}"
         echo "Host: ${{ secrets.SERVER_HOST }}"
+        echo "Port: ${{ secrets.SERVER_PORT || '22' }}"
         echo "Secrets configured successfully!"
         
         if [ -z "${{ secrets.SERVER_USER }}" ] || [ -z "${{ secrets.SERVER_HOST }}" ]; then
@@ -50,7 +51,13 @@ jobs:
           exit 1
         fi
         
-        ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
+        # 构建SSH命令，支持自定义端口
+        SSH_PORT="${{ secrets.SERVER_PORT || '22' }}"
+        SSH_CMD="ssh -o StrictHostKeyChecking=no -p $SSH_PORT -i ~/.ssh/id_rsa ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}"
+        
+        echo "SSH Command: $SSH_CMD"
+        
+        $SSH_CMD "
           cd /root/och &&
           git pull origin main &&
           docker compose down &&
