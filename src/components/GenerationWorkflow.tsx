@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import TransformationSelector from '../../components/TransformationSelector';
 import { InputPanel } from './InputPanel';
 import { OutputPanel } from './OutputPanel';
@@ -25,6 +26,7 @@ export const GenerationWorkflow: React.FC<GenerationWorkflowProps> = ({
   onLoginRequired,
 }) => {
   const [previewImageUrl, setPreviewImageUrl] = useState<string | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const { handleGenerateImage } = useImageGeneration({ state, actions, user, t });
   const { handleGenerateVideo } = useVideoGeneration({ state, actions, user, t });
@@ -46,6 +48,15 @@ export const GenerationWorkflow: React.FC<GenerationWorkflowProps> = ({
   const handleBackToSelection = useCallback(() => {
     actions.setSelectedTransformation(null);
   }, [actions]);
+
+  const handleSelectTransformation = useCallback((transformation: any) => {
+    actions.setSelectedTransformation(transformation);
+    // 更新URL参数
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.set('view', 'create');
+    newSearchParams.set('feature', transformation.key);
+    setSearchParams(newSearchParams, { replace: false });
+  }, [actions, searchParams, setSearchParams]);
 
   const handleOpenPreview = useCallback((url: string) => {
     setPreviewImageUrl(url);
@@ -82,7 +93,7 @@ export const GenerationWorkflow: React.FC<GenerationWorkflowProps> = ({
     return (
       <TransformationSelector 
         transformations={state.transformations} 
-        onSelect={actions.setSelectedTransformation} 
+        onSelect={handleSelectTransformation} 
         hasPreviousResult={!!state.primaryImageUrl}
         onOrderChange={actions.setTransformations}
         activeCategory={state.activeCategory}
