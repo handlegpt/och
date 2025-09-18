@@ -91,7 +91,7 @@ export const useAuthProvider = () => {
     if (error) throw error;
 
     // 用户配置会在触发器自动创建
-    return data;
+    // 不返回 data，保持接口一致性
   };
 
   const signInWithGoogle = async () => {

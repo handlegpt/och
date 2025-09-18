@@ -6,14 +6,14 @@ import { DataPersistenceService } from '../../services/dataPersistence'
 import ImagePreviewModal from '../../../components/ImagePreviewModal'
 
 interface GenerationHistory {
-  id: string
+  id?: string
   transformation_type: string
   input_image_url: string | null
   output_image_url: string | null
   prompt: string | null
   custom_prompt: string | null
   status: 'pending' | 'processing' | 'completed' | 'failed'
-  created_at: string
+  created_at?: string
 }
 
 export const UserHistory: React.FC = () => {
@@ -122,7 +122,7 @@ export const UserHistory: React.FC = () => {
       setSelectedItems(new Set())
       setShowBatchActions(false)
     } else {
-      setSelectedItems(new Set(history.map(item => item.id)))
+      setSelectedItems(new Set(history.map(item => item.id || '').filter(id => id)))
       setShowBatchActions(true)
     }
   }
@@ -147,7 +147,7 @@ export const UserHistory: React.FC = () => {
   const handleBatchDownload = () => {
     selectedItems.forEach(itemId => {
       const item = history.find(h => h.id === itemId)
-      if (item?.output_image_url) {
+      if (item?.output_image_url && item.id) {
         const link = document.createElement('a')
         link.href = item.output_image_url
         link.download = `och-ai-${item.transformation_type}-${item.id}.png`
@@ -256,11 +256,11 @@ export const UserHistory: React.FC = () => {
             </div>
           )}
 
-          {history.map(item => (
+          {history.map((item, index) => (
             <div
-              key={item.id}
+              key={item.id || `item-${index}`}
               className={`bg-[var(--bg-secondary)] rounded-lg p-3 border transition-colors ${
-                selectedItems.has(item.id)
+                item.id && selectedItems.has(item.id)
                   ? 'border-[var(--accent-primary)] bg-[var(--accent-primary)] bg-opacity-10'
                   : 'border-[var(--border-primary)]'
               }`}
@@ -269,8 +269,8 @@ export const UserHistory: React.FC = () => {
                 <div className='flex items-center gap-2'>
                   <input
                     type='checkbox'
-                    checked={selectedItems.has(item.id)}
-                    onChange={() => handleSelectItem(item.id)}
+                    checked={item.id ? selectedItems.has(item.id) : false}
+                    onChange={() => item.id && handleSelectItem(item.id)}
                     className='w-4 h-4 text-[var(--accent-primary)] bg-[var(--bg-secondary)] border-[var(--border-primary)] rounded focus:ring-[var(--accent-primary)]'
                   />
                   <span className='text-sm font-medium text-[var(--text-primary)]'>
@@ -282,7 +282,7 @@ export const UserHistory: React.FC = () => {
                 </div>
                 <div className='flex items-center gap-2'>
                   <span className='text-xs text-[var(--text-tertiary)]'>
-                    {formatDate(item.created_at)}
+                    {item.created_at ? formatDate(item.created_at) : '未知时间'}
                   </span>
                   <div className='flex items-center gap-1'>
                     {item.output_image_url && (
@@ -290,7 +290,7 @@ export const UserHistory: React.FC = () => {
                         onClick={() => {
                           const link = document.createElement('a')
                           link.href = item.output_image_url || ''
-                          link.download = `och-ai-${item.transformation_type}-${item.id}.png`
+                          link.download = `och-ai-${item.transformation_type}-${item.id || 'unknown'}.png`
                           link.click()
                         }}
                         className='p-1 text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors'
@@ -311,17 +311,17 @@ export const UserHistory: React.FC = () => {
                         </svg>
                       </button>
                     )}
-                    <button
-                      onClick={() => {
-                        if (confirm('确定要删除这条记录吗？')) {
-                          DataPersistenceService.deleteGenerationRecord(
-                            item.id,
-                            user?.id || ''
-                          ).then(() => {
-                            fetchUserHistory()
-                          })
-                        }
-                      }}
+                      <button
+                        onClick={() => {
+                          if (item.id && confirm('确定要删除这条记录吗？')) {
+                            DataPersistenceService.deleteGenerationRecord(
+                              item.id,
+                              user?.id || ''
+                            ).then(() => {
+                              fetchUserHistory()
+                            })
+                          }
+                        }}
                       className='p-1 text-[var(--text-secondary)] hover:text-red-500 transition-colors'
                       title='删除'
                     >
@@ -369,7 +369,7 @@ export const UserHistory: React.FC = () => {
                       <button
                         onClick={e => {
                           e.stopPropagation()
-                          handleDownloadImage(item.input_image_url || '', `input-${item.id}.png`)
+                          handleDownloadImage(item.input_image_url || '', `input-${item.id || 'unknown'}.png`)
                         }}
                         className='hover:text-[var(--accent-primary)]'
                         title='下载原图'
@@ -412,7 +412,7 @@ export const UserHistory: React.FC = () => {
                           e.stopPropagation()
                           handleDownloadImage(
                             item.output_image_url || '',
-                            `och-ai-${item.transformation_type}-${item.id}.png`
+                            `och-ai-${item.transformation_type}-${item.id || 'unknown'}.png`
                           )
                         }}
                         className='hover:text-[var(--accent-primary)]'

@@ -34,7 +34,7 @@ export const InputPanel: React.FC<InputPanelProps> = ({ state, actions, t }) => 
   if (!selectedTransformation) return null;
 
   const toggleMaskTool = () => {
-    setActiveTool(current => (current === 'mask' ? 'none' : 'mask'));
+    setActiveTool(activeTool === 'mask' ? 'none' : 'mask');
   };
 
   // Video generation UI
