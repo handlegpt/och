@@ -78,7 +78,7 @@ export const useAuthProvider = () => {
   const signUp = async (email: string, password: string, username?: string) => {
     if (!supabase) throw new Error('Supabase client not initialized');
     
-    const { data, error } = await supabase.auth.signUp({
+    const { error } = await supabase.auth.signUp({
       email,
       password,
       options: {
