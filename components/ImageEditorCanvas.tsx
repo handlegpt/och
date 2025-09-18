@@ -49,8 +49,8 @@ const ImageEditorCanvas: React.FC<ImageEditorCanvasProps> = ({ onImageSelect, in
         displayW = container.clientWidth;
         displayH = displayW / imgRatio;
     }
-    displayX = (container.clientWidth - displayW) / 2;
-    displayY = (container.clientHeight - displayH) / 2;
+    const displayX = (container.clientWidth - displayW) / 2;
+    const displayY = (container.clientHeight - displayH) / 2;
     
     [imageCanvas, maskCanvas].forEach(canvas => {
         if(canvas) {
