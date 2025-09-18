@@ -6,7 +6,7 @@ import { OutputPanel } from './OutputPanel';
 import ImagePreviewModal from '../../components/ImagePreviewModal';
 import { useImageGeneration } from '../hooks/useImageGeneration';
 import { useVideoGeneration } from '../hooks/useVideoGeneration';
-import { LoadingSpinner, ProgressLoader, DotsLoader } from './ui/LoadingSpinner';
+import { DotsLoader } from './ui/LoadingSpinner';
 import type { GenerationState, GenerationActions } from '../hooks/useGenerationState';
 
 interface GenerationWorkflowProps {

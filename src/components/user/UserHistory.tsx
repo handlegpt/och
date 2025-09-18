@@ -4,7 +4,7 @@ import { useAuth } from '../../hooks/useAuth'
 // import { useTranslation } from '../../../i18n/context';
 import { DataPersistenceService } from '../../services/dataPersistence'
 import ImagePreviewModal from '../../../components/ImagePreviewModal'
-import { SkeletonLoader, SkeletonImageGrid } from '../ui/SkeletonLoader'
+import { SkeletonLoader } from '../ui/SkeletonLoader'
 
 interface GenerationHistory {
   id?: string

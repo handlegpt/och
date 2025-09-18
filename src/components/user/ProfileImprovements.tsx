@@ -12,7 +12,7 @@ interface ImprovementSuggestion {
 }
 
 export const ProfileImprovements: React.FC = () => {
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedPriority, setSelectedPriority] = useState<string>('all');
 
