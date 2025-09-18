@@ -75,7 +75,52 @@ export const TransformationSelectorEnhanced: React.FC<TransformationSelectorEnha
     );
   }
 
-  // 原始的分类视图
+  // 如果是features视图，直接显示所有功能
+  if (isFeaturesView && !activeCategory) {
+    return (
+      <div className="container mx-auto p-4 md:p-8 animate-fade-in">
+        {/* 标题和描述 */}
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold mb-4 text-[var(--accent-primary)]">
+            所有功能
+          </h2>
+          <p className="text-lg text-[var(--text-secondary)] mb-6 max-w-2xl mx-auto">
+            浏览所有可用的AI生成功能
+          </p>
+        </div>
+
+        {/* 所有功能网格 */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          {features.map(feature => (
+            <button
+              key={feature.key}
+              onClick={() => handleFeatureSelect(feature)}
+              className="group flex flex-col items-center justify-center text-center p-4 aspect-square bg-[var(--bg-card)] rounded-xl border border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-all duration-200 ease-in-out transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[var(--bg-primary)] focus:ring-[var(--accent-primary)]"
+            >
+              <span className="text-4xl mb-2 transition-transform duration-200 group-hover:scale-110">
+                {feature.emoji}
+              </span>
+              <span className="font-semibold text-sm text-[var(--text-primary)]">
+                {t(feature.titleKey)}
+              </span>
+              {feature.isPopular && (
+                <span className="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded-full mt-1">
+                  热门
+                </span>
+              )}
+              {feature.isNew && (
+                <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full mt-1">
+                  新功能
+                </span>
+              )}
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // 原始的分类视图 (categories视图)
   return (
     <div className="container mx-auto p-4 md:p-8 animate-fade-in">
       {/* 标题和描述 */}
