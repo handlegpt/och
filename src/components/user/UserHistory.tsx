@@ -4,6 +4,7 @@ import { useAuth } from '../../hooks/useAuth'
 // import { useTranslation } from '../../../i18n/context';
 import { DataPersistenceService } from '../../services/dataPersistence'
 import ImagePreviewModal from '../../../components/ImagePreviewModal'
+import { SkeletonLoader, SkeletonImageGrid } from '../ui/SkeletonLoader'
 
 interface GenerationHistory {
   id?: string
@@ -173,9 +174,41 @@ export const UserHistory: React.FC = () => {
 
   if (loading) {
     return (
-      <div className='p-4 text-center'>
-        <div className='animate-spin rounded-full h-6 w-6 border-b-2 border-[var(--accent-primary)] mx-auto'></div>
-        <p className='text-[var(--text-secondary)] mt-2 text-sm'>加载中...</p>
+      <div className='space-y-4'>
+        {/* 标题骨架屏 */}
+        <div className='flex justify-between items-center'>
+          <SkeletonLoader variant="text" width={120} height={20} />
+          <SkeletonLoader variant="rectangular" width={120} height={32} />
+        </div>
+
+        {/* 历史记录骨架屏 */}
+        <div className='space-y-3'>
+          {Array.from({ length: 5 }).map((_, index) => (
+            <div key={index} className='bg-[var(--bg-secondary)] rounded-lg p-3 border border-[var(--border-primary)]'>
+              <div className='flex items-center justify-between mb-2'>
+                <div className='flex items-center gap-2'>
+                  <SkeletonLoader variant="rectangular" width={16} height={16} />
+                  <SkeletonLoader variant="text" width={80} height={14} />
+                  <SkeletonLoader variant="text" width={40} height={12} />
+                </div>
+                <div className='flex items-center gap-2'>
+                  <SkeletonLoader variant="text" width={60} height={12} />
+                  <div className='flex items-center gap-1'>
+                    <SkeletonLoader variant="circular" width={24} height={24} />
+                    <SkeletonLoader variant="circular" width={24} height={24} />
+                  </div>
+                </div>
+              </div>
+              
+              <SkeletonLoader variant="text" width="90%" height={12} className="mb-2" />
+              
+              <div className='flex gap-3'>
+                <SkeletonLoader variant="rounded" width={64} height={64} />
+                <SkeletonLoader variant="rounded" width={64} height={64} />
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     )
   }

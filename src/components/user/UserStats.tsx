@@ -3,6 +3,7 @@ import { useAuth } from '../../hooks/useAuth'
 import { supabase } from '../../lib/supabase'
 // import { useTranslation } from '../../../i18n/context';
 import { DataPersistenceService } from '../../services/dataPersistence'
+import { SkeletonLoader } from '../ui/SkeletonLoader'
 
 interface UserStatsData {
   totalGenerations: number
@@ -115,9 +116,30 @@ export const UserStats: React.FC = () => {
 
   if (loading) {
     return (
-      <div className='p-4 text-center'>
-        <div className='animate-spin rounded-full h-6 w-6 border-b-2 border-[var(--accent-primary)] mx-auto'></div>
-        <p className='text-[var(--text-secondary)] mt-2 text-sm'>加载中...</p>
+      <div className='space-y-4'>
+        <SkeletonLoader variant="text" width={120} height={20} />
+        
+        {/* 统计卡片骨架屏 */}
+        <div className='grid grid-cols-2 gap-3'>
+          {Array.from({ length: 4 }).map((_, index) => (
+            <div key={index} className='bg-[var(--bg-secondary)] rounded-lg p-3 space-y-2'>
+              <SkeletonLoader variant="text" width="60%" height={12} />
+              <SkeletonLoader variant="text" width="40%" height={18} />
+            </div>
+          ))}
+        </div>
+
+        {/* 详细信息骨架屏 */}
+        <div className='space-y-3'>
+          <div className='flex justify-between items-center'>
+            <SkeletonLoader variant="text" width={80} height={14} />
+            <SkeletonLoader variant="text" width={60} height={14} />
+          </div>
+          <div className='flex justify-between items-center'>
+            <SkeletonLoader variant="text" width={80} height={14} />
+            <SkeletonLoader variant="text" width={100} height={14} />
+          </div>
+        </div>
       </div>
     )
   }

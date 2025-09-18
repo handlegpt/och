@@ -4,11 +4,12 @@ import { useTranslation } from '../../i18n/context';
 import { UserSettings } from '../components/user/UserSettings';
 import { AdminPanel } from '../components/admin/AdminPanel';
 import { UserHistory } from '../components/user/UserHistory';
+import { ProfileImprovements } from '../components/user/ProfileImprovements';
 
 export const ProfilePage: React.FC = () => {
   const { user, isAdmin } = useAuth();
   const { t } = useTranslation();
-  const [activeTab, setActiveTab] = useState<'history' | 'settings' | 'admin'>('history');
+  const [activeTab, setActiveTab] = useState<'history' | 'settings' | 'improvements' | 'admin'>('history');
 
   if (!user) {
     return (
@@ -29,6 +30,7 @@ export const ProfilePage: React.FC = () => {
   const tabs = [
     { key: 'history', label: t('app.profile.tabs.history'), icon: '📝' },
     { key: 'settings', label: t('app.profile.tabs.settings'), icon: '⚙️' },
+    { key: 'improvements', label: '改善建议', icon: '🚀' },
     ...(isAdmin ? [{ key: 'admin', label: t('app.profile.tabs.admin'), icon: '🛡️' }] : [])
   ] as const;
 
@@ -86,6 +88,12 @@ export const ProfilePage: React.FC = () => {
                 {t('app.profile.settings.description')}
               </p>
               <UserSettings />
+            </div>
+          )}
+
+          {activeTab === 'improvements' && (
+            <div>
+              <ProfileImprovements />
             </div>
           )}
 
