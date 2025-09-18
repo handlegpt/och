@@ -36,14 +36,18 @@ export const HomePage: React.FC = () => {
   }, [selectedFeature, state.transformations, state.selectedTransformation, actions])
 
   // 监听全局状态变化，当selectedTransformation被重置时，清除URL参数
+  // 但是只有在用户明确返回选择时才重置URL，而不是因为其他操作
   React.useEffect(() => {
     if (!state.selectedTransformation && selectedFeature) {
-      const newSearchParams = new URLSearchParams(searchParams)
-      newSearchParams.delete('feature')
-      if (newSearchParams.get('view') === 'create') {
+      // 检查是否是因为用户点击了返回按钮或其他明确的操作
+      // 如果是，则重置URL；如果不是，则保持URL不变
+      const currentView = searchParams.get('view')
+      if (currentView === 'create') {
+        const newSearchParams = new URLSearchParams(searchParams)
+        newSearchParams.delete('feature')
         newSearchParams.set('view', 'features')
+        setSearchParams(newSearchParams, { replace: true })
       }
-      setSearchParams(newSearchParams, { replace: true })
     }
   }, [state.selectedTransformation, selectedFeature, searchParams, setSearchParams])
 

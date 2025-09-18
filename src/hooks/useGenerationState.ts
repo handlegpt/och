@@ -191,7 +191,8 @@ export const useGenerationState = (): [GenerationState, GenerationActions] => {
       setActiveTool('none');
       setSecondaryFile(null);
       setSecondaryImageUrl(null);
-      setSelectedTransformation(null); 
+      // 不重置selectedTransformation，保持当前选择的功能
+      // setSelectedTransformation(null); 
       setActiveCategory(null);
     } catch (err) {
       console.error("Failed to use image as input:", err);
