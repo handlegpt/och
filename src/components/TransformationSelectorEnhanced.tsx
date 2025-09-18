@@ -106,10 +106,17 @@ export const TransformationSelectorEnhanced: React.FC<TransformationSelectorEnha
             <button
               key={category.key}
               onClick={() => {
-                const categoryTransformation = transformations.find(t => t.key === category.key);
-                if (categoryTransformation) {
-                  setActiveCategory(categoryTransformation);
-                }
+                // 创建一个临时的分类对象来显示该分类下的功能
+                const categoryTransformation = {
+                  key: category.key,
+                  emoji: category.icon,
+                  titleKey: `categories.${category.key}`,
+                  items: transformations.filter(t => {
+                    const config = FEATURE_CONFIGS.find(c => c.key === t.key);
+                    return config?.category === category.key;
+                  })
+                };
+                setActiveCategory(categoryTransformation);
               }}
               className="group relative p-6 bg-[var(--bg-card)] rounded-xl border border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-all duration-200 ease-in-out transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[var(--bg-primary)] focus:ring-[var(--accent-primary)]"
             >
