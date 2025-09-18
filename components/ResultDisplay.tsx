@@ -81,7 +81,7 @@ const ResultDisplay: React.FC<ResultDisplayProps> = ({ content, onUseImageAsInpu
 
     const loadPromises = validImages.map(item => {
         item.img.crossOrigin = 'anonymous';
-        item.img.src = item.url!;
+        item.img.src = item.url || '';
         return new Promise(resolve => item.img.onload = resolve);
     });
 
@@ -139,7 +139,7 @@ const ResultDisplay: React.FC<ResultDisplayProps> = ({ content, onUseImageAsInpu
   // Special view for video results
   if (content.videoUrl) {
     const handleDownloadVideo = () => {
-      downloadImage(content.videoUrl!, `generated-video-${Date.now()}.mp4`);
+      downloadImage(content.videoUrl || '', `generated-video-${Date.now()}.mp4`);
     };
 
     return (
@@ -186,7 +186,7 @@ const ResultDisplay: React.FC<ResultDisplayProps> = ({ content, onUseImageAsInpu
                     { src: content.imageUrl, label: t('resultDisplay.labels.finalResult') },
                 ].map(({ src, label }) => (
                     <div key={label} className="relative rounded-lg overflow-hidden border border-[var(--border-primary)] bg-[var(--bg-primary)] flex items-center justify-center flex-col p-1 aspect-square md:aspect-auto">
-                    <img src={src!} alt={label} className="max-w-full max-h-full object-contain cursor-pointer" onClick={() => onImageClick(src!)} />
+                    <img src={src || ''} alt={label} className="max-w-full max-h-full object-contain cursor-pointer" onClick={() => onImageClick(src || '')} />
                     <div className="absolute bottom-1 right-1 text-xs bg-black/50 text-white px-2 py-1 rounded">{label}</div>
                     </div>
                 ))}
@@ -196,11 +196,11 @@ const ResultDisplay: React.FC<ResultDisplayProps> = ({ content, onUseImageAsInpu
                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" /></svg>
                         {t('resultDisplay.actions.downloadBoth')}
                     </ActionButton>
-                    <ActionButton onClick={() => onUseImageAsInput(content.secondaryImageUrl!)}>
+                    <ActionButton onClick={() => onUseImageAsInput(content.secondaryImageUrl || '')}>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" /><path fillRule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2-2H4a2 2 0 01-2-2V6z" clipRule="evenodd" /></svg>
                         {t('resultDisplay.actions.useLineArtAsInput')}
                     </ActionButton>
-                    <ActionButton onClick={() => onUseImageAsInput(content.imageUrl!)} isPrimary>
+                    <ActionButton onClick={() => onUseImageAsInput(content.imageUrl || '')} isPrimary>
                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" /><path fillRule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2-2H4a2 2 0 01-2-2V6z" clipRule="evenodd" /></svg>
                         {t('resultDisplay.actions.useFinalAsInput')}
                     </ActionButton>
@@ -256,7 +256,7 @@ const ResultDisplay: React.FC<ResultDisplayProps> = ({ content, onUseImageAsInpu
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM15 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1z" /></svg>
                     <span>{t('resultDisplay.actions.downloadComparison')}</span>
                 </ActionButton>
-                <ActionButton onClick={() => onUseImageAsInput(content.imageUrl!)} isPrimary>
+                <ActionButton onClick={() => onUseImageAsInput(content.imageUrl || '')} isPrimary>
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
                         <path fillRule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2-2H4a2 2 0 01-2-2V6z" clipRule="evenodd" />
@@ -289,7 +289,7 @@ const ResultDisplay: React.FC<ResultDisplayProps> = ({ content, onUseImageAsInpu
         {viewMode === 'result' && content.imageUrl && (
           <div 
             className="w-full h-full relative bg-[var(--bg-primary)] rounded-lg overflow-hidden shadow-inner cursor-pointer group border border-[var(--border-primary)] flex items-center justify-center"
-            onClick={() => onImageClick(content.imageUrl!)}
+            onClick={() => onImageClick(content.imageUrl || '')}
           >
             <img src={content.imageUrl} alt="Generated result" className="max-w-full max-h-full object-contain" />
             <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -345,7 +345,7 @@ const ResultDisplay: React.FC<ResultDisplayProps> = ({ content, onUseImageAsInpu
               </svg>
               <span>{t('resultDisplay.actions.download')}</span>
             </ActionButton>
-            <ActionButton onClick={() => onUseImageAsInput(content.imageUrl!)} isPrimary>
+            <ActionButton onClick={() => onUseImageAsInput(content.imageUrl || '')} isPrimary>
                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
                 <path fillRule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2-2H4a2 2 0 01-2-2V6z" clipRule="evenodd" />

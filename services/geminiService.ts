@@ -121,7 +121,7 @@ export async function editImage(
                     errorMessage = parsedError.error.message;
                 }
             }
-        } catch (_e) {
+        } catch {
             // Ignore parsing errors
         }
         throw new Error(errorMessage);
@@ -202,7 +202,7 @@ export async function generateVideo(
                 if (parsedError.error && parsedError.error.message) {
                     errorMessage = parsedError.error.message;
                 }
-            } catch (_e) {
+            } catch {
                 // Ignore parsing errors
             }
             throw new Error(errorMessage);

@@ -49,11 +49,11 @@ const HistoryItem: React.FC<{ item: GeneratedContent; onUseImage: (url: string) 
                         <img src={item.secondaryImageUrl} className="rounded-md aspect-square object-contain bg-[var(--bg-primary)]" alt="Line Art Result" />
                         <div className="text-xs text-center text-[var(--text-secondary)] mb-1">{t('history.lineArt')}</div>
                         <div className="grid grid-cols-2 gap-1.5 text-xs">
-                            <ActionButton onClick={() => onUseImage(item.secondaryImageUrl!)} isPrimary>
+                            <ActionButton onClick={() => onUseImage(item.secondaryImageUrl || '')} isPrimary>
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" /><path fillRule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2-2H4a2 2 0 01-2-2V6z" clipRule="evenodd" /></svg>
                                 {t('history.use')}
                             </ActionButton>
-                            <ActionButton onClick={() => onDownload(item.secondaryImageUrl!, 'line-art')}>
+                            <ActionButton onClick={() => onDownload(item.secondaryImageUrl || '', 'line-art')}>
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" /></svg>
                                 {t('history.save')}
                             </ActionButton>
@@ -63,11 +63,11 @@ const HistoryItem: React.FC<{ item: GeneratedContent; onUseImage: (url: string) 
                         <img src={item.imageUrl} className="rounded-md aspect-square object-contain bg-[var(--bg-primary)]" alt="Final Result" />
                         <div className="text-xs text-center text-[var(--text-secondary)] mb-1">{t('history.finalResult')}</div>
                         <div className="grid grid-cols-2 gap-1.5 text-xs">
-                            <ActionButton onClick={() => onUseImage(item.imageUrl!)} isPrimary>
+                            <ActionButton onClick={() => onUseImage(item.imageUrl || '')} isPrimary>
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" /><path fillRule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2-2H4a2 2 0 01-2-2V6z" clipRule="evenodd" /></svg>
                                 {t('history.use')}
                             </ActionButton>
-                            <ActionButton onClick={() => onDownload(item.imageUrl!, 'final-result')}>
+                            <ActionButton onClick={() => onDownload(item.imageUrl || '', 'final-result')}>
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" /></svg>
                                 {t('history.save')}
                             </ActionButton>
@@ -78,11 +78,11 @@ const HistoryItem: React.FC<{ item: GeneratedContent; onUseImage: (url: string) 
                 <div className="flex flex-col gap-3">
                     <img src={item.imageUrl} className="rounded-md w-full object-contain bg-[var(--bg-primary)]" alt="Generated Result" />
                     <div className="grid grid-cols-2 gap-2 text-sm">
-                         <ActionButton onClick={() => onDownload(item.imageUrl!, 'single-result')}>
+                         <ActionButton onClick={() => onDownload(item.imageUrl || '', 'single-result')}>
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" /></svg>
                             {t('resultDisplay.actions.download')}
                         </ActionButton>
-                        <ActionButton onClick={() => onUseImage(item.imageUrl!)} isPrimary>
+                        <ActionButton onClick={() => onUseImage(item.imageUrl || '')} isPrimary>
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" /><path fillRule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2-2H4a2 2 0 01-2-2V6z" clipRule="evenodd" /></svg>
                             {t('resultDisplay.actions.useAsInput')}
                         </ActionButton>

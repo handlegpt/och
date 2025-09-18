@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import { supabase } from '../../lib/supabase';
-import { useTranslation } from '../../../i18n/context';
+// import { useTranslation } from '../../../i18n/context';
 import { DataPersistenceService } from '../../services/dataPersistence';
 
 interface UserStats {

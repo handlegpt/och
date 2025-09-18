@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 // import { supabase } from '../../lib/supabase';
-import { useTranslation } from '../../../i18n/context';
+// import { useTranslation } from '../../../i18n/context';
 import { UserStats } from './UserStats';
 import { DataPersistenceService } from '../../services/dataPersistence';
 import { SecureInput } from '../SecureInput';
