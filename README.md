@@ -1,5 +1,8 @@
 # Och AI
 
+## CI/CD Test
+Testing automated deployment pipeline.
+
 一个基于 Google Gemini AI 的图像和视频生成工具，提供多种创意效果和变换功能。
 
 ## 功能特性
