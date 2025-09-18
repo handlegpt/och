@@ -340,5 +340,13 @@ export default {
       etching: { title: "蚀刻", description: "将您的图像重绘为经典的黑白蚀刻画。" },
       diorama: { title: "立体模型", description: "将您的场景变成盒子里的微型3D立体模型。" },
     }
+  },
+  categories: {
+    creative: "创意设计",
+    toys: "玩具模型", 
+    fashion: "时尚美妆",
+    realistic: "写实渲染",
+    enhancement: "图像增强",
+    reference: "参考工具"
   }
 };
