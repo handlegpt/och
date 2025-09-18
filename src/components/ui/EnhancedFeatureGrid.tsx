@@ -36,11 +36,28 @@ export const EnhancedFeatureGrid: React.FC<EnhancedFeatureGridProps> = ({
   // 获取所有分类
   const categories = useMemo(() => {
     const cats = ['all', ...new Set(features.map(f => f.category))]
-    return cats.map(cat => ({
-      key: cat,
-      label: cat === 'all' ? '全部' : t(`categories.${cat}`) || cat,
-      count: cat === 'all' ? features.length : features.filter(f => f.category === cat).length,
-    }))
+    return cats.map(cat => {
+      const translationKey = `categories.${cat}`
+      const translatedLabel = cat === 'all' ? '全部' : t(translationKey)
+      
+      // 如果翻译失败，使用硬编码的中文映射
+      const fallbackLabels: Record<string, string> = {
+        creative: '创意设计',
+        toys: '玩具模型',
+        fashion: '时尚美妆',
+        realistic: '写实渲染',
+        enhancement: '图像增强',
+        reference: '参考工具'
+      }
+      
+      const finalLabel = translatedLabel === translationKey ? fallbackLabels[cat] || cat : translatedLabel
+      
+      return {
+        key: cat,
+        label: finalLabel,
+        count: cat === 'all' ? features.length : features.filter(f => f.category === cat).length,
+      }
+    })
   }, [features, t])
 
   // 过滤和排序功能

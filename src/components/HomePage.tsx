@@ -82,12 +82,6 @@ export const HomePage: React.FC = () => {
     setSearchParams(newSearchParams, { replace: false })
   }, [searchParams, setSearchParams])
 
-  const handleViewAllFeatures = useCallback(() => {
-    const newSearchParams = new URLSearchParams(searchParams)
-    newSearchParams.set('view', 'categories')
-    setSearchParams(newSearchParams, { replace: false })
-  }, [searchParams, setSearchParams])
-
   const handleFeatureClick = useCallback(
     (feature: any) => {
       // 从 TRANSFORMATIONS 中找到对应的转换
@@ -408,21 +402,6 @@ export const HomePage: React.FC = () => {
             ))}
           </div>
 
-          <div className='text-center'>
-            <button
-              onClick={handleViewAllFeatures}
-              className='group relative px-8 py-4 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white font-bold text-lg rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 overflow-hidden'
-            >
-              <span className='relative z-10 flex items-center gap-3'>
-                <span>🎨</span>
-                {t('home.features.viewAll')}
-                <span className='group-hover:translate-x-1 transition-transform duration-300'>
-                  →
-                </span>
-              </span>
-              <div className='absolute inset-0 bg-gradient-to-r from-[var(--accent-primary-hover)] to-[var(--accent-secondary-hover)] opacity-0 group-hover:opacity-100 transition-opacity duration-300'></div>
-            </button>
-          </div>
         </div>
       </section>
 
