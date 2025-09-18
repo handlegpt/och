@@ -5,11 +5,13 @@ import { UserSettings } from '../components/user/UserSettings';
 import { AdminPanel } from '../components/admin/AdminPanel';
 import { UserHistory } from '../components/user/UserHistory';
 import { ProfileImprovements } from '../components/user/ProfileImprovements';
+import { DashboardLayout } from '../components/user/DashboardLayout';
+import { FavoritesManager } from '../components/user/FavoritesManager';
 
 export const ProfilePage: React.FC = () => {
   const { user, isAdmin } = useAuth();
   const { t } = useTranslation();
-  const [activeTab, setActiveTab] = useState<'history' | 'settings' | 'improvements' | 'admin'>('history');
+  const [activeTab, setActiveTab] = useState<'dashboard' | 'history' | 'favorites' | 'settings' | 'improvements' | 'admin'>('dashboard');
 
   if (!user) {
     return (
@@ -28,7 +30,9 @@ export const ProfilePage: React.FC = () => {
   }
 
   const tabs = [
+    { key: 'dashboard', label: '仪表板', icon: '📊' },
     { key: 'history', label: t('app.profile.tabs.history'), icon: '📝' },
+    { key: 'favorites', label: '我的收藏', icon: '⭐' },
     { key: 'settings', label: t('app.profile.tabs.settings'), icon: '⚙️' },
     { key: 'improvements', label: '改善建议', icon: '🚀' },
     ...(isAdmin ? [{ key: 'admin', label: t('app.profile.tabs.admin'), icon: '🛡️' }] : [])
@@ -67,6 +71,12 @@ export const ProfilePage: React.FC = () => {
 
         {/* 标签页内容 */}
         <div className="bg-[var(--bg-card-alpha)] backdrop-blur-lg rounded-xl border border-[var(--border-primary)] p-6">
+          {activeTab === 'dashboard' && (
+            <div>
+              <DashboardLayout />
+            </div>
+          )}
+
           {activeTab === 'history' && (
             <div>
               <h2 className="text-xl font-semibold text-[var(--text-primary)] mb-4">
@@ -76,6 +86,18 @@ export const ProfilePage: React.FC = () => {
                 {t('app.profile.history.description')}
               </p>
               <UserHistory />
+            </div>
+          )}
+
+          {activeTab === 'favorites' && (
+            <div>
+              <h2 className="text-xl font-semibold text-[var(--text-primary)] mb-4">
+                我的收藏
+              </h2>
+              <p className="text-[var(--text-secondary)] mb-6">
+                管理您收藏的生成作品
+              </p>
+              <FavoritesManager />
             </div>
           )}
 
