@@ -31,6 +31,11 @@ export const Navigation: React.FC = () => {
     
     // 导航到首页
     navigate('/');
+    
+    // 强制刷新页面以确保状态完全重置
+    setTimeout(() => {
+      window.location.reload();
+    }, 100);
   };
 
   return (

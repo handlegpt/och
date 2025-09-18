@@ -19,6 +19,13 @@ export const HomePage: React.FC = () => {
   const [showMagicLinkModal, setShowMagicLinkModal] = useState(false);
   const [showAllFeatures, setShowAllFeatures] = useState(false);
 
+  // 监听全局状态变化，当selectedTransformation被重置时，也重置本地状态
+  React.useEffect(() => {
+    if (!state.selectedTransformation) {
+      setShowAllFeatures(false);
+    }
+  }, [state.selectedTransformation]);
+
   const handleLoginRequired = useCallback(() => {
     setShowLoginPrompt(true);
   }, []);
