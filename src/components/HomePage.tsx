@@ -78,13 +78,13 @@ export const HomePage: React.FC = () => {
 
   const handleStartCreating = useCallback(() => {
     const newSearchParams = new URLSearchParams(searchParams)
-    newSearchParams.set('view', 'features')
+    newSearchParams.set('view', 'categories')
     setSearchParams(newSearchParams, { replace: false })
   }, [searchParams, setSearchParams])
 
   const handleViewAllFeatures = useCallback(() => {
     const newSearchParams = new URLSearchParams(searchParams)
-    newSearchParams.set('view', 'features')
+    newSearchParams.set('view', 'categories')
     setSearchParams(newSearchParams, { replace: false })
   }, [searchParams, setSearchParams])
 
@@ -155,8 +155,8 @@ export const HomePage: React.FC = () => {
     )
   }
 
-  // 如果用户点击了"开始创作"或"查看所有功能"，显示功能选择界面
-  if (searchParams.get('view') === 'features') {
+  // 如果用户点击了"开始创作"或"查看所有功能"，显示功能浏览界面
+  if (searchParams.get('view') === 'categories') {
     return (
       <div className='min-h-screen bg-[var(--bg-primary)]'>
         <main>

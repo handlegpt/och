@@ -27,7 +27,6 @@ export const TransformationSelectorEnhanced: React.FC<TransformationSelectorEnha
 
   // 根据URL参数决定显示模式
   const currentView = searchParams.get('view')
-  const isFeaturesView = currentView === 'features'
 
   // 将transformations转换为FeatureConfig格式
   const features = transformations.map(trans => {
@@ -77,98 +76,6 @@ export const TransformationSelectorEnhanced: React.FC<TransformationSelectorEnha
     )
   }
 
-  // 如果是features视图，直接显示所有功能
-  if (isFeaturesView && !activeCategory) {
-    return (
-      <div className='container mx-auto p-4 md:p-8 animate-fade-in'>
-        {/* 标题和描述 */}
-        <div className='text-center mb-8'>
-          <h2 className='text-3xl font-bold mb-4 text-[var(--accent-primary)]'>所有功能</h2>
-          <p className='text-lg text-[var(--text-secondary)] mb-6 max-w-2xl mx-auto'>
-            浏览所有可用的AI生成功能，或按分类筛选
-          </p>
-        </div>
-
-        {/* 分类筛选器 */}
-        <div className='mb-8'>
-          <div className='flex flex-wrap justify-center gap-3 mb-6'>
-            <button
-              onClick={() => {
-                setActiveCategory(null)
-                const newSearchParams = new URLSearchParams(searchParams)
-                newSearchParams.delete('category')
-                setSearchParams(newSearchParams, { replace: false })
-              }}
-              className='px-4 py-2 bg-[var(--accent-primary)] text-white rounded-lg hover:bg-[var(--accent-primary-hover)] transition-colors duration-200'
-            >
-              全部功能
-            </button>
-            {FEATURE_CATEGORIES.map(category => {
-              const categoryFeatures = features.filter(f => f.category === category.key)
-              if (categoryFeatures.length === 0) return null
-              
-              return (
-                <button
-                  key={category.key}
-                  onClick={() => {
-                    const categoryTransformation = {
-                      key: category.key,
-                      emoji: category.icon,
-                      titleKey: `categories.${category.key}`,
-                      items: transformations.filter(t => {
-                        const config = FEATURE_CONFIGS.find(c => c.key === t.key)
-                        return config?.category === category.key
-                      }),
-                    }
-                    setActiveCategory(categoryTransformation)
-                    
-                    const newSearchParams = new URLSearchParams(searchParams)
-                    newSearchParams.set('category', category.key)
-                    setSearchParams(newSearchParams, { replace: false })
-                  }}
-                  className='px-4 py-2 bg-[var(--bg-card)] text-[var(--text-primary)] rounded-lg border border-[var(--border-primary)] hover:border-[var(--accent-primary)] hover:bg-[var(--accent-primary)] hover:text-white transition-all duration-200'
-                >
-                  <span className='mr-2'>{category.icon}</span>
-                  {category.name}
-                  <span className='ml-2 text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full'>
-                    {categoryFeatures.length}
-                  </span>
-                </button>
-              )
-            })}
-          </div>
-        </div>
-
-        {/* 所有功能网格 */}
-        <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4'>
-          {features.map(feature => (
-            <button
-              key={feature.key}
-              onClick={() => handleFeatureSelect(feature)}
-              className='group flex flex-col items-center justify-center text-center p-4 aspect-square bg-[var(--bg-card)] rounded-xl border border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-all duration-200 ease-in-out transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[var(--bg-primary)] focus:ring-[var(--accent-primary)]'
-            >
-              <span className='text-4xl mb-2 transition-transform duration-200 group-hover:scale-110'>
-                {feature.emoji}
-              </span>
-              <span className='font-semibold text-sm text-[var(--text-primary)]'>
-                {t(feature.titleKey)}
-              </span>
-              {feature.isPopular && (
-                <span className='text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded-full mt-1'>
-                  热门
-                </span>
-              )}
-              {feature.isNew && (
-                <span className='text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full mt-1'>
-                  新功能
-                </span>
-              )}
-            </button>
-          ))}
-        </div>
-      </div>
-    )
-  }
 
   // 原始的分类视图 (categories视图)
   return (
@@ -226,7 +133,7 @@ export const TransformationSelectorEnhanced: React.FC<TransformationSelectorEnha
 
                 // 更新URL参数
                 const newSearchParams = new URLSearchParams(searchParams)
-                newSearchParams.set('view', 'features')
+                newSearchParams.set('view', 'categories')
                 newSearchParams.set('category', category.key)
                 setSearchParams(newSearchParams, { replace: false })
               }}
