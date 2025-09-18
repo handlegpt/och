@@ -13,7 +13,7 @@ interface AdminStats {
 }
 
 export const AdminPanel: React.FC = () => {
-  const { } = useAuth();
+  useAuth();
   // const { t } = useTranslation();
   const [stats, setStats] = useState<AdminStats>({
     totalUsers: 0,
