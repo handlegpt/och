@@ -66,13 +66,13 @@ export const FEATURE_CATEGORIES: FeatureCategory[] = [
   }
 ];
 
-// 功能配置定义
+// 功能配置定义 - 基于实际的TRANSFORMATIONS
 export const FEATURE_CONFIGS: FeatureConfig[] = [
   // 创意设计类
   {
-    key: 'custom_prompt',
+    key: 'customPrompt',
     emoji: '✍️',
-    titleKey: 'transformations.custom_prompt.title',
+    titleKey: 'transformations.effects.customPrompt.title',
     category: 'creative',
     tags: ['自定义', '创意', '文本'],
     isPopular: true,
@@ -81,9 +81,9 @@ export const FEATURE_CONFIGS: FeatureConfig[] = [
     estimatedTime: '1-2分钟'
   },
   {
-    key: 'anime_to_cosplay',
+    key: 'cosplay',
     emoji: '🎭',
-    titleKey: 'transformations.anime_to_cosplay.title',
+    titleKey: 'transformations.effects.cosplay.title',
     category: 'creative',
     tags: ['动漫', 'Cosplay', '角色扮演'],
     isNew: true,
@@ -94,9 +94,9 @@ export const FEATURE_CONFIGS: FeatureConfig[] = [
 
   // 玩具模型类
   {
-    key: '3d_figure',
-    emoji: '🤖',
-    titleKey: 'transformations.3d_figure.title',
+    key: 'figurine',
+    emoji: '🧍',
+    titleKey: 'transformations.effects.figurine.title',
     category: 'toys',
     tags: ['3D', '手办', '模型'],
     isPopular: true,
@@ -105,9 +105,9 @@ export const FEATURE_CONFIGS: FeatureConfig[] = [
     estimatedTime: '2-4分钟'
   },
   {
-    key: 'funko_pop',
+    key: 'funko',
     emoji: '📦',
-    titleKey: 'transformations.funko_pop.title',
+    titleKey: 'transformations.effects.funko.title',
     category: 'toys',
     tags: ['Funko', '公仔', '收藏'],
     description: '生成Funko Pop风格公仔',
@@ -115,9 +115,9 @@ export const FEATURE_CONFIGS: FeatureConfig[] = [
     estimatedTime: '1-2分钟'
   },
   {
-    key: 'lego_minifigure',
+    key: 'lego',
     emoji: '🧱',
-    titleKey: 'transformations.lego_minifigure.title',
+    titleKey: 'transformations.effects.lego.title',
     category: 'toys',
     tags: ['乐高', '积木', '小人仔'],
     description: '生成乐高小人仔',
@@ -125,9 +125,9 @@ export const FEATURE_CONFIGS: FeatureConfig[] = [
     estimatedTime: '1-2分钟'
   },
   {
-    key: 'crochet_doll',
+    key: 'crochet',
     emoji: '🧶',
-    titleKey: 'transformations.crochet_doll.title',
+    titleKey: 'transformations.effects.crochet.title',
     category: 'toys',
     tags: ['钩针', '毛线', '手工'],
     description: '生成钩针娃娃',
@@ -135,9 +135,9 @@ export const FEATURE_CONFIGS: FeatureConfig[] = [
     estimatedTime: '2-3分钟'
   },
   {
-    key: 'plush_toy',
+    key: 'plushie',
     emoji: '🧸',
-    titleKey: 'transformations.plush_toy.title',
+    titleKey: 'transformations.effects.plushie.title',
     category: 'toys',
     tags: ['毛绒', '玩具', '可爱'],
     description: '生成可爱毛绒玩具',
@@ -145,9 +145,9 @@ export const FEATURE_CONFIGS: FeatureConfig[] = [
     estimatedTime: '1-2分钟'
   },
   {
-    key: 'acrylic_keychain',
-    emoji: '🗝️',
-    titleKey: 'transformations.acrylic_keychain.title',
+    key: 'keychain',
+    emoji: '🔑',
+    titleKey: 'transformations.effects.keychain.title',
     category: 'toys',
     tags: ['亚克力', '钥匙扣', '装饰'],
     description: '生成亚克力钥匙扣',
@@ -157,9 +157,9 @@ export const FEATURE_CONFIGS: FeatureConfig[] = [
 
   // 时尚美妆类
   {
-    key: 'fashion_magazine',
-    emoji: '📷',
-    titleKey: 'transformations.fashion_magazine.title',
+    key: 'fashion',
+    emoji: '📸',
+    titleKey: 'transformations.effects.fashion.title',
     category: 'fashion',
     tags: ['时尚', '杂志', '摄影'],
     isPopular: true,
@@ -167,12 +167,22 @@ export const FEATURE_CONFIGS: FeatureConfig[] = [
     difficulty: 'medium',
     estimatedTime: '2-3分钟'
   },
+  {
+    key: 'makeup',
+    emoji: '💄',
+    titleKey: 'transformations.effects.makeup.title',
+    category: 'fashion',
+    tags: ['美妆', '化妆', '建议'],
+    description: '美妆分析和改进建议',
+    difficulty: 'easy',
+    estimatedTime: '1-2分钟'
+  },
 
   // 写实渲染类
   {
     key: 'photorealistic',
     emoji: '🪄',
-    titleKey: 'transformations.photorealistic.title',
+    titleKey: 'transformations.effects.photorealistic.title',
     category: 'realistic',
     tags: ['照片级', '写实', '真实'],
     isPopular: true,
@@ -182,8 +192,8 @@ export const FEATURE_CONFIGS: FeatureConfig[] = [
   },
   {
     key: 'hyperrealistic',
-    emoji: '⭐',
-    titleKey: 'transformations.hyperrealistic.title',
+    emoji: '✨',
+    titleKey: 'transformations.effects.hyperrealistic.title',
     category: 'realistic',
     tags: ['超写实', '细节', '真实'],
     isNew: true,
@@ -192,9 +202,9 @@ export const FEATURE_CONFIGS: FeatureConfig[] = [
     estimatedTime: '4-6分钟'
   },
   {
-    key: 'architectural_model',
+    key: 'architecture',
     emoji: '🏗️',
-    titleKey: 'transformations.architectural_model.title',
+    titleKey: 'transformations.effects.architecture.title',
     category: 'realistic',
     tags: ['建筑', '模型', '3D'],
     description: '生成建筑模型',
@@ -202,9 +212,9 @@ export const FEATURE_CONFIGS: FeatureConfig[] = [
     estimatedTime: '2-4分钟'
   },
   {
-    key: 'product_rendering',
+    key: 'productRender',
     emoji: '💡',
-    titleKey: 'transformations.product_rendering.title',
+    titleKey: 'transformations.effects.productRender.title',
     category: 'realistic',
     tags: ['产品', '渲染', '商业'],
     description: '生成产品渲染图',
@@ -214,9 +224,9 @@ export const FEATURE_CONFIGS: FeatureConfig[] = [
 
   // 图像增强类
   {
-    key: 'hd_enhancement',
+    key: 'hdEnhance',
     emoji: '🔍',
-    titleKey: 'transformations.hd_enhancement.title',
+    titleKey: 'transformations.effects.hdEnhance.title',
     category: 'enhancement',
     tags: ['高清', '增强', '质量'],
     isPopular: true,
@@ -227,14 +237,57 @@ export const FEATURE_CONFIGS: FeatureConfig[] = [
 
   // 参考工具类
   {
-    key: 'pose_reference',
+    key: 'pose',
     emoji: '💃',
-    titleKey: 'transformations.pose_reference.title',
+    titleKey: 'transformations.effects.pose.title',
     category: 'reference',
     tags: ['姿势', '参考', '动作'],
     description: '生成姿势参考图',
     difficulty: 'medium',
     estimatedTime: '2-3分钟'
+  },
+
+  // 其他功能
+  {
+    key: 'videoGeneration',
+    emoji: '🎬',
+    titleKey: 'transformations.video.title',
+    category: 'creative',
+    tags: ['视频', '生成', '动画'],
+    isNew: true,
+    description: 'AI视频生成',
+    difficulty: 'hard',
+    estimatedTime: '5-10分钟'
+  },
+  {
+    key: 'colorPalette',
+    emoji: '🎨',
+    titleKey: 'transformations.effects.colorPalette.title',
+    category: 'creative',
+    tags: ['色彩', '调色板', '艺术'],
+    description: '色彩调色板生成',
+    difficulty: 'medium',
+    estimatedTime: '2-3分钟'
+  },
+  {
+    key: 'isolate',
+    emoji: '🎯',
+    titleKey: 'transformations.effects.isolate.title',
+    category: 'enhancement',
+    tags: ['抠图', '背景', '分离'],
+    description: '人物抠图和背景分离',
+    difficulty: 'medium',
+    estimatedTime: '2-3分钟'
+  },
+  {
+    key: 'background',
+    emoji: '🪩',
+    titleKey: 'transformations.effects.background.title',
+    category: 'enhancement',
+    tags: ['背景', '替换', '风格'],
+    description: '背景替换和风格化',
+    difficulty: 'easy',
+    estimatedTime: '1-2分钟'
   }
 ];
 
