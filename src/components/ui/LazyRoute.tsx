@@ -61,27 +61,27 @@ export const preloadComponent = (importFunc: () => Promise<any>) => {
 };
 
 // 懒加载的页面组件
-export const LazyHomePage = withLazyLoading(() => import('../HomePage'));
-export const LazyProfilePage = withLazyLoading(() => import('../../pages/ProfilePage'));
-export const LazyGenerationWorkflow = withLazyLoading(() => import('../GenerationWorkflow'));
+export const LazyHomePage = withLazyLoading(() => import('../HomePage').then(module => ({ default: module.HomePage })));
+export const LazyProfilePage = withLazyLoading(() => import('../../pages/ProfilePage').then(module => ({ default: module.ProfilePage })));
+export const LazyGenerationWorkflow = withLazyLoading(() => import('../GenerationWorkflow').then(module => ({ default: module.GenerationWorkflow })));
 
 // 懒加载的用户组件
-export const LazyUserHistory = withLazyLoading(() => import('../user/UserHistory'));
-export const LazyUserSettings = withLazyLoading(() => import('../user/UserSettings'));
-export const LazyFavoritesManager = withLazyLoading(() => import('../user/FavoritesManager'));
-export const LazyDashboardLayout = withLazyLoading(() => import('../user/DashboardLayout'));
-export const LazyPrivacyControls = withLazyLoading(() => import('../user/PrivacyControls'));
+export const LazyUserHistory = withLazyLoading(() => import('../user/UserHistory').then(module => ({ default: module.UserHistory })));
+export const LazyUserSettings = withLazyLoading(() => import('../user/UserSettings').then(module => ({ default: module.UserSettings })));
+export const LazyFavoritesManager = withLazyLoading(() => import('../user/FavoritesManager').then(module => ({ default: module.FavoritesManager })));
+export const LazyDashboardLayout = withLazyLoading(() => import('../user/DashboardLayout').then(module => ({ default: module.DashboardLayout })));
+export const LazyPrivacyControls = withLazyLoading(() => import('../user/PrivacyControls').then(module => ({ default: module.PrivacyControls })));
 
 // 懒加载的管理员组件
-export const LazyAdminPanel = withLazyLoading(() => import('../admin/AdminPanel'));
+export const LazyAdminPanel = withLazyLoading(() => import('../admin/AdminPanel').then(module => ({ default: module.AdminPanel })));
 
 // 懒加载的认证组件
-export const LazyAuthModal = withLazyLoading(() => import('../auth/AuthModal'));
-export const LazyLoginPromptModal = withLazyLoading(() => import('../LoginPromptModal'));
-export const LazyMagicLinkModal = withLazyLoading(() => import('../MagicLinkModal'));
+export const LazyAuthModal = withLazyLoading(() => import('../auth/AuthModal').then(module => ({ default: module.AuthModal })));
+export const LazyLoginPromptModal = withLazyLoading(() => import('../LoginPromptModal').then(module => ({ default: module.LoginPromptModal })));
+export const LazyMagicLinkModal = withLazyLoading(() => import('../MagicLinkModal').then(module => ({ default: module.MagicLinkModal })));
 
-// 懒加载的UI组件
-export const LazyImagePreviewModal = withLazyLoading(() => import('../ImagePreviewModal'));
+// 懒加载的UI组件 - 注释掉不存在的组件
+// export const LazyImagePreviewModal = withLazyLoading(() => import('../ImagePreviewModal'));
 
 // 组件预加载器
 export const ComponentPreloader: React.FC = () => {
