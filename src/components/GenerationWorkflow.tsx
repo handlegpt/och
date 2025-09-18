@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import TransformationSelector from '../../components/TransformationSelector';
+import { TransformationSelectorEnhanced } from './TransformationSelectorEnhanced';
 import { InputPanel } from './InputPanel';
 import { OutputPanel } from './OutputPanel';
 // import { GenerationControls } from './GenerationControls';
@@ -91,7 +91,7 @@ export const GenerationWorkflow: React.FC<GenerationWorkflowProps> = ({
 
   if (!state.selectedTransformation) {
     return (
-      <TransformationSelector 
+      <TransformationSelectorEnhanced 
         transformations={state.transformations} 
         onSelect={handleSelectTransformation} 
         hasPreviousResult={!!state.primaryImageUrl}
