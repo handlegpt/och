@@ -10,7 +10,7 @@ export const Navigation: React.FC = () => {
   const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
-  const [state, actions] = useGenerationState();
+  const [, actions] = useGenerationState();
 
   const isActive = (path: string) => {
     return location.pathname === path;

@@ -296,7 +296,7 @@ export const HomePage: React.FC = () => {
                 title: t('home.howItWorks.step3.title'),
                 description: t('home.howItWorks.step3.description')
               }
-            ].map((step, index) => (
+            ].map((step, _index) => (
               <div key={step.step} className="text-center">
                 <div className="relative mb-6">
                   <div className="w-16 h-16 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] rounded-full flex items-center justify-center text-2xl mx-auto mb-4">

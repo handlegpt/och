@@ -88,7 +88,7 @@ export const useUsageLimit = () => {
     fetchUsage();
   }, [user, authLoading]);
 
-  const recordUsage = async (actionType: 'image_generation' | 'video_generation', tokensUsed: number = 1, cost: number = 0) => {
+  const recordUsage = async (actionType: 'image_generation' | 'video_generation', tokensUsed: number = 1, _cost: number = 0) => {
     if (!user || !supabase) return;
 
     try {

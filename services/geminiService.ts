@@ -121,7 +121,9 @@ export async function editImage(
                     errorMessage = parsedError.error.message;
                 }
             }
-        } catch (e) {}
+        } catch (_e) {
+            // Ignore parsing errors
+        }
         throw new Error(errorMessage);
     }
     throw new Error("An unknown error occurred while communicating with the API.");
@@ -200,7 +202,9 @@ export async function generateVideo(
                 if (parsedError.error && parsedError.error.message) {
                     errorMessage = parsedError.error.message;
                 }
-            } catch (e) {}
+            } catch (_e) {
+                // Ignore parsing errors
+            }
             throw new Error(errorMessage);
         }
         throw new Error("An unknown error occurred during video generation.");

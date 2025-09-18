@@ -64,7 +64,7 @@ export function isValidFileName(fileName: string): boolean {
   if (fileName.length > 255) return false;
   
   // 检查危险字符
-  const dangerousChars = /[<>:"/\\|?*\x00-\x1f]/;
+  const dangerousChars = /[<>:"/\\|?*]/;
   if (dangerousChars.test(fileName)) return false;
   
   // 检查保留名称

@@ -33,7 +33,7 @@ export const loadImage = (dataUrl: string): Promise<HTMLImageElement> => {
         const img = new Image();
         img.crossOrigin = "anonymous";
         img.onload = () => resolve(img);
-        img.onerror = (err) => reject(new Error("Failed to load image from data URL."));
+        img.onerror = (_err) => reject(new Error("Failed to load image from data URL."));
         img.src = dataUrl;
     });
 };

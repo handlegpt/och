@@ -1,5 +1,5 @@
 import { supabase } from '../lib/supabase';
-import type { GeneratedContent } from '../types';
+// import type { GeneratedContent } from '../types';
 
 export interface GenerationRecord {
   id?: string;

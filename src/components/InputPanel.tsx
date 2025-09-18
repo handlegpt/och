@@ -1,7 +1,7 @@
 import React from 'react';
 import ImageEditorCanvas from '../../components/ImageEditorCanvas';
 import MultiImageUploader from '../../components/MultiImageUploader';
-import type { Transformation } from '../../types';
+// import type { Transformation } from '../../types';
 import type { GenerationState, GenerationActions } from '../hooks/useGenerationState';
 
 interface InputPanelProps {

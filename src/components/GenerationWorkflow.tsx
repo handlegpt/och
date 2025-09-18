@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import TransformationSelector from '../../components/TransformationSelector';
 import { InputPanel } from './InputPanel';
 import { OutputPanel } from './OutputPanel';
-import { GenerationControls } from './GenerationControls';
+// import { GenerationControls } from './GenerationControls';
 import ImagePreviewModal from '../../components/ImagePreviewModal';
 import { useImageGeneration } from '../hooks/useImageGeneration';
 import { useVideoGeneration } from '../hooks/useVideoGeneration';

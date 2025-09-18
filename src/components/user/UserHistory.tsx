@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../hooks/useAuth';
-import { supabase } from '../../lib/supabase';
+// import { supabase } from '../../lib/supabase';
 import { useTranslation } from '../../../i18n/context';
 import { DataPersistenceService } from '../../services/dataPersistence';
 import ImagePreviewModal from '../../../components/ImagePreviewModal';
@@ -18,7 +18,7 @@ interface GenerationHistory {
 
 export const UserHistory: React.FC = () => {
   const { user } = useAuth();
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
   const [history, setHistory] = useState<GenerationHistory[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedType, setSelectedType] = useState<string>('all');

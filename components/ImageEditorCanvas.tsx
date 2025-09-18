@@ -41,7 +41,7 @@ const ImageEditorCanvas: React.FC<ImageEditorCanvasProps> = ({ onImageSelect, in
     const contRatio = container.clientWidth / container.clientHeight;
     const imgRatio = image.width / image.height;
 
-    let displayW, displayH, displayX, displayY;
+    let displayW, displayH;
     if (contRatio > imgRatio) {
         displayH = container.clientHeight;
         displayW = displayH * imgRatio;

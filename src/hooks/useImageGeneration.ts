@@ -3,7 +3,7 @@ import { editImage } from '../../services/geminiService';
 import { DataPersistenceService } from '../services/dataPersistence';
 import { validatePrompt, generationRateLimiter } from '../utils/security';
 import { loadImage, resizeImageToMatch, embedWatermark } from '../../utils/fileUtils';
-import type { GeneratedContent, Transformation } from '../../types';
+// import type { GeneratedContent, Transformation } from '../../types';
 import type { GenerationState, GenerationActions } from './useGenerationState';
 
 interface UseImageGenerationProps {

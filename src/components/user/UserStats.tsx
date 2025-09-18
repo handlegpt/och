@@ -15,7 +15,7 @@ interface UserStats {
 
 export const UserStats: React.FC = () => {
   const { user } = useAuth();
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
   const [stats, setStats] = useState<UserStats>({
     totalGenerations: 0,
     thisMonthGenerations: 0,

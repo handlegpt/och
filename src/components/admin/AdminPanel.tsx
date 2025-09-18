@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import { supabase } from '../../lib/supabase';
 import { useTranslation } from '../../../i18n/context';
-import { DataPersistenceService } from '../../services/dataPersistence';
+// import { DataPersistenceService } from '../../services/dataPersistence';
 
 interface AdminStats {
   totalUsers: number;
@@ -13,8 +13,8 @@ interface AdminStats {
 }
 
 export const AdminPanel: React.FC = () => {
-  const { user } = useAuth();
-  const { t } = useTranslation();
+  const { } = useAuth();
+  // const { t } = useTranslation();
   const [stats, setStats] = useState<AdminStats>({
     totalUsers: 0,
     activeUsers: 0,
