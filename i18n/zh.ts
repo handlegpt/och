@@ -1,0 +1,337 @@
+export default {
+  nav: {
+    home: "首页",
+    profile: "用户中心"
+  },
+  home: {
+    hero: {
+        title: "开始创作吧！",
+      subtitle: "准备好重塑你的现实了吗？选择一个类别开始施展魔法。你也可以拖放来重新排序你最喜欢的类别。",
+      cta: "开始创作",
+      explore: "探索功能"
+    },
+    features: {
+      title: "强大的AI功能",
+      subtitle: "从创意设计到专业渲染，我们提供全方位的AI生成工具",
+      viewAll: "查看所有功能"
+    },
+    howItWorks: {
+      title: "如何使用",
+      subtitle: "只需三步，即可创建令人惊叹的AI生成内容",
+      step1: {
+        title: "上传图片",
+        description: "选择您想要转换的图片，支持多种格式"
+      },
+      step2: {
+        title: "选择效果",
+        description: "从15+种专业效果中选择，或使用自定义提示"
+      },
+      step3: {
+        title: "生成结果",
+        description: "AI将在几秒钟内为您生成高质量的结果"
+      }
+    },
+    cta: {
+      title: "准备开始创作了吗？",
+      subtitle: "加入数千名创作者，体验AI带来的无限可能",
+      button: "立即开始创作"
+    }
+  },
+  app: {
+    title: "Och AI",
+    history: "历史记录",
+    back: "返回",
+    chooseAnotherEffect: "选择其他效果",
+    generateImage: "生成图像",
+    generating: "生成中...",
+    result: "结果",
+          yourImageWillAppear: "您生成的图像将显示在这里。",
+          login: "登录",
+          logout: "退出登录",
+          settings: "设置",
+          admin: "管理",
+          loginRequired: "请先登录以使用此功能",
+          loginPrompt: {
+            title: "需要登录",
+            cancel: "取消"
+          },
+          magicLink: {
+            title: "Magic Link 登录",
+            description: "输入您的邮箱地址，我们将发送一个登录链接到您的邮箱",
+            emailLabel: "邮箱地址",
+            emailPlaceholder: "输入您的邮箱地址",
+            sendLink: "发送登录链接",
+            sending: "发送中...",
+            linkSent: "登录链接已发送",
+            checkEmail: "我们已向您的邮箱发送了登录链接，请查收邮件并点击链接完成登录。",
+            emailSentTo: "发送至",
+            close: "关闭"
+          },
+          loginOptions: {
+            google: "使用 Google 登录",
+            magicLink: "使用 Magic Link 登录"
+          },
+    userSettings: {
+      title: "个人设置",
+      basicInfo: "基本信息",
+      preferences: "偏好设置",
+      displayName: "显示名称",
+      username: "用户名",
+      avatarUrl: "头像链接",
+      language: "语言",
+      theme: "主题",
+      notifications: "接收通知",
+      save: "保存设置",
+      saving: "保存中...",
+      saved: "已保存",
+      pleaseLogin: "请先登录以管理您的设置",
+      tabs: {
+        profile: "个人资料",
+        stats: "使用统计",
+        history: "生成历史",
+        account: "账户管理",
+        export: "数据导出"
+      },
+      account: {
+        title: "账户信息",
+        email: "邮箱地址",
+        registrationDate: "注册时间",
+        subscriptionStatus: "订阅状态",
+        free: "免费",
+        premium: "高级",
+        admin: "管理员"
+      },
+      security: {
+        title: "安全设置",
+        loginMethod: "登录方式",
+        twoFactorAuth: "两步验证",
+        twoFactorAuthDesc: "增强账户安全性",
+        enable: "启用",
+        enabled: "已启用",
+        dangerZone: "危险操作",
+        deleteAccount: "删除账户",
+        deleteAccountDesc: "永久删除账户和所有数据",
+        delete: "删除"
+      },
+      export: {
+        title: "数据导出",
+        generationHistory: "生成历史",
+        generationHistoryDesc: "导出所有生成记录为 JSON 格式",
+        userSettings: "用户设置",
+        userSettingsDesc: "导出个人设置和偏好",
+        completeData: "完整数据",
+        completeDataDesc: "导出所有用户数据",
+        export: "导出",
+        exportAll: "导出全部",
+        import: {
+          title: "数据导入",
+          selectFile: "选择 JSON 文件",
+          noFileChosen: "No file chosen",
+          importSettings: "导入设置"
+        }
+      },
+      placeholders: {
+        displayName: "输入您的显示名称",
+        username: "输入您的用户名",
+        avatarUrl: "https://example.com/avatar.jpg"
+      }
+    },
+    profile: {
+      title: "用户中心",
+      subtitle: "管理您的账户、设置和历史记录",
+      loginRequired: "请先登录",
+      loginRequiredDescription: "您需要登录才能访问用户中心",
+      tabs: {
+        history: "历史记录",
+        settings: "设置",
+        admin: "管理后台"
+      },
+      history: {
+        title: "生成历史",
+        description: "查看和管理您的所有生成记录",
+        empty: "还没有生成记录，开始创作您的第一张图片吧！"
+      },
+      settings: {
+        title: "个人设置",
+        description: "管理您的个人信息和偏好设置"
+      },
+      admin: {
+        title: "管理后台",
+        description: "系统管理和用户管理功能"
+      }
+    },
+    error: {
+      uploadAndSelect: "请上传图像并选择一个效果。",
+      uploadBoth: "请上传两个所需的图像。",
+      enterPrompt: "请输入一个描述您想看到的更改的提示。",
+      unknown: "发生未知错误。",
+      useAsInputFailed: "无法使用生成的图像作为新输入。",
+    },
+    loading: {
+        step1: "第1步：创建线稿...",
+        step2: "第2步：应用调色板...",
+        default: "正在生成您的杰作...",
+        wait: "这有时可能需要一些时间。",
+        videoInit: "正在初始化视频生成...",
+        videoPolling: "正在处理视频，这可能需要几分钟...",
+        videoFetching: "正在完成并获取您的视频...",
+    },
+    theme: {
+        switchToLight: "切换到浅色主题",
+        switchToDark: "切换到深色主题"
+    }
+  },
+  transformationSelector: {
+    title: "开始创作吧！",
+    description: "选择你喜欢的创意效果，让 AI 为你的图片添加无限可能。拖拽可以重新排序你常用的效果。",
+    descriptionWithResult: "太棒了！你的作品已经准备好进行下一轮创作。选择一个新效果来延续这个创意之旅吧。"
+  },
+  imageEditor: {
+    upload: "点击上传",
+    dragAndDrop: "或拖放文件",
+    drawMask: "绘制蒙版",
+    maskPanelInfo: "在图像上绘制以创建用于局部编辑的蒙版。",
+    brushSize: "笔刷大小",
+    undo: "撤销",
+    clearMask: "清除蒙版"
+  },
+  resultDisplay: {
+    viewModes: {
+      result: "结果",
+      grid: "网格",
+      slider: "滑块",
+      sideBySide: "并排"
+    },
+    labels: {
+      original: "原图",
+      generated: "生成图",
+      lineArt: "线稿",
+      finalResult: "最终结果"
+    },
+    actions: {
+      download: "下载",
+      downloadBoth: "下载全部",
+      downloadComparison: "下载对比图",
+      useAsInput: "用作输入",
+      useLineArtAsInput: "使用线稿作为输入",
+      useFinalAsInput: "使用最终结果作为输入"
+    },
+    sliderPicker: {
+      vs: "对"
+    }
+  },
+  history: {
+    title: "生成历史",
+    empty: "一旦您创造了某些东西，您生成的图像就会出现在这里。",
+    use: "使用",
+    save: "保存",
+    lineArt: "线稿",
+    finalResult: "最终结果"
+  },
+  error: {
+    title: "发生错误"
+  },
+  transformations: {
+    categories: {
+      viral: { title: "网红玩法" },
+      photo: { title: "专业照片编辑" },
+      design: { title: "设计与产品" },
+      tools: { title: "创意工具" },
+      effects: { title: "50+ 艺术效果" },
+    },
+    video: {
+      title: "视频生成",
+      description: "通过文本提示和可选图像创建短视频。选择您想要的宽高比。",
+      promptPlaceholder: "例如：一只雄伟的狮子在日落时分的岩石上咆哮",
+      aspectRatio: "宽高比",
+      landscape: "16:9 横向",
+      portrait: "9:16 纵向"
+    },
+    effects: {
+      customPrompt: { 
+        title: "自定义提示", 
+        description: "描述你能想象到的任何变化。最多可上传两张图片作为参考（例如，角色和风格参考）。你的创造力是唯一的限制！",
+        uploader1Title: "主图像",
+        uploader1Desc: "要编辑的主要图像。",
+        uploader2Title: "参考图像（可选）",
+        uploader2Desc: "用于风格、内容或上下文的第二张图像。" 
+      },
+      figurine: { title: "3D手办", description: "将您的照片变成一个可收藏的3D角色手办，并配有包装。" },
+      funko: { title: "Funko Pop公仔", description: "将您的主题重塑为一个可爱的Funko Pop！乙烯基公仔，放在盒子里。" },
+      lego: { title: "乐高小人仔", description: "构建一个乐高小人仔版本的您的主题，准备好玩耍。" },
+      crochet: { title: "钩针娃娃", description: "将您的图像变成一个柔软的手工钩针娃娃。" },
+      cosplay: { title: "动漫转Cosplay", description: "将动漫角色变为一张逼真的Cosplay照片。" },
+      plushie: { title: "可爱毛绒玩具", description: "将您的主题转换成一个可爱的、柔软的毛绒玩具。" },
+      keychain: { title: "亚克力钥匙扣", description: "创建一个您的主题的可爱亚克力钥匙扣，非常适合挂在包上。" },
+      hdEnhance: { title: "高清增强", description: "放大您的图像，增加清晰度、细节，以获得高分辨率外观。" },
+      pose: { title: "姿势参考", description: "将一张图像中的姿势应用到另一张图像中的角色上。", uploader1Title: "角色", uploader1Desc: "主要角色", uploader2Title: "姿势参考", uploader2Desc: "要应用的姿势" },
+      photorealistic: { title: "转为照片级真实", description: "将绘画或插图转换为惊人逼真的照片。" },
+      fashion: { title: "时尚杂志", description: "为您的照片赋予高级时尚、编辑风格的外观，堪比杂志封面。" },
+      hyperrealistic: { title: "超写实", description: "应用一种粗粝、直闪的摄影风格，打造酷炫的超写实氛围。" },
+      architecture: { title: "建筑模型", description: "将建筑物转变为精细的微缩建筑模型。" },
+      productRender: { title: "产品渲染", description: "将产品草图变成专业的、照片级的3D渲染图。" },
+      sodaCan: { title: "汽水罐设计", description: "将您的图像包装到汽水罐上，并将其放置在精美的产品照片中。" },
+      industrialDesign: { title: "工业设计渲染", description: "将工业设计草图渲染成在博物馆环境中展示的真实产品。" },
+      iphoneWallpaper: { title: "iPhone壁纸效果", description: "将您的图片即时转换为时尚的iPhone锁屏界面，配有时间、日期和UI元素，并以精美的产品照片形式呈现。" },
+      colorPalette: { title: "色板换色", description: "将图像转换为线稿，然后使用第二张图像作为调色板为其上色。", uploader1Title: "原始图像", uploader1Desc: "要转换的图像", uploader2Title: "调色板", uploader2Desc: "颜色参考" },
+      lineArt: { title: "线稿绘画", description: "将您的照片简化为其基本线条，创建一个干净的草图。" },
+      paintingProcess: { title: "绘画过程", description: "展示一个4步网格，展示您的图像从草图到最终绘画的创作过程。" },
+      markerSketch: { title: "马克笔素描", description: "用Copic马克笔的风格重塑您的照片，创造出充满活力的素描。" },
+      addIllustration: { title: "添加插画", description: "在您的真实世界照片中添加迷人的手绘角色。" },
+      cyberpunk: { title: "赛博朋克", description: "将您的场景转变为一个充满霓虹灯的未来赛博朋克城市。" },
+      vanGogh: { title: "梵高风格", description: "用梵高《星夜》标志性的、旋转的笔触重绘您的照片。" },
+      isolate: { title: "分离并增强", description: "剪出蒙版中的主体，并创建一个干净、高清的肖像。" },
+      screen3d: { title: "3D屏幕效果", description: "使您照片中屏幕上的内容呈现出裸眼3D效果，仿佛要跳出屏幕。" },
+      makeup: { title: "妆容分析", description: "分析肖像中的妆容，并用红笔标记提出改进建议。" },
+      background: { title: "更换背景", description: "将现有背景更换为酷炫的复古Y2K美学风格。" },
+      pixelArt: { title: "像素艺术", description: "将您的图像转换为复古的8位像素艺术。" },
+      watercolor: { title: "水彩画", description: "将您的图像转换为柔和、充满活力的水彩画。" },
+      popArt: { title: "波普艺术", description: "以安迪·沃霍尔的大胆风格重新想象您的图像。" },
+      comicBook: { title: "漫画书", description: "将您的照片变成一个经典的漫画书面板。" },
+      claymation: { title: "黏土动画", description: "将您的图像重现为一个迷人的定格黏土场景。" },
+      ukiyoE: { title: "浮世绘", description: "将您的图像重绘为传统的日本木版画。" },
+      stainedGlass: { title: "彩色玻璃", description: "将您的图像转换为一个充满活力的彩色玻璃窗。" },
+      origami: { title: "折纸", description: "用折纸风格重建您的主题。" },
+      neonGlow: { title: "霓虹灯光", description: "用明亮、发光的霓虹灯勾勒您的主题。" },
+      doodleArt: { title: "涂鸦艺术", description: "在您的图像上覆盖好玩的手绘涂鸦。" },
+      vintagePhoto: { title: "复古照片", description: "为您的图像赋予一种陈旧的、深褐色的复古外观。" },
+      blueprintSketch: { title: "蓝图", description: "将您的图像转换为技术蓝图图纸。" },
+      glitchArt: { title: "故障艺术", description: "应用数字故障效果，包括数据融合和像素排序。" },
+      doubleExposure: { title: "双重曝光", description: "在双重曝光中将您的图像与自然场景融合。" },
+      hologram: { title: "全息图", description: "将您的主题投影为一个未来主义的、发光的蓝色全息图。" },
+      lowPoly: { title: "低多边形", description: "使用低多边形几何网格重建您的图像。" },
+      charcoalSketch: { title: "炭笔素描", description: "将您的图像重绘为一幅戏剧性的、高对比度的炭笔素描。" },
+      impressionism: { title: "印象派", description: "以印象派杰作的风格重绘您的图像。" },
+      cubism: { title: "立体主义", description: "以抽象、几何的立体主义风格解构您的主题。" },
+      steampunk: { title: "蒸汽朋克", description: "用齿轮、黄铜和维多利亚时代的技术重新想象您的主题。" },
+      fantasyArt: { title: "奇幻艺术", description: "将您的图像转变为一幅史诗般的奇幻风格绘画。" },
+      graffiti: { title: "涂鸦", description: "将您的图像喷绘成砖墙上充满活力的涂鸦。" },
+      minimalistLineArt: { title: "极简线稿", description: "将您的图像简化为一条连续的线稿。" },
+      storybook: { title: "故事书", description: "以异想天开的儿童故事书风格重绘您的图像。" },
+      thermal: { title: "热成像", description: "应用带有热图调色板的热成像效果。" },
+      risograph: { title: "Risograph", description: "模拟粗糙、色彩有限的Risograph印刷效果。" },
+      crossStitch: { title: "十字绣", description: "将您的图像转换为手工制作的十字绣图案。" },
+      tattoo: { title: "纹身艺术", description: "将您的主题重新设计为经典的美式传统纹身。" },
+      psychedelic: { title: "迷幻风格", description: "应用20世纪60年代充满活力、旋转的迷幻艺术风格。" },
+      gothic: { title: "哥特式", description: "用黑暗的哥特艺术风格重新想象您的场景。" },
+      tribal: { title: "部落艺术", description: "使用传统的部落图案重绘您的主题。" },
+      dotPainting: { title: "点画", description: "使用原住民点画技术重新创作您的图像。" },
+      chalk: { title: "粉笔画", description: "将您的图像画成人行道上色彩缤纷的粉笔画。" },
+      sandArt: { title: "沙画", description: "重新创作您的图像，仿佛它是由彩色沙子制成的。" },
+      mosaic: { title: "马赛克", description: "将您的图像转换为由小瓷砖制成的马赛克。" },
+      paperQuilling: { title: "纸艺", description: "使用卷曲和成形的纸条重建您的主题。" },
+      woodCarving: { title: "木雕", description: "将您的主题重塑为精细的木雕。" },
+      iceSculpture: { title: "冰雕", description: "将您的主题转变为半透明的冰雕。" },
+      bronzeStatue: { title: "铜像", description: "将您的主题变成一尊风化的铜像。" },
+      galaxy: { title: "星系", description: "将您的图像与充满活力的星云和星空背景融合。" },
+      fire: { title: "火焰", description: "重新想象您的主题，仿佛它是由熊熊火焰形成的。" },
+      water: { title: "水", description: "重新想象您的主题，仿佛它是由流动的水形成的。" },
+      smokeArt: { title: "烟雾艺术", description: "用优雅、旋转的烟雾创造您的主题。" },
+      vectorArt: { title: "矢量艺术", description: "将您的照片转换为干净、可缩放的矢量艺术。" },
+      infrared: { title: "红外线", description: "模拟具有超现实色彩的红外照片效果。" },
+      knitted: { title: "针织", description: "将您的图像重塑为一个舒适的针织羊毛图案。" },
+      etching: { title: "蚀刻", description: "将您的图像重绘为经典的黑白蚀刻画。" },
+      diorama: { title: "立体模型", description: "将您的场景变成盒子里的微型3D立体模型。" },
+    }
+  }
+};

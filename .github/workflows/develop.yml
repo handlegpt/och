@@ -1,0 +1,49 @@
+name: Develop Environment
+
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  develop-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Run quick tests
+      run: npm run test:unit
+    
+    - name: Build application
+      run: npm run build
+    
+    - name: Setup SSH
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SERVER_SSH_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+    
+    - name: Deploy to Development
+      run: |
+        ssh -i ~/.ssh/id_rsa ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
+          cd /root/och &&
+          git pull origin develop &&
+          docker compose -f docker-compose.dev.yml down &&
+          docker compose -f docker-compose.dev.yml build --no-cache &&
+          docker compose -f docker-compose.dev.yml up -d
+        "
+    
+    - name: Development Health Check
+      run: |
+        sleep 20
+        curl -f http://${{ secrets.SERVER_HOST }}:3000/health || exit 1
