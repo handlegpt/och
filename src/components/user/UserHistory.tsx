@@ -5,6 +5,7 @@ import { useAuth } from '../../hooks/useAuth'
 import { DataPersistenceService } from '../../services/dataPersistence'
 import ImagePreviewModal from '../../../components/ImagePreviewModal'
 import { SkeletonLoader } from '../ui/SkeletonLoader'
+import { LazyImage } from '../ui/LazyImage'
 
 interface GenerationHistory {
   id?: string
@@ -389,10 +390,12 @@ export const UserHistory: React.FC = () => {
                       className='w-16 h-16 rounded-lg overflow-hidden bg-[var(--bg-primary)] cursor-pointer border-2 border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-colors'
                       onClick={() => handleImageClick(item.input_image_url || '')}
                     >
-                      <img
-                        src={item.input_image_url}
+                      <LazyImage
+                        src={item.input_image_url || ''}
                         alt='Input'
                         className='w-full h-full object-cover'
+                        threshold={0.1}
+                        rootMargin='50px'
                       />
                     </div>
                     <div className='absolute -top-1 -right-1 bg-[var(--accent-primary)] text-white text-xs px-1 rounded text-center opacity-0 group-hover:opacity-100 transition-opacity'>
@@ -430,10 +433,12 @@ export const UserHistory: React.FC = () => {
                       className='w-16 h-16 rounded-lg overflow-hidden bg-[var(--bg-primary)] cursor-pointer border-2 border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-colors'
                       onClick={() => handleImageClick(item.output_image_url || '')}
                     >
-                      <img
+                      <LazyImage
                         src={item.output_image_url}
                         alt='Output'
                         className='w-full h-full object-cover'
+                        threshold={0.1}
+                        rootMargin='50px'
                       />
                     </div>
                     <div className='absolute -top-1 -right-1 bg-[var(--accent-secondary)] text-white text-xs px-1 rounded text-center opacity-0 group-hover:opacity-100 transition-opacity'>

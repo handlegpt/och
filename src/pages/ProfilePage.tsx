@@ -7,11 +7,12 @@ import { UserHistory } from '../components/user/UserHistory';
 import { ProfileImprovements } from '../components/user/ProfileImprovements';
 import { DashboardLayout } from '../components/user/DashboardLayout';
 import { FavoritesManager } from '../components/user/FavoritesManager';
+import { PrivacyControls } from '../components/user/PrivacyControls';
 
 export const ProfilePage: React.FC = () => {
   const { user, isAdmin } = useAuth();
   const { t } = useTranslation();
-  const [activeTab, setActiveTab] = useState<'dashboard' | 'history' | 'favorites' | 'settings' | 'improvements' | 'admin'>('dashboard');
+  const [activeTab, setActiveTab] = useState<'dashboard' | 'history' | 'favorites' | 'settings' | 'privacy' | 'improvements' | 'admin'>('dashboard');
 
   if (!user) {
     return (
@@ -34,6 +35,7 @@ export const ProfilePage: React.FC = () => {
     { key: 'history', label: t('app.profile.tabs.history'), icon: '📝' },
     { key: 'favorites', label: '我的收藏', icon: '⭐' },
     { key: 'settings', label: t('app.profile.tabs.settings'), icon: '⚙️' },
+    { key: 'privacy', label: '隐私控制', icon: '🔒' },
     { key: 'improvements', label: '改善建议', icon: '🚀' },
     ...(isAdmin ? [{ key: 'admin', label: t('app.profile.tabs.admin'), icon: '🛡️' }] : [])
   ] as const;
@@ -110,6 +112,18 @@ export const ProfilePage: React.FC = () => {
                 {t('app.profile.settings.description')}
               </p>
               <UserSettings />
+            </div>
+          )}
+
+          {activeTab === 'privacy' && (
+            <div>
+              <h2 className="text-xl font-semibold text-[var(--text-primary)] mb-4">
+                隐私控制
+              </h2>
+              <p className="text-[var(--text-secondary)] mb-6">
+                管理您的隐私设置和数据权限
+              </p>
+              <PrivacyControls />
             </div>
           )}
 

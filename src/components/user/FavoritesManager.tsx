@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from '../../../i18n/context';
 import { useAuth } from '../../hooks/useAuth';
 import { supabase } from '../../lib/supabase';
+import { LazyImage, LazyVideo } from '../ui/LazyImage';
 
 interface FavoriteItem {
   id: string;
@@ -209,16 +210,19 @@ export const FavoritesManager: React.FC = () => {
               {/* 内容预览 */}
               <div className="aspect-square bg-[var(--bg-secondary)] flex items-center justify-center">
                 {item.content_type === 'image' ? (
-                  <img
+                  <LazyImage
                     src={item.content_url}
                     alt={item.title}
                     className="w-full h-full object-cover"
+                    threshold={0.1}
+                    rootMargin="100px"
                   />
                 ) : (
-                  <video
+                  <LazyVideo
                     src={item.content_url}
                     className="w-full h-full object-cover"
-                    muted
+                    threshold={0.1}
+                    rootMargin="100px"
                   />
                 )}
               </div>
