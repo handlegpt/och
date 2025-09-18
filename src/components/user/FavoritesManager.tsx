@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useTranslation } from '../../../i18n/context';
+// import { useTranslation } from '../../../i18n/context';
 import { useAuth } from '../../hooks/useAuth';
 import { supabase } from '../../lib/supabase';
 import { LazyImage, LazyVideo } from '../ui/LazyImage';
@@ -16,7 +16,7 @@ interface FavoriteItem {
 }
 
 export const FavoritesManager: React.FC = () => {
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
   const { user } = useAuth();
   const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -46,26 +46,26 @@ export const FavoritesManager: React.FC = () => {
   }, [user]);
 
   // 添加收藏
-  const addToFavorites = useCallback(async (item: Omit<FavoriteItem, 'id' | 'user_id' | 'created_at'>) => {
-    if (!user) return;
+  // const addToFavorites = useCallback(async (item: Omit<FavoriteItem, 'id' | 'user_id' | 'created_at'>) => {
+  //   if (!user) return;
 
-    try {
-      const { data, error } = await supabase
-        .from('user_favorites')
-        .insert([{
-          ...item,
-          user_id: user.id
-        }])
-        .select()
-        .single();
+  //   try {
+  //     const { data, error } = await supabase
+  //       .from('user_favorites')
+  //       .insert([{
+  //         ...item,
+  //         user_id: user.id
+  //       }])
+  //       .select()
+  //       .single();
 
-      if (error) throw error;
-      setFavorites(prev => [data, ...prev]);
-    } catch (err) {
-      console.error('Error adding to favorites:', err);
-      setError('添加收藏失败');
-    }
-  }, [user]);
+  //     if (error) throw error;
+  //     setFavorites(prev => [data, ...prev]);
+  //   } catch (err) {
+  //     console.error('Error adding to favorites:', err);
+  //     setError('添加收藏失败');
+  //   }
+  // }, [user]);
 
   // 移除收藏
   const removeFromFavorites = useCallback(async (id: string) => {
@@ -77,8 +77,8 @@ export const FavoritesManager: React.FC = () => {
 
       if (error) throw error;
       setFavorites(prev => prev.filter(item => item.id !== id));
-    } catch (err) {
-      console.error('Error removing from favorites:', err);
+    } catch (_err) {
+      console.error('Error removing from favorites:', _err);
       setError('移除收藏失败');
     }
   }, []);
@@ -97,8 +97,8 @@ export const FavoritesManager: React.FC = () => {
       link.click();
       document.body.removeChild(link);
       window.URL.revokeObjectURL(downloadUrl);
-    } catch (err) {
-      console.error('Error downloading content:', err);
+    } catch (_err) {
+      console.error('Error downloading content:', _err);
       setError('下载失败');
     }
   }, []);
@@ -114,7 +114,7 @@ export const FavoritesManager: React.FC = () => {
     if (navigator.share) {
       try {
         await navigator.share(shareData);
-      } catch (err) {
+      } catch {
         console.log('Share cancelled');
       }
     } else {
@@ -122,8 +122,8 @@ export const FavoritesManager: React.FC = () => {
       try {
         await navigator.clipboard.writeText(item.content_url);
         alert('链接已复制到剪贴板');
-      } catch (err) {
-        console.error('Error copying to clipboard:', err);
+      } catch (_err) {
+        console.error('Error copying to clipboard:', _err);
       }
     }
   }, []);

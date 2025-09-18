@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react';
-import { useTranslation } from '../../../i18n/context';
+// import { useTranslation } from '../../../i18n/context';
 import { useAuth } from '../../hooks/useAuth';
 
 interface AvatarUploadProps {
@@ -13,7 +13,7 @@ export const AvatarUpload: React.FC<AvatarUploadProps> = ({
   onAvatarChange,
   size = 'md'
 }) => {
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
   const { user } = useAuth();
   const [isUploading, setIsUploading] = useState(false);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);

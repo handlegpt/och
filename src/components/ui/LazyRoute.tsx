@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, ComponentType } from 'react';
+import React, { Suspense, ComponentType } from 'react';
 import { LoadingSpinner } from './LoadingSpinner';
 
 interface LazyRouteProps {

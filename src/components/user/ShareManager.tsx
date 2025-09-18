@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
-import { useTranslation } from '../../../i18n/context';
-import { useAuth } from '../../hooks/useAuth';
+// import { useTranslation } from '../../../i18n/context';
+// import { useAuth } from '../../hooks/useAuth';
 
 interface ShareManagerProps {
   contentUrl?: string;
@@ -9,12 +9,12 @@ interface ShareManagerProps {
 }
 
 export const ShareManager: React.FC<ShareManagerProps> = ({
-  contentUrl,
+  contentUrl: _contentUrl,
   title = '我的AI生成作品',
   description = '使用Och AI生成的创意作品'
 }) => {
-  const { t } = useTranslation();
-  const { user } = useAuth();
+  // const { t } = useTranslation();
+  // const { user } = useAuth();
   const [showShareModal, setShowShareModal] = useState(false);
   const [shareUrl, setShareUrl] = useState('');
   const [qrCodeUrl, setQrCodeUrl] = useState('');
@@ -34,8 +34,8 @@ export const ShareManager: React.FC<ShareManagerProps> = ({
       // 使用 qr-server.com API 生成二维码
       const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(url)}`;
       setQrCodeUrl(qrUrl);
-    } catch (err) {
-      console.error('Error generating QR code:', err);
+    } catch (_err) {
+      console.error('Error generating QR code:', _err);
     }
   }, []);
 
@@ -44,8 +44,8 @@ export const ShareManager: React.FC<ShareManagerProps> = ({
     try {
       await navigator.clipboard.writeText(text);
       alert('已复制到剪贴板');
-    } catch (err) {
-      console.error('Error copying to clipboard:', err);
+    } catch (_err) {
+      console.error('Error copying to clipboard:', _err);
       // 降级方案
       const textArea = document.createElement('textarea');
       textArea.value = text;
@@ -64,26 +64,26 @@ export const ShareManager: React.FC<ShareManagerProps> = ({
     const encodedTitle = encodeURIComponent(title);
     const encodedDescription = encodeURIComponent(description);
 
-    let shareUrl = '';
+    let socialShareUrl = '';
 
     switch (platform) {
       case 'twitter':
-        shareUrl = `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`;
+        socialShareUrl = `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`;
         break;
       case 'facebook':
-        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
+        socialShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
         break;
       case 'weibo':
-        shareUrl = `https://service.weibo.com/share/share.php?url=${encodedUrl}&title=${encodedTitle}`;
+        socialShareUrl = `https://service.weibo.com/share/share.php?url=${encodedUrl}&title=${encodedTitle}`;
         break;
       case 'qq':
-        shareUrl = `https://connect.qq.com/widget/shareqq/index.html?url=${encodedUrl}&title=${encodedTitle}&summary=${encodedDescription}`;
+        socialShareUrl = `https://connect.qq.com/widget/shareqq/index.html?url=${encodedUrl}&title=${encodedTitle}&summary=${encodedDescription}`;
         break;
       default:
         return;
     }
 
-    window.open(shareUrl, '_blank', 'width=600,height=400');
+    window.open(socialShareUrl, '_blank', 'width=600,height=400');
   }, [shareUrl, title, description, generateShareUrl]);
 
   // 原生分享API
@@ -99,7 +99,7 @@ export const ShareManager: React.FC<ShareManagerProps> = ({
         text: description,
         url: shareUrl || generateShareUrl()
       });
-    } catch (err) {
+    } catch {
       console.log('Share cancelled');
     }
   }, [title, description, shareUrl, generateShareUrl]);
@@ -120,8 +120,8 @@ export const ShareManager: React.FC<ShareManagerProps> = ({
       link.click();
       document.body.removeChild(link);
       window.URL.revokeObjectURL(downloadUrl);
-    } catch (err) {
-      console.error('Error downloading QR code:', err);
+    } catch (_err) {
+      console.error('Error downloading QR code:', _err);
     }
   }, [qrCodeUrl]);
 

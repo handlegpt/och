@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useTranslation } from '../../../i18n/context';
+// import { useTranslation } from '../../../i18n/context';
 import { useAuth } from '../../hooks/useAuth';
 import { supabase } from '../../lib/supabase';
 import { AvatarUpload } from './AvatarUpload';
@@ -21,7 +21,7 @@ interface RecentActivity {
 }
 
 export const DashboardLayout: React.FC = () => {
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
   const { user } = useAuth();
   const [stats, setStats] = useState<DashboardStats>({
     totalGenerations: 0,
