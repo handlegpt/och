@@ -105,7 +105,11 @@ export const HomePage: React.FC = () => {
   )
 
   // 如果用户选择了功能，显示生成界面
-  if (searchParams.get('view') === 'create' && state.selectedTransformation) {
+  // 检查URL参数或状态中是否有选中的功能
+  const isCreateView = searchParams.get('view') === 'create'
+  const hasSelectedFeature = state.selectedTransformation || selectedFeature
+  
+  if (isCreateView && hasSelectedFeature) {
     return (
       <div className='min-h-screen bg-[var(--bg-primary)]'>
         <main>
@@ -152,7 +156,7 @@ export const HomePage: React.FC = () => {
   }
 
   // 如果用户点击了"查看所有功能"，显示功能选择界面
-  if (searchParams.get('view') === 'features' && !state.selectedTransformation) {
+  if (searchParams.get('view') === 'features') {
     return (
       <div className='min-h-screen bg-[var(--bg-primary)]'>
         <main>
