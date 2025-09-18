@@ -64,8 +64,8 @@ export const useImageGeneration = ({ state, actions, user, t }: UseImageGenerati
     const startTime = Date.now();
 
     try {
-      const primaryMimeType = primaryImageUrl!.split(';')[0].split(':')[1] ?? 'image/png';
-      const primaryBase64 = primaryImageUrl!.split(',')[1];
+      const primaryMimeType = (primaryImageUrl || '').split(';')[0].split(':')[1] ?? 'image/png';
+      const primaryBase64 = (primaryImageUrl || '').split(',')[1];
       const maskBase64 = maskDataUrl ? maskDataUrl.split(',')[1] : null;
       
       // 使用验证后的提示词

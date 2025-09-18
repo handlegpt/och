@@ -276,7 +276,7 @@ export const UserHistory: React.FC = () => {
                       <button
                         onClick={() => {
                           const link = document.createElement('a');
-                          link.href = item.output_image_url!;
+                          link.href = item.output_image_url || '';
                           link.download = `och-ai-${item.transformation_type}-${item.id}.png`;
                           link.click();
                         }}
@@ -291,7 +291,7 @@ export const UserHistory: React.FC = () => {
                     <button
                       onClick={() => {
                         if (confirm('确定要删除这条记录吗？')) {
-                          DataPersistenceService.deleteGenerationRecord(item.id, user!.id).then(() => {
+                          DataPersistenceService.deleteGenerationRecord(item.id, user?.id || '').then(() => {
                             fetchUserHistory();
                           });
                         }
@@ -318,7 +318,7 @@ export const UserHistory: React.FC = () => {
                   <div className="relative group">
                     <div 
                       className="w-16 h-16 rounded-lg overflow-hidden bg-[var(--bg-primary)] cursor-pointer border-2 border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-colors"
-                      onClick={() => handleImageClick(item.input_image_url!)}
+                      onClick={() => handleImageClick(item.input_image_url || '')}
                     >
                       <img
                         src={item.input_image_url}
@@ -333,7 +333,7 @@ export const UserHistory: React.FC = () => {
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
-                          handleDownloadImage(item.input_image_url!, `input-${item.id}.png`);
+                          handleDownloadImage(item.input_image_url || '', `input-${item.id}.png`);
                         }}
                         className="hover:text-[var(--accent-primary)]"
                         title="下载原图"
@@ -349,7 +349,7 @@ export const UserHistory: React.FC = () => {
                   <div className="relative group">
                     <div 
                       className="w-16 h-16 rounded-lg overflow-hidden bg-[var(--bg-primary)] cursor-pointer border-2 border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-colors"
-                      onClick={() => handleImageClick(item.output_image_url!)}
+                      onClick={() => handleImageClick(item.output_image_url || '')}
                     >
                       <img
                         src={item.output_image_url}
@@ -364,7 +364,7 @@ export const UserHistory: React.FC = () => {
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
-                          handleDownloadImage(item.output_image_url!, `och-ai-${item.transformation_type}-${item.id}.png`);
+                          handleDownloadImage(item.output_image_url || '', `och-ai-${item.transformation_type}-${item.id}.png`);
                         }}
                         className="hover:text-[var(--accent-primary)]"
                         title="下载生成图"

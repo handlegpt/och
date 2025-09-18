@@ -4,7 +4,7 @@ import { supabase } from '../../lib/supabase';
 // import { useTranslation } from '../../../i18n/context';
 import { DataPersistenceService } from '../../services/dataPersistence';
 
-interface UserStats {
+interface UserStatsData {
   totalGenerations: number;
   thisMonthGenerations: number;
   thisWeekGenerations: number;
@@ -16,7 +16,7 @@ interface UserStats {
 export const UserStats: React.FC = () => {
   const { user } = useAuth();
   // const { t } = useTranslation();
-  const [stats, setStats] = useState<UserStats>({
+  const [stats, setStats] = useState<UserStatsData>({
     totalGenerations: 0,
     thisMonthGenerations: 0,
     thisWeekGenerations: 0,

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 // import { supabase } from '../../lib/supabase';
-// import { useTranslation } from '../../../i18n/context';
+import { useTranslation } from '../../../i18n/context';
 import { UserStats } from './UserStats';
 import { DataPersistenceService } from '../../services/dataPersistence';
 import { SecureInput } from '../SecureInput';
 import { validateDisplayName, validateUsername, validateUrl } from '../../utils/security';
 
-interface UserSettings {
+interface UserSettingsData {
   display_name: string;
   username: string;
   avatar_url: string;
@@ -19,7 +19,7 @@ interface UserSettings {
 export const UserSettings: React.FC = () => {
   const { user, userProfile } = useAuth();
   const { t } = useTranslation();
-  const [settings, setSettings] = useState<UserSettings>({
+  const [settings, setSettings] = useState<UserSettingsData>({
     display_name: '',
     username: '',
     avatar_url: '',
