@@ -1,83 +1,71 @@
-import { useCallback } from 'react';
-import { generateVideo } from '../../services/geminiService';
-import type { GeneratedContent } from '../../types';
-import type { GenerationState, GenerationActions } from './useGenerationState';
+import { useCallback } from 'react'
+import { generateVideo } from '../../services/geminiService'
+import type { GeneratedContent } from '../../types'
+import type { GenerationState, GenerationActions } from './useGenerationState'
 
 interface UseVideoGenerationProps {
-  state: GenerationState;
-  actions: GenerationActions;
-  user: any;
-  t: (key: string) => string;
+  state: GenerationState
+  actions: GenerationActions
+  user: any
+  t: (key: string) => string
 }
 
 export const useVideoGeneration = ({ state, actions, user, t }: UseVideoGenerationProps) => {
-  const {
-    selectedTransformation,
-    customPrompt,
-    primaryImageUrl,
-    aspectRatio,
-  } = state;
+  const { selectedTransformation, customPrompt, primaryImageUrl, aspectRatio } = state
 
-  const {
-    setError,
-    setIsLoading,
-    setLoadingMessage,
-    setGeneratedContent,
-    addToHistory,
-  } = actions;
+  const { setError, setIsLoading, setLoadingMessage, setGeneratedContent, addToHistory } = actions
 
   const handleGenerateVideo = useCallback(async () => {
-    if (!selectedTransformation) return;
+    if (!selectedTransformation) return
 
-    const promptToUse = customPrompt;
+    const promptToUse = customPrompt
     if (!promptToUse.trim()) {
-      setError(t('app.error.enterPrompt'));
-      return;
+      setError(t('app.error.enterPrompt'))
+      return
     }
 
-    setIsLoading(true);
-    setError(null);
-    setGeneratedContent(null);
+    setIsLoading(true)
+    setError(null)
+    setGeneratedContent(null)
 
     try {
-      let imagePayload = null;
+      let imagePayload = null
       if (primaryImageUrl) {
-        const primaryMimeType = primaryImageUrl.split(';')[0].split(':')[1] ?? 'image/png';
-        const primaryBase64 = primaryImageUrl.split(',')[1];
-        imagePayload = { base64: primaryBase64, mimeType: primaryMimeType };
+        const primaryMimeType = primaryImageUrl.split(';')[0].split(':')[1] ?? 'image/png'
+        const primaryBase64 = primaryImageUrl.split(',')[1]
+        imagePayload = { base64: primaryBase64, mimeType: primaryMimeType }
       }
 
       const videoDownloadUrl = await generateVideo(
         promptToUse,
         imagePayload,
         aspectRatio,
-        (message) => setLoadingMessage(message), // Progress callback
+        message => setLoadingMessage(message), // Progress callback
         user?.id
-      );
+      )
 
-      setLoadingMessage(t('app.loading.videoFetching'));
-      const response = await fetch(videoDownloadUrl);
+      setLoadingMessage(t('app.loading.videoFetching'))
+      const response = await fetch(videoDownloadUrl)
       if (!response.ok) {
-        throw new Error(`Failed to download video file. Status: ${response.statusText}`);
+        throw new Error(`Failed to download video file. Status: ${response.statusText}`)
       }
-      const blob = await response.blob();
-      const objectUrl = URL.createObjectURL(blob);
+      const blob = await response.blob()
+      const objectUrl = URL.createObjectURL(blob)
 
       const result: GeneratedContent = {
         imageUrl: null,
         text: null,
-        videoUrl: objectUrl
-      };
+        videoUrl: objectUrl,
+      }
 
-      setGeneratedContent(result);
-      addToHistory(result);
-
+      setGeneratedContent(result)
+      addToHistory(result)
     } catch (err) {
-      console.error(err);
-      setError(err instanceof Error ? err.message : t('app.error.unknown'));
+      console.error(err)
+      setError(err instanceof Error ? err.message : t('app.error.unknown'))
     } finally {
-      setIsLoading(false);
-      setLoadingMessage('');
+      setIsLoading(false)
+      setLoadingMessage('')
     }
   }, [
     selectedTransformation,
@@ -91,9 +79,9 @@ export const useVideoGeneration = ({ state, actions, user, t }: UseVideoGenerati
     setLoadingMessage,
     setGeneratedContent,
     addToHistory,
-  ]);
+  ])
 
   return {
     handleGenerateVideo,
-  };
-};
+  }
+}

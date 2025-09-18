@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 // import { useTranslation } from '../../../i18n/context';
 
 interface ImprovementSuggestion {
-  id: string;
-  title: string;
-  description: string;
-  priority: 'high' | 'medium' | 'low';
-  category: 'ui' | 'feature' | 'performance' | 'security';
-  icon: string;
-  status: 'suggested' | 'in-progress' | 'completed';
+  id: string
+  title: string
+  description: string
+  priority: 'high' | 'medium' | 'low'
+  category: 'ui' | 'feature' | 'performance' | 'security'
+  icon: string
+  status: 'suggested' | 'in-progress' | 'completed'
 }
 
 export const ProfileImprovements: React.FC = () => {
   // const { t } = useTranslation();
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [selectedPriority, setSelectedPriority] = useState<string>('all');
+  const [selectedCategory, setSelectedCategory] = useState<string>('all')
+  const [selectedPriority, setSelectedPriority] = useState<string>('all')
 
   const improvements: ImprovementSuggestion[] = [
     // UI/UX 改进
@@ -25,7 +25,7 @@ export const ProfileImprovements: React.FC = () => {
       priority: 'high',
       category: 'ui',
       icon: '📸',
-      status: 'suggested'
+      status: 'suggested',
     },
     {
       id: 'profile-theme-customization',
@@ -34,7 +34,7 @@ export const ProfileImprovements: React.FC = () => {
       priority: 'medium',
       category: 'ui',
       icon: '🎨',
-      status: 'suggested'
+      status: 'suggested',
     },
     {
       id: 'profile-dashboard-layout',
@@ -43,7 +43,7 @@ export const ProfileImprovements: React.FC = () => {
       priority: 'high',
       category: 'ui',
       icon: '📊',
-      status: 'suggested'
+      status: 'suggested',
     },
 
     // 功能增强
@@ -54,7 +54,7 @@ export const ProfileImprovements: React.FC = () => {
       priority: 'high',
       category: 'feature',
       icon: '❤️',
-      status: 'suggested'
+      status: 'suggested',
     },
     {
       id: 'profile-sharing',
@@ -63,7 +63,7 @@ export const ProfileImprovements: React.FC = () => {
       priority: 'medium',
       category: 'feature',
       icon: '🔗',
-      status: 'suggested'
+      status: 'suggested',
     },
     {
       id: 'profile-batch-operations',
@@ -72,7 +72,7 @@ export const ProfileImprovements: React.FC = () => {
       priority: 'medium',
       category: 'feature',
       icon: '📦',
-      status: 'suggested'
+      status: 'suggested',
     },
     {
       id: 'profile-search-filter',
@@ -81,7 +81,7 @@ export const ProfileImprovements: React.FC = () => {
       priority: 'high',
       category: 'feature',
       icon: '🔍',
-      status: 'suggested'
+      status: 'suggested',
     },
     {
       id: 'profile-ai-suggestions',
@@ -90,7 +90,7 @@ export const ProfileImprovements: React.FC = () => {
       priority: 'low',
       category: 'feature',
       icon: '🤖',
-      status: 'suggested'
+      status: 'suggested',
     },
 
     // 性能优化
@@ -101,7 +101,7 @@ export const ProfileImprovements: React.FC = () => {
       priority: 'high',
       category: 'performance',
       icon: '⚡',
-      status: 'suggested'
+      status: 'suggested',
     },
     {
       id: 'profile-caching',
@@ -110,7 +110,7 @@ export const ProfileImprovements: React.FC = () => {
       priority: 'medium',
       category: 'performance',
       icon: '💾',
-      status: 'suggested'
+      status: 'suggested',
     },
 
     // 安全增强
@@ -121,7 +121,7 @@ export const ProfileImprovements: React.FC = () => {
       priority: 'high',
       category: 'security',
       icon: '🔐',
-      status: 'suggested'
+      status: 'suggested',
     },
     {
       id: 'profile-privacy-controls',
@@ -130,68 +130,72 @@ export const ProfileImprovements: React.FC = () => {
       priority: 'medium',
       category: 'security',
       icon: '🛡️',
-      status: 'suggested'
-    }
-  ];
+      status: 'suggested',
+    },
+  ]
 
   const categories = [
     { value: 'all', label: '全部', icon: '📋' },
     { value: 'ui', label: '界面优化', icon: '🎨' },
     { value: 'feature', label: '功能增强', icon: '⚡' },
     { value: 'performance', label: '性能优化', icon: '🚀' },
-    { value: 'security', label: '安全增强', icon: '🔒' }
-  ];
+    { value: 'security', label: '安全增强', icon: '🔒' },
+  ]
 
   const priorities = [
     { value: 'all', label: '全部优先级', icon: '📊' },
     { value: 'high', label: '高优先级', icon: '🔴' },
     { value: 'medium', label: '中优先级', icon: '🟡' },
-    { value: 'low', label: '低优先级', icon: '🟢' }
-  ];
+    { value: 'low', label: '低优先级', icon: '🟢' },
+  ]
 
   const filteredImprovements = improvements.filter(improvement => {
-    const categoryMatch = selectedCategory === 'all' || improvement.category === selectedCategory;
-    const priorityMatch = selectedPriority === 'all' || improvement.priority === selectedPriority;
-    return categoryMatch && priorityMatch;
-  });
+    const categoryMatch = selectedCategory === 'all' || improvement.category === selectedCategory
+    const priorityMatch = selectedPriority === 'all' || improvement.priority === selectedPriority
+    return categoryMatch && priorityMatch
+  })
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
-      case 'high': return 'text-red-500 bg-red-50 dark:bg-red-900/20';
-      case 'medium': return 'text-yellow-500 bg-yellow-50 dark:bg-yellow-900/20';
-      case 'low': return 'text-green-500 bg-green-50 dark:bg-green-900/20';
-      default: return 'text-gray-500 bg-gray-50 dark:bg-gray-900/20';
+      case 'high':
+        return 'text-red-500 bg-red-50 dark:bg-red-900/20'
+      case 'medium':
+        return 'text-yellow-500 bg-yellow-50 dark:bg-yellow-900/20'
+      case 'low':
+        return 'text-green-500 bg-green-50 dark:bg-green-900/20'
+      default:
+        return 'text-gray-500 bg-gray-50 dark:bg-gray-900/20'
     }
-  };
+  }
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'completed': return 'text-green-500 bg-green-50 dark:bg-green-900/20';
-      case 'in-progress': return 'text-blue-500 bg-blue-50 dark:bg-blue-900/20';
-      case 'suggested': return 'text-gray-500 bg-gray-50 dark:bg-gray-900/20';
-      default: return 'text-gray-500 bg-gray-50 dark:bg-gray-900/20';
+      case 'completed':
+        return 'text-green-500 bg-green-50 dark:bg-green-900/20'
+      case 'in-progress':
+        return 'text-blue-500 bg-blue-50 dark:bg-blue-900/20'
+      case 'suggested':
+        return 'text-gray-500 bg-gray-50 dark:bg-gray-900/20'
+      default:
+        return 'text-gray-500 bg-gray-50 dark:bg-gray-900/20'
     }
-  };
+  }
 
   return (
-    <div className="space-y-6">
-      <div className="text-center">
-        <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-2">
-          🚀 用户后台改善建议
-        </h2>
-        <p className="text-[var(--text-secondary)]">
-          基于当前功能分析，以下是建议的改进方向
-        </p>
+    <div className='space-y-6'>
+      <div className='text-center'>
+        <h2 className='text-2xl font-bold text-[var(--text-primary)] mb-2'>🚀 用户后台改善建议</h2>
+        <p className='text-[var(--text-secondary)]'>基于当前功能分析，以下是建议的改进方向</p>
       </div>
 
       {/* 筛选器 */}
-      <div className="flex flex-wrap gap-4 justify-center">
-        <div className="flex items-center gap-2">
-          <span className="text-sm text-[var(--text-secondary)]">分类:</span>
+      <div className='flex flex-wrap gap-4 justify-center'>
+        <div className='flex items-center gap-2'>
+          <span className='text-sm text-[var(--text-secondary)]'>分类:</span>
           <select
             value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-            className="px-3 py-1 text-sm bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-lg text-[var(--text-primary)]"
+            onChange={e => setSelectedCategory(e.target.value)}
+            className='px-3 py-1 text-sm bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-lg text-[var(--text-primary)]'
           >
             {categories.map(category => (
               <option key={category.value} value={category.value}>
@@ -201,12 +205,12 @@ export const ProfileImprovements: React.FC = () => {
           </select>
         </div>
 
-        <div className="flex items-center gap-2">
-          <span className="text-sm text-[var(--text-secondary)]">优先级:</span>
+        <div className='flex items-center gap-2'>
+          <span className='text-sm text-[var(--text-secondary)]'>优先级:</span>
           <select
             value={selectedPriority}
-            onChange={(e) => setSelectedPriority(e.target.value)}
-            className="px-3 py-1 text-sm bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-lg text-[var(--text-primary)]"
+            onChange={e => setSelectedPriority(e.target.value)}
+            className='px-3 py-1 text-sm bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-lg text-[var(--text-primary)]'
           >
             {priorities.map(priority => (
               <option key={priority.value} value={priority.value}>
@@ -218,42 +222,52 @@ export const ProfileImprovements: React.FC = () => {
       </div>
 
       {/* 改善建议列表 */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {filteredImprovements.map((improvement) => (
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+        {filteredImprovements.map(improvement => (
           <div
             key={improvement.id}
-            className="bg-[var(--bg-card-alpha)] backdrop-blur-lg rounded-xl border border-[var(--border-primary)] p-6 hover:border-[var(--accent-primary)] transition-all duration-200"
+            className='bg-[var(--bg-card-alpha)] backdrop-blur-lg rounded-xl border border-[var(--border-primary)] p-6 hover:border-[var(--accent-primary)] transition-all duration-200'
           >
-            <div className="flex items-start justify-between mb-3">
-              <div className="flex items-center gap-3">
-                <span className="text-2xl">{improvement.icon}</span>
+            <div className='flex items-start justify-between mb-3'>
+              <div className='flex items-center gap-3'>
+                <span className='text-2xl'>{improvement.icon}</span>
                 <div>
-                  <h3 className="text-lg font-semibold text-[var(--text-primary)]">
+                  <h3 className='text-lg font-semibold text-[var(--text-primary)]'>
                     {improvement.title}
                   </h3>
-                  <div className="flex items-center gap-2 mt-1">
-                    <span className={`px-2 py-1 text-xs rounded-full ${getPriorityColor(improvement.priority)}`}>
-                      {improvement.priority === 'high' ? '高优先级' : 
-                       improvement.priority === 'medium' ? '中优先级' : '低优先级'}
+                  <div className='flex items-center gap-2 mt-1'>
+                    <span
+                      className={`px-2 py-1 text-xs rounded-full ${getPriorityColor(improvement.priority)}`}
+                    >
+                      {improvement.priority === 'high'
+                        ? '高优先级'
+                        : improvement.priority === 'medium'
+                          ? '中优先级'
+                          : '低优先级'}
                     </span>
-                    <span className={`px-2 py-1 text-xs rounded-full ${getStatusColor(improvement.status)}`}>
-                      {improvement.status === 'suggested' ? '建议中' :
-                       improvement.status === 'in-progress' ? '进行中' : '已完成'}
+                    <span
+                      className={`px-2 py-1 text-xs rounded-full ${getStatusColor(improvement.status)}`}
+                    >
+                      {improvement.status === 'suggested'
+                        ? '建议中'
+                        : improvement.status === 'in-progress'
+                          ? '进行中'
+                          : '已完成'}
                     </span>
                   </div>
                 </div>
               </div>
             </div>
 
-            <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
+            <p className='text-[var(--text-secondary)] text-sm leading-relaxed'>
               {improvement.description}
             </p>
 
-            <div className="mt-4 flex items-center justify-between">
-              <span className="text-xs text-[var(--text-tertiary)]">
+            <div className='mt-4 flex items-center justify-between'>
+              <span className='text-xs text-[var(--text-tertiary)]'>
                 {categories.find(c => c.value === improvement.category)?.label}
               </span>
-              <button className="text-xs text-[var(--accent-primary)] hover:text-[var(--accent-primary-hover)] transition-colors">
+              <button className='text-xs text-[var(--accent-primary)] hover:text-[var(--accent-primary-hover)] transition-colors'>
                 查看详情 →
               </button>
             </div>
@@ -262,37 +276,35 @@ export const ProfileImprovements: React.FC = () => {
       </div>
 
       {/* 统计信息 */}
-      <div className="bg-[var(--bg-card-alpha)] backdrop-blur-lg rounded-xl border border-[var(--border-primary)] p-6">
-        <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-4">
-          📈 改善统计
-        </h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="text-center">
-            <div className="text-2xl font-bold text-[var(--accent-primary)]">
+      <div className='bg-[var(--bg-card-alpha)] backdrop-blur-lg rounded-xl border border-[var(--border-primary)] p-6'>
+        <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-4'>📈 改善统计</h3>
+        <div className='grid grid-cols-2 md:grid-cols-4 gap-4'>
+          <div className='text-center'>
+            <div className='text-2xl font-bold text-[var(--accent-primary)]'>
               {improvements.length}
             </div>
-            <div className="text-sm text-[var(--text-secondary)]">总建议数</div>
+            <div className='text-sm text-[var(--text-secondary)]'>总建议数</div>
           </div>
-          <div className="text-center">
-            <div className="text-2xl font-bold text-red-500">
+          <div className='text-center'>
+            <div className='text-2xl font-bold text-red-500'>
               {improvements.filter(i => i.priority === 'high').length}
             </div>
-            <div className="text-sm text-[var(--text-secondary)]">高优先级</div>
+            <div className='text-sm text-[var(--text-secondary)]'>高优先级</div>
           </div>
-          <div className="text-center">
-            <div className="text-2xl font-bold text-blue-500">
+          <div className='text-center'>
+            <div className='text-2xl font-bold text-blue-500'>
               {improvements.filter(i => i.status === 'in-progress').length}
             </div>
-            <div className="text-sm text-[var(--text-secondary)]">进行中</div>
+            <div className='text-sm text-[var(--text-secondary)]'>进行中</div>
           </div>
-          <div className="text-center">
-            <div className="text-2xl font-bold text-green-500">
+          <div className='text-center'>
+            <div className='text-2xl font-bold text-green-500'>
               {improvements.filter(i => i.status === 'completed').length}
             </div>
-            <div className="text-sm text-[var(--text-secondary)]">已完成</div>
+            <div className='text-sm text-[var(--text-secondary)]'>已完成</div>
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

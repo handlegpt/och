@@ -20,7 +20,7 @@ export const HomePage: React.FC = () => {
 
   const [showLoginPrompt, setShowLoginPrompt] = useState(false)
   const [showMagicLinkModal, setShowMagicLinkModal] = useState(false)
-  
+
   // 从URL参数获取状态
   const selectedFeature = searchParams.get('feature')
 
@@ -78,7 +78,7 @@ export const HomePage: React.FC = () => {
 
   const handleStartCreating = useCallback(() => {
     const newSearchParams = new URLSearchParams(searchParams)
-    newSearchParams.set('view', 'categories')
+    newSearchParams.set('view', 'features')
     setSearchParams(newSearchParams, { replace: false })
   }, [searchParams, setSearchParams])
 
@@ -108,7 +108,7 @@ export const HomePage: React.FC = () => {
   // 检查URL参数或状态中是否有选中的功能
   const isCreateView = searchParams.get('view') === 'create'
   const hasSelectedFeature = state.selectedTransformation || selectedFeature
-  
+
   if (isCreateView && hasSelectedFeature) {
     return (
       <div className='min-h-screen bg-[var(--bg-primary)]'>
@@ -156,7 +156,7 @@ export const HomePage: React.FC = () => {
   }
 
   // 如果用户点击了"开始创作"或"查看所有功能"，显示功能选择界面
-  if (searchParams.get('view') === 'categories' || searchParams.get('view') === 'features') {
+  if (searchParams.get('view') === 'features') {
     return (
       <div className='min-h-screen bg-[var(--bg-primary)]'>
         <main>

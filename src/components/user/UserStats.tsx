@@ -117,14 +117,14 @@ export const UserStats: React.FC = () => {
   if (loading) {
     return (
       <div className='space-y-4'>
-        <SkeletonLoader variant="text" width={120} height={20} />
-        
+        <SkeletonLoader variant='text' width={120} height={20} />
+
         {/* 统计卡片骨架屏 */}
         <div className='grid grid-cols-2 gap-3'>
           {Array.from({ length: 4 }).map((_, index) => (
             <div key={index} className='bg-[var(--bg-secondary)] rounded-lg p-3 space-y-2'>
-              <SkeletonLoader variant="text" width="60%" height={12} />
-              <SkeletonLoader variant="text" width="40%" height={18} />
+              <SkeletonLoader variant='text' width='60%' height={12} />
+              <SkeletonLoader variant='text' width='40%' height={18} />
             </div>
           ))}
         </div>
@@ -132,12 +132,12 @@ export const UserStats: React.FC = () => {
         {/* 详细信息骨架屏 */}
         <div className='space-y-3'>
           <div className='flex justify-between items-center'>
-            <SkeletonLoader variant="text" width={80} height={14} />
-            <SkeletonLoader variant="text" width={60} height={14} />
+            <SkeletonLoader variant='text' width={80} height={14} />
+            <SkeletonLoader variant='text' width={60} height={14} />
           </div>
           <div className='flex justify-between items-center'>
-            <SkeletonLoader variant="text" width={80} height={14} />
-            <SkeletonLoader variant="text" width={100} height={14} />
+            <SkeletonLoader variant='text' width={80} height={14} />
+            <SkeletonLoader variant='text' width={100} height={14} />
           </div>
         </div>
       </div>

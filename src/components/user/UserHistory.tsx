@@ -178,34 +178,37 @@ export const UserHistory: React.FC = () => {
       <div className='space-y-4'>
         {/* 标题骨架屏 */}
         <div className='flex justify-between items-center'>
-          <SkeletonLoader variant="text" width={120} height={20} />
-          <SkeletonLoader variant="rectangular" width={120} height={32} />
+          <SkeletonLoader variant='text' width={120} height={20} />
+          <SkeletonLoader variant='rectangular' width={120} height={32} />
         </div>
 
         {/* 历史记录骨架屏 */}
         <div className='space-y-3'>
           {Array.from({ length: 5 }).map((_, index) => (
-            <div key={index} className='bg-[var(--bg-secondary)] rounded-lg p-3 border border-[var(--border-primary)]'>
+            <div
+              key={index}
+              className='bg-[var(--bg-secondary)] rounded-lg p-3 border border-[var(--border-primary)]'
+            >
               <div className='flex items-center justify-between mb-2'>
                 <div className='flex items-center gap-2'>
-                  <SkeletonLoader variant="rectangular" width={16} height={16} />
-                  <SkeletonLoader variant="text" width={80} height={14} />
-                  <SkeletonLoader variant="text" width={40} height={12} />
+                  <SkeletonLoader variant='rectangular' width={16} height={16} />
+                  <SkeletonLoader variant='text' width={80} height={14} />
+                  <SkeletonLoader variant='text' width={40} height={12} />
                 </div>
                 <div className='flex items-center gap-2'>
-                  <SkeletonLoader variant="text" width={60} height={12} />
+                  <SkeletonLoader variant='text' width={60} height={12} />
                   <div className='flex items-center gap-1'>
-                    <SkeletonLoader variant="circular" width={24} height={24} />
-                    <SkeletonLoader variant="circular" width={24} height={24} />
+                    <SkeletonLoader variant='circular' width={24} height={24} />
+                    <SkeletonLoader variant='circular' width={24} height={24} />
                   </div>
                 </div>
               </div>
-              
-              <SkeletonLoader variant="text" width="90%" height={12} className="mb-2" />
-              
+
+              <SkeletonLoader variant='text' width='90%' height={12} className='mb-2' />
+
               <div className='flex gap-3'>
-                <SkeletonLoader variant="rounded" width={64} height={64} />
-                <SkeletonLoader variant="rounded" width={64} height={64} />
+                <SkeletonLoader variant='rounded' width={64} height={64} />
+                <SkeletonLoader variant='rounded' width={64} height={64} />
               </div>
             </div>
           ))}
@@ -345,17 +348,17 @@ export const UserHistory: React.FC = () => {
                         </svg>
                       </button>
                     )}
-                      <button
-                        onClick={() => {
-                          if (item.id && confirm('确定要删除这条记录吗？')) {
-                            DataPersistenceService.deleteGenerationRecord(
-                              item.id,
-                              user?.id || ''
-                            ).then(() => {
-                              fetchUserHistory()
-                            })
-                          }
-                        }}
+                    <button
+                      onClick={() => {
+                        if (item.id && confirm('确定要删除这条记录吗？')) {
+                          DataPersistenceService.deleteGenerationRecord(
+                            item.id,
+                            user?.id || ''
+                          ).then(() => {
+                            fetchUserHistory()
+                          })
+                        }
+                      }}
                       className='p-1 text-[var(--text-secondary)] hover:text-red-500 transition-colors'
                       title='删除'
                     >
@@ -405,7 +408,10 @@ export const UserHistory: React.FC = () => {
                       <button
                         onClick={e => {
                           e.stopPropagation()
-                          handleDownloadImage(item.input_image_url || '', `input-${item.id || 'unknown'}.png`)
+                          handleDownloadImage(
+                            item.input_image_url || '',
+                            `input-${item.id || 'unknown'}.png`
+                          )
                         }}
                         className='hover:text-[var(--accent-primary)]'
                         title='下载原图'
