@@ -1,5 +1,5 @@
 import React, { useState, useCallback, lazy, Suspense, useEffect } from 'react'
-import { useNavigate, useLocation, useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useTranslation } from '../../i18n/context'
 import { useAuth } from '../hooks/useAuth'
 import { useGenerationState } from '../hooks/useGenerationState'
@@ -14,7 +14,6 @@ const GenerationWorkflow = lazy(() =>
 export const HomePage: React.FC = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const location = useLocation()
   const [searchParams, setSearchParams] = useSearchParams()
   const { user, signInWithGoogle, signInWithMagicLink } = useAuth()
   const [state, actions] = useGenerationState()
@@ -23,7 +22,6 @@ export const HomePage: React.FC = () => {
   const [showMagicLinkModal, setShowMagicLinkModal] = useState(false)
   
   // 从URL参数获取状态
-  const showAllFeatures = searchParams.get('view') === 'features' || searchParams.get('view') === 'create'
   const selectedFeature = searchParams.get('feature')
 
   // 同步URL参数和状态
