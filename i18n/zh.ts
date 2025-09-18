@@ -8,12 +8,19 @@ export default {
         title: "开始创作吧！",
       subtitle: "准备好重塑你的现实了吗？选择一个类别开始施展魔法。你也可以拖放来重新排序你最喜欢的类别。",
       cta: "开始创作",
-      explore: "探索功能"
+      explore: "探索功能",
+      badge: "AI驱动的创意工具",
+      stats: {
+        users: "用户生成",
+        models: "AI模型",
+        uptime: "可用性"
+      }
     },
     features: {
       title: "强大的AI功能",
       subtitle: "从创意设计到专业渲染，我们提供全方位的AI生成工具",
-      viewAll: "查看所有功能"
+      viewAll: "查看所有功能",
+      badge: "强大功能"
     },
     howItWorks: {
       title: "如何使用",

@@ -8,12 +8,19 @@ export default {
         title: "Start Creating!",
       subtitle: "Ready to reshape your reality? Choose a category and start casting spells. You can also drag and drop to reorder your favorite categories.",
       cta: "Start Creating",
-      explore: "Explore Features"
+      explore: "Explore Features",
+      badge: "AI-Powered Creative Tools",
+      stats: {
+        users: "User Generations",
+        models: "AI Models",
+        uptime: "Uptime"
+      }
     },
     features: {
       title: "Powerful AI Features",
       subtitle: "From creative design to professional rendering, we provide comprehensive AI generation tools",
-      viewAll: "View All Features"
+      viewAll: "View All Features",
+      badge: "Powerful Features"
     },
     howItWorks: {
       title: "How It Works",

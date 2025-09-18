@@ -242,7 +242,7 @@ export const HomePage: React.FC = () => {
             {/* Badge */}
             <div className='inline-flex items-center gap-2 px-4 py-2 bg-[var(--bg-card-alpha)] backdrop-blur-lg border border-[var(--border-primary)] rounded-full text-sm text-[var(--text-secondary)] mb-8 animate-fade-in'>
               <span className='w-2 h-2 bg-green-500 rounded-full animate-pulse'></span>
-              AI驱动的创意工具
+              {t('home.hero.badge')}
             </div>
 
             {/* Main Title */}
@@ -287,19 +287,19 @@ export const HomePage: React.FC = () => {
                 <div className='text-3xl md:text-4xl font-bold text-[var(--accent-primary)] mb-2'>
                   10K+
                 </div>
-                <div className='text-[var(--text-secondary)]'>用户生成</div>
+                <div className='text-[var(--text-secondary)]'>{t('home.hero.stats.users')}</div>
               </div>
               <div className='text-center'>
                 <div className='text-3xl md:text-4xl font-bold text-[var(--accent-secondary)] mb-2'>
                   50+
                 </div>
-                <div className='text-[var(--text-secondary)]'>AI模型</div>
+                <div className='text-[var(--text-secondary)]'>{t('home.hero.stats.models')}</div>
               </div>
               <div className='text-center'>
                 <div className='text-3xl md:text-4xl font-bold text-[var(--accent-primary)] mb-2'>
                   99.9%
                 </div>
-                <div className='text-[var(--text-secondary)]'>可用性</div>
+                <div className='text-[var(--text-secondary)]'>{t('home.hero.stats.uptime')}</div>
               </div>
             </div>
           </div>
@@ -329,7 +329,7 @@ export const HomePage: React.FC = () => {
           <div className='text-center mb-20'>
             <div className='inline-flex items-center gap-2 px-4 py-2 bg-[var(--accent-primary)]/10 border border-[var(--accent-primary)]/20 rounded-full text-sm text-[var(--accent-primary)] mb-6'>
               <span>✨</span>
-              强大功能
+              {t('home.features.badge')}
             </div>
             <h2 className='text-4xl md:text-6xl font-bold text-[var(--text-primary)] mb-6'>
               {t('home.features.title')}
@@ -482,7 +482,7 @@ export const HomePage: React.FC = () => {
       </Suspense>
 
       {/* 添加自定义动画样式 */}
-      <style jsx>{`
+      <style>{`
         @keyframes float {
           0%,
           100% {
