@@ -1,6 +1,5 @@
-import React, { useState, useCallback } from 'react'
+import React, { useCallback } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { useTranslation } from '../../i18n/context'
 import { EnhancedFeatureGrid } from './ui/EnhancedFeatureGrid'
 import { FEATURE_CONFIGS } from '../config/featureCategories'
 
@@ -16,12 +15,11 @@ interface TransformationSelectorEnhancedProps {
 export const TransformationSelectorEnhanced: React.FC<TransformationSelectorEnhancedProps> = ({
   transformations,
   onSelect,
-  hasPreviousResult,
+  hasPreviousResult: _hasPreviousResult,
   onOrderChange: _onOrderChange,
-  activeCategory,
-  setActiveCategory
+  activeCategory: _activeCategory,
+  setActiveCategory: _setActiveCategory
 }) => {
-  const { t } = useTranslation()
   const [searchParams, setSearchParams] = useSearchParams()
 
   // 将transformations转换为FeatureConfig格式
