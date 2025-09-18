@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { useTranslation } from '../../../i18n/context';
+import { useTranslation } from '../../i18n/context';
 import { EnhancedFeatureGrid } from './ui/EnhancedFeatureGrid';
 import { FEATURE_CONFIGS, FEATURE_CATEGORIES } from '../config/featureCategories';
 
@@ -16,7 +16,7 @@ export const TransformationSelectorEnhanced: React.FC<TransformationSelectorEnha
   transformations,
   onSelect,
   hasPreviousResult,
-  onOrderChange,
+  onOrderChange: _onOrderChange,
   activeCategory,
   setActiveCategory
 }) => {
@@ -229,7 +229,7 @@ export const TransformationSelectorEnhanced: React.FC<TransformationSelectorEnha
             </h2>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            {(activeCategory.items || []).map((item: any, index: number) => (
+            {(activeCategory.items || []).map((item: any, _index: number) => (
               <button
                 key={item.key}
                 onClick={() => onSelect(item)}
