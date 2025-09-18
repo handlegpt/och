@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from '../../i18n/context';
 import { EnhancedFeatureGrid } from './ui/EnhancedFeatureGrid';
 import { FEATURE_CONFIGS, FEATURE_CATEGORIES } from '../config/featureCategories';
@@ -21,7 +22,13 @@ export const TransformationSelectorEnhanced: React.FC<TransformationSelectorEnha
   setActiveCategory
 }) => {
   const { t } = useTranslation();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [showEnhancedGrid, setShowEnhancedGrid] = useState(false);
+  
+  // 根据URL参数决定显示模式
+  const currentView = searchParams.get('view');
+  const isCategoriesView = currentView === 'categories';
+  const isFeaturesView = currentView === 'features';
 
   // 将transformations转换为FeatureConfig格式
   const features = transformations.map(trans => {
@@ -117,6 +124,12 @@ export const TransformationSelectorEnhanced: React.FC<TransformationSelectorEnha
                   })
                 };
                 setActiveCategory(categoryTransformation);
+                
+                // 更新URL参数
+                const newSearchParams = new URLSearchParams(searchParams);
+                newSearchParams.set('view', 'features');
+                newSearchParams.set('category', category.key);
+                setSearchParams(newSearchParams, { replace: false });
               }}
               className="group relative p-6 bg-[var(--bg-card)] rounded-xl border border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-all duration-200 ease-in-out transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[var(--bg-primary)] focus:ring-[var(--accent-primary)]"
             >
@@ -222,7 +235,14 @@ export const TransformationSelectorEnhanced: React.FC<TransformationSelectorEnha
         <div>
           <div className="mb-8 flex items-center gap-4">
             <button
-              onClick={() => setActiveCategory(null)}
+              onClick={() => {
+                setActiveCategory(null);
+                // 更新URL参数回到分类视图
+                const newSearchParams = new URLSearchParams(searchParams);
+                newSearchParams.set('view', 'categories');
+                newSearchParams.delete('category');
+                setSearchParams(newSearchParams, { replace: false });
+              }}
               className="flex items-center gap-2 text-[var(--accent-primary)] hover:text-[var(--accent-primary-hover)] transition-colors duration-200 py-2 px-4 rounded-lg hover:bg-[rgba(107,114,128,0.1)]"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
