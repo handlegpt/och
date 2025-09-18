@@ -1,5 +1,5 @@
-import React, { useState, useCallback, lazy, Suspense } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState, useCallback, lazy, Suspense, useEffect } from 'react'
+import { useNavigate, useLocation, useSearchParams } from 'react-router-dom'
 import { useTranslation } from '../../i18n/context'
 import { useAuth } from '../hooks/useAuth'
 import { useGenerationState } from '../hooks/useGenerationState'
@@ -14,19 +14,40 @@ const GenerationWorkflow = lazy(() =>
 export const HomePage: React.FC = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const location = useLocation()
+  const [searchParams, setSearchParams] = useSearchParams()
   const { user, signInWithGoogle, signInWithMagicLink } = useAuth()
   const [state, actions] = useGenerationState()
 
   const [showLoginPrompt, setShowLoginPrompt] = useState(false)
   const [showMagicLinkModal, setShowMagicLinkModal] = useState(false)
-  const [showAllFeatures, setShowAllFeatures] = useState(false)
+  
+  // 从URL参数获取状态
+  const showAllFeatures = searchParams.get('view') === 'features' || searchParams.get('view') === 'create'
+  const selectedFeature = searchParams.get('feature')
 
-  // 监听全局状态变化，当selectedTransformation被重置时，也重置本地状态
-  React.useEffect(() => {
-    if (!state.selectedTransformation) {
-      setShowAllFeatures(false)
+  // 同步URL参数和状态
+  useEffect(() => {
+    if (selectedFeature && !state.selectedTransformation) {
+      // 从URL参数恢复选中的功能
+      const transformation = state.transformations.find(t => t.key === selectedFeature)
+      if (transformation) {
+        actions.setSelectedTransformation(transformation)
+      }
     }
-  }, [state.selectedTransformation])
+  }, [selectedFeature, state.transformations, state.selectedTransformation, actions])
+
+  // 监听全局状态变化，当selectedTransformation被重置时，清除URL参数
+  React.useEffect(() => {
+    if (!state.selectedTransformation && selectedFeature) {
+      const newSearchParams = new URLSearchParams(searchParams)
+      newSearchParams.delete('feature')
+      if (newSearchParams.get('view') === 'create') {
+        newSearchParams.set('view', 'features')
+      }
+      setSearchParams(newSearchParams, { replace: true })
+    }
+  }, [state.selectedTransformation, selectedFeature, searchParams, setSearchParams])
 
   const handleLoginRequired = useCallback(() => {
     setShowLoginPrompt(true)
@@ -54,13 +75,16 @@ export const HomePage: React.FC = () => {
   }, [])
 
   const handleStartCreating = useCallback(() => {
-    setShowAllFeatures(true)
-  }, [])
+    const newSearchParams = new URLSearchParams(searchParams)
+    newSearchParams.set('view', 'features')
+    setSearchParams(newSearchParams, { replace: false })
+  }, [searchParams, setSearchParams])
 
   const handleViewAllFeatures = useCallback(() => {
-    setShowAllFeatures(true)
-    // 不设置 selectedTransformation，这样会显示功能选择界面
-  }, [])
+    const newSearchParams = new URLSearchParams(searchParams)
+    newSearchParams.set('view', 'features')
+    setSearchParams(newSearchParams, { replace: false })
+  }, [searchParams, setSearchParams])
 
   const handleFeatureClick = useCallback(
     (feature: any) => {
@@ -68,14 +92,18 @@ export const HomePage: React.FC = () => {
       const transformation = state.transformations.find(t => t.key === feature.id)
       if (transformation) {
         actions.setSelectedTransformation(transformation)
-        setShowAllFeatures(true)
+        // 更新URL参数
+        const newSearchParams = new URLSearchParams(searchParams)
+        newSearchParams.set('view', 'create')
+        newSearchParams.set('feature', feature.id)
+        setSearchParams(newSearchParams, { replace: false })
       }
     },
-    [actions, state.transformations]
+    [actions, state.transformations, searchParams, setSearchParams]
   )
 
   // 如果用户选择了功能，显示生成界面
-  if (showAllFeatures && state.selectedTransformation) {
+  if (searchParams.get('view') === 'create' && state.selectedTransformation) {
     return (
       <div className='min-h-screen bg-[var(--bg-primary)]'>
         <main>
@@ -122,7 +150,7 @@ export const HomePage: React.FC = () => {
   }
 
   // 如果用户点击了"查看所有功能"，显示功能选择界面
-  if (showAllFeatures && !state.selectedTransformation) {
+  if (searchParams.get('view') === 'features' && !state.selectedTransformation) {
     return (
       <div className='min-h-screen bg-[var(--bg-primary)]'>
         <main>
