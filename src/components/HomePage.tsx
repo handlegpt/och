@@ -897,97 +897,101 @@ export const HomePage: React.FC = () => {
           </div>
 
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10'>
-            {(t('home.useCases.cases') as unknown as any[]).map((useCase: any, index: number) => (
-              <div
-                key={index}
-                className='group relative cursor-pointer transform-gpu'
-                style={{
-                  animationDelay: `${index * 150}ms`,
-                  animation: 'fadeInUp 0.8s ease-out forwards',
-                }}
-              >
-                {/* Card Container */}
-                <div className='relative bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-3xl p-8 border border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-all duration-700 hover:shadow-2xl hover:shadow-[var(--accent-primary)]/30 hover:-translate-y-8 text-center overflow-hidden'>
-                  {/* Outer Glow Ring */}
-                  <div className='absolute inset-0 rounded-3xl bg-gradient-to-r from-[var(--accent-primary)] via-[var(--accent-secondary)] to-[var(--accent-primary)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl scale-110 animate-pulse'></div>
+            {(() => {
+              const cases = t('home.useCases.cases')
+              const casesArray = Array.isArray(cases) ? cases : []
+              return casesArray.map((useCase: any, index: number) => (
+                <div
+                  key={index}
+                  className='group relative cursor-pointer transform-gpu'
+                  style={{
+                    animationDelay: `${index * 150}ms`,
+                    animation: 'fadeInUp 0.8s ease-out forwards',
+                  }}
+                >
+                  {/* Card Container */}
+                  <div className='relative bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-3xl p-8 border border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-all duration-700 hover:shadow-2xl hover:shadow-[var(--accent-primary)]/30 hover:-translate-y-8 text-center overflow-hidden'>
+                    {/* Outer Glow Ring */}
+                    <div className='absolute inset-0 rounded-3xl bg-gradient-to-r from-[var(--accent-primary)] via-[var(--accent-secondary)] to-[var(--accent-primary)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl scale-110 animate-pulse'></div>
 
-                  {/* Animated Background */}
-                  <div className='absolute inset-0 bg-gradient-to-br from-[var(--accent-primary)]/8 via-transparent to-[var(--accent-secondary)]/8 opacity-0 group-hover:opacity-100 transition-opacity duration-700'></div>
+                    {/* Animated Background */}
+                    <div className='absolute inset-0 bg-gradient-to-br from-[var(--accent-primary)]/8 via-transparent to-[var(--accent-secondary)]/8 opacity-0 group-hover:opacity-100 transition-opacity duration-700'></div>
 
-                  {/* Floating Particles */}
-                  <div className='absolute inset-0 overflow-hidden'>
-                    {[...Array(10)].map((_, i) => (
-                      <div
-                        key={i}
-                        className='absolute w-1 h-1 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] rounded-full animate-float'
-                        style={{
-                          left: `${Math.random() * 100}%`,
-                          top: `${Math.random() * 100}%`,
-                          animationDelay: `${Math.random() * 3}s`,
-                          animationDuration: `${3 + Math.random() * 2}s`,
-                        }}
-                      />
-                    ))}
-                  </div>
-
-                  {/* Icon Section with Enhanced Effects */}
-                  <div className='relative mb-8'>
-                    {/* Multiple Glow Layers */}
-                    <div className='absolute inset-0 w-24 h-24 bg-gradient-to-r from-[var(--accent-primary)]/40 to-[var(--accent-secondary)]/40 rounded-3xl blur-2xl scale-0 group-hover:scale-125 transition-transform duration-700 mx-auto'></div>
-                    <div className='absolute inset-0 w-20 h-20 bg-gradient-to-r from-[var(--accent-primary)]/30 to-[var(--accent-secondary)]/30 rounded-2xl blur-lg scale-0 group-hover:scale-110 transition-transform duration-500 mx-auto'></div>
-
-                    {/* Main Icon Container */}
-                    <div className='relative w-20 h-20 bg-gradient-to-br from-[var(--accent-primary)]/25 via-[var(--accent-secondary)]/25 to-[var(--accent-primary)]/25 rounded-2xl flex items-center justify-center text-5xl mx-auto group-hover:scale-110 group-hover:rotate-12 group-hover:-translate-y-2 transition-all duration-700 shadow-2xl group-hover:shadow-[var(--accent-primary)]/50'>
-                      <span className='group-hover:animate-bounce group-hover:drop-shadow-lg'>
-                        {useCase.icon}
-                      </span>
+                    {/* Floating Particles */}
+                    <div className='absolute inset-0 overflow-hidden'>
+                      {[...Array(10)].map((_, i) => (
+                        <div
+                          key={i}
+                          className='absolute w-1 h-1 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] rounded-full animate-float'
+                          style={{
+                            left: `${Math.random() * 100}%`,
+                            top: `${Math.random() * 100}%`,
+                            animationDelay: `${Math.random() * 3}s`,
+                            animationDuration: `${3 + Math.random() * 2}s`,
+                          }}
+                        />
+                      ))}
                     </div>
 
-                    {/* Enhanced Sparkle Effects */}
-                    <div className='absolute top-0 right-0 w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-ping shadow-lg'></div>
-                    <div
-                      className='absolute bottom-0 left-0 w-3 h-3 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-ping shadow-lg'
-                      style={{ animationDelay: '0.5s' }}
-                    ></div>
-                    <div
-                      className='absolute top-1/2 left-0 w-2 h-2 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-600 animate-ping'
-                      style={{ animationDelay: '1s' }}
-                    ></div>
-                    <div
-                      className='absolute top-0 left-1/2 w-1 h-1 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-800 animate-ping'
-                      style={{ animationDelay: '1.5s' }}
-                    ></div>
+                    {/* Icon Section with Enhanced Effects */}
+                    <div className='relative mb-8'>
+                      {/* Multiple Glow Layers */}
+                      <div className='absolute inset-0 w-24 h-24 bg-gradient-to-r from-[var(--accent-primary)]/40 to-[var(--accent-secondary)]/40 rounded-3xl blur-2xl scale-0 group-hover:scale-125 transition-transform duration-700 mx-auto'></div>
+                      <div className='absolute inset-0 w-20 h-20 bg-gradient-to-r from-[var(--accent-primary)]/30 to-[var(--accent-secondary)]/30 rounded-2xl blur-lg scale-0 group-hover:scale-110 transition-transform duration-500 mx-auto'></div>
+
+                      {/* Main Icon Container */}
+                      <div className='relative w-20 h-20 bg-gradient-to-br from-[var(--accent-primary)]/25 via-[var(--accent-secondary)]/25 to-[var(--accent-primary)]/25 rounded-2xl flex items-center justify-center text-5xl mx-auto group-hover:scale-110 group-hover:rotate-12 group-hover:-translate-y-2 transition-all duration-700 shadow-2xl group-hover:shadow-[var(--accent-primary)]/50'>
+                        <span className='group-hover:animate-bounce group-hover:drop-shadow-lg'>
+                          {useCase.icon}
+                        </span>
+                      </div>
+
+                      {/* Enhanced Sparkle Effects */}
+                      <div className='absolute top-0 right-0 w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-ping shadow-lg'></div>
+                      <div
+                        className='absolute bottom-0 left-0 w-3 h-3 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-ping shadow-lg'
+                        style={{ animationDelay: '0.5s' }}
+                      ></div>
+                      <div
+                        className='absolute top-1/2 left-0 w-2 h-2 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-600 animate-ping'
+                        style={{ animationDelay: '1s' }}
+                      ></div>
+                      <div
+                        className='absolute top-0 left-1/2 w-1 h-1 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-800 animate-ping'
+                        style={{ animationDelay: '1.5s' }}
+                      ></div>
+                    </div>
+
+                    {/* Content with Enhanced Typography */}
+                    <div className='relative z-10'>
+                      <h3 className='text-xl font-bold text-[var(--text-primary)] mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[var(--accent-primary)] group-hover:to-[var(--accent-secondary)] transition-all duration-700 group-hover:drop-shadow-lg'>
+                        {useCase.title}
+                      </h3>
+                      <p className='text-[var(--text-secondary)] text-sm leading-relaxed group-hover:text-[var(--text-primary)] transition-colors duration-700 group-hover:drop-shadow-md'>
+                        {useCase.description}
+                      </p>
+                    </div>
+
+                    {/* Enhanced Bottom Progress Bar */}
+                    <div className='absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-[var(--accent-primary)] via-[var(--accent-secondary)] to-[var(--accent-primary)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left rounded-full shadow-lg'></div>
+
+                    {/* Corner Accents with Enhanced Effects */}
+                    <div className='absolute top-4 right-4 w-3 h-3 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse shadow-lg'></div>
+                    <div className='absolute bottom-4 left-4 w-2 h-2 bg-gradient-to-r from-[var(--accent-secondary)] to-[var(--accent-primary)] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse shadow-lg'></div>
+                    <div className='absolute top-4 left-4 w-1 h-1 bg-yellow-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-600 animate-ping'></div>
+                    <div className='absolute bottom-4 right-4 w-1 h-1 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-800 animate-ping'></div>
                   </div>
 
-                  {/* Content with Enhanced Typography */}
-                  <div className='relative z-10'>
-                    <h3 className='text-xl font-bold text-[var(--text-primary)] mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[var(--accent-primary)] group-hover:to-[var(--accent-secondary)] transition-all duration-700 group-hover:drop-shadow-lg'>
-                      {useCase.title}
-                    </h3>
-                    <p className='text-[var(--text-secondary)] text-sm leading-relaxed group-hover:text-[var(--text-primary)] transition-colors duration-700 group-hover:drop-shadow-md'>
-                      {useCase.description}
-                    </p>
+                  {/* Enhanced Hover Overlay */}
+                  <div className='absolute inset-0 bg-gradient-to-br from-[var(--accent-primary)]/8 via-transparent to-[var(--accent-secondary)]/8 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-3xl'></div>
+
+                  {/* Shimmer Effect */}
+                  <div className='absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700'>
+                    <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000'></div>
                   </div>
-
-                  {/* Enhanced Bottom Progress Bar */}
-                  <div className='absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-[var(--accent-primary)] via-[var(--accent-secondary)] to-[var(--accent-primary)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left rounded-full shadow-lg'></div>
-
-                  {/* Corner Accents with Enhanced Effects */}
-                  <div className='absolute top-4 right-4 w-3 h-3 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse shadow-lg'></div>
-                  <div className='absolute bottom-4 left-4 w-2 h-2 bg-gradient-to-r from-[var(--accent-secondary)] to-[var(--accent-primary)] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse shadow-lg'></div>
-                  <div className='absolute top-4 left-4 w-1 h-1 bg-yellow-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-600 animate-ping'></div>
-                  <div className='absolute bottom-4 right-4 w-1 h-1 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-800 animate-ping'></div>
                 </div>
-
-                {/* Enhanced Hover Overlay */}
-                <div className='absolute inset-0 bg-gradient-to-br from-[var(--accent-primary)]/8 via-transparent to-[var(--accent-secondary)]/8 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-3xl'></div>
-
-                {/* Shimmer Effect */}
-                <div className='absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700'>
-                  <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000'></div>
-                </div>
-              </div>
-            ))}
+              ))
+            })()}
           </div>
         </div>
       </section>
