@@ -252,7 +252,10 @@ export const EnhancedFeatureGrid: React.FC<EnhancedFeatureGridProps> = ({
       {/* 结果统计 */}
       <div className='mb-6 text-center'>
         <p className='text-[var(--text-secondary)]'>
-          {t('features.allFeatures.foundCount', { count: filteredAndSortedFeatures.length })}
+          {t('features.allFeatures.foundCount').replace(
+            '{count}',
+            filteredAndSortedFeatures.length.toString()
+          )}
           {searchQuery && ` (${t('common.search')}: "${searchQuery}")`}
           {selectedCategory !== 'all' &&
             ` (${t('features.allFeatures.categoryLabel')}${categories.find(c => c.key === selectedCategory)?.label})`}
