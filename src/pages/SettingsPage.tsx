@@ -2,8 +2,8 @@ import React from 'react'
 import { useAuth } from '../hooks/useAuth'
 import { useTranslation } from '../../i18n/context'
 import { UserSettings } from '../components/user/UserSettings'
-import LanguageSwitcher from '../components/LanguageSwitcher'
-import ThemeSwitcher from '../components/ThemeSwitcher'
+import LanguageSwitcher from '../../components/LanguageSwitcher'
+import ThemeSwitcher from '../../components/ThemeSwitcher'
 
 export const SettingsPage: React.FC = () => {
   const { user } = useAuth()
