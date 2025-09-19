@@ -22,6 +22,29 @@ export default {
       subtitle: '从3D手办到动漫风格，从高清增强到艺术创作，满足你的所有图像处理需求',
       viewAll: '查看所有效果',
       badge: '热门效果',
+      preview: {
+        figurine: {
+          title: '普通照片 → 3D手办',
+          description: '将你的照片转换为精美的3D收藏品手办，配有专业包装盒',
+          processingTime: '处理时间: 30秒',
+          resolution: '分辨率: 1024x1024',
+          badge: '3D手办',
+        },
+        anime: {
+          title: '真人照片 → 动漫角色',
+          description: '将真实照片转换为精美的动漫风格图像，保留人物特征',
+          processingTime: '处理时间: 25秒',
+          resolution: '分辨率: 1024x1024',
+          badge: '动漫风格',
+        },
+        enhance: {
+          title: '模糊照片 → 高清图像',
+          description: 'AI智能提升图像清晰度和细节质量，让模糊照片变高清',
+          processingTime: '处理时间: 20秒',
+          resolution: '分辨率: 2048x2048',
+          badge: '高清增强',
+        },
+      },
     },
     howItWorks: {
       title: '三步完成AI图像创作',

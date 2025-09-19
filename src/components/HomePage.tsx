@@ -496,54 +496,39 @@ export const HomePage: React.FC = () => {
             {/* Demo Card 1 - 3D Figurine */}
             <div className='group bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-6 border border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-all duration-500 hover:shadow-2xl hover:shadow-[var(--accent-primary)]/20 hover:-translate-y-4 cursor-pointer overflow-hidden'>
               <div className='relative mb-4'>
-                {/* Before/After Image Container */}
-                <div className='aspect-square bg-gradient-to-br from-[var(--accent-primary)]/10 to-[var(--accent-secondary)]/10 rounded-xl overflow-hidden relative'>
-                  {/* Before Image Placeholder */}
-                  <div className='absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center'>
-                    <div className='text-center'>
-                      <div className='w-16 h-16 bg-white/80 rounded-full flex items-center justify-center text-2xl mb-2 mx-auto'>
-                        📸
-                      </div>
-                      <div className='text-xs text-gray-600 font-medium'>原始照片</div>
+                {/* Demo Image Container */}
+                <div className='aspect-square bg-gradient-to-br from-[var(--accent-primary)]/10 to-[var(--accent-secondary)]/10 rounded-xl overflow-hidden relative group-hover:shadow-lg transition-all duration-300'>
+                  <img
+                    src='https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=300&fit=crop&crop=face'
+                    alt='3D Figurine Demo'
+                    className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
+                  />
+                  <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
+                    <div className='absolute bottom-3 left-3 right-3'>
+                      <div className='text-white text-sm font-medium'>3D Figurine Effect</div>
+                      <div className='text-white/80 text-xs'>AI Generated Result</div>
                     </div>
-                  </div>
-
-                  {/* After Image Placeholder */}
-                  <div className='absolute inset-0 bg-gradient-to-br from-[var(--accent-primary)]/20 to-[var(--accent-secondary)]/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500'>
-                    <div className='text-center'>
-                      <div className='w-16 h-16 bg-white/90 rounded-full flex items-center justify-center text-2xl mb-2 mx-auto animate-bounce'>
-                        🎭
-                      </div>
-                      <div className='text-xs text-white font-medium drop-shadow-lg'>
-                        3D手办效果
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Transformation Arrow */}
-                  <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 animate-pulse'>
-                    <span className='text-[var(--accent-primary)] font-bold'>→</span>
                   </div>
                 </div>
 
                 <div className='absolute top-2 right-2 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white text-xs px-3 py-1 rounded-full font-medium shadow-lg'>
-                  3D手办
+                  {t('home.features.preview.figurine.badge')}
                 </div>
               </div>
               <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-2 group-hover:text-[var(--accent-primary)] transition-colors duration-300'>
-                普通照片 → 3D手办
+                {t('home.features.preview.figurine.title')}
               </h3>
               <p className='text-[var(--text-secondary)] text-sm mb-4 group-hover:text-[var(--text-primary)] transition-colors duration-300'>
-                将你的照片转换为精美的3D收藏品手办，配有专业包装盒
+                {t('home.features.preview.figurine.description')}
               </p>
               <div className='flex items-center justify-between text-xs text-[var(--text-secondary)]'>
                 <span className='flex items-center gap-1'>
                   <span className='w-2 h-2 bg-green-500 rounded-full animate-pulse'></span>
-                  处理时间: 30秒
+                  {t('home.features.preview.figurine.processingTime')}
                 </span>
                 <span className='flex items-center gap-1'>
                   <span className='w-2 h-2 bg-blue-500 rounded-full'></span>
-                  分辨率: 1024x1024
+                  {t('home.features.preview.figurine.resolution')}
                 </span>
               </div>
             </div>
@@ -551,52 +536,39 @@ export const HomePage: React.FC = () => {
             {/* Demo Card 2 - Anime Style */}
             <div className='group bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-6 border border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-all duration-500 hover:shadow-2xl hover:shadow-[var(--accent-primary)]/20 hover:-translate-y-4 cursor-pointer overflow-hidden'>
               <div className='relative mb-4'>
-                {/* Before/After Image Container */}
-                <div className='aspect-square bg-gradient-to-br from-[var(--accent-primary)]/10 to-[var(--accent-secondary)]/10 rounded-xl overflow-hidden relative'>
-                  {/* Before Image Placeholder */}
-                  <div className='absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center'>
-                    <div className='text-center'>
-                      <div className='w-16 h-16 bg-white/80 rounded-full flex items-center justify-center text-2xl mb-2 mx-auto'>
-                        👤
-                      </div>
-                      <div className='text-xs text-gray-600 font-medium'>真人照片</div>
+                {/* Demo Image Container */}
+                <div className='aspect-square bg-gradient-to-br from-[var(--accent-primary)]/10 to-[var(--accent-secondary)]/10 rounded-xl overflow-hidden relative group-hover:shadow-lg transition-all duration-300'>
+                  <img
+                    src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&h=300&fit=crop&crop=face'
+                    alt='Anime Style Demo'
+                    className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
+                  />
+                  <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
+                    <div className='absolute bottom-3 left-3 right-3'>
+                      <div className='text-white text-sm font-medium'>Anime Style Effect</div>
+                      <div className='text-white/80 text-xs'>AI Generated Result</div>
                     </div>
-                  </div>
-
-                  {/* After Image Placeholder */}
-                  <div className='absolute inset-0 bg-gradient-to-br from-[var(--accent-secondary)]/20 to-[var(--accent-primary)]/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500'>
-                    <div className='text-center'>
-                      <div className='w-16 h-16 bg-white/90 rounded-full flex items-center justify-center text-2xl mb-2 mx-auto animate-bounce'>
-                        🎨
-                      </div>
-                      <div className='text-xs text-white font-medium drop-shadow-lg'>动漫风格</div>
-                    </div>
-                  </div>
-
-                  {/* Transformation Arrow */}
-                  <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 animate-pulse'>
-                    <span className='text-[var(--accent-secondary)] font-bold'>→</span>
                   </div>
                 </div>
 
                 <div className='absolute top-2 right-2 bg-gradient-to-r from-[var(--accent-secondary)] to-[var(--accent-primary)] text-white text-xs px-3 py-1 rounded-full font-medium shadow-lg'>
-                  动漫风格
+                  {t('home.features.preview.anime.badge')}
                 </div>
               </div>
               <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-2 group-hover:text-[var(--accent-secondary)] transition-colors duration-300'>
-                真人照片 → 动漫角色
+                {t('home.features.preview.anime.title')}
               </h3>
               <p className='text-[var(--text-secondary)] text-sm mb-4 group-hover:text-[var(--text-primary)] transition-colors duration-300'>
-                将真实照片转换为精美的动漫风格图像，保留人物特征
+                {t('home.features.preview.anime.description')}
               </p>
               <div className='flex items-center justify-between text-xs text-[var(--text-secondary)]'>
                 <span className='flex items-center gap-1'>
                   <span className='w-2 h-2 bg-green-500 rounded-full animate-pulse'></span>
-                  处理时间: 25秒
+                  {t('home.features.preview.anime.processingTime')}
                 </span>
                 <span className='flex items-center gap-1'>
                   <span className='w-2 h-2 bg-blue-500 rounded-full'></span>
-                  分辨率: 1024x1024
+                  {t('home.features.preview.anime.resolution')}
                 </span>
               </div>
             </div>
@@ -604,52 +576,39 @@ export const HomePage: React.FC = () => {
             {/* Demo Card 3 - HD Enhance */}
             <div className='group bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-6 border border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-all duration-500 hover:shadow-2xl hover:shadow-[var(--accent-primary)]/20 hover:-translate-y-4 cursor-pointer overflow-hidden'>
               <div className='relative mb-4'>
-                {/* Before/After Image Container */}
-                <div className='aspect-square bg-gradient-to-br from-[var(--accent-primary)]/10 to-[var(--accent-secondary)]/10 rounded-xl overflow-hidden relative'>
-                  {/* Before Image Placeholder */}
-                  <div className='absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center'>
-                    <div className='text-center'>
-                      <div className='w-16 h-16 bg-white/80 rounded-full flex items-center justify-center text-2xl mb-2 mx-auto'>
-                        📷
-                      </div>
-                      <div className='text-xs text-gray-600 font-medium'>模糊照片</div>
+                {/* Demo Image Container */}
+                <div className='aspect-square bg-gradient-to-br from-[var(--accent-primary)]/10 to-[var(--accent-secondary)]/10 rounded-xl overflow-hidden relative group-hover:shadow-lg transition-all duration-300'>
+                  <img
+                    src='https://images.unsplash.com/photo-1517841905240-472988babdf9?w=300&h=300&fit=crop&crop=face'
+                    alt='HD Enhanced Demo'
+                    className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
+                  />
+                  <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
+                    <div className='absolute bottom-3 left-3 right-3'>
+                      <div className='text-white text-sm font-medium'>HD Enhanced Effect</div>
+                      <div className='text-white/80 text-xs'>AI Generated Result</div>
                     </div>
-                  </div>
-
-                  {/* After Image Placeholder */}
-                  <div className='absolute inset-0 bg-gradient-to-br from-green-500/20 to-blue-500/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500'>
-                    <div className='text-center'>
-                      <div className='w-16 h-16 bg-white/90 rounded-full flex items-center justify-center text-2xl mb-2 mx-auto animate-bounce'>
-                        🔍
-                      </div>
-                      <div className='text-xs text-white font-medium drop-shadow-lg'>高清图像</div>
-                    </div>
-                  </div>
-
-                  {/* Transformation Arrow */}
-                  <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 animate-pulse'>
-                    <span className='text-green-500 font-bold'>→</span>
                   </div>
                 </div>
 
                 <div className='absolute top-2 right-2 bg-gradient-to-r from-green-500 to-blue-500 text-white text-xs px-3 py-1 rounded-full font-medium shadow-lg'>
-                  高清增强
+                  {t('home.features.preview.enhance.badge')}
                 </div>
               </div>
               <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-2 group-hover:text-green-500 transition-colors duration-300'>
-                模糊照片 → 高清图像
+                {t('home.features.preview.enhance.title')}
               </h3>
               <p className='text-[var(--text-secondary)] text-sm mb-4 group-hover:text-[var(--text-primary)] transition-colors duration-300'>
-                AI智能提升图像清晰度和细节质量，让模糊照片变高清
+                {t('home.features.preview.enhance.description')}
               </p>
               <div className='flex items-center justify-between text-xs text-[var(--text-secondary)]'>
                 <span className='flex items-center gap-1'>
                   <span className='w-2 h-2 bg-green-500 rounded-full animate-pulse'></span>
-                  处理时间: 20秒
+                  {t('home.features.preview.enhance.processingTime')}
                 </span>
                 <span className='flex items-center gap-1'>
                   <span className='w-2 h-2 bg-blue-500 rounded-full'></span>
-                  分辨率: 2048x2048
+                  {t('home.features.preview.enhance.resolution')}
                 </span>
               </div>
             </div>
