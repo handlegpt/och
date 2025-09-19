@@ -35,10 +35,10 @@ export const BottomNavigation: React.FC = () => {
     },
     {
       path: '/more',
-      icon: '⚙️',
-      activeIcon: '⚙️',
-      label: '设置',
-      description: '应用设置',
+      icon: '📱',
+      activeIcon: '📱',
+      label: '更多',
+      description: '联系与关于',
     },
   ]
 

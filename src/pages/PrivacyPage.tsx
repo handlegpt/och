@@ -78,7 +78,7 @@ export const PrivacyPage: React.FC = () => {
 
               <div className='mt-8 p-4 bg-[var(--accent-primary)]/10 border border-[var(--accent-primary)]/20 rounded-lg'>
                 <p className='text-sm text-[var(--accent-primary)]'>
-                  <strong>最后更新：</strong> 2024年1月1日
+                  <strong>最后更新：</strong> 2025年9月
                 </p>
               </div>
             </div>

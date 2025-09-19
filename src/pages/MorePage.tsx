@@ -1,15 +1,10 @@
 import React, { useState } from 'react'
-import { useAuth } from '../hooks/useAuth'
-import { UserSettings } from '../components/user/UserSettings'
-import LanguageSwitcher from '../../components/LanguageSwitcher'
-import ThemeSwitcher from '../../components/ThemeSwitcher'
 
 export const MorePage: React.FC = () => {
-  const { user } = useAuth()
-  const [activeTab, setActiveTab] = useState<'settings' | 'about'>('settings')
+  const [activeTab, setActiveTab] = useState<'contact' | 'about'>('contact')
 
   const tabs = [
-    { key: 'settings', label: '设置', icon: '⚙️' },
+    { key: 'contact', label: '联系', icon: '📞' },
     { key: 'about', label: '关于', icon: 'ℹ️' },
   ] as const
 
@@ -18,10 +13,8 @@ export const MorePage: React.FC = () => {
       <div className='container mx-auto px-4 py-8'>
         {/* 页面标题 */}
         <div className='text-center mb-8'>
-          <h1 className='text-3xl font-bold text-[var(--text-primary)] mb-2'>⚙️ 应用设置</h1>
-          <p className='text-[var(--text-secondary)] max-w-2xl mx-auto'>
-            管理您的应用设置和了解更多信息
-          </p>
+          <h1 className='text-3xl font-bold text-[var(--text-primary)] mb-2'>📱 更多</h1>
+          <p className='text-[var(--text-secondary)] max-w-2xl mx-auto'>联系我们和了解更多信息</p>
         </div>
 
         {/* 标签页导航 */}
@@ -46,54 +39,75 @@ export const MorePage: React.FC = () => {
 
         {/* 标签页内容 */}
         <div className='max-w-4xl mx-auto'>
-          {activeTab === 'settings' && (
-            <div className='space-y-8'>
-              {!user ? (
-                <div className='bg-[var(--bg-card-alpha)] backdrop-blur-lg rounded-xl border border-[var(--border-primary)] p-8 text-center'>
-                  <div className='text-6xl mb-4'>🔐</div>
-                  <h2 className='text-2xl font-bold text-[var(--text-primary)] mb-4'>需要登录</h2>
-                  <p className='text-[var(--text-secondary)] mb-6'>
-                    要管理您的设置，请先登录您的账户
-                  </p>
-                  <button className='px-6 py-3 bg-[var(--accent-primary)] text-white rounded-lg hover:bg-[var(--accent-primary-hover)] transition-colors duration-200'>
-                    立即登录
-                  </button>
-                </div>
-              ) : (
-                <>
-                  {/* 应用设置 */}
-                  <div className='bg-[var(--bg-card-alpha)] backdrop-blur-lg rounded-xl border border-[var(--border-primary)] p-6'>
-                    <h2 className='text-xl font-semibold text-[var(--text-primary)] mb-4'>
-                      🌐 应用设置
-                    </h2>
-                    <div className='space-y-4'>
-                      <div className='flex items-center justify-between'>
-                        <div>
-                          <h3 className='font-medium text-[var(--text-primary)]'>语言设置</h3>
-                          <p className='text-sm text-[var(--text-secondary)]'>选择您的首选语言</p>
-                        </div>
-                        <LanguageSwitcher />
-                      </div>
+          {activeTab === 'contact' && (
+            <div className='bg-[var(--bg-card-alpha)] backdrop-blur-lg rounded-xl border border-[var(--border-primary)] p-8'>
+              <h2 className='text-2xl font-bold text-[var(--text-primary)] mb-6'>📞 联系我们</h2>
 
-                      <div className='flex items-center justify-between'>
-                        <div>
-                          <h3 className='font-medium text-[var(--text-primary)]'>主题设置</h3>
-                          <p className='text-sm text-[var(--text-secondary)]'>选择明暗主题</p>
-                        </div>
-                        <ThemeSwitcher />
+              <div className='space-y-6 text-[var(--text-secondary)] leading-relaxed'>
+                <section>
+                  <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-3'>
+                    💬 反馈与建议
+                  </h3>
+                  <p>
+                    我们非常重视您的反馈！如果您在使用过程中遇到任何问题，
+                    或者有改进建议，请随时联系我们。
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-3'>
+                    🛠️ 技术支持
+                  </h3>
+                  <p>
+                    遇到技术问题？我们的技术支持团队会尽快为您解决。
+                    请详细描述您遇到的问题，我们会提供专业的帮助。
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-3'>
+                    💡 功能请求
+                  </h3>
+                  <p>
+                    有新的功能想法？我们欢迎您的创意！ 告诉我们您希望看到的新功能，我们会认真考虑。
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-3'>
+                    📧 联系方式
+                  </h3>
+                  <div className='space-y-3'>
+                    <div className='flex items-center gap-3'>
+                      <span className='text-2xl'>📧</span>
+                      <div>
+                        <p className='font-medium text-[var(--text-primary)]'>邮箱</p>
+                        <p className='text-sm'>support@ochai.com</p>
+                      </div>
+                    </div>
+                    <div className='flex items-center gap-3'>
+                      <span className='text-2xl'>💬</span>
+                      <div>
+                        <p className='font-medium text-[var(--text-primary)]'>在线客服</p>
+                        <p className='text-sm'>工作日 9:00-18:00</p>
+                      </div>
+                    </div>
+                    <div className='flex items-center gap-3'>
+                      <span className='text-2xl'>📱</span>
+                      <div>
+                        <p className='font-medium text-[var(--text-primary)]'>应用内反馈</p>
+                        <p className='text-sm'>在个人中心提交反馈</p>
                       </div>
                     </div>
                   </div>
+                </section>
 
-                  {/* 用户设置 */}
-                  <div className='bg-[var(--bg-card-alpha)] backdrop-blur-lg rounded-xl border border-[var(--border-primary)] p-6'>
-                    <h2 className='text-xl font-semibold text-[var(--text-primary)] mb-4'>
-                      👤 用户设置
-                    </h2>
-                    <UserSettings />
-                  </div>
-                </>
-              )}
+                <div className='mt-8 p-4 bg-[var(--accent-primary)]/10 border border-[var(--accent-primary)]/20 rounded-lg'>
+                  <p className='text-sm text-[var(--accent-primary)]'>
+                    <strong>响应时间：</strong> 我们会在24小时内回复您的邮件
+                  </p>
+                </div>
+              </div>
             </div>
           )}
 
