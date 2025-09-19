@@ -39,7 +39,7 @@ export const DashboardLayout: React.FC = () => {
     try {
       // 获取总生成数
       const { count: totalGen } = await supabase
-        .from('generation_history')
+        .from('ai_generations')
         .select('*', { count: 'exact', head: true })
         .eq('user_id', user.id)
 
@@ -53,21 +53,21 @@ export const DashboardLayout: React.FC = () => {
       const weekAgo = new Date()
       weekAgo.setDate(weekAgo.getDate() - 7)
       const { count: weekGen } = await supabase
-        .from('generation_history')
+        .from('ai_generations')
         .select('*', { count: 'exact', head: true })
         .eq('user_id', user.id)
         .gte('created_at', weekAgo.toISOString())
 
       // 获取最常用功能
       const { data: featureData } = await supabase
-        .from('generation_history')
-        .select('transformation_key')
+        .from('ai_generations')
+        .select('transformation_type')
         .eq('user_id', user.id)
 
       const featureCounts =
         featureData?.reduce(
           (acc, item) => {
-            acc[item.transformation_key] = (acc[item.transformation_key] || 0) + 1
+            acc[item.transformation_type] = (acc[item.transformation_type] || 0) + 1
             return acc
           },
           {} as Record<string, number>
@@ -96,8 +96,8 @@ export const DashboardLayout: React.FC = () => {
     try {
       // 获取最近的生成记录
       const { data: generations } = await supabase
-        .from('generation_history')
-        .select('id, title, created_at, content_url, transformation_key')
+        .from('ai_generations')
+        .select('id, title, created_at, content_url, transformation_type')
         .eq('user_id', user.id)
         .order('created_at', { ascending: false })
         .limit(5)

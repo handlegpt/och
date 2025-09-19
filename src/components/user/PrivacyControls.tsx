@@ -103,7 +103,7 @@ export const PrivacyControls: React.FC = () => {
 
     try {
       const { data: userData, error } = await supabase
-        .from('generation_history')
+        .from('ai_generations')
         .select('*')
         .eq('user_id', user.id)
 
@@ -147,16 +147,28 @@ export const PrivacyControls: React.FC = () => {
     if (!confirmed) return
 
     try {
-      // 删除生成历史
-      await supabase.from('generation_history').delete().eq('user_id', user.id)
+      // 删除AI生成记录（使用正确的表名）
+      await supabase.from('ai_generations').delete().eq('user_id', user.id)
 
-      // 删除收藏
-      await supabase.from('user_favorites').delete().eq('user_id', user.id)
+      // 删除使用统计
+      await supabase.from('usage_stats').delete().eq('user_id', user.id)
+
+      // 删除收藏（如果表存在）
+      try {
+        await supabase.from('user_favorites').delete().eq('user_id', user.id)
+      } catch (err) {
+        console.warn('user_favorites table may not exist:', err)
+      }
 
       // 删除隐私设置
       await supabase.from('user_privacy_settings').delete().eq('user_id', user.id)
 
-      setMessage({ type: 'success', text: '所有数据已删除' })
+      setMessage({ type: 'success', text: '所有数据已删除，页面将刷新以更新显示' })
+
+      // 延迟刷新页面，让用户看到成功消息
+      setTimeout(() => {
+        window.location.reload()
+      }, 2000)
     } catch (err) {
       console.error('Error deleting data:', err)
       setMessage({ type: 'error', text: '删除数据失败' })
