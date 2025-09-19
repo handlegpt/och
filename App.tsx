@@ -1,29 +1,33 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import { ErrorBoundary } from './src/components/ErrorBoundary';
-import { Navigation } from './src/components/Navigation';
-import { HomePage } from './src/components/HomePage';
-import { ProfilePage } from './src/pages/ProfilePage';
-import { AuthCallback } from './src/components/auth/AuthCallback';
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+import { ErrorBoundary } from './src/components/ErrorBoundary'
+import { Navigation } from './src/components/Navigation'
+import { HomePage } from './src/components/HomePage'
+import { ProfilePage } from './src/pages/ProfilePage'
+import { AuthCallback } from './src/components/auth/AuthCallback'
+import { UsageLimitAlert } from './src/components/UsageLimitAlert'
 
 const App: React.FC = () => {
   return (
     <ErrorBoundary>
-      <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] font-sans">
+      <div className='min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] font-sans'>
         <Navigation />
-        
+
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/auth/callback" element={<AuthCallback />} />
+          <Route path='/' element={<HomePage />} />
+          <Route path='/profile' element={<ProfilePage />} />
+          <Route path='/auth/callback' element={<AuthCallback />} />
         </Routes>
+
+        {/* 使用限制提示 */}
+        <UsageLimitAlert />
       </div>
     </ErrorBoundary>
-  );
-};
+  )
+}
 
 // Add fade-in animation for view transitions
-const style = document.createElement('style');
+const style = document.createElement('style')
 style.innerHTML = `
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
@@ -39,7 +43,7 @@ style.innerHTML = `
   .animate-fade-in-fast {
     animation: fadeInFast 0.2s ease-out forwards;
   }
-`;
-document.head.appendChild(style);
+`
+document.head.appendChild(style)
 
-export default App;
+export default App
