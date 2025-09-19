@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from '../../i18n/context'
 import { EnhancedFeatureGrid } from './ui/EnhancedFeatureGrid'
 import { FEATURE_CONFIGS } from '../config/featureCategories'
 
