@@ -1,5 +1,3 @@
-const { commitlint } = require('@commitlint/config-conventional')
-
-module.exports = {
+export default {
   extends: ['@commitlint/config-conventional'],
 }
