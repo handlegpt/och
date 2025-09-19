@@ -64,6 +64,7 @@ export default {
       cta: 'Start Creating',
       explore: 'Explore Features',
       badge: 'AI-Powered Creative Tools',
+      slogan: 'Transform Every Photo Into Art',
       stats: {
         users: 'User Generations',
         models: 'AI Models',
@@ -139,10 +140,10 @@ export default {
           icon: '📱',
         },
         {
-          title: 'Personal Collection',
+          title: 'Gaming Avatars',
           description:
-            'Transform photos into 3D figurines, anime style and other personalized collectibles',
-          icon: '🎭',
+            'Create exclusive avatars for games and social platforms, 3D figurine style makes characters more vivid',
+          icon: '👤',
         },
         {
           title: 'Business Design',

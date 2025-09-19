@@ -63,6 +63,7 @@ export default {
       cta: '立即开始创作',
       explore: '查看所有效果',
       badge: 'AI驱动的图像创作工具',
+      slogan: '让每张照片都成为艺术品',
       stats: {
         users: '用户生成',
         models: 'AI效果',
@@ -132,9 +133,9 @@ export default {
           icon: '📱',
         },
         {
-          title: '个人收藏',
-          description: '将照片转换为3D手办、动漫风格等个性化收藏品',
-          icon: '🎭',
+          title: '个性化头像',
+          description: '为游戏、社交平台制作专属头像，3D手办风格让角色更生动',
+          icon: '👤',
         },
         {
           title: '商业设计',
