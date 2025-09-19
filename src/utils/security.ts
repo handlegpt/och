@@ -245,6 +245,9 @@ export function validateBase64Image(base64String: string): InputValidationResult
 
   // 检查数据大小（Base64编码会增加约33%的大小）
   const base64Data = base64String?.split(',')[1]
+  if (!base64Data) {
+    return { isValid: false, error: '无效的Base64数据' }
+  }
   const estimatedSize = (base64Data.length * 3) / 4
   if (estimatedSize > MAX_FILE_SIZE) {
     return { isValid: false, error: '图片数据过大' }

@@ -80,9 +80,9 @@ export const useImageGeneration = ({ state, actions, user, t }: UseImageGenerati
           throw new Error('Step 1 (line art) failed to generate an image.')
 
         setLoadingMessage(t('app.loading.step2'))
-        const stepOneImageBase64 = stepOneResult.imageUrl?.split(',')[1]
+        const stepOneImageBase64 = stepOneResult.imageUrl.split(',')[1]
         const stepOneImageMimeType =
-          stepOneResult.imageUrl?.split(';')[0]?.split(':')[1] ?? 'image/png'
+          stepOneResult.imageUrl.split(';')[0]?.split(':')[1] ?? 'image/png'
 
         let secondaryImagePayload = null
         if (secondaryImageUrl) {
