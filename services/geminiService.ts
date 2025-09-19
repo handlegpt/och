@@ -62,13 +62,21 @@ export async function editImage(
 
     parts.push({ text: fullPrompt })
 
-    const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash-image-preview',
-      contents: { parts },
-      config: {
-        responseModalities: [Modality.IMAGE, Modality.TEXT],
-      },
-    })
+    // 添加超时机制 (5分钟)
+    const timeoutPromise = new Promise((_, reject) =>
+      setTimeout(() => reject(new Error('Request timeout after 5 minutes')), 5 * 60 * 1000)
+    )
+
+    const response = (await Promise.race([
+      ai.models.generateContent({
+        model: 'gemini-2.5-flash-image-preview',
+        contents: { parts },
+        config: {
+          responseModalities: [Modality.IMAGE, Modality.TEXT],
+        },
+      }),
+      timeoutPromise,
+    ])) as any
 
     const result: GeneratedContent = { imageUrl: null, text: null }
     const responseParts = response.candidates?.[0]?.content?.parts
@@ -177,7 +185,16 @@ export async function generateVideo(
 
     onProgress('Polling for results, this may take a few minutes...')
 
+    // 添加超时机制 (15分钟)
+    const startTime = Date.now()
+    const maxWaitTime = 15 * 60 * 1000 // 15分钟
+
     while (!operation.done) {
+      // 检查是否超时
+      if (Date.now() - startTime > maxWaitTime) {
+        throw new Error('Video generation timeout after 15 minutes')
+      }
+
       await new Promise(resolve => setTimeout(resolve, 10000))
       operation = await ai.operations.getVideosOperation({ operation: operation })
     }
