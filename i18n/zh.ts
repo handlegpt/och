@@ -3,6 +3,9 @@ export default {
     home: '首页',
     profile: '用户中心',
   },
+  common: {
+    search: '搜索',
+  },
   home: {
     hero: {
       title: 'AI图像生成与编辑',
@@ -497,8 +500,16 @@ export default {
     realistic: '写实渲染',
     enhancement: '图像增强',
     reference: '参考工具',
+    all: '全部',
   },
   features: {
+    allFeatures: {
+      title: '所有功能',
+      description: '浏览和搜索所有可用的AI生成功能',
+      searchPlaceholder: '搜索功能...',
+      foundCount: '找到 {count} 个功能',
+      categoryLabel: '分类: ',
+    },
     labels: {
       popular: '热门',
       new: '新功能',

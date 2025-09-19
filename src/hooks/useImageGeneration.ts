@@ -58,8 +58,8 @@ export const useImageGeneration = ({ state, actions, user, t }: UseImageGenerati
     const startTime = Date.now()
 
     try {
-      const primaryMimeType = (primaryImageUrl || '').split(';')[0].split(':')[1] ?? 'image/png'
-      const primaryBase64 = (primaryImageUrl || '').split(',')[1]
+      const primaryMimeType = primaryImageUrl?.split(';')[0]?.split(':')[1] ?? 'image/png'
+      const primaryBase64 = primaryImageUrl?.split(',')[1]
       const maskBase64 = maskDataUrl ? maskDataUrl.split(',')[1] : null
 
       // 使用验证后的提示词
@@ -80,17 +80,17 @@ export const useImageGeneration = ({ state, actions, user, t }: UseImageGenerati
           throw new Error('Step 1 (line art) failed to generate an image.')
 
         setLoadingMessage(t('app.loading.step2'))
-        const stepOneImageBase64 = stepOneResult.imageUrl.split(',')[1]
+        const stepOneImageBase64 = stepOneResult.imageUrl?.split(',')[1]
         const stepOneImageMimeType =
-          stepOneResult.imageUrl.split(';')[0].split(':')[1] ?? 'image/png'
+          stepOneResult.imageUrl?.split(';')[0]?.split(':')[1] ?? 'image/png'
 
         let secondaryImagePayload = null
         if (secondaryImageUrl) {
           const primaryImage = await loadImage(primaryImageUrl)
           const resizedSecondaryImageUrl = await resizeImageToMatch(secondaryImageUrl, primaryImage)
           const secondaryMimeType =
-            resizedSecondaryImageUrl.split(';')[0].split(':')[1] ?? 'image/png'
-          const secondaryBase64 = resizedSecondaryImageUrl.split(',')[1]
+            resizedSecondaryImageUrl?.split(';')[0]?.split(':')[1] ?? 'image/png'
+          const secondaryBase64 = resizedSecondaryImageUrl?.split(',')[1]
           secondaryImagePayload = { base64: secondaryBase64, mimeType: secondaryMimeType }
         }
 
@@ -128,8 +128,8 @@ export const useImageGeneration = ({ state, actions, user, t }: UseImageGenerati
       } else {
         let secondaryImagePayload = null
         if (selectedTransformation.isMultiImage && secondaryImageUrl) {
-          const secondaryMimeType = secondaryImageUrl.split(';')[0].split(':')[1] ?? 'image/png'
-          const secondaryBase64 = secondaryImageUrl.split(',')[1]
+          const secondaryMimeType = secondaryImageUrl?.split(';')[0]?.split(':')[1] ?? 'image/png'
+          const secondaryBase64 = secondaryImageUrl?.split(',')[1]
           secondaryImagePayload = { base64: secondaryBase64, mimeType: secondaryMimeType }
         }
 

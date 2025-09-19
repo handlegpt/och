@@ -84,7 +84,7 @@ export const useAuthProvider = () => {
       password,
       options: {
         data: {
-          username: username || email.split('@')[0],
+          username: username || email?.split('@')[0],
         },
       },
     })

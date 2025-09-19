@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { EnhancedFeatureGrid } from './ui/EnhancedFeatureGrid'
 import { FEATURE_CONFIGS } from '../config/featureCategories'
 
@@ -18,8 +19,9 @@ export const TransformationSelectorEnhanced: React.FC<TransformationSelectorEnha
   hasPreviousResult: _hasPreviousResult,
   onOrderChange: _onOrderChange,
   activeCategory: _activeCategory,
-  setActiveCategory: _setActiveCategory
+  setActiveCategory: _setActiveCategory,
 }) => {
+  const { t } = useTranslation()
   const [searchParams, setSearchParams] = useSearchParams()
 
   // 将transformations转换为FeatureConfig格式
@@ -35,16 +37,19 @@ export const TransformationSelectorEnhanced: React.FC<TransformationSelectorEnha
       isNew: config?.isNew || false,
       description: config?.description,
       difficulty: config?.difficulty,
-      estimatedTime: config?.estimatedTime
+      estimatedTime: config?.estimatedTime,
     }
   })
 
-  const handleFeatureSelect = useCallback((feature: any) => {
-    const transformation = transformations.find(t => t.key === feature.key)
-    if (transformation) {
-      onSelect(transformation)
-    }
-  }, [transformations, onSelect])
+  const handleFeatureSelect = useCallback(
+    (feature: any) => {
+      const transformation = transformations.find(t => t.key === feature.key)
+      if (transformation) {
+        onSelect(transformation)
+      }
+    },
+    [transformations, onSelect]
+  )
 
   const handleBackToCategories = useCallback(() => {
     // 更新URL参数回到分类视图
@@ -60,8 +65,8 @@ export const TransformationSelectorEnhanced: React.FC<TransformationSelectorEnha
       features={features}
       onSelect={handleFeatureSelect}
       onBack={handleBackToCategories}
-      title='所有功能'
-      description='浏览和搜索所有可用的AI生成功能'
+      title={t('features.allFeatures.title')}
+      description={t('features.allFeatures.description')}
     />
   )
 }

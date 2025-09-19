@@ -3,6 +3,9 @@ export default {
     home: 'Home',
     profile: 'Profile',
   },
+  common: {
+    search: 'Search',
+  },
   home: {
     hero: {
       title: 'Start Creating!',
@@ -662,8 +665,16 @@ export default {
     realistic: 'Realistic Rendering',
     enhancement: 'Image Enhancement',
     reference: 'Reference Tools',
+    all: 'All',
   },
   features: {
+    allFeatures: {
+      title: 'All Features',
+      description: 'Browse and search all available AI generation features',
+      searchPlaceholder: 'Search features...',
+      foundCount: 'Found {count} features',
+      categoryLabel: 'Category: ',
+    },
     labels: {
       popular: 'Popular',
       new: 'New',

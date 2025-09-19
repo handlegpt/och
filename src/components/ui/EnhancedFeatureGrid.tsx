@@ -38,8 +38,8 @@ export const EnhancedFeatureGrid: React.FC<EnhancedFeatureGridProps> = ({
     const cats = ['all', ...new Set(features.map(f => f.category))]
     return cats.map(cat => {
       const translationKey = `categories.${cat}`
-      const translatedLabel = cat === 'all' ? '全部' : t(translationKey)
-      
+      const translatedLabel = cat === 'all' ? t('categories.all') : t(translationKey)
+
       // 如果翻译失败，使用硬编码的中文映射
       const fallbackLabels: Record<string, string> = {
         creative: '创意设计',
@@ -47,11 +47,12 @@ export const EnhancedFeatureGrid: React.FC<EnhancedFeatureGridProps> = ({
         fashion: '时尚美妆',
         realistic: '写实渲染',
         enhancement: '图像增强',
-        reference: '参考工具'
+        reference: '参考工具',
       }
-      
-      const finalLabel = translatedLabel === translationKey ? fallbackLabels[cat] || cat : translatedLabel
-      
+
+      const finalLabel =
+        translatedLabel === translationKey ? fallbackLabels[cat] || cat : translatedLabel
+
       return {
         key: cat,
         label: finalLabel,
@@ -251,10 +252,10 @@ export const EnhancedFeatureGrid: React.FC<EnhancedFeatureGridProps> = ({
       {/* 结果统计 */}
       <div className='mb-6 text-center'>
         <p className='text-[var(--text-secondary)]'>
-          找到 {filteredAndSortedFeatures.length} 个功能
-          {searchQuery && ` (搜索: "${searchQuery}")`}
+          {t('features.allFeatures.foundCount', { count: filteredAndSortedFeatures.length })}
+          {searchQuery && ` (${t('common.search')}: "${searchQuery}")`}
           {selectedCategory !== 'all' &&
-            ` (分类: ${categories.find(c => c.key === selectedCategory)?.label})`}
+            ` (${t('features.allFeatures.categoryLabel')}${categories.find(c => c.key === selectedCategory)?.label})`}
         </p>
       </div>
 

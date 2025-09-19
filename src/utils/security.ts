@@ -92,7 +92,7 @@ export function isValidFileName(fileName: string): boolean {
     'LPT8',
     'LPT9',
   ]
-  const nameWithoutExt = fileName.split('.')[0].toUpperCase()
+  const nameWithoutExt = fileName?.split('.')[0]?.toUpperCase()
   if (reservedNames.includes(nameWithoutExt)) return false
 
   return true
@@ -238,13 +238,13 @@ export function validateBase64Image(base64String: string): InputValidationResult
   }
 
   // 提取MIME类型
-  const mimeType = base64String.split(';')[0].split(':')[1]
-  if (!ALLOWED_IMAGE_TYPES.includes(mimeType)) {
+  const mimeType = base64String?.split(';')[0]?.split(':')[1]
+  if (!mimeType || !ALLOWED_IMAGE_TYPES.includes(mimeType)) {
     return { isValid: false, error: '不支持的图片类型' }
   }
 
   // 检查数据大小（Base64编码会增加约33%的大小）
-  const base64Data = base64String.split(',')[1]
+  const base64Data = base64String?.split(',')[1]
   const estimatedSize = (base64Data.length * 3) / 4
   if (estimatedSize > MAX_FILE_SIZE) {
     return { isValid: false, error: '图片数据过大' }
