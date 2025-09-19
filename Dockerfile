@@ -45,9 +45,6 @@ RUN npm install serve && npm cache clean --force
 # Copy built application from builder stage
 COPY --from=builder /app/dist ./dist
 
-# Copy serve configuration
-COPY serve.json ./
-
 # Create non-root user for security
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S ochai -u 1001
@@ -64,4 +61,4 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
   CMD curl -f http://localhost:4173/ || exit 1
 
 # Start the application using static file server
-CMD ["npx", "serve", "-c", "serve.json", "-l", "4173"]
+CMD ["npx", "serve", "-s", "dist", "-l", "4173"]

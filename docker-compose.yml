@@ -21,8 +21,7 @@ services:
     # Enhanced security options for production
     security_opt:
       - no-new-privileges:true
-    # Temporarily disable read-only filesystem for static file serving
-    # read_only: true  # Read-only filesystem
+    read_only: true  # Read-only filesystem
     tmpfs:
       - /tmp
       - /var/tmp
