@@ -208,10 +208,10 @@ export const EnhancedFeatureGrid: React.FC<EnhancedFeatureGridProps> = ({
             onChange={handleSortChange}
             className='px-3 py-2 bg-[var(--bg-card)] border border-[var(--border-primary)] rounded-lg text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-primary)]'
           >
-            <option value='default'>默认排序</option>
-            <option value='popular'>热门优先</option>
-            <option value='new'>最新优先</option>
-            <option value='name'>按名称排序</option>
+            <option value='default'>{t('features.sort.default')}</option>
+            <option value='popular'>{t('features.sort.popular')}</option>
+            <option value='new'>{t('features.sort.new')}</option>
+            <option value='name'>{t('features.sort.name')}</option>
           </select>
 
           {/* 视图模式切换 */}
@@ -313,12 +313,12 @@ export const EnhancedFeatureGrid: React.FC<EnhancedFeatureGridProps> = ({
                     </span>
                     {feature.isPopular && (
                       <span className='text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded-full'>
-                        热门
+                        {t('features.labels.popular')}
                       </span>
                     )}
                     {feature.isNew && (
                       <span className='text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full'>
-                        新功能
+                        {t('features.labels.new')}
                       </span>
                     )}
                   </div>

@@ -340,5 +340,25 @@ export default {
       etching: { title: "Etching", description: "Redraw your image as a classic black and white etching." },
       diorama: { title: "Diorama", description: "Turn your scene into a miniature 3D diorama in a box." },
     }
+  },
+  categories: {
+    creative: "Creative Design",
+    toys: "Toy Models", 
+    fashion: "Fashion & Beauty",
+    realistic: "Realistic Rendering",
+    enhancement: "Image Enhancement",
+    reference: "Reference Tools"
+  },
+  features: {
+    labels: {
+      popular: "Popular",
+      new: "New"
+    },
+    sort: {
+      default: "Default Sort",
+      popular: "Popular First",
+      new: "Newest First",
+      name: "Sort by Name"
+    }
   }
 };

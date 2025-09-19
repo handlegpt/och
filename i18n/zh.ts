@@ -348,5 +348,17 @@ export default {
     realistic: "写实渲染",
     enhancement: "图像增强",
     reference: "参考工具"
+  },
+  features: {
+    labels: {
+      popular: "热门",
+      new: "新功能"
+    },
+    sort: {
+      default: "默认排序",
+      popular: "热门优先",
+      new: "最新优先",
+      name: "按名称排序"
+    }
   }
 };
