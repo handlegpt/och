@@ -5,6 +5,11 @@ export default {
     categories: '功能分类',
     privacy: '隐私',
     settings: '设置',
+    more: '更多',
+    homeDescription: '首页',
+    categoriesDescription: 'AI效果',
+    privacyDescription: '隐私政策',
+    moreDescription: '联系与关于',
   },
   common: {
     search: '搜索',

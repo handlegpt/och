@@ -5,6 +5,11 @@ export default {
     categories: 'Categories',
     privacy: 'Privacy',
     settings: 'Settings',
+    more: 'More',
+    homeDescription: 'Home',
+    categoriesDescription: 'AI Effects',
+    privacyDescription: 'Privacy Policy',
+    moreDescription: 'Contact & About',
   },
   common: {
     search: 'Search',
