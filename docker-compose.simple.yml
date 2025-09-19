@@ -18,14 +18,7 @@ services:
     volumes:
       - ./logs:/app/logs
     restart: unless-stopped
-    # Enhanced security options for production
-    security_opt:
-      - no-new-privileges:true
-    # Temporarily disable read-only filesystem for static file serving
-    # read_only: true  # Read-only filesystem
-    tmpfs:
-      - /tmp
-      - /var/tmp
+    # 简化配置，移除可能导致静态文件问题的安全限制
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:4173/"]
       interval: 30s
