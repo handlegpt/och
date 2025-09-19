@@ -641,7 +641,7 @@ export const HomePage: React.FC = () => {
           <div className='text-center mb-20'>
             <div className='inline-flex items-center gap-2 px-4 py-2 bg-[var(--accent-primary)]/10 border border-[var(--accent-primary)]/20 rounded-full text-sm text-[var(--accent-primary)] mb-6'>
               <span>⚡</span>
-              简单三步
+              {t('home.howItWorks.badge')}
             </div>
             <h2 className='text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-4'>
               {t('home.howItWorks.title')}
@@ -843,7 +843,7 @@ export const HomePage: React.FC = () => {
           <div className='text-center mb-24'>
             <div className='inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-[var(--accent-secondary)]/10 to-[var(--accent-primary)]/10 border border-[var(--accent-secondary)]/30 rounded-full text-sm text-[var(--accent-secondary)] mb-8 shadow-lg backdrop-blur-lg'>
               <span className='text-lg animate-bounce'>🎯</span>
-              <span className='font-semibold'>应用场景</span>
+              <span className='font-semibold'>{t('home.useCases.badge')}</span>
             </div>
             <h2 className='text-4xl md:text-5xl font-black text-[var(--text-primary)] mb-6'>
               <span className='bg-gradient-to-r from-[var(--accent-primary)] via-[var(--accent-secondary)] to-[var(--accent-primary)] bg-clip-text text-transparent'>

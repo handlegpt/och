@@ -106,6 +106,7 @@ export default {
     howItWorks: {
       title: 'How It Works',
       subtitle: 'Create amazing AI-generated content in just three simple steps',
+      badge: 'Simple 3 Steps',
       step1: {
         title: 'Upload Image',
         description: 'Choose the image you want to transform, supporting multiple formats',
@@ -129,6 +130,7 @@ export default {
       title: 'Use Cases',
       subtitle:
         'Whether you are a designer, content creator or regular user, you can find suitable AI effects',
+      badge: 'Use Cases',
       cases: [
         {
           title: 'Social Media Content',

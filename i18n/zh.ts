@@ -101,6 +101,7 @@ export default {
     howItWorks: {
       title: '三步完成AI图像创作',
       subtitle: '简单易用的操作流程，让每个人都能成为AI艺术家',
+      badge: '简单三步',
       step1: {
         title: '上传照片',
         description: '拖拽或点击上传你的照片，支持JPG、PNG等常见格式',
@@ -123,6 +124,7 @@ export default {
     useCases: {
       title: '适用场景',
       subtitle: '无论你是设计师、内容创作者还是普通用户，都能找到适合的AI效果',
+      badge: '应用场景',
       cases: [
         {
           title: '社交媒体内容',
