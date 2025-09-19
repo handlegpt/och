@@ -91,7 +91,7 @@ export const AdminDashboard: React.FC = () => {
   }
 
   return (
-    <div className='min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]'>
+    <div className='min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] pb-20'>
       <header className='bg-[var(--bg-card-alpha)] backdrop-blur-lg border-b border-[var(--border-primary)] p-4'>
         <div className='container mx-auto flex justify-between items-center'>
           <h1 className='text-2xl font-bold text-[var(--accent-primary)]'>Och AI 管理后台</h1>

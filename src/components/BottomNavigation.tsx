@@ -46,14 +46,14 @@ export const BottomNavigation: React.FC = () => {
     <nav className='fixed bottom-0 left-0 right-0 z-50 bg-[var(--bg-card-alpha)] backdrop-blur-lg border-t border-[var(--border-primary)] shadow-lg'>
       {/* 安全区域适配 */}
       <div className='pb-safe-area-inset-bottom'>
-        <div className='flex items-center justify-around py-3 px-2 max-w-md mx-auto'>
+        <div className='flex items-center justify-around py-2 px-2 max-w-md mx-auto'>
           {navItems.map(item => {
             const active = isActive(item.path)
             return (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`group relative flex flex-col items-center justify-center py-2 px-2 rounded-xl transition-all duration-300 min-w-0 flex-1 ${
+                className={`group relative flex flex-col items-center justify-center py-1.5 px-2 rounded-xl transition-all duration-300 min-w-0 flex-1 ${
                   active
                     ? 'text-[var(--accent-primary)] scale-105'
                     : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:scale-105'
@@ -66,7 +66,7 @@ export const BottomNavigation: React.FC = () => {
 
                 {/* 图标容器 */}
                 <div
-                  className={`relative z-10 mb-1 transition-all duration-300 ${
+                  className={`relative z-10 mb-0.5 transition-all duration-300 ${
                     active ? 'scale-110' : 'group-hover:scale-105'
                   }`}
                 >

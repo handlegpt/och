@@ -43,7 +43,7 @@ export const ProfilePage: React.FC = () => {
   ] as const
 
   return (
-    <div className='min-h-screen bg-[var(--bg-primary)]'>
+    <div className='min-h-screen bg-[var(--bg-primary)] pb-20'>
       <div className='container mx-auto p-4 md:p-8'>
         {/* 页面标题 */}
         <div className='mb-8'>
