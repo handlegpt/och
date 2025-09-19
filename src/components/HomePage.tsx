@@ -499,7 +499,7 @@ export const HomePage: React.FC = () => {
                 {/* Demo Image Container */}
                 <div className='aspect-square bg-gradient-to-br from-[var(--accent-primary)]/10 to-[var(--accent-secondary)]/10 rounded-xl overflow-hidden relative group-hover:shadow-lg transition-all duration-300'>
                   <img
-                    src='https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=300&fit=crop&crop=face'
+                    src='/images/demo-figurine.jpg'
                     alt='3D Figurine Demo'
                     className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
                   />
@@ -539,7 +539,7 @@ export const HomePage: React.FC = () => {
                 {/* Demo Image Container */}
                 <div className='aspect-square bg-gradient-to-br from-[var(--accent-primary)]/10 to-[var(--accent-secondary)]/10 rounded-xl overflow-hidden relative group-hover:shadow-lg transition-all duration-300'>
                   <img
-                    src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&h=300&fit=crop&crop=face'
+                    src='/images/demo-anime.jpg'
                     alt='Anime Style Demo'
                     className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
                   />
@@ -573,42 +573,42 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            {/* Demo Card 3 - HD Enhance */}
+            {/* Demo Card 3 - Plushie */}
             <div className='group bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-6 border border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-all duration-500 hover:shadow-2xl hover:shadow-[var(--accent-primary)]/20 hover:-translate-y-4 cursor-pointer overflow-hidden'>
               <div className='relative mb-4'>
                 {/* Demo Image Container */}
                 <div className='aspect-square bg-gradient-to-br from-[var(--accent-primary)]/10 to-[var(--accent-secondary)]/10 rounded-xl overflow-hidden relative group-hover:shadow-lg transition-all duration-300'>
                   <img
-                    src='https://images.unsplash.com/photo-1517841905240-472988babdf9?w=300&h=300&fit=crop&crop=face'
-                    alt='HD Enhanced Demo'
+                    src='/images/demo-plushie.jpg'
+                    alt='Plushie Demo'
                     className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
                   />
                   <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
                     <div className='absolute bottom-3 left-3 right-3'>
-                      <div className='text-white text-sm font-medium'>HD Enhanced Effect</div>
+                      <div className='text-white text-sm font-medium'>Plushie Effect</div>
                       <div className='text-white/80 text-xs'>AI Generated Result</div>
                     </div>
                   </div>
                 </div>
 
-                <div className='absolute top-2 right-2 bg-gradient-to-r from-green-500 to-blue-500 text-white text-xs px-3 py-1 rounded-full font-medium shadow-lg'>
-                  {t('home.features.preview.enhance.badge')}
+                <div className='absolute top-2 right-2 bg-gradient-to-r from-pink-500 to-purple-500 text-white text-xs px-3 py-1 rounded-full font-medium shadow-lg'>
+                  {t('home.features.preview.plushie.badge')}
                 </div>
               </div>
-              <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-2 group-hover:text-green-500 transition-colors duration-300'>
-                {t('home.features.preview.enhance.title')}
+              <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-2 group-hover:text-pink-500 transition-colors duration-300'>
+                {t('home.features.preview.plushie.title')}
               </h3>
               <p className='text-[var(--text-secondary)] text-sm mb-4 group-hover:text-[var(--text-primary)] transition-colors duration-300'>
-                {t('home.features.preview.enhance.description')}
+                {t('home.features.preview.plushie.description')}
               </p>
               <div className='flex items-center justify-between text-xs text-[var(--text-secondary)]'>
                 <span className='flex items-center gap-1'>
-                  <span className='w-2 h-2 bg-green-500 rounded-full animate-pulse'></span>
-                  {t('home.features.preview.enhance.processingTime')}
+                  <span className='w-2 h-2 bg-pink-500 rounded-full animate-pulse'></span>
+                  {t('home.features.preview.plushie.processingTime')}
                 </span>
                 <span className='flex items-center gap-1'>
-                  <span className='w-2 h-2 bg-blue-500 rounded-full'></span>
-                  {t('home.features.preview.enhance.resolution')}
+                  <span className='w-2 h-2 bg-purple-500 rounded-full'></span>
+                  {t('home.features.preview.plushie.resolution')}
                 </span>
               </div>
             </div>

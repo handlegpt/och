@@ -89,12 +89,12 @@ export default {
           resolution: '分辨率: 1024x1024',
           badge: '动漫风格',
         },
-        enhance: {
-          title: '模糊照片 → 高清图像',
-          description: 'AI智能提升图像清晰度和细节质量，让模糊照片变高清',
-          processingTime: '处理时间: 20秒',
-          resolution: '分辨率: 2048x2048',
-          badge: '高清增强',
+        plushie: {
+          title: '真人照片 → 可爱毛绒玩具',
+          description: '将真实照片转换为可爱的毛绒玩具风格，保留人物特征',
+          processingTime: '处理时间: 25秒',
+          resolution: '分辨率: 1024x1024',
+          badge: '毛绒玩具',
         },
       },
     },

@@ -93,13 +93,13 @@ export default {
           resolution: 'Resolution: 1024x1024',
           badge: 'Anime Style',
         },
-        enhance: {
-          title: 'Blurry Photo → HD Image',
+        plushie: {
+          title: 'Real Photo → Cute Plushie',
           description:
-            'AI intelligently enhances image clarity and detail quality, turning blurry photos into HD',
-          processingTime: 'Processing time: 20s',
-          resolution: 'Resolution: 2048x2048',
-          badge: 'HD Enhance',
+            'Transform real photos into adorable plushie style while preserving character features',
+          processingTime: 'Processing time: 25s',
+          resolution: 'Resolution: 1024x1024',
+          badge: 'Plushie',
         },
       },
     },
