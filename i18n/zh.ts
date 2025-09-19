@@ -301,7 +301,7 @@ export default {
       },
       figurine: {
         title: '3D手办',
-        description: '将您的照片变成一个可收藏的3D角色手办，并配有包装。',
+        description: '将你的照片转换为精美的3D收藏品手办，配有专业包装盒',
       },
       funko: {
         title: 'Funko Pop公仔',
@@ -309,7 +309,7 @@ export default {
       },
       lego: { title: '乐高小人仔', description: '构建一个乐高小人仔版本的您的主题，准备好玩耍。' },
       crochet: { title: '钩针娃娃', description: '将您的图像变成一个柔软的手工钩针娃娃。' },
-      cosplay: { title: '动漫转Cosplay', description: '将动漫角色变为一张逼真的Cosplay照片。' },
+      cosplay: { title: '动漫转Cosplay', description: '将真实照片转换为精美的动漫风格图像' },
       plushie: {
         title: '可爱毛绒玩具',
         description: '将您的主题转换成一个可爱的、柔软的毛绒玩具。',
@@ -320,7 +320,7 @@ export default {
       },
       hdEnhance: {
         title: '高清增强',
-        description: '放大您的图像，增加清晰度、细节，以获得高分辨率外观。',
+        description: 'AI智能提升图像清晰度和细节质量，让模糊照片变高清',
       },
       pose: {
         title: '姿势参考',

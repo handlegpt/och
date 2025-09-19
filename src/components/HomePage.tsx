@@ -534,7 +534,7 @@ export const HomePage: React.FC = () => {
                 普通照片 → 3D手办
               </h3>
               <p className='text-[var(--text-secondary)] text-sm mb-4 group-hover:text-[var(--text-primary)] transition-colors duration-300'>
-                将你的照片转换为精美的3D收藏品手办
+                将你的照片转换为精美的3D收藏品手办，配有专业包装盒
               </p>
               <div className='flex items-center justify-between text-xs text-[var(--text-secondary)]'>
                 <span className='flex items-center gap-1'>
@@ -587,7 +587,7 @@ export const HomePage: React.FC = () => {
                 真人照片 → 动漫角色
               </h3>
               <p className='text-[var(--text-secondary)] text-sm mb-4 group-hover:text-[var(--text-primary)] transition-colors duration-300'>
-                将真实照片转换为精美的动漫风格图像
+                将真实照片转换为精美的动漫风格图像，保留人物特征
               </p>
               <div className='flex items-center justify-between text-xs text-[var(--text-secondary)]'>
                 <span className='flex items-center gap-1'>
@@ -640,7 +640,7 @@ export const HomePage: React.FC = () => {
                 模糊照片 → 高清图像
               </h3>
               <p className='text-[var(--text-secondary)] text-sm mb-4 group-hover:text-[var(--text-primary)] transition-colors duration-300'>
-                AI智能提升图像清晰度和细节质量
+                AI智能提升图像清晰度和细节质量，让模糊照片变高清
               </p>
               <div className='flex items-center justify-between text-xs text-[var(--text-secondary)]'>
                 <span className='flex items-center gap-1'>
