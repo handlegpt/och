@@ -499,7 +499,7 @@ export const HomePage: React.FC = () => {
                 {/* Demo Image Container */}
                 <div className='aspect-square bg-gradient-to-br from-[var(--accent-primary)]/10 to-[var(--accent-secondary)]/10 rounded-xl overflow-hidden relative group-hover:shadow-lg transition-all duration-300'>
                   <img
-                    src='/images/demo-figurine.jpg'
+                    src='/images/demo-figurine.png'
                     alt='3D Figurine Demo'
                     className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
                   />
@@ -539,7 +539,7 @@ export const HomePage: React.FC = () => {
                 {/* Demo Image Container */}
                 <div className='aspect-square bg-gradient-to-br from-[var(--accent-primary)]/10 to-[var(--accent-secondary)]/10 rounded-xl overflow-hidden relative group-hover:shadow-lg transition-all duration-300'>
                   <img
-                    src='/images/demo-anime.jpg'
+                    src='/images/demo-anime.png'
                     alt='Anime Style Demo'
                     className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
                   />
@@ -579,7 +579,7 @@ export const HomePage: React.FC = () => {
                 {/* Demo Image Container */}
                 <div className='aspect-square bg-gradient-to-br from-[var(--accent-primary)]/10 to-[var(--accent-secondary)]/10 rounded-xl overflow-hidden relative group-hover:shadow-lg transition-all duration-300'>
                   <img
-                    src='/images/demo-plushie.jpg'
+                    src='/images/demo-plushie.png'
                     alt='Plushie Demo'
                     className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
                   />
