@@ -39,11 +39,11 @@ BEGIN
   
   -- Set limits based on subscription tier
   CASE user_tier
-    WHEN 'free' THEN limit_count := 10;
+    WHEN 'free' THEN limit_count := 50;
     WHEN 'pro' THEN limit_count := 100;
     WHEN 'enterprise' THEN limit_count := 1000;
     WHEN 'admin' THEN limit_count := 10000;
-    ELSE limit_count := 10;
+    ELSE limit_count := 50;
   END CASE;
   
   -- Calculate today's usage

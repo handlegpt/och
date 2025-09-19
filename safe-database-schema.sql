@@ -111,7 +111,7 @@ CREATE INDEX IF NOT EXISTS idx_rate_limits_identifier ON rate_limits(identifier)
 
 -- 插入默认订阅计划
 INSERT INTO subscription_plans (name, price_monthly, price_yearly, daily_limit, features) VALUES
-('free', 0, 0, 10, '["基础 AI 生成", "标准质量", "社区支持"]'),
+('free', 0, 0, 50, '["基础 AI 生成", "标准质量", "社区支持"]'),
 ('pro', 9.99, 99.99, 100, '["高级 AI 生成", "高质量输出", "优先处理", "邮件支持"]'),
 ('enterprise', 29.99, 299.99, 1000, '["企业级 AI 生成", "最高质量", "API 访问", "专属支持", "自定义模型"]')
 ON CONFLICT (name) DO NOTHING;
@@ -253,11 +253,11 @@ BEGIN
   
   -- Set limits based on subscription tier
   CASE user_tier
-    WHEN 'free' THEN limit_count := 10;
+    WHEN 'free' THEN limit_count := 50;
     WHEN 'pro' THEN limit_count := 100;
     WHEN 'enterprise' THEN limit_count := 1000;
     WHEN 'admin' THEN limit_count := 10000;
-    ELSE limit_count := 10;
+    ELSE limit_count := 50;
   END CASE;
   
   -- Calculate today's usage

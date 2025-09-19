@@ -35,9 +35,9 @@ export const useUsageLimit = () => {
       if (!user) {
         // 未登录用户使用默认限制
         setUsageLimit({
-          dailyLimit: 10, // 免费用户每日限制
+          dailyLimit: 50, // 免费用户每日限制
           usedToday: 0,
-          remainingToday: 10,
+          remainingToday: 50,
           canGenerate: true,
         })
         setLoading(false)
@@ -59,9 +59,9 @@ export const useUsageLimit = () => {
           console.error('Error checking usage limit:', error)
           // 使用默认限制
           setUsageLimit({
-            dailyLimit: 10,
+            dailyLimit: 50,
             usedToday: 0,
-            remainingToday: 10,
+            remainingToday: 50,
             canGenerate: true,
           })
         } else {
@@ -75,9 +75,9 @@ export const useUsageLimit = () => {
       } catch (error) {
         console.error('Error fetching usage limit:', error)
         setUsageLimit({
-          dailyLimit: 10,
+          dailyLimit: 50,
           usedToday: 0,
-          remainingToday: 10,
+          remainingToday: 50,
           canGenerate: true,
         })
       }
@@ -144,7 +144,7 @@ export const useUsageLimit = () => {
       name: 'free',
       price_monthly: 0,
       price_yearly: 0,
-      daily_limit: 10,
+      daily_limit: 50,
       features: ['基础 AI 生成', '标准质量', '社区支持'],
     }
   }
