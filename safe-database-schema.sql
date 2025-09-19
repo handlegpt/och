@@ -56,6 +56,16 @@ CREATE TABLE IF NOT EXISTS usage_stats (
   UNIQUE(user_id, date)
 );
 
+-- 创建用户隐私设置表
+CREATE TABLE IF NOT EXISTS user_privacy_settings (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE NOT NULL,
+  settings JSONB NOT NULL DEFAULT '{}',
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  UNIQUE(user_id)
+);
+
 -- 创建速率限制表
 CREATE TABLE IF NOT EXISTS rate_limits (
   id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
@@ -132,6 +142,7 @@ ALTER TABLE user_profiles ENABLE ROW LEVEL SECURITY;
 ALTER TABLE generation_history ENABLE ROW LEVEL SECURITY;
 ALTER TABLE user_favorites ENABLE ROW LEVEL SECURITY;
 ALTER TABLE usage_stats ENABLE ROW LEVEL SECURITY;
+ALTER TABLE user_privacy_settings ENABLE ROW LEVEL SECURITY;
 ALTER TABLE rate_limits ENABLE ROW LEVEL SECURITY;
 ALTER TABLE user_subscriptions ENABLE ROW LEVEL SECURITY;
 
@@ -148,6 +159,10 @@ DROP POLICY IF EXISTS "Users can insert own favorites" ON user_favorites;
 DROP POLICY IF EXISTS "Users can delete own favorites" ON user_favorites;
 DROP POLICY IF EXISTS "Users can view own usage stats" ON usage_stats;
 DROP POLICY IF EXISTS "Users can insert own usage stats" ON usage_stats;
+DROP POLICY IF EXISTS "Users can view own privacy settings" ON user_privacy_settings;
+DROP POLICY IF EXISTS "Users can insert own privacy settings" ON user_privacy_settings;
+DROP POLICY IF EXISTS "Users can update own privacy settings" ON user_privacy_settings;
+DROP POLICY IF EXISTS "Users can delete own privacy settings" ON user_privacy_settings;
 DROP POLICY IF EXISTS "Users can insert their own rate limit records" ON rate_limits;
 DROP POLICY IF EXISTS "Users can view their own rate limit records" ON rate_limits;
 DROP POLICY IF EXISTS "System can delete expired records" ON rate_limits;
@@ -189,6 +204,18 @@ CREATE POLICY "Users can view own usage stats" ON usage_stats
 
 CREATE POLICY "Users can insert own usage stats" ON usage_stats
   FOR INSERT WITH CHECK (auth.uid() = user_id);
+
+CREATE POLICY "Users can view own privacy settings" ON user_privacy_settings
+  FOR SELECT USING (auth.uid() = user_id);
+
+CREATE POLICY "Users can insert own privacy settings" ON user_privacy_settings
+  FOR INSERT WITH CHECK (auth.uid() = user_id);
+
+CREATE POLICY "Users can update own privacy settings" ON user_privacy_settings
+  FOR UPDATE USING (auth.uid() = user_id);
+
+CREATE POLICY "Users can delete own privacy settings" ON user_privacy_settings
+  FOR DELETE USING (auth.uid() = user_id);
 
 CREATE POLICY "Users can insert their own rate limit records" ON rate_limits
   FOR INSERT WITH CHECK (true);
