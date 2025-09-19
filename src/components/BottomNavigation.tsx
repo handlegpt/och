@@ -44,7 +44,7 @@ export const BottomNavigation: React.FC = () => {
   ]
 
   return (
-    <nav className='fixed bottom-0 left-0 right-0 z-50 bg-[var(--bg-card-alpha)] backdrop-blur-lg border-t border-[var(--border-primary)] md:hidden'>
+    <nav className='fixed bottom-0 left-0 right-0 z-50 bg-[var(--bg-card-alpha)] backdrop-blur-lg border-t border-[var(--border-primary)]'>
       <div className='flex items-center justify-around py-2 px-4'>
         {navItems.map(item => {
           const active = isActive(item.path)

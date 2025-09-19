@@ -229,7 +229,7 @@ export const HomePage: React.FC = () => {
   ]
 
   return (
-    <div className='min-h-screen bg-[var(--bg-primary)]'>
+    <div className='min-h-screen bg-[var(--bg-primary)] pb-20'>
       {/* Hero Section */}
       <section className='relative overflow-hidden min-h-screen flex items-center'>
         {/* Animated Background */}

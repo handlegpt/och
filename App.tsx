@@ -26,7 +26,7 @@ const App: React.FC = () => {
           <Route path='/auth/callback' element={<AuthCallback />} />
         </Routes>
 
-        {/* 底部导航 - 仅在移动端显示 */}
+        {/* 底部导航 */}
         <BottomNavigation />
 
         {/* 使用限制提示 */}
