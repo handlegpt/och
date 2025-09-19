@@ -147,19 +147,19 @@ export class SecurityLogger {
       console.log(`[SECURITY ${severity.toUpperCase()}] ${event}:`, details)
 
       // 记录到数据库（如果表存在）
-      await supabase
-        .from('security_events')
-        .insert({
-          event_type: event,
-          details: details,
-          severity: severity,
-          ip_address: await this.getClientIP(),
-          user_agent: navigator.userAgent,
-          timestamp: new Date().toISOString(),
-        })
-        .catch(() => {
-          // 忽略表不存在的错误
-        })
+      const { error } = await supabase.from('security_events').insert({
+        event_type: event,
+        details: details,
+        severity: severity,
+        ip_address: await this.getClientIP(),
+        user_agent: navigator.userAgent,
+        timestamp: new Date().toISOString(),
+      })
+
+      if (error) {
+        // 忽略表不存在的错误
+        console.warn('Failed to log security event:', error.message)
+      }
     } catch (error) {
       console.error('Failed to log security event:', error)
     }
