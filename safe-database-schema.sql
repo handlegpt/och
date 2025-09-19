@@ -202,8 +202,11 @@ CREATE POLICY "System can delete expired records" ON rate_limits
 CREATE POLICY "Users can view own subscriptions" ON user_subscriptions
   FOR SELECT USING (auth.uid() = user_id);
 
+-- 删除已存在的触发器（如果存在）
+DROP TRIGGER IF EXISTS on_auth_user_created ON auth.users;
+
 -- 删除已存在的函数（如果存在）
-DROP FUNCTION IF EXISTS public.handle_new_user();
+DROP FUNCTION IF EXISTS public.handle_new_user() CASCADE;
 DROP FUNCTION IF EXISTS check_user_usage_limit(UUID);
 DROP FUNCTION IF EXISTS check_rate_limit(VARCHAR, VARCHAR, INTEGER, INTEGER);
 DROP FUNCTION IF EXISTS cleanup_expired_rate_limits();
@@ -221,9 +224,6 @@ BEGIN
   RETURN NEW;
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
-
--- 删除已存在的触发器（如果存在）
-DROP TRIGGER IF EXISTS on_auth_user_created ON auth.users;
 
 -- 重新创建触发器
 CREATE TRIGGER on_auth_user_created
