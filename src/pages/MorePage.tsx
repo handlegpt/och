@@ -1,17 +1,15 @@
 import React, { useState } from 'react'
 import { useAuth } from '../hooks/useAuth'
-import { PrivacyControls } from '../components/user/PrivacyControls'
 import { UserSettings } from '../components/user/UserSettings'
 import LanguageSwitcher from '../../components/LanguageSwitcher'
 import ThemeSwitcher from '../../components/ThemeSwitcher'
 
 export const MorePage: React.FC = () => {
   const { user } = useAuth()
-  const [activeTab, setActiveTab] = useState<'settings' | 'privacy' | 'about'>('settings')
+  const [activeTab, setActiveTab] = useState<'settings' | 'about'>('settings')
 
   const tabs = [
     { key: 'settings', label: '设置', icon: '⚙️' },
-    { key: 'privacy', label: '隐私', icon: '🔒' },
     { key: 'about', label: '关于', icon: 'ℹ️' },
   ] as const
 
@@ -20,9 +18,9 @@ export const MorePage: React.FC = () => {
       <div className='container mx-auto px-4 py-8'>
         {/* 页面标题 */}
         <div className='text-center mb-8'>
-          <h1 className='text-3xl font-bold text-[var(--text-primary)] mb-2'>⚙️ 更多功能</h1>
+          <h1 className='text-3xl font-bold text-[var(--text-primary)] mb-2'>⚙️ 应用设置</h1>
           <p className='text-[var(--text-secondary)] max-w-2xl mx-auto'>
-            管理您的应用设置、隐私偏好和了解更多信息
+            管理您的应用设置和了解更多信息
           </p>
         </div>
 
@@ -95,30 +93,6 @@ export const MorePage: React.FC = () => {
                     <UserSettings />
                   </div>
                 </>
-              )}
-            </div>
-          )}
-
-          {activeTab === 'privacy' && (
-            <div>
-              {!user ? (
-                <div className='bg-[var(--bg-card-alpha)] backdrop-blur-lg rounded-xl border border-[var(--border-primary)] p-8 text-center'>
-                  <div className='text-6xl mb-4'>🔐</div>
-                  <h2 className='text-2xl font-bold text-[var(--text-primary)] mb-4'>需要登录</h2>
-                  <p className='text-[var(--text-secondary)] mb-6'>
-                    要管理您的隐私设置，请先登录您的账户
-                  </p>
-                  <button className='px-6 py-3 bg-[var(--accent-primary)] text-white rounded-lg hover:bg-[var(--accent-primary-hover)] transition-colors duration-200'>
-                    立即登录
-                  </button>
-                </div>
-              ) : (
-                <div>
-                  <h2 className='text-2xl font-bold text-[var(--text-primary)] mb-6'>
-                    🔒 隐私设置
-                  </h2>
-                  <PrivacyControls />
-                </div>
               )}
             </div>
           )}

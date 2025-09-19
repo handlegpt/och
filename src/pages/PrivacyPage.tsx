@@ -91,7 +91,7 @@ export const PrivacyPage: React.FC = () => {
               管理您的隐私设置
             </h3>
             <p className='text-[var(--text-secondary)] mb-4'>
-              要管理您的个人隐私设置和数据权限，请登录后在个人中心或"更多"页面中进行设置。
+              要管理您的个人隐私设置和数据权限，请登录后在个人中心进行设置。
             </p>
             <div className='flex flex-col sm:flex-row gap-3 justify-center'>
               <a
@@ -99,12 +99,6 @@ export const PrivacyPage: React.FC = () => {
                 className='px-4 py-2 bg-[var(--accent-primary)] text-white rounded-lg hover:bg-[var(--accent-primary-hover)] transition-colors duration-200'
               >
                 前往个人中心
-              </a>
-              <a
-                href='/more'
-                className='px-4 py-2 bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-lg hover:bg-[var(--bg-tertiary)] transition-colors duration-200'
-              >
-                更多设置
               </a>
             </div>
           </div>

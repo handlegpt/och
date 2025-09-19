@@ -10,7 +10,7 @@ export const BottomNavigation: React.FC = () => {
     return location.pathname === path
   }
 
-  // 优化为4个主要菜单项，减少拥挤感
+  // 优化为4个主要菜单项，避免与顶部导航重复
   const navItems = [
     {
       path: '/',
@@ -27,18 +27,18 @@ export const BottomNavigation: React.FC = () => {
       description: 'AI效果',
     },
     {
-      path: '/profile',
-      icon: '👤',
-      activeIcon: '👤',
-      label: t('nav.profile'),
-      description: '个人中心',
+      path: '/privacy',
+      icon: '🔒',
+      activeIcon: '🔒',
+      label: '隐私',
+      description: '隐私政策',
     },
     {
       path: '/more',
       icon: '⚙️',
       activeIcon: '⚙️',
-      label: '更多',
-      description: '设置与隐私',
+      label: '设置',
+      description: '应用设置',
     },
   ]
 
