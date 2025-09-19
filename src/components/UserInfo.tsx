@@ -146,9 +146,10 @@ export const UserInfo: React.FC = () => {
             e.preventDefault()
             e.stopPropagation()
 
+            const button = e.currentTarget
             // 防止重复点击
-            if (e.currentTarget.disabled) return
-            e.currentTarget.disabled = true
+            if (button.disabled) return
+            button.disabled = true
 
             try {
               console.log('Attempting to sign out...')
@@ -161,8 +162,10 @@ export const UserInfo: React.FC = () => {
               console.error('Sign out error:', error)
               alert('退出登录失败，请重试')
             } finally {
-              // 重新启用按钮
-              e.currentTarget.disabled = false
+              // 重新启用按钮（检查按钮是否仍然存在）
+              if (button && button.parentNode) {
+                button.disabled = false
+              }
             }
           }}
           className='px-3 py-1.5 text-xs font-semibold text-[var(--text-primary)] bg-[rgba(107,114,128,0.2)] rounded-md hover:bg-[rgba(107,114,128,0.4)] transition-colors duration-200 flex items-center gap-1 disabled:opacity-50 disabled:cursor-not-allowed'

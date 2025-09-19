@@ -158,8 +158,8 @@ export const useAuthProvider = () => {
 
       // 使用 Promise.race 来设置超时，防止某些浏览器卡住
       const signOutPromise = supabase.auth.signOut()
-      const timeoutPromise = new Promise((_, reject) =>
-        setTimeout(() => reject(new Error('Sign out timeout')), 10000)
+      const timeoutPromise = new Promise(
+        (_, reject) => setTimeout(() => reject(new Error('Sign out timeout')), 15000) // 增加到15秒
       )
 
       const { error } = (await Promise.race([signOutPromise, timeoutPromise])) as any
@@ -185,8 +185,17 @@ export const useAuthProvider = () => {
       try {
         localStorage.removeItem('supabase.auth.token')
         sessionStorage.clear()
+        // 强制清除用户状态
+        setUser(null)
+        setSession(null)
       } catch (e) {
         console.warn('Failed to clear local storage after error:', e)
+      }
+
+      // 如果是超时错误，不抛出异常，而是继续执行
+      if (error.message === 'Sign out timeout') {
+        console.warn('Sign out timed out, but local state has been cleared')
+        return
       }
 
       throw error
