@@ -2,6 +2,9 @@ export default {
   nav: {
     home: 'Home',
     profile: 'Profile',
+    categories: 'Categories',
+    privacy: 'Privacy',
+    settings: 'Settings',
   },
   common: {
     search: 'Search',

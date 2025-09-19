@@ -2,8 +2,12 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { ErrorBoundary } from './src/components/ErrorBoundary'
 import { Navigation } from './src/components/Navigation'
+import { BottomNavigation } from './src/components/BottomNavigation'
 import { HomePage } from './src/components/HomePage'
 import { ProfilePage } from './src/pages/ProfilePage'
+import { CategoriesPage } from './src/pages/CategoriesPage'
+import { PrivacyPage } from './src/pages/PrivacyPage'
+import { SettingsPage } from './src/pages/SettingsPage'
 import { AuthCallback } from './src/components/auth/AuthCallback'
 import { UsageLimitAlert } from './src/components/UsageLimitAlert'
 
@@ -16,8 +20,14 @@ const App: React.FC = () => {
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/profile' element={<ProfilePage />} />
+          <Route path='/categories' element={<CategoriesPage />} />
+          <Route path='/privacy' element={<PrivacyPage />} />
+          <Route path='/settings' element={<SettingsPage />} />
           <Route path='/auth/callback' element={<AuthCallback />} />
         </Routes>
+
+        {/* 底部导航 - 仅在移动端显示 */}
+        <BottomNavigation />
 
         {/* 使用限制提示 */}
         <UsageLimitAlert />

@@ -2,6 +2,9 @@ export default {
   nav: {
     home: '首页',
     profile: '用户中心',
+    categories: '功能分类',
+    privacy: '隐私',
+    settings: '设置',
   },
   common: {
     search: '搜索',
