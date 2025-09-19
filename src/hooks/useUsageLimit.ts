@@ -55,6 +55,8 @@ export const useUsageLimit = () => {
           user_uuid: user.id,
         })
 
+        console.log('Usage limit check result:', { data, error, user_id: user.id })
+
         if (error) {
           console.error('Error checking usage limit:', error)
           // 使用默认限制
@@ -64,12 +66,23 @@ export const useUsageLimit = () => {
             remainingToday: 50,
             canGenerate: true,
           })
-        } else {
+        } else if (data && data.length > 0) {
+          const result = data[0] // 函数返回的是数组
+          console.log('Usage limit data:', result)
           setUsageLimit({
-            dailyLimit: data.daily_limit,
-            usedToday: data.used_today,
-            remainingToday: data.remaining,
-            canGenerate: data.can_generate,
+            dailyLimit: result.daily_limit || 50,
+            usedToday: result.used_today || 0,
+            remainingToday: result.remaining || 50,
+            canGenerate: result.can_generate !== false,
+          })
+        } else {
+          console.warn('No data returned from usage limit function')
+          // 使用默认限制
+          setUsageLimit({
+            dailyLimit: 50,
+            usedToday: 0,
+            remainingToday: 50,
+            canGenerate: true,
           })
         }
       } catch (error) {

@@ -10,6 +10,15 @@ export const UsageLimitAlert: React.FC = () => {
 
   const { dailyLimit, usedToday, remainingToday, canGenerate } = usageLimit
 
+  // 调试信息
+  console.log('UsageLimitAlert - usageLimit:', usageLimit)
+
+  // 如果数据无效，不显示警告
+  if (dailyLimit === undefined || usedToday === undefined || remainingToday === undefined) {
+    console.warn('UsageLimitAlert - Invalid usage limit data:', usageLimit)
+    return null
+  }
+
   // 如果还有剩余次数，不显示警告
   if (canGenerate && remainingToday > 2) return null
 
