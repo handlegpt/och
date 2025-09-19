@@ -58,9 +58,9 @@ export default {
   },
   home: {
     hero: {
-      title: 'Start Creating!',
+      title: 'AI Image Generation & Editing',
       subtitle:
-        'Ready to reshape your reality? Choose a category and start casting spells. You can also drag and drop to reorder your favorite categories.',
+        'Upload your photos, choose AI effects, and get professional-grade images in seconds. Support for 50+ effects including 3D figurines, anime styles, HD enhancement, and more.',
       cta: 'Start Creating',
       explore: 'Explore Features',
       badge: 'AI-Powered Creative Tools',
@@ -71,9 +71,9 @@ export default {
       },
     },
     features: {
-      title: 'Powerful AI Features',
+      title: '50+ AI Image Effects',
       subtitle:
-        'From creative design to professional rendering, we provide comprehensive AI generation tools',
+        'From 3D figurines to anime styles, from HD enhancement to artistic creation, meet all your image processing needs',
       viewAll: 'View All Features',
       badge: 'Powerful Features',
       preview: {
