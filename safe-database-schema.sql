@@ -262,7 +262,7 @@ BEGIN
   
   -- Calculate today's usage
   SELECT COUNT(*) INTO used_count
-  FROM generation_history
+  FROM ai_generations
   WHERE user_id = user_uuid
     AND DATE(created_at) = CURRENT_DATE
     AND status = 'completed';
