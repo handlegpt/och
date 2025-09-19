@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
+import { useTranslation } from '../../i18n/context'
 
 export const MorePage: React.FC = () => {
+  const { t } = useTranslation()
   const [activeTab, setActiveTab] = useState<'contact' | 'about'>('contact')
 
   const tabs = [
-    { key: 'contact', label: '联系', icon: '📞' },
-    { key: 'about', label: '关于', icon: 'ℹ️' },
+    { key: 'contact', label: t('more.tabs.contact'), icon: '📞' },
+    { key: 'about', label: t('more.tabs.about'), icon: 'ℹ️' },
   ] as const
 
   return (
@@ -13,8 +15,10 @@ export const MorePage: React.FC = () => {
       <div className='container mx-auto px-4 py-8'>
         {/* 页面标题 */}
         <div className='text-center mb-8'>
-          <h1 className='text-3xl font-bold text-[var(--text-primary)] mb-2'>📱 更多</h1>
-          <p className='text-[var(--text-secondary)] max-w-2xl mx-auto'>联系我们和了解更多信息</p>
+          <h1 className='text-3xl font-bold text-[var(--text-primary)] mb-2'>
+            📱 {t('more.title')}
+          </h1>
+          <p className='text-[var(--text-secondary)] max-w-2xl mx-auto'>{t('more.subtitle')}</p>
         </div>
 
         {/* 标签页导航 */}
@@ -41,62 +45,64 @@ export const MorePage: React.FC = () => {
         <div className='max-w-4xl mx-auto'>
           {activeTab === 'contact' && (
             <div className='bg-[var(--bg-card-alpha)] backdrop-blur-lg rounded-xl border border-[var(--border-primary)] p-8'>
-              <h2 className='text-2xl font-bold text-[var(--text-primary)] mb-6'>📞 联系我们</h2>
+              <h2 className='text-2xl font-bold text-[var(--text-primary)] mb-6'>
+                📞 {t('more.contact.title')}
+              </h2>
 
               <div className='space-y-6 text-[var(--text-secondary)] leading-relaxed'>
                 <section>
                   <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-3'>
-                    💬 反馈与建议
+                    💬 {t('more.contact.feedback.title')}
                   </h3>
-                  <p>
-                    我们非常重视您的反馈！如果您在使用过程中遇到任何问题，
-                    或者有改进建议，请随时联系我们。
-                  </p>
+                  <p>{t('more.contact.feedback.content')}</p>
                 </section>
 
                 <section>
                   <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-3'>
-                    🛠️ 技术支持
+                    🛠️ {t('more.contact.support.title')}
                   </h3>
-                  <p>
-                    遇到技术问题？我们的技术支持团队会尽快为您解决。
-                    请详细描述您遇到的问题，我们会提供专业的帮助。
-                  </p>
+                  <p>{t('more.contact.support.content')}</p>
                 </section>
 
                 <section>
                   <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-3'>
-                    💡 功能请求
+                    💡 {t('more.contact.feature.title')}
                   </h3>
-                  <p>
-                    有新的功能想法？我们欢迎您的创意！ 告诉我们您希望看到的新功能，我们会认真考虑。
-                  </p>
+                  <p>{t('more.contact.feature.content')}</p>
                 </section>
 
                 <section>
                   <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-3'>
-                    📧 联系方式
+                    📧 {t('more.contact.contactMethods.title')}
                   </h3>
                   <div className='space-y-3'>
                     <div className='flex items-center gap-3'>
                       <span className='text-2xl'>📧</span>
                       <div>
-                        <p className='font-medium text-[var(--text-primary)]'>邮箱</p>
+                        <p className='font-medium text-[var(--text-primary)]'>
+                          {t('more.contact.contactMethods.email.label')}
+                        </p>
                         <p className='text-sm'>support@ochai.com</p>
                       </div>
                     </div>
                     <div className='flex items-center gap-3'>
                       <span className='text-2xl'>💬</span>
                       <div>
-                        <p className='font-medium text-[var(--text-primary)]'>在线客服</p>
-                        <p className='text-sm'>工作日 9:00-18:00</p>
+                        <p className='font-medium text-[var(--text-primary)]'>
+                          {t('more.contact.contactMethods.chat.label')}
+                        </p>
+                        <p className='text-sm'>{t('more.contact.contactMethods.chat.hours')}</p>
                       </div>
                     </div>
                     <div className='flex items-center gap-3'>
                       <span className='text-2xl'>📱</span>
                       <div>
-                        <p className='font-medium text-[var(--text-primary)]'>应用内反馈</p>
-                        <p className='text-sm'>在个人中心提交反馈</p>
+                        <p className='font-medium text-[var(--text-primary)]'>
+                          {t('more.contact.contactMethods.app.label')}
+                        </p>
+                        <p className='text-sm'>
+                          {t('more.contact.contactMethods.app.description')}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -104,7 +110,8 @@ export const MorePage: React.FC = () => {
 
                 <div className='mt-8 p-4 bg-[var(--accent-primary)]/10 border border-[var(--accent-primary)]/20 rounded-lg'>
                   <p className='text-sm text-[var(--accent-primary)]'>
-                    <strong>响应时间：</strong> 我们会在24小时内回复您的邮件
+                    <strong>{t('more.contact.responseTime.label')}:</strong>{' '}
+                    {t('more.contact.responseTime.content')}
                   </p>
                 </div>
               </div>
@@ -113,59 +120,56 @@ export const MorePage: React.FC = () => {
 
           {activeTab === 'about' && (
             <div className='bg-[var(--bg-card-alpha)] backdrop-blur-lg rounded-xl border border-[var(--border-primary)] p-8'>
-              <h2 className='text-2xl font-bold text-[var(--text-primary)] mb-6'>ℹ️ 关于应用</h2>
+              <h2 className='text-2xl font-bold text-[var(--text-primary)] mb-6'>
+                ℹ️ {t('more.about.title')}
+              </h2>
 
               <div className='space-y-6 text-[var(--text-secondary)] leading-relaxed'>
                 <section>
                   <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-3'>
-                    🎨 Och AI
+                    🎨 {t('more.about.app.title')}
                   </h3>
-                  <p>
-                    一个强大的AI图像生成和编辑平台，提供50+种专业级AI效果，
-                    包括3D手办、动漫风格、高清增强等功能。
-                  </p>
+                  <p>{t('more.about.app.content')}</p>
                 </section>
 
                 <section>
                   <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-3'>
-                    ✨ 主要功能
+                    ✨ {t('more.about.features.title')}
                   </h3>
                   <ul className='list-disc list-inside space-y-2 ml-4'>
-                    <li>AI图像生成与编辑</li>
-                    <li>多种艺术风格转换</li>
-                    <li>高清图像增强</li>
-                    <li>3D效果生成</li>
-                    <li>自定义提示词</li>
-                    <li>批量处理支持</li>
+                    <li>{t('more.about.features.item1')}</li>
+                    <li>{t('more.about.features.item2')}</li>
+                    <li>{t('more.about.features.item3')}</li>
+                    <li>{t('more.about.features.item4')}</li>
+                    <li>{t('more.about.features.item5')}</li>
+                    <li>{t('more.about.features.item6')}</li>
                   </ul>
                 </section>
 
                 <section>
                   <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-3'>
-                    🚀 技术特点
+                    🚀 {t('more.about.technology.title')}
                   </h3>
                   <ul className='list-disc list-inside space-y-2 ml-4'>
-                    <li>基于Google Gemini AI技术</li>
-                    <li>实时生成预览</li>
-                    <li>云端安全存储</li>
-                    <li>多语言支持</li>
-                    <li>响应式设计</li>
+                    <li>{t('more.about.technology.item1')}</li>
+                    <li>{t('more.about.technology.item2')}</li>
+                    <li>{t('more.about.technology.item3')}</li>
+                    <li>{t('more.about.technology.item4')}</li>
+                    <li>{t('more.about.technology.item5')}</li>
                   </ul>
                 </section>
 
                 <section>
                   <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-3'>
-                    📞 联系我们
+                    📞 {t('more.about.contact.title')}
                   </h3>
-                  <p>
-                    如果您有任何问题或建议，请通过应用内的反馈功能联系我们。
-                    我们致力于为您提供最佳的AI图像生成体验。
-                  </p>
+                  <p>{t('more.about.contact.content')}</p>
                 </section>
 
                 <div className='mt-8 p-4 bg-[var(--accent-primary)]/10 border border-[var(--accent-primary)]/20 rounded-lg'>
                   <p className='text-sm text-[var(--accent-primary)]'>
-                    <strong>版本：</strong> 1.0.0 | <strong>更新：</strong> 2024年1月
+                    <strong>{t('more.about.version.label')}:</strong> 1.0.0 |{' '}
+                    <strong>{t('more.about.update.label')}:</strong> {t('more.about.update.date')}
                   </p>
                 </div>
               </div>

@@ -9,6 +9,48 @@ export default {
   common: {
     search: 'Search',
   },
+  privacy: {
+    title: 'Privacy Policy',
+    subtitle: 'Learn how we protect your privacy and data security',
+    section1: {
+      title: 'Information Collection',
+      content:
+        'We collect information you voluntarily provide, including uploaded images, generation preferences, and account information. We do not collect your personal sensitive information unless you explicitly consent.',
+    },
+    section2: {
+      title: 'Information Use',
+      content:
+        'We use the collected information to provide AI image generation services, improve user experience, provide customer support, and perform necessary technical maintenance.',
+    },
+    section3: {
+      title: 'Information Protection',
+      content:
+        'We employ industry-standard security measures to protect your information, including data encryption, secure transmission, and access control. Your image data is securely processed after generation.',
+    },
+    section4: {
+      title: 'Data Sharing',
+      content:
+        'We do not sell, trade, or transfer your personal information to third parties. We only share your information when legally required or with your explicit consent.',
+    },
+    section5: {
+      title: 'Your Rights',
+      content:
+        'You have the right to access, correct, delete your personal information, and withdraw consent. If you are logged in, you can manage these options in the privacy settings of your profile.',
+    },
+    section6: {
+      title: 'Contact Us',
+      content:
+        'If you have any questions about the privacy policy, please contact us through the feedback function in the app. We will respond to your inquiries within 24 hours.',
+    },
+    lastUpdated: 'Last Updated',
+    updateDate: 'September 2025',
+    manageSettings: {
+      title: 'Manage Your Privacy Settings',
+      description:
+        'To manage your personal privacy settings and data permissions, please log in and configure them in your profile.',
+      button: 'Go to Profile',
+    },
+  },
   home: {
     hero: {
       title: 'Start Creating!',
@@ -687,6 +729,87 @@ export default {
       popular: 'Popular First',
       new: 'Newest First',
       name: 'Sort by Name',
+    },
+  },
+  more: {
+    title: 'More',
+    subtitle: 'Contact us and learn more information',
+    tabs: {
+      contact: 'Contact',
+      about: 'About',
+    },
+    contact: {
+      title: 'Contact Us',
+      feedback: {
+        title: 'Feedback & Suggestions',
+        content:
+          'We highly value your feedback! If you encounter any issues during use or have improvement suggestions, please feel free to contact us.',
+      },
+      support: {
+        title: 'Technical Support',
+        content:
+          'Encountering technical issues? Our technical support team will resolve them for you as soon as possible. Please describe the problems you encounter in detail, and we will provide professional help.',
+      },
+      feature: {
+        title: 'Feature Requests',
+        content:
+          'Have new feature ideas? We welcome your creativity! Tell us about the new features you would like to see, and we will seriously consider them.',
+      },
+      contactMethods: {
+        title: 'Contact Methods',
+        email: {
+          label: 'Email',
+        },
+        chat: {
+          label: 'Online Support',
+          hours: 'Weekdays 9:00-18:00',
+        },
+        app: {
+          label: 'In-App Feedback',
+          description: 'Submit feedback in your profile',
+        },
+      },
+      responseTime: {
+        label: 'Response Time',
+        content: 'We will reply to your emails within 24 hours',
+      },
+    },
+    about: {
+      title: 'About App',
+      app: {
+        title: 'Och AI',
+        content:
+          'A powerful AI image generation and editing platform, providing 50+ professional-grade AI effects, including 3D figurines, anime styles, HD enhancement, and more.',
+      },
+      features: {
+        title: 'Main Features',
+        item1: 'AI Image Generation & Editing',
+        item2: 'Multiple Artistic Style Conversion',
+        item3: 'HD Image Enhancement',
+        item4: '3D Effect Generation',
+        item5: 'Custom Prompts',
+        item6: 'Batch Processing Support',
+      },
+      technology: {
+        title: 'Technical Features',
+        item1: 'Based on Google Gemini AI Technology',
+        item2: 'Real-time Generation Preview',
+        item3: 'Cloud Secure Storage',
+        item4: 'Multi-language Support',
+        item5: 'Responsive Design',
+      },
+      contact: {
+        title: 'Contact Us',
+        content:
+          'If you have any questions or suggestions, please contact us through the feedback function in the app. We are committed to providing you with the best AI image generation experience.',
+      },
+      version: {
+        label: 'Version',
+      },
+      update: {
+        label: 'Update',
+        date: 'September 2025',
+      },
     },
   },
 }

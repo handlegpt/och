@@ -9,6 +9,47 @@ export default {
   common: {
     search: '搜索',
   },
+  privacy: {
+    title: '隐私政策',
+    subtitle: '了解我们如何保护您的隐私和数据安全',
+    section1: {
+      title: '信息收集',
+      content:
+        '我们收集您主动提供的信息，包括上传的图像、生成偏好设置和账户信息。我们不会收集您的个人敏感信息，除非您明确同意。',
+    },
+    section2: {
+      title: '信息使用',
+      content:
+        '我们使用收集的信息来提供AI图像生成服务、改善用户体验、提供客户支持，以及进行必要的技术维护。',
+    },
+    section3: {
+      title: '信息保护',
+      content:
+        '我们采用行业标准的安全措施保护您的信息，包括数据加密、安全传输和访问控制。您的图像数据在生成完成后会被安全处理。',
+    },
+    section4: {
+      title: '数据共享',
+      content:
+        '我们不会向第三方出售、交易或转让您的个人信息。只有在法律要求或您明确同意的情况下，我们才会共享您的信息。',
+    },
+    section5: {
+      title: '您的权利',
+      content:
+        '您有权访问、更正、删除您的个人信息，以及撤回同意。如果您已登录，可以在个人中心的隐私设置中管理这些选项。',
+    },
+    section6: {
+      title: '联系我们',
+      content:
+        '如果您对隐私政策有任何疑问，请通过应用内的反馈功能联系我们。我们会在24小时内回复您的询问。',
+    },
+    lastUpdated: '最后更新',
+    updateDate: '2025年9月',
+    manageSettings: {
+      title: '管理您的隐私设置',
+      description: '要管理您的个人隐私设置和数据权限，请登录后在个人中心进行设置。',
+      button: '前往个人中心',
+    },
+  },
   home: {
     hero: {
       title: 'AI图像生成与编辑',
@@ -522,6 +563,86 @@ export default {
       popular: '热门优先',
       new: '最新优先',
       name: '按名称排序',
+    },
+  },
+  more: {
+    title: '更多',
+    subtitle: '联系我们和了解更多信息',
+    tabs: {
+      contact: '联系',
+      about: '关于',
+    },
+    contact: {
+      title: '联系我们',
+      feedback: {
+        title: '反馈与建议',
+        content:
+          '我们非常重视您的反馈！如果您在使用过程中遇到任何问题，或者有改进建议，请随时联系我们。',
+      },
+      support: {
+        title: '技术支持',
+        content:
+          '遇到技术问题？我们的技术支持团队会尽快为您解决。请详细描述您遇到的问题，我们会提供专业的帮助。',
+      },
+      feature: {
+        title: '功能请求',
+        content: '有新的功能想法？我们欢迎您的创意！告诉我们您希望看到的新功能，我们会认真考虑。',
+      },
+      contactMethods: {
+        title: '联系方式',
+        email: {
+          label: '邮箱',
+        },
+        chat: {
+          label: '在线客服',
+          hours: '工作日 9:00-18:00',
+        },
+        app: {
+          label: '应用内反馈',
+          description: '在个人中心提交反馈',
+        },
+      },
+      responseTime: {
+        label: '响应时间',
+        content: '我们会在24小时内回复您的邮件',
+      },
+    },
+    about: {
+      title: '关于应用',
+      app: {
+        title: 'Och AI',
+        content:
+          '一个强大的AI图像生成和编辑平台，提供50+种专业级AI效果，包括3D手办、动漫风格、高清增强等功能。',
+      },
+      features: {
+        title: '主要功能',
+        item1: 'AI图像生成与编辑',
+        item2: '多种艺术风格转换',
+        item3: '高清图像增强',
+        item4: '3D效果生成',
+        item5: '自定义提示词',
+        item6: '批量处理支持',
+      },
+      technology: {
+        title: '技术特点',
+        item1: '基于Google Gemini AI技术',
+        item2: '实时生成预览',
+        item3: '云端安全存储',
+        item4: '多语言支持',
+        item5: '响应式设计',
+      },
+      contact: {
+        title: '联系我们',
+        content:
+          '如果您有任何问题或建议，请通过应用内的反馈功能联系我们。我们致力于为您提供最佳的AI图像生成体验。',
+      },
+      version: {
+        label: '版本',
+      },
+      update: {
+        label: '更新',
+        date: '2025年9月',
+      },
     },
   },
 }
