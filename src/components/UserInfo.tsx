@@ -5,7 +5,7 @@ import { AdminPanel } from './admin/AdminPanel'
 import { useTranslation } from '../../i18n/context'
 
 export const UserInfo: React.FC = () => {
-  const { user, signOut, isAdmin, userProfile, signInWithGoogle } = useAuth()
+  const { user, signOut, isAdmin, userProfile } = useAuth()
   const { t } = useTranslation()
   const [showAdminPanel, setShowAdminPanel] = useState(false)
   const [showAuthModal, setShowAuthModal] = useState(false)
@@ -20,72 +20,8 @@ export const UserInfo: React.FC = () => {
           {t('app.login')}
         </button>
 
-        {/* Modal for non-logged in users */}
-        {showAuthModal && (
-          <div
-            style={{
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              width: '100vw',
-              height: '100vh',
-              backgroundColor: 'rgba(0,0,0,0.8)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              zIndex: 9999,
-            }}
-          >
-            <div
-              style={{
-                backgroundColor: 'white',
-                padding: '30px',
-                borderRadius: '12px',
-                color: 'black',
-                minWidth: '400px',
-                maxWidth: '500px',
-              }}
-            >
-              <h2 style={{ marginBottom: '20px', fontSize: '24px' }}>登录 Och AI</h2>
-              <div style={{ marginBottom: '20px' }}>
-                <button
-                  onClick={async () => {
-                    try {
-                      await signInWithGoogle()
-                      setShowAuthModal(false)
-                    } catch (error) {
-                      console.error('Google login failed:', error)
-                    }
-                  }}
-                  style={{
-                    backgroundColor: '#f97316',
-                    color: 'white',
-                    padding: '10px 20px',
-                    border: 'none',
-                    borderRadius: '6px',
-                    cursor: 'pointer',
-                    marginRight: '10px',
-                  }}
-                >
-                  Google 登录
-                </button>
-                <button
-                  onClick={() => setShowAuthModal(false)}
-                  style={{
-                    backgroundColor: '#6b7280',
-                    color: 'white',
-                    padding: '10px 20px',
-                    border: 'none',
-                    borderRadius: '6px',
-                    cursor: 'pointer',
-                  }}
-                >
-                  关闭
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
+        {/* AuthModal for non-logged in users */}
+        <AuthModal isOpen={showAuthModal} onClose={() => setShowAuthModal(false)} />
       </div>
     )
   }
