@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useAuth } from '../../hooks/useAuth'
+import { useTranslation } from '../../../i18n/context'
 
 interface AuthModalProps {
   isOpen: boolean
@@ -12,6 +13,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState<string | null>(null)
   const { signInWithGoogle, signInWithEmail } = useAuth()
+  const { t } = useTranslation()
 
   const handleGoogleLogin = async () => {
     setLoading(true)
@@ -29,7 +31,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
   const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!email) {
-      setError('请输入邮箱地址')
+      setError(t('auth.magicLink.error'))
       return
     }
 
@@ -39,7 +41,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
 
     try {
       await signInWithEmail(email)
-      setSuccess('验证邮件已发送，请检查您的邮箱')
+      setSuccess(t('auth.magicLink.success'))
     } catch (error: any) {
       setError(error.message)
     } finally {
@@ -53,7 +55,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
     <div className='fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-50 p-4 pt-20'>
       <div className='bg-card rounded-xl border border-primary p-6 w-full max-w-md'>
         <div className='flex justify-between items-center mb-6'>
-          <h2 className='text-xl font-semibold text-primary'>登录 Och AI</h2>
+          <h2 className='text-xl font-semibold text-primary'>{t('auth.title')}</h2>
           <button onClick={onClose} className='text-secondary hover:text-primary transition-colors'>
             <svg className='w-6 h-6' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
               <path
@@ -91,7 +93,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                 d='M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z'
               />
             </svg>
-            {loading ? '登录中...' : '使用 Google 登录'}
+            {loading ? t('auth.loading') : t('auth.googleLogin')}
           </button>
 
           <div className='relative'>
@@ -99,28 +101,28 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
               <div className='w-full border-t border-primary' />
             </div>
             <div className='relative flex justify-center text-sm'>
-              <span className='px-2 bg-card text-secondary'>或</span>
+              <span className='px-2 bg-card text-secondary'>{t('auth.or')}</span>
             </div>
           </div>
 
           {/* Magic Link 登录 */}
           <div className='space-y-3'>
             <div className='text-center'>
-              <h3 className='text-sm font-medium text-primary mb-1'>Magic Link 登录</h3>
-              <p className='text-xs text-secondary'>输入邮箱地址，我们将发送登录链接到您的邮箱</p>
+              <h3 className='text-sm font-medium text-primary mb-1'>{t('auth.magicLink.title')}</h3>
+              <p className='text-xs text-secondary'>{t('auth.magicLink.description')}</p>
             </div>
 
             <form onSubmit={handleEmailLogin} className='space-y-3'>
               <div>
                 <label htmlFor='email' className='block text-sm font-medium text-primary mb-1'>
-                  邮箱地址
+                  {t('auth.magicLink.emailLabel')}
                 </label>
                 <input
                   id='email'
                   type='email'
                   value={email}
                   onChange={e => setEmail(e.target.value)}
-                  placeholder='your@email.com'
+                  placeholder={t('auth.magicLink.emailPlaceholder')}
                   className='w-full px-3 py-2 bg-secondary border border-primary rounded-lg focus-ring-accent text-primary'
                   required
                 />
@@ -149,7 +151,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                         d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
                       />
                     </svg>
-                    发送中...
+                    {t('auth.magicLink.sending')}
                   </>
                 ) : (
                   <>
@@ -161,7 +163,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                         d='M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'
                       />
                     </svg>
-                    发送 Magic Link
+                    {t('auth.magicLink.sendButton')}
                   </>
                 )}
               </button>
@@ -196,9 +198,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
             </div>
           )}
 
-          <div className='text-xs text-tertiary text-center'>
-            登录即表示您同意我们的服务条款和隐私政策
-          </div>
+          <div className='text-xs text-tertiary text-center'>{t('auth.terms')}</div>
         </div>
       </div>
     </div>

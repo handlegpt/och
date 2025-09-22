@@ -14,6 +14,23 @@ export default {
   common: {
     search: '搜索',
   },
+  auth: {
+    title: '登录 Och AI',
+    googleLogin: '使用 Google 登录',
+    or: '或',
+    magicLink: {
+      title: 'Magic Link 登录',
+      description: '输入邮箱地址，我们将发送登录链接到您的邮箱',
+      emailLabel: '邮箱地址',
+      emailPlaceholder: 'your@email.com',
+      sendButton: '发送 Magic Link',
+      sending: '发送中...',
+      success: '验证邮件已发送，请检查您的邮箱',
+      error: '请输入邮箱地址',
+    },
+    terms: '登录即表示您同意我们的服务条款和隐私政策',
+    loading: '登录中...',
+  },
   privacy: {
     title: '隐私政策',
     subtitle: '了解我们如何保护您的隐私和数据安全',

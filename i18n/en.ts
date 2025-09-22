@@ -14,6 +14,23 @@ export default {
   common: {
     search: 'Search',
   },
+  auth: {
+    title: 'Login to Och AI',
+    googleLogin: 'Sign in with Google',
+    or: 'or',
+    magicLink: {
+      title: 'Magic Link Login',
+      description: 'Enter your email address and we will send a login link to your email',
+      emailLabel: 'Email Address',
+      emailPlaceholder: 'your@email.com',
+      sendButton: 'Send Magic Link',
+      sending: 'Sending...',
+      success: 'Verification email sent, please check your email',
+      error: 'Please enter your email address',
+    },
+    terms: 'By logging in, you agree to our Terms of Service and Privacy Policy',
+    loading: 'Signing in...',
+  },
   privacy: {
     title: 'Privacy Policy',
     subtitle: 'Learn how we protect your privacy and data security',
