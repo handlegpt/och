@@ -51,13 +51,10 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
 
   return (
     <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4'>
-      <div className='bg-[var(--bg-card)] rounded-xl border border-[var(--border-primary)] p-6 w-full max-w-md'>
+      <div className='bg-card rounded-xl border border-primary p-6 w-full max-w-md'>
         <div className='flex justify-between items-center mb-6'>
-          <h2 className='text-xl font-semibold text-[var(--text-primary)]'>登录 Och AI</h2>
-          <button
-            onClick={onClose}
-            className='text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors'
-          >
+          <h2 className='text-xl font-semibold text-primary'>登录 Och AI</h2>
+          <button onClick={onClose} className='text-secondary hover:text-primary transition-colors'>
             <svg className='w-6 h-6' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
               <path
                 strokeLinecap='round'
@@ -99,30 +96,23 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
 
           <div className='relative'>
             <div className='absolute inset-0 flex items-center'>
-              <div className='w-full border-t border-[var(--border-primary)]' />
+              <div className='w-full border-t border-primary' />
             </div>
             <div className='relative flex justify-center text-sm'>
-              <span className='px-2 bg-[var(--bg-card)] text-[var(--text-secondary)]'>或</span>
+              <span className='px-2 bg-card text-secondary'>或</span>
             </div>
           </div>
 
           {/* Magic Link 登录 */}
           <div className='space-y-3'>
             <div className='text-center'>
-              <h3 className='text-sm font-medium text-[var(--text-primary)] mb-1'>
-                Magic Link 登录
-              </h3>
-              <p className='text-xs text-[var(--text-secondary)]'>
-                输入邮箱地址，我们将发送登录链接到您的邮箱
-              </p>
+              <h3 className='text-sm font-medium text-primary mb-1'>Magic Link 登录</h3>
+              <p className='text-xs text-secondary'>输入邮箱地址，我们将发送登录链接到您的邮箱</p>
             </div>
 
             <form onSubmit={handleEmailLogin} className='space-y-3'>
               <div>
-                <label
-                  htmlFor='email'
-                  className='block text-sm font-medium text-[var(--text-primary)] mb-1'
-                >
+                <label htmlFor='email' className='block text-sm font-medium text-primary mb-1'>
                   邮箱地址
                 </label>
                 <input
@@ -131,7 +121,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                   placeholder='your@email.com'
-                  className='w-full px-3 py-2 bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-lg focus:ring-2 focus:ring-[var(--accent-primary)] focus:border-[var(--accent-primary)] text-[var(--text-primary)]'
+                  className='w-full px-3 py-2 bg-secondary border border-primary rounded-lg focus-ring-accent text-primary'
                   required
                 />
               </div>
@@ -139,7 +129,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
               <button
                 type='submit'
                 disabled={loading}
-                className='w-full py-2 px-4 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-[var(--text-on-accent)] font-semibold rounded-lg hover:from-[var(--accent-primary-hover)] hover:to-[var(--accent-secondary-hover)] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center gap-2'
+                className='w-full py-2 px-4 bg-gradient-accent text-on-accent font-semibold rounded-lg hover-bg-accent disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center gap-2'
               >
                 {loading ? (
                   <>
@@ -180,8 +170,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
 
           {/* 错误和成功消息 */}
           {error && (
-            <div className='p-3 bg-[var(--bg-error)] border border-[var(--border-error)] rounded-lg'>
-              <p className='text-sm text-[var(--text-error)]'>{error}</p>
+            <div className='p-3 bg-error border border-error rounded-lg'>
+              <p className='text-sm text-error'>{error}</p>
             </div>
           )}
 
@@ -206,7 +196,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
             </div>
           )}
 
-          <div className='text-xs text-[var(--text-tertiary)] text-center'>
+          <div className='text-xs text-tertiary text-center'>
             登录即表示您同意我们的服务条款和隐私政策
           </div>
         </div>

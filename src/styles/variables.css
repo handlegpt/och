@@ -1,0 +1,70 @@
+/* CSS变量类定义 - 兼容Tailwind CSS v3 */
+
+/* 背景颜色 */
+.bg-primary {
+  background-color: var(--bg-primary);
+}
+.bg-secondary {
+  background-color: var(--bg-secondary);
+}
+.bg-card {
+  background-color: var(--bg-card);
+}
+.bg-card-alpha {
+  background-color: var(--bg-card-alpha);
+}
+.bg-disabled {
+  background-color: var(--bg-disabled);
+}
+.bg-error {
+  background-color: var(--bg-error);
+}
+
+/* 文字颜色 */
+.text-primary {
+  color: var(--text-primary);
+}
+.text-secondary {
+  color: var(--text-secondary);
+}
+.text-tertiary {
+  color: var(--text-tertiary);
+}
+.text-disabled {
+  color: var(--text-disabled);
+}
+.text-error {
+  color: var(--text-error);
+}
+.text-on-accent {
+  color: var(--text-on-accent);
+}
+
+/* 边框颜色 */
+.border-primary {
+  border-color: var(--border-primary);
+}
+.border-error {
+  border-color: var(--border-error);
+}
+
+/* 渐变背景 */
+.bg-gradient-accent {
+  background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+}
+
+.bg-gradient-accent-hover {
+  background: linear-gradient(to right, var(--accent-primary-hover), var(--accent-secondary-hover));
+}
+
+/* 焦点状态 */
+.focus-ring-accent:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--accent-primary);
+  border-color: var(--accent-primary);
+}
+
+/* 悬停状态 */
+.hover-bg-accent:hover {
+  background: linear-gradient(to right, var(--accent-primary-hover), var(--accent-secondary-hover));
+}
