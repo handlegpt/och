@@ -298,17 +298,29 @@ export default {
       dashboard: {
         title: 'Dashboard',
         description: 'View your usage statistics and activity overview',
+        overview: 'Overview',
+        detailed: 'Detailed Stats',
+        social: 'Social Data',
         stats: {
           totalGenerations: 'Total Generations',
           favorites: 'Favorites',
           thisWeek: 'This Week',
+          thisMonth: 'This Month',
+          today: 'Today',
+          dailyAverage: 'Daily Average',
           mostUsed: 'Most Used Feature',
           recentActivity: 'Recent Activity',
+          publicWorks: 'Public Works',
+          totalLikes: 'Total Likes',
+          totalComments: 'Total Comments',
         },
         quickActions: {
           title: 'Quick Actions',
           shareWork: 'Share Work',
           createNew: 'Start Creating',
+        },
+        featureUsage: {
+          title: 'Feature Usage Statistics',
         },
         userTypes: {
           creator: 'Creator',
@@ -321,6 +333,7 @@ export default {
           upload: 'Upload Avatar',
           change: 'Change Avatar',
         },
+        noActivity: 'No activity records yet',
       },
       favorites: {
         title: 'My Favorites',

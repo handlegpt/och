@@ -4,7 +4,7 @@ import { useTranslation } from '../../i18n/context'
 import { UserSettings } from '../components/user/UserSettings'
 import { AdminPanel } from '../components/admin/AdminPanel'
 import { UserHistory } from '../components/user/UserHistory'
-import { DashboardLayout } from '../components/user/DashboardLayout'
+import { UnifiedDashboard } from '../components/user/UnifiedDashboard'
 import { FavoritesManager } from '../components/user/FavoritesManager'
 import { PrivacyControls } from '../components/user/PrivacyControls'
 
@@ -73,7 +73,7 @@ export const ProfilePage: React.FC = () => {
         <div className='bg-[var(--bg-card-alpha)] backdrop-blur-lg rounded-xl border border-[var(--border-primary)] p-6'>
           {activeTab === 'dashboard' && (
             <div>
-              <DashboardLayout />
+              <UnifiedDashboard />
             </div>
           )}
 

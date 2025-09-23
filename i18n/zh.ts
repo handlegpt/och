@@ -287,17 +287,29 @@ export default {
       dashboard: {
         title: '仪表板',
         description: '查看您的使用统计和活动概览',
+        overview: '概览',
+        detailed: '详细统计',
+        social: '社交数据',
         stats: {
           totalGenerations: '总生成数',
           favorites: '收藏数',
           thisWeek: '本周生成',
+          thisMonth: '本月生成',
+          today: '今日生成',
+          dailyAverage: '日均生成',
           mostUsed: '最常用功能',
           recentActivity: '最近活动',
+          publicWorks: '公开作品',
+          totalLikes: '总点赞数',
+          totalComments: '总评论数',
         },
         quickActions: {
           title: '快速操作',
           shareWork: '分享作品',
           createNew: '开始创作',
+        },
+        featureUsage: {
+          title: '功能使用统计',
         },
         userTypes: {
           creator: '创作者',
@@ -310,6 +322,7 @@ export default {
           upload: '上传头像',
           change: '更换头像',
         },
+        noActivity: '暂无活动记录',
       },
       favorites: {
         title: '我的收藏',

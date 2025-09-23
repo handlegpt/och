@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useAuth } from '../../hooks/useAuth'
 // import { supabase } from '../../lib/supabase';
 import { useTranslation } from '../../../i18n/context'
-import { UserStats } from './UserStats'
 import { DataPersistenceService } from '../../services/dataPersistence'
 import { SecureInput } from '../SecureInput'
 import { validateDisplayName, validateUsername, validateUrl } from '../../utils/security'
@@ -30,7 +29,7 @@ export const UserSettings: React.FC = () => {
   const [loading, setLoading] = useState(false)
   const [saved, setSaved] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [activeTab, setActiveTab] = useState<'profile' | 'stats' | 'account' | 'export'>('profile')
+  const [activeTab, setActiveTab] = useState<'profile' | 'account' | 'export'>('profile')
 
   useEffect(() => {
     if (userProfile) {
@@ -214,7 +213,6 @@ export const UserSettings: React.FC = () => {
       <div className='flex border-b border-[var(--border-primary)] mb-6'>
         {[
           { key: 'profile', label: t('app.userSettings.tabs.profile'), icon: '👤' },
-          { key: 'stats', label: t('app.userSettings.tabs.stats'), icon: '📊' },
           { key: 'account', label: t('app.userSettings.tabs.account'), icon: '🔐' },
           { key: 'export', label: t('app.userSettings.tabs.export'), icon: '📤' },
         ].map(tab => (
@@ -351,13 +349,6 @@ export const UserSettings: React.FC = () => {
               </button>
             </div>
           </>
-        )}
-
-        {/* 使用统计标签页 */}
-        {activeTab === 'stats' && (
-          <div className='bg-[var(--bg-card-alpha)] backdrop-blur-lg rounded-xl border border-[var(--border-primary)] p-6'>
-            <UserStats />
-          </div>
         )}
 
         {/* 账户管理标签页 */}
