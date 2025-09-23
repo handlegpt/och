@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useAuth } from '../../hooks/useAuth'
 import { supabase } from '../../lib/supabase'
 // import { useTranslation } from '../../../i18n/context';
-import { DataPersistenceService } from '../../services/dataPersistence'
 import { SkeletonLoader } from '../ui/SkeletonLoader'
 
 interface UserStatsData {
@@ -27,78 +26,56 @@ export const UserStats: React.FC = () => {
   })
   const [loading, setLoading] = useState(true)
 
-  const fetchUserStats = useCallback(async () => {
-    if (!user) return
-
-    setLoading(true)
-    try {
-      // 使用数据持久化服务获取统计数据
-      const usageStats = await DataPersistenceService.getUserUsageStats(user.id)
-
-      // 获取最常用的变换类型
-      const { data: transformationData, error: transformationError } = await supabase
-        .from('ai_generations')
-        .select('transformation_type')
-        .eq('user_id', user.id)
-
-      if (transformationError) {
-        console.error('Error fetching transformation data:', transformationError)
-      }
-
-      const transformationCounts =
-        transformationData && transformationData.length > 0
-          ? transformationData.reduce((acc: any, item) => {
-              acc[item.transformation_type] = (acc[item.transformation_type] || 0) + 1
-              return acc
-            }, {})
-          : {}
-
-      const favoriteTransformation =
-        transformationCounts && Object.keys(transformationCounts).length > 0
-          ? Object.keys(transformationCounts).reduce((a, b) =>
-              transformationCounts[a] > transformationCounts[b] ? a : b
-            )
-          : ''
-
-      // 获取最后一次生成时间
-      const { data: lastGenerationData, error: lastGenerationError } = await supabase
-        .from('ai_generations')
-        .select('created_at')
-        .eq('user_id', user.id)
-        .order('created_at', { ascending: false })
-        .limit(1)
-        .single()
-
-      if (lastGenerationError && lastGenerationError.code !== 'PGRST116') {
-        console.error('Error fetching last generation data:', lastGenerationError)
-      }
-
-      setStats({
-        totalGenerations: usageStats.totalGenerations,
-        thisMonthGenerations: usageStats.thisMonthGenerations,
-        thisWeekGenerations: usageStats.thisWeekGenerations,
-        todayGenerations: usageStats.todayGenerations,
-        favoriteTransformation,
-        lastGeneration: lastGenerationData?.created_at || null,
-      })
-    } catch (error) {
-      console.error('Error fetching user stats:', error)
-      // 设置默认值，避免一直加载
-      setStats({
-        totalGenerations: 0,
-        thisMonthGenerations: 0,
-        thisWeekGenerations: 0,
-        todayGenerations: 0,
-        favoriteTransformation: '',
-        lastGeneration: null,
-      })
-    } finally {
-      setLoading(false)
-    }
-  }, [user])
-
   useEffect(() => {
     if (user) {
+      const fetchUserStats = async () => {
+        try {
+          setLoading(true)
+
+          // 获取总生成数
+          const { count: totalGenerations } = await supabase
+            .from('ai_generations')
+            .select('*', { count: 'exact', head: true })
+            .eq('user_id', user.id)
+
+          // 获取本周生成数
+          const weekStart = new Date()
+          weekStart.setDate(weekStart.getDate() - weekStart.getDay())
+          weekStart.setHours(0, 0, 0, 0)
+          const { count: thisWeekGenerations } = await supabase
+            .from('ai_generations')
+            .select('*', { count: 'exact', head: true })
+            .eq('user_id', user.id)
+            .gte('created_at', weekStart.toISOString())
+
+          // 获取收藏数
+          const { count: totalFavorites } = await supabase
+            .from('user_favorites')
+            .select('*', { count: 'exact', head: true })
+            .eq('user_id', user.id)
+
+          // 获取最近生成
+          const { data: recentGeneration } = await supabase
+            .from('ai_generations')
+            .select('created_at')
+            .eq('user_id', user.id)
+            .order('created_at', { ascending: false })
+            .limit(1)
+            .single()
+
+          setStats({
+            totalGenerations: totalGenerations || 0,
+            thisWeekGenerations: thisWeekGenerations || 0,
+            totalFavorites: totalFavorites || 0,
+            lastGeneration: recentGeneration?.created_at || null,
+          })
+        } catch (error) {
+          console.error('Error fetching user stats:', error)
+        } finally {
+          setLoading(false)
+        }
+      }
+
       fetchUserStats()
     }
   }, [user])

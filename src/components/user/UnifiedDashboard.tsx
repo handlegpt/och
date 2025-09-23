@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useAuth } from '../../hooks/useAuth'
 import { useTranslation } from '../../../i18n/context'
 import { supabase } from '../../lib/supabase'
@@ -50,154 +50,136 @@ export const UnifiedDashboard: React.FC = () => {
     totalLikes: 0,
     totalComments: 0,
   })
-  const [recentActivity, setRecentActivity] = useState<RecentActivity[]>([])
+  const [recentActivity] = useState<RecentActivity[]>([])
   const [loading, setLoading] = useState(true)
   const [activeView, setActiveView] = useState<'overview' | 'detailed' | 'social'>('overview')
 
-  // 获取综合统计数据
-  const fetchUnifiedStats = useCallback(async () => {
-    if (!user) return
-
-    try {
-      setLoading(true)
-
-      // 基础生成统计
-      const { count: totalGen } = await supabase
-        .from('ai_generations')
-        .select('*', { count: 'exact', head: true })
-        .eq('user_id', user.id)
-
-      // 收藏统计
-      const { count: totalFav } = await supabase
-        .from('user_favorites')
-        .select('*', { count: 'exact', head: true })
-        .eq('user_id', user.id)
-
-      // 时间范围统计
-      const now = new Date()
-      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
-      const weekAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000)
-      const monthAgo = new Date(today.getTime() - 30 * 24 * 60 * 60 * 1000)
-
-      const [todayResult, weekResult, monthResult] = await Promise.all([
-        supabase
-          .from('ai_generations')
-          .select('*', { count: 'exact', head: true })
-          .eq('user_id', user.id)
-          .gte('created_at', today.toISOString()),
-        supabase
-          .from('ai_generations')
-          .select('*', { count: 'exact', head: true })
-          .eq('user_id', user.id)
-          .gte('created_at', weekAgo.toISOString()),
-        supabase
-          .from('ai_generations')
-          .select('*', { count: 'exact', head: true })
-          .eq('user_id', user.id)
-          .gte('created_at', monthAgo.toISOString()),
-      ])
-
-      // 功能使用统计
-      const { data: featureData } = await supabase
-        .from('ai_generations')
-        .select('transformation_type')
-        .eq('user_id', user.id)
-
-      const featureUsage =
-        featureData?.reduce(
-          (acc, item) => {
-            acc[item.transformation_type] = (acc[item.transformation_type] || 0) + 1
-            return acc
-          },
-          {} as Record<string, number>
-        ) || {}
-
-      const mostUsedFeature = Object.entries(featureUsage).reduce(
-        (a, b) => (featureUsage[a[0]] > featureUsage[b[0]] ? a : b),
-        ['', 0]
-      )[0]
-
-      // 最后一次生成
-      const { data: lastGen } = await supabase
-        .from('ai_generations')
-        .select('created_at')
-        .eq('user_id', user.id)
-        .order('created_at', { ascending: false })
-        .limit(1)
-        .single()
-
-      // 社交统计
-      const [publicWorksResult, likesResult, commentsResult] = await Promise.all([
-        supabase
-          .from('public_gallery')
-          .select('*', { count: 'exact', head: true })
-          .eq('user_id', user.id),
-        supabase
-          .from('gallery_likes')
-          .select('gallery_id')
-          .in(
-            'gallery_id',
-            await supabase
-              .from('public_gallery')
-              .select('id')
-              .eq('user_id', user.id)
-              .then(res => res.data?.map(item => item.id) || [])
-          ),
-        supabase
-          .from('gallery_comments')
-          .select('gallery_id')
-          .in(
-            'gallery_id',
-            await supabase
-              .from('public_gallery')
-              .select('id')
-              .eq('user_id', user.id)
-              .then(res => res.data?.map(item => item.id) || [])
-          ),
-      ])
-
-      // 计算平均每日生成数
-      const daysSinceFirst = user.created_at
-        ? Math.max(
-            1,
-            Math.ceil((Date.now() - new Date(user.created_at).getTime()) / (24 * 60 * 60 * 1000))
-          )
-        : 1
-
-      setStats({
-        totalGenerations: totalGen || 0,
-        totalFavorites: totalFav || 0,
-        thisWeekGenerations: weekResult.count || 0,
-        thisMonthGenerations: monthResult.count || 0,
-        todayGenerations: todayResult.count || 0,
-        mostUsedFeature,
-        featureUsage,
-        lastGeneration: lastGen?.created_at || null,
-        averageGenerationsPerDay: Math.round(((totalGen || 0) / daysSinceFirst) * 10) / 10,
-        publicWorks: publicWorksResult.count || 0,
-        totalLikes: likesResult.count || 0,
-        totalComments: commentsResult.count || 0,
-      })
-
-      // 获取最近活动
-      const { data: recentData } = await supabase
-        .from('ai_generations')
-        .select('id, transformation_type, created_at, content_url, title')
-        .eq('user_id', user.id)
-        .order('created_at', { ascending: false })
-        .limit(5)
-
-      setRecentActivity(recentData || [])
-    } catch (error) {
-      console.error('Error fetching unified stats:', error)
-    } finally {
-      setLoading(false)
-    }
-  }, [user])
-
   useEffect(() => {
     if (user) {
-      fetchUnifiedStats()
+      const fetchStats = async () => {
+        try {
+          setLoading(true)
+
+          // 获取基础统计
+          const { count: totalGen } = await supabase
+            .from('ai_generations')
+            .select('*', { count: 'exact', head: true })
+            .eq('user_id', user.id)
+          const { count: totalFav } = await supabase
+            .from('user_favorites')
+            .select('*', { count: 'exact', head: true })
+            .eq('user_id', user.id)
+
+          // 本周生成数
+          const weekStart = new Date()
+          weekStart.setDate(weekStart.getDate() - weekStart.getDay())
+          weekStart.setHours(0, 0, 0, 0)
+          const { count: weekGen } = await supabase
+            .from('ai_generations')
+            .select('*', { count: 'exact', head: true })
+            .eq('user_id', user.id)
+            .gte('created_at', weekStart.toISOString())
+
+          // 本月生成数
+          const monthStart = new Date()
+          monthStart.setDate(1)
+          monthStart.setHours(0, 0, 0, 0)
+          const { count: monthGen } = await supabase
+            .from('ai_generations')
+            .select('*', { count: 'exact', head: true })
+            .eq('user_id', user.id)
+            .gte('created_at', monthStart.toISOString())
+
+          // 今日生成数
+          const todayStart = new Date()
+          todayStart.setHours(0, 0, 0, 0)
+          const { count: todayGen } = await supabase
+            .from('ai_generations')
+            .select('*', { count: 'exact', head: true })
+            .eq('user_id', user.id)
+            .gte('created_at', todayStart.toISOString())
+
+          // 最常用功能
+          const { data: featureUsage } = await supabase
+            .from('ai_generations')
+            .select('transformation_type')
+            .eq('user_id', user.id)
+          const featureCounts =
+            featureUsage?.reduce((acc: any, item: any) => {
+              acc[item.transformation_type] = (acc[item.transformation_type] || 0) + 1
+              return acc
+            }, {}) || {}
+          const mostUsedFeature = Object.keys(featureCounts).reduce(
+            (a, b) => (featureCounts[a] > featureCounts[b] ? a : b),
+            ''
+          )
+
+          // 最近生成
+          const { data: lastGen } = await supabase
+            .from('ai_generations')
+            .select('created_at')
+            .eq('user_id', user.id)
+            .order('created_at', { ascending: false })
+            .limit(1)
+            .single()
+
+          // 计算平均每日生成数
+          const { data: firstGen } = await supabase
+            .from('ai_generations')
+            .select('created_at')
+            .eq('user_id', user.id)
+            .order('created_at', { ascending: true })
+            .limit(1)
+            .single()
+          const daysSinceFirst = firstGen
+            ? Math.max(
+                1,
+                Math.ceil(
+                  (Date.now() - new Date(firstGen.created_at).getTime()) / (1000 * 60 * 60 * 24)
+                )
+              )
+            : 1
+
+          // 公开作品数
+          const { count: publicWorksResult } = await supabase
+            .from('public_gallery')
+            .select('*', { count: 'exact', head: true })
+            .eq('user_id', user.id)
+
+          // 总点赞数
+          const { count: likesResult } = await supabase
+            .from('gallery_likes')
+            .select('*', { count: 'exact', head: true })
+            .eq('user_id', user.id)
+
+          // 总评论数
+          const { count: commentsResult } = await supabase
+            .from('gallery_comments')
+            .select('*', { count: 'exact', head: true })
+            .eq('user_id', user.id)
+
+          setStats({
+            totalGenerations: totalGen || 0,
+            totalFavorites: totalFav || 0,
+            thisWeekGenerations: weekGen || 0,
+            thisMonthGenerations: monthGen || 0,
+            todayGenerations: todayGen || 0,
+            mostUsedFeature,
+            featureUsage: featureCounts,
+            lastGeneration: lastGen?.created_at || null,
+            averageGenerationsPerDay: Math.round(((totalGen || 0) / daysSinceFirst) * 10) / 10,
+            publicWorks: publicWorksResult.count || 0,
+            totalLikes: likesResult.count || 0,
+            totalComments: commentsResult.count || 0,
+          })
+        } catch (error) {
+          console.error('Error fetching unified stats:', error)
+        } finally {
+          setLoading(false)
+        }
+      }
+
+      fetchStats()
     }
   }, [user])
 

@@ -27,36 +27,11 @@ export const PrivacyControls: React.FC = () => {
     data_retention_days: 365,
     allow_analytics: false,
   })
-  const [loading, setLoading] = useState(true)
+  const [loading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
 
   // 获取隐私设置
-  const fetchPrivacySettings = useCallback(async () => {
-    if (!user) return
-
-    try {
-      const { data, error } = await supabase
-        .from('user_privacy_settings')
-        .select('*')
-        .eq('user_id', user.id)
-        .single()
-
-      if (error && error.code !== 'PGRST116') {
-        // PGRST116 = no rows found
-        throw error
-      }
-
-      if (data) {
-        setSettings(data.settings)
-      }
-    } catch (err) {
-      console.error('Error fetching privacy settings:', err)
-      setMessage({ type: 'error', text: '获取隐私设置失败' })
-    } finally {
-      setLoading(false)
-    }
-  }, [user])
 
   // 保存隐私设置
   const savePrivacySettings = useCallback(async () => {
@@ -176,6 +151,40 @@ export const PrivacyControls: React.FC = () => {
   }, [user])
 
   useEffect(() => {
+    const fetchPrivacySettings = async () => {
+      if (!user) return
+
+      try {
+        const { data, error } = await supabase
+          .from('user_privacy_settings')
+          .select('*')
+          .eq('user_id', user.id)
+          .single()
+
+        if (error && error.code !== 'PGRST116') {
+          console.error('Error fetching privacy settings:', error)
+          return
+        }
+
+        if (data) {
+          setSettings(data)
+        } else {
+          // 如果没有设置，使用默认值
+          setSettings({
+            profile_visibility: 'private',
+            show_generation_history: false,
+            show_online_status: true,
+            allow_direct_messages: true,
+            allow_data_collection: true,
+            allow_analytics_tracking: true,
+            data_retention_days: 365,
+          })
+        }
+      } catch (error) {
+        console.error('Error fetching privacy settings:', error)
+      }
+    }
+
     fetchPrivacySettings()
   }, [user])
 

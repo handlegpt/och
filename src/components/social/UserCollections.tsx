@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useAuth } from '../../hooks/useAuth'
 import { useTranslation } from '../../../i18n/context'
 import { supabase } from '../../lib/supabase'
@@ -39,29 +39,48 @@ export const UserCollections: React.FC<UserCollectionsProps> = ({
   const [showCreateForm, setShowCreateForm] = useState(false)
 
   useEffect(() => {
-    fetchCollections()
-  }, [userId])
+    const fetchCollections = async () => {
+      try {
+        setLoading(true)
 
-  const fetchCollections = useCallback(async () => {
-    try {
-      setLoading(true)
+        const targetUserId = userId || user?.id
+        if (!targetUserId) return
 
-      const targetUserId = userId || user?.id
-      if (!targetUserId) return
+        const { data, error } = await supabase
+          .from('user_collections')
+          .select(
+            `
+            *,
+            collection_items (
+              id,
+              gallery_item_id,
+              public_gallery (
+                id,
+                title,
+                description,
+                image_url,
+                created_at
+              )
+            )
+          `
+          )
+          .eq('user_id', targetUserId)
+          .order('created_at', { ascending: false })
 
-      const { data, error } = await supabase
-        .from('user_collections')
-        .select('*')
-        .eq('user_id', targetUserId)
-        .order('created_at', { ascending: false })
+        if (error) {
+          console.error('Error fetching collections:', error)
+          return
+        }
 
-      if (error) throw error
-      setCollections(data || [])
-    } catch (error) {
-      console.error('Error fetching collections:', error)
-    } finally {
-      setLoading(false)
+        setCollections(data || [])
+      } catch (error) {
+        console.error('Error fetching collections:', error)
+      } finally {
+        setLoading(false)
+      }
     }
+
+    fetchCollections()
   }, [userId, user])
 
   const createCollection = async (name: string, description: string, isPublic: boolean) => {

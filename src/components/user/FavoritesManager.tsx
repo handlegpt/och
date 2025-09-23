@@ -126,6 +126,30 @@ export const FavoritesManager: React.FC = () => {
   }, [])
 
   useEffect(() => {
+    const fetchFavorites = async () => {
+      if (!user) return
+
+      try {
+        setLoading(true)
+        const { data, error } = await supabase
+          .from('user_favorites')
+          .select('*')
+          .eq('user_id', user.id)
+          .order('created_at', { ascending: false })
+
+        if (error) {
+          console.error('Error fetching favorites:', error)
+          return
+        }
+
+        setFavorites(data || [])
+      } catch (error) {
+        console.error('Error fetching favorites:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
     fetchFavorites()
   }, [user])
 
