@@ -151,7 +151,7 @@ export const FavoritesManager: React.FC = () => {
     }
 
     fetchFavorites()
-  }, [user])
+  }, [])
 
   const filteredFavorites = favorites.filter(
     item => filter === 'all' || item.content_type === filter

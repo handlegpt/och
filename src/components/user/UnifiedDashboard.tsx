@@ -181,7 +181,7 @@ export const UnifiedDashboard: React.FC = () => {
 
       fetchStats()
     }
-  }, [user])
+  }, [])
 
   if (loading) {
     return (

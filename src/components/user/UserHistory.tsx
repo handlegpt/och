@@ -80,7 +80,7 @@ export const UserHistory: React.FC = () => {
 
       fetchUserHistory()
     }
-  }, [user, selectedType])
+  }, [])
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)

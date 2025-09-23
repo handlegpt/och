@@ -81,7 +81,7 @@ export const UserCollections: React.FC<UserCollectionsProps> = ({
     }
 
     fetchCollections()
-  }, [userId, user])
+  }, [])
 
   const createCollection = async (name: string, description: string, isPublic: boolean) => {
     if (!user) return

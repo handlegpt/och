@@ -78,7 +78,7 @@ export const UserStats: React.FC = () => {
 
       fetchUserStats()
     }
-  }, [user])
+  }, [])
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
