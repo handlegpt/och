@@ -5,7 +5,7 @@ import { TestI18n } from './components/TestI18n'
 import { TestComplex } from './components/TestComplex'
 import { TestHomePage } from './components/TestHomePage'
 import { TestAuthModal } from './components/TestAuthModal'
-import { TestAppStore } from './components/TestAppStore'
+import { TestSimpleStore } from './components/TestSimpleStore'
 
 // 最小化的 App 组件，测试基础功能
 export const AppMinimal: React.FC = () => {
@@ -23,7 +23,7 @@ export const AppMinimal: React.FC = () => {
         <TestComplex />
         <TestHomePage />
         <TestAuthModal />
-        <TestAppStore />
+        <TestSimpleStore />
       </main>
     </div>
   )
