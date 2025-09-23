@@ -219,7 +219,7 @@ export const UnifiedDashboard: React.FC = () => {
               : 'bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
           }`}
         >
-          {t('profile.dashboard.overview')}
+          {t('app.app.profile.dashboard.overview')}
         </button>
         <button
           onClick={() => setActiveView('detailed')}
@@ -229,7 +229,7 @@ export const UnifiedDashboard: React.FC = () => {
               : 'bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
           }`}
         >
-          {t('profile.dashboard.detailed')}
+          {t('app.profile.dashboard.detailed')}
         </button>
         <button
           onClick={() => setActiveView('social')}
@@ -239,7 +239,7 @@ export const UnifiedDashboard: React.FC = () => {
               : 'bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
           }`}
         >
-          {t('profile.dashboard.social')}
+          {t('app.profile.dashboard.social')}
         </button>
       </div>
 
@@ -253,7 +253,7 @@ export const UnifiedDashboard: React.FC = () => {
                 {stats.totalGenerations}
               </div>
               <div className='text-sm text-[var(--text-secondary)]'>
-                {t('profile.dashboard.stats.totalGenerations')}
+                {t('app.profile.dashboard.stats.totalGenerations')}
               </div>
             </div>
             <div className='bg-[var(--bg-card)] rounded-lg p-4 border border-[var(--border-primary)]'>
@@ -261,7 +261,7 @@ export const UnifiedDashboard: React.FC = () => {
                 {stats.thisWeekGenerations}
               </div>
               <div className='text-sm text-[var(--text-secondary)]'>
-                {t('profile.dashboard.stats.thisWeek')}
+                {t('app.profile.dashboard.stats.thisWeek')}
               </div>
             </div>
             <div className='bg-[var(--bg-card)] rounded-lg p-4 border border-[var(--border-primary)]'>
@@ -269,7 +269,7 @@ export const UnifiedDashboard: React.FC = () => {
                 {stats.totalFavorites}
               </div>
               <div className='text-sm text-[var(--text-secondary)]'>
-                {t('profile.dashboard.stats.favorites')}
+                {t('app.profile.dashboard.stats.favorites')}
               </div>
             </div>
             <div className='bg-[var(--bg-card)] rounded-lg p-4 border border-[var(--border-primary)]'>
@@ -277,7 +277,7 @@ export const UnifiedDashboard: React.FC = () => {
                 {stats.publicWorks}
               </div>
               <div className='text-sm text-[var(--text-secondary)]'>
-                {t('profile.dashboard.stats.publicWorks')}
+                {t('app.profile.dashboard.stats.publicWorks')}
               </div>
             </div>
           </div>
@@ -285,14 +285,14 @@ export const UnifiedDashboard: React.FC = () => {
           {/* 快速操作 */}
           <div className='bg-[var(--bg-card)] rounded-lg p-6 border border-[var(--border-primary)]'>
             <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-4'>
-              {t('profile.dashboard.quickActions.title')}
+              {t('app.profile.dashboard.quickActions.title')}
             </h3>
             <div className='flex gap-4'>
               <button className='px-4 py-2 bg-[var(--accent-primary)] text-white rounded-lg hover:opacity-90 transition-opacity'>
-                {t('profile.dashboard.quickActions.createNew')}
+                {t('app.profile.dashboard.quickActions.createNew')}
               </button>
               <button className='px-4 py-2 bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-lg hover:opacity-90 transition-opacity'>
-                {t('profile.dashboard.quickActions.shareWork')}
+                {t('app.profile.dashboard.quickActions.shareWork')}
               </button>
             </div>
           </div>
@@ -309,7 +309,7 @@ export const UnifiedDashboard: React.FC = () => {
                 {stats.todayGenerations}
               </div>
               <div className='text-sm text-[var(--text-secondary)]'>
-                {t('profile.dashboard.stats.today')}
+                {t('app.profile.dashboard.stats.today')}
               </div>
             </div>
             <div className='bg-[var(--bg-card)] rounded-lg p-4 border border-[var(--border-primary)]'>
@@ -317,7 +317,7 @@ export const UnifiedDashboard: React.FC = () => {
                 {stats.thisMonthGenerations}
               </div>
               <div className='text-sm text-[var(--text-secondary)]'>
-                {t('profile.dashboard.stats.thisMonth')}
+                {t('app.profile.dashboard.stats.thisMonth')}
               </div>
             </div>
             <div className='bg-[var(--bg-card)] rounded-lg p-4 border border-[var(--border-primary)]'>
@@ -325,7 +325,7 @@ export const UnifiedDashboard: React.FC = () => {
                 {stats.averageGenerationsPerDay}
               </div>
               <div className='text-sm text-[var(--text-secondary)]'>
-                {t('profile.dashboard.stats.dailyAverage')}
+                {t('app.profile.dashboard.stats.dailyAverage')}
               </div>
             </div>
           </div>
@@ -333,7 +333,7 @@ export const UnifiedDashboard: React.FC = () => {
           {/* 功能使用统计 */}
           <div className='bg-[var(--bg-card)] rounded-lg p-6 border border-[var(--border-primary)]'>
             <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-4'>
-              {t('profile.dashboard.featureUsage.title')}
+              {t('app.profile.dashboard.featureUsage.title')}
             </h3>
             <div className='space-y-2'>
               {Object.entries(stats.featureUsage)
@@ -360,7 +360,7 @@ export const UnifiedDashboard: React.FC = () => {
                 {stats.publicWorks}
               </div>
               <div className='text-sm text-[var(--text-secondary)]'>
-                {t('profile.dashboard.stats.publicWorks')}
+                {t('app.profile.dashboard.stats.publicWorks')}
               </div>
             </div>
             <div className='bg-[var(--bg-card)] rounded-lg p-4 border border-[var(--border-primary)]'>
@@ -368,7 +368,7 @@ export const UnifiedDashboard: React.FC = () => {
                 {stats.totalLikes}
               </div>
               <div className='text-sm text-[var(--text-secondary)]'>
-                {t('profile.dashboard.stats.totalLikes')}
+                {t('app.profile.dashboard.stats.totalLikes')}
               </div>
             </div>
             <div className='bg-[var(--bg-card)] rounded-lg p-4 border border-[var(--border-primary)]'>
@@ -376,7 +376,7 @@ export const UnifiedDashboard: React.FC = () => {
                 {stats.totalComments}
               </div>
               <div className='text-sm text-[var(--text-secondary)]'>
-                {t('profile.dashboard.stats.totalComments')}
+                {t('app.profile.dashboard.stats.totalComments')}
               </div>
             </div>
           </div>
@@ -386,7 +386,7 @@ export const UnifiedDashboard: React.FC = () => {
       {/* 最近活动 */}
       <div className='bg-[var(--bg-card)] rounded-lg p-6 border border-[var(--border-primary)]'>
         <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-4'>
-          {t('profile.dashboard.stats.recentActivity')}
+          {t('app.profile.dashboard.stats.recentActivity')}
         </h3>
         {recentActivity.length > 0 ? (
           <div className='space-y-3'>
@@ -411,7 +411,7 @@ export const UnifiedDashboard: React.FC = () => {
           </div>
         ) : (
           <div className='text-center py-8 text-[var(--text-secondary)]'>
-            {t('profile.dashboard.noActivity')}
+            {t('app.profile.dashboard.noActivity')}
           </div>
         )}
       </div>
