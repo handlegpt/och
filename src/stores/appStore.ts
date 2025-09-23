@@ -1,5 +1,4 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
 
 // 类型定义
 export interface User {
@@ -138,113 +137,99 @@ const initialState = {
   },
 }
 
-// 创建 store
-export const useAppStore = create<AppState>()(
-  persist(
-    (set, _get) => ({
-      ...initialState,
+// 创建 store - 暂时移除持久化中间件来修复 React 错误 #185
+export const useAppStore = create<AppState>()((set, _get) => ({
+  ...initialState,
 
-      // 用户相关 actions
-      setUser: user => set({ user, isAuthenticated: !!user }),
-      setAuthenticated: authenticated => set({ isAuthenticated: authenticated }),
-      setLoading: loading => set({ isLoading: loading }),
+  // 用户相关 actions
+  setUser: user => set({ user, isAuthenticated: !!user }),
+  setAuthenticated: authenticated => set({ isAuthenticated: authenticated }),
+  setLoading: loading => set({ isLoading: loading }),
 
-      // 使用限制 actions
-      setUsageLimit: limit => set({ usageLimit: limit }),
-      updateUsage: used =>
-        set(_state => ({
-          usageLimit: {
-            ..._state.usageLimit,
-            usedToday: used,
-            remainingToday: Math.max(0, _state.usageLimit.dailyLimit - used),
-            canGenerate: used < _state.usageLimit.dailyLimit,
-          },
-        })),
+  // 使用限制 actions
+  setUsageLimit: limit => set({ usageLimit: limit }),
+  updateUsage: used =>
+    set(_state => ({
+      usageLimit: {
+        ..._state.usageLimit,
+        usedToday: used,
+        remainingToday: Math.max(0, _state.usageLimit.dailyLimit - used),
+        canGenerate: used < _state.usageLimit.dailyLimit,
+      },
+    })),
 
-      // 生成状态 actions
-      setGenerating: generating =>
-        set(_state => ({
-          generation: { ..._state.generation, isGenerating: generating },
-        })),
-      setProgress: progress =>
-        set(_state => ({
-          generation: { ..._state.generation, progress },
-        })),
-      setCurrentStep: step =>
-        set(_state => ({
-          generation: { ..._state.generation, currentStep: step },
-        })),
-      setResult: result =>
-        set(_state => ({
-          generation: { ..._state.generation, result, isGenerating: false },
-        })),
-      setError: error =>
-        set(_state => ({
-          generation: { ..._state.generation, error, isGenerating: false },
-        })),
-      resetGeneration: () =>
-        set(_state => ({
-          generation: {
-            isGenerating: false,
-            progress: 0,
-            currentStep: '',
-            result: undefined,
-            error: undefined,
-          },
-        })),
+  // 生成状态 actions
+  setGenerating: generating =>
+    set(_state => ({
+      generation: { ..._state.generation, isGenerating: generating },
+    })),
+  setProgress: progress =>
+    set(_state => ({
+      generation: { ..._state.generation, progress },
+    })),
+  setCurrentStep: step =>
+    set(_state => ({
+      generation: { ..._state.generation, currentStep: step },
+    })),
+  setResult: result =>
+    set(_state => ({
+      generation: { ..._state.generation, result, isGenerating: false },
+    })),
+  setError: error =>
+    set(_state => ({
+      generation: { ..._state.generation, error, isGenerating: false },
+    })),
+  resetGeneration: () =>
+    set(_state => ({
+      generation: {
+        isGenerating: false,
+        progress: 0,
+        currentStep: '',
+        result: undefined,
+        error: undefined,
+      },
+    })),
 
-      // 主题 actions
-      setTheme: theme =>
-        set(_state => ({
-          theme: { ..._state.theme, ...theme },
-        })),
-      toggleTheme: () =>
-        set(_state => ({
-          theme: {
-            ..._state.theme,
-            mode: _state.theme.mode === 'light' ? 'dark' : 'light',
-          },
-        })),
+  // 主题 actions
+  setTheme: theme =>
+    set(_state => ({
+      theme: { ..._state.theme, ...theme },
+    })),
+  toggleTheme: () =>
+    set(_state => ({
+      theme: {
+        ..._state.theme,
+        mode: _state.theme.mode === 'light' ? 'dark' : 'light',
+      },
+    })),
 
-      // 语言 actions
-      setLanguage: lang =>
-        set(_state => ({
-          language: { ..._state.language, current: lang },
-        })),
-      setBrowserDetected: detected =>
-        set(_state => ({
-          language: { ..._state.language, browserDetected: detected },
-        })),
+  // 语言 actions
+  setLanguage: lang =>
+    set(_state => ({
+      language: { ..._state.language, current: lang },
+    })),
+  setBrowserDetected: detected =>
+    set(_state => ({
+      language: { ..._state.language, browserDetected: detected },
+    })),
 
-      // UI actions
-      setSidebarOpen: open =>
-        set(_state => ({
-          ui: { ..._state.ui, sidebarOpen: open },
-        })),
-      setModalOpen: (open, modal) =>
-        set(_state => ({
-          ui: { ..._state.ui, modalOpen: open, currentModal: modal },
-        })),
-      setUIError: error =>
-        set(_state => ({
-          ui: { ..._state.ui, error },
-        })),
+  // UI actions
+  setSidebarOpen: open =>
+    set(_state => ({
+      ui: { ..._state.ui, sidebarOpen: open },
+    })),
+  setModalOpen: (open, modal) =>
+    set(_state => ({
+      ui: { ..._state.ui, modalOpen: open, currentModal: modal },
+    })),
+  setUIError: error =>
+    set(_state => ({
+      ui: { ..._state.ui, error },
+    })),
 
-      // 重置
-      reset: () => set(initialState),
-    }),
-    {
-      name: 'och-ai-store',
-      partialize: state => ({
-        user: state.user,
-        isAuthenticated: state.isAuthenticated,
-        theme: state.theme,
-        language: state.language,
-        usageLimit: state.usageLimit,
-      }),
-    }
-  )
-)
+  // 重置
+  reset: () => set(initialState),
+}))
 
 // 选择器 hooks
 export const useUser = () =>
