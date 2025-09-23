@@ -196,8 +196,10 @@ export const UnifiedDashboard: React.FC = () => {
   }, [user])
 
   useEffect(() => {
-    fetchUnifiedStats()
-  }, [fetchUnifiedStats])
+    if (user) {
+      fetchUnifiedStats()
+    }
+  }, [user, fetchUnifiedStats])
 
   if (loading) {
     return (

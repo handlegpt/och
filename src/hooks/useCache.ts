@@ -126,7 +126,7 @@ export function useCache<T>(
       // 没有缓存数据，直接获取
       fetchData()
     }
-  }, [key, getCachedData, fetchData, staleWhileRevalidate])
+  }, [key, ttl, staleWhileRevalidate, retryCount, retryDelay])
 
   return {
     data,

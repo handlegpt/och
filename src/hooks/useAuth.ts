@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { User, Session } from '@supabase/supabase-js'
 import { supabase } from '../lib/supabase'
 
@@ -44,7 +44,7 @@ export const useAuthProvider = () => {
     return () => subscription.unsubscribe()
   }, [])
 
-  const fetchUserProfile = async (userId: string) => {
+  const fetchUserProfile = useCallback(async (userId: string) => {
     if (!supabase) return
 
     try {
@@ -64,7 +64,7 @@ export const useAuthProvider = () => {
     } catch (error) {
       console.error('Error fetching user profile:', error)
     }
-  }
+  }, [])
 
   const signIn = async (email: string, password: string) => {
     if (!supabase) throw new Error('Supabase client not initialized')
