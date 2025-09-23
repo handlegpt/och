@@ -59,35 +59,33 @@ export function useCache<T>(
   }, [cacheKey])
 
   // 获取数据（带重试）
-  const fetchData = useCallback(
-    async (retryAttempt = 0): Promise<void> => {
-      setLoading(true)
-      setError(null)
+  const fetchData = useCallback(async (): Promise<void> => {
+    setLoading(true)
+    setError(null)
 
+    let lastError: Error | null = null
+
+    for (let attempt = 0; attempt <= retryCount; attempt++) {
       try {
         const result = await fetcher()
         setData(result)
         setCachedData(result)
-      } catch (err) {
-        const error = err instanceof Error ? err : new Error('Unknown error')
-
-        if (retryAttempt < retryCount) {
-          // 重试
-          setTimeout(
-            () => {
-              fetchData(retryAttempt + 1)
-            },
-            retryDelay * Math.pow(2, retryAttempt)
-          ) // 指数退避
-        } else {
-          setError(error)
-        }
-      } finally {
         setLoading(false)
+        return
+      } catch (err) {
+        lastError = err instanceof Error ? err : new Error('Unknown error')
+
+        if (attempt < retryCount) {
+          // 等待重试延迟
+          await new Promise(resolve => setTimeout(resolve, retryDelay * Math.pow(2, attempt)))
+        }
       }
-    },
-    [fetcher, retryCount, retryDelay, setCachedData]
-  )
+    }
+
+    // 所有重试都失败了
+    setError(lastError)
+    setLoading(false)
+  }, [fetcher, retryCount, retryDelay, setCachedData])
 
   // 初始化数据
   useEffect(() => {
