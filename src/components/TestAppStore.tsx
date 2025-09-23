@@ -10,70 +10,21 @@ import {
 
 // 测试 appStore 的组件
 export const TestAppStore: React.FC = () => {
-  const { user, isAuthenticated, isLoading, setUser, setAuthenticated, setLoading } = useUser()
-  const { usageLimit, setUsageLimit, updateUsage } = useUsageLimit()
-  const {
-    generation,
-    setGenerating,
-    setProgress,
-    setCurrentStep,
-    setResult,
-    setError,
-    resetGeneration,
-  } = useGeneration()
-  const { theme, setTheme, toggleTheme } = useTheme()
-  const { language, setLanguage, setBrowserDetected } = useLanguage()
-  const { ui, setSidebarOpen, setModalOpen, setUIError } = useUI()
+  const { user, isAuthenticated, isLoading, setAuthenticated, setLoading } = useUser()
+  const { usageLimit, updateUsage } = useUsageLimit()
+  const { generation, setError, resetGeneration } = useGeneration()
+  const { theme, toggleTheme } = useTheme()
+  const { language, setLanguage } = useLanguage()
+  const { ui, setSidebarOpen, setUIError } = useUI()
 
-  // 测试状态更新 - 只运行一次
+  // 测试状态更新 - 简化版本，避免无限循环
   useEffect(() => {
     console.log('TestAppStore: Testing store updates')
 
-    // 模拟用户登录
-    const mockUser = {
-      id: 'test-123',
-      email: 'test@example.com',
-      display_name: 'Test User',
-      avatar_url: 'https://example.com/avatar.jpg',
-      created_at: new Date().toISOString(),
-    }
-
-    setUser(mockUser)
-    setAuthenticated(true)
+    // 只设置基本状态，避免复杂的连锁反应
     setLoading(false)
-
-    // 模拟使用限制更新
-    setUsageLimit({
-      dailyLimit: 10,
-      usedToday: 3,
-      remainingToday: 7,
-      canGenerate: true,
-      tier: 'premium',
-    })
-
-    // 模拟生成状态
-    setGenerating(true)
-    setProgress(50)
-    setCurrentStep('Processing image...')
-
-    // 模拟主题切换
-    setTheme({ mode: 'light', primary: '#3b82f6', secondary: '#1e40af' })
-
-    // 模拟语言设置
-    setLanguage('en')
-    setBrowserDetected(true)
-
-    // 模拟 UI 状态
-    setSidebarOpen(true)
-    setModalOpen(true, 'test-modal')
-
-    // 模拟延迟更新
-    setTimeout(() => {
-      setProgress(100)
-      setResult('Generated successfully!')
-      setGenerating(false)
-    }, 2000)
-  }, []) // 空依赖数组，只运行一次
+    setAuthenticated(false)
+  }, [setLoading, setAuthenticated]) // 包含必要的依赖
 
   const handleToggleTheme = () => {
     toggleTheme()
