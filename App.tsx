@@ -10,6 +10,7 @@ import { PrivacyPage } from './src/pages/PrivacyPage'
 import { SettingsPage } from './src/pages/SettingsPage'
 import { MorePage } from './src/pages/MorePage'
 import { SocialPage } from './src/pages/SocialPage'
+import { PricingPage } from './src/pages/PricingPage'
 import { AuthCallback } from './src/components/auth/AuthCallback'
 import { UsageLimitAlert } from './src/components/UsageLimitAlert'
 
@@ -24,6 +25,7 @@ const App: React.FC = () => {
           <Route path='/profile' element={<ProfilePage />} />
           <Route path='/categories' element={<CategoriesPage />} />
           <Route path='/social' element={<SocialPage />} />
+          <Route path='/pricing' element={<PricingPage />} />
           <Route path='/privacy' element={<PrivacyPage />} />
           <Route path='/settings' element={<SettingsPage />} />
           <Route path='/more' element={<MorePage />} />
