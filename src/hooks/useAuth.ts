@@ -64,7 +64,7 @@ export const useAuthProvider = () => {
     })
 
     return () => subscription.unsubscribe()
-  }, [])
+  }, [fetchUserProfile])
 
   const signIn = async (email: string, password: string) => {
     if (!supabase) throw new Error('Supabase client not initialized')
