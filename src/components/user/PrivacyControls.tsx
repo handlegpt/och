@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-// import { useTranslation } from '../../../i18n/context';
+import { useTranslation } from '../../../i18n/context'
 import { useAuth } from '../../hooks/useAuth'
 import { supabase } from '../../lib/supabase'
 
@@ -15,7 +15,7 @@ interface PrivacySettings {
 }
 
 export const PrivacyControls: React.FC = () => {
-  // const { t } = useTranslation();
+  const { t } = useTranslation()
   const { user } = useAuth()
   const [settings, setSettings] = useState<PrivacySettings>({
     profile_visibility: 'private',
@@ -208,11 +208,13 @@ export const PrivacyControls: React.FC = () => {
 
       {/* 个人资料可见性 */}
       <div className='bg-[var(--bg-card)] rounded-xl p-6 border border-[var(--border-primary)]'>
-        <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-4'>🔒 个人资料可见性</h3>
+        <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-4'>
+          🔒 {t('common.profileVisibility')}
+        </h3>
         <div className='space-y-4'>
           <div>
             <label className='block text-sm font-medium text-[var(--text-primary)] mb-2'>
-              个人资料可见性
+              {t('common.profileVisibility')}
             </label>
             <select
               value={settings.profile_visibility}
@@ -227,8 +229,12 @@ export const PrivacyControls: React.FC = () => {
 
           <div className='flex items-center justify-between'>
             <div>
-              <label className='text-sm font-medium text-[var(--text-primary)]'>显示生成历史</label>
-              <p className='text-xs text-[var(--text-secondary)]'>允许其他用户查看您的生成历史</p>
+              <label className='text-sm font-medium text-[var(--text-primary)]'>
+                {t('common.showGenerationHistory')}
+              </label>
+              <p className='text-xs text-[var(--text-secondary)]'>
+                {t('common.allowOthersViewHistory')}
+              </p>
             </div>
             <label className='relative inline-flex items-center cursor-pointer'>
               <input
@@ -243,8 +249,10 @@ export const PrivacyControls: React.FC = () => {
 
           <div className='flex items-center justify-between'>
             <div>
-              <label className='text-sm font-medium text-[var(--text-primary)]'>显示在线状态</label>
-              <p className='text-xs text-[var(--text-secondary)]'>显示您是否在线</p>
+              <label className='text-sm font-medium text-[var(--text-primary)]'>
+                {t('common.showOnlineStatus')}
+              </label>
+              <p className='text-xs text-[var(--text-secondary)]'>{t('common.showOnlineStatus')}</p>
             </div>
             <label className='relative inline-flex items-center cursor-pointer'>
               <input
@@ -261,11 +269,13 @@ export const PrivacyControls: React.FC = () => {
 
       {/* 内容分享权限 */}
       <div className='bg-[var(--bg-card)] rounded-xl p-6 border border-[var(--border-primary)]'>
-        <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-4'>📤 内容分享权限</h3>
+        <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-4'>
+          📤 {t('common.contentSharingPermissions')}
+        </h3>
         <div className='space-y-4'>
           <div>
             <label className='block text-sm font-medium text-[var(--text-primary)] mb-2'>
-              内容分享权限
+              {t('common.contentSharingPermissions')}
             </label>
             <select
               value={settings.content_sharing_permission}
@@ -280,8 +290,12 @@ export const PrivacyControls: React.FC = () => {
 
           <div className='flex items-center justify-between'>
             <div>
-              <label className='text-sm font-medium text-[var(--text-primary)]'>允许私信</label>
-              <p className='text-xs text-[var(--text-secondary)]'>允许其他用户向您发送私信</p>
+              <label className='text-sm font-medium text-[var(--text-primary)]'>
+                {t('common.allowDirectMessages')}
+              </label>
+              <p className='text-xs text-[var(--text-secondary)]'>
+                {t('common.allowOthersSendMessages')}
+              </p>
             </div>
             <label className='relative inline-flex items-center cursor-pointer'>
               <input
@@ -298,12 +312,18 @@ export const PrivacyControls: React.FC = () => {
 
       {/* 数据收集和分析 */}
       <div className='bg-[var(--bg-card)] rounded-xl p-6 border border-[var(--border-primary)]'>
-        <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-4'>📊 数据收集和分析</h3>
+        <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-4'>
+          📊 {t('common.dataCollectionAndAnalysis')}
+        </h3>
         <div className='space-y-4'>
           <div className='flex items-center justify-between'>
             <div>
-              <label className='text-sm font-medium text-[var(--text-primary)]'>允许数据收集</label>
-              <p className='text-xs text-[var(--text-secondary)]'>允许我们收集使用数据以改善服务</p>
+              <label className='text-sm font-medium text-[var(--text-primary)]'>
+                {t('common.allowDataCollection')}
+              </label>
+              <p className='text-xs text-[var(--text-secondary)]'>
+                {t('common.allowUsCollectData')}
+              </p>
             </div>
             <label className='relative inline-flex items-center cursor-pointer'>
               <input
@@ -318,9 +338,11 @@ export const PrivacyControls: React.FC = () => {
 
           <div className='flex items-center justify-between'>
             <div>
-              <label className='text-sm font-medium text-[var(--text-primary)]'>允许分析追踪</label>
+              <label className='text-sm font-medium text-[var(--text-primary)]'>
+                {t('common.allowAnalyticsTracking')}
+              </label>
               <p className='text-xs text-[var(--text-secondary)]'>
-                允许我们分析您的使用行为以优化体验
+                {t('common.allowUsAnalyzeBehavior')}
               </p>
             </div>
             <label className='relative inline-flex items-center cursor-pointer'>
@@ -336,7 +358,7 @@ export const PrivacyControls: React.FC = () => {
 
           <div>
             <label className='block text-sm font-medium text-[var(--text-primary)] mb-2'>
-              数据保留期限（天）
+              {t('common.dataRetentionPeriod')}
             </label>
             <input
               type='number'
@@ -347,7 +369,7 @@ export const PrivacyControls: React.FC = () => {
               className='w-full px-3 py-2 bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-lg text-[var(--text-primary)]'
             />
             <p className='text-xs text-[var(--text-secondary)] mt-1'>
-              超过此期限的数据将被自动删除
+              {t('common.dataWillBeDeleted')}
             </p>
           </div>
         </div>
@@ -355,26 +377,28 @@ export const PrivacyControls: React.FC = () => {
 
       {/* 数据管理 */}
       <div className='bg-[var(--bg-card)] rounded-xl p-6 border border-[var(--border-primary)]'>
-        <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-4'>💾 数据管理</h3>
+        <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-4'>
+          💾 {t('common.dataManagement')}
+        </h3>
         <div className='space-y-4'>
           <div className='flex space-x-4'>
             <button
               onClick={exportData}
               className='px-4 py-2 bg-[var(--accent-primary)] text-white rounded-lg hover:bg-[var(--accent-primary-hover)] transition-colors duration-200'
             >
-              📥 导出数据
+              📥 {t('common.exportData')}
             </button>
             <button
               onClick={resetToDefaults}
               className='px-4 py-2 bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-lg hover:bg-[var(--bg-tertiary)] transition-colors duration-200'
             >
-              🔄 重置为默认
+              🔄 {t('common.resetToDefault')}
             </button>
             <button
               onClick={deleteAllData}
               className='px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors duration-200'
             >
-              🗑️ 删除所有数据
+              🗑️ {t('common.deleteAllData')}
             </button>
           </div>
         </div>
