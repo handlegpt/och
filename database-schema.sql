@@ -106,3 +106,4 @@ INSERT INTO system_settings (key, value, description) VALUES
 ('max_file_size_mb', '10', '最大文件上传大小(MB)'),
 ('allowed_file_types', '["jpg", "jpeg", "png", "webp"]', '允许的文件类型'),
 ('api_rate_limit', '100', 'API 速率限制(每分钟)');
+

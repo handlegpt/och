@@ -24,3 +24,4 @@ SELECT table_name, column_name, data_type
 FROM information_schema.columns 
 WHERE table_name IN ('user_profiles', 'ai_generations', 'usage_stats')
 ORDER BY table_name, ordinal_position;
+

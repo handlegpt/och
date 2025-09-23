@@ -52,3 +52,4 @@ $$ LANGUAGE plpgsql SECURITY DEFINER;
 
 -- 测试函数
 SELECT * FROM check_user_usage_limit('00000000-0000-0000-0000-000000000000'::UUID);
+
