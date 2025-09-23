@@ -32,7 +32,7 @@ export const useLanguage = () => {
         setBrowserDetected(true)
       }
     }
-  }, [language.browserDetected, setLanguage, setBrowserDetected])
+  }, [language.browserDetected])
 
   // 翻译函数
   const t = (key: string): string => {

@@ -91,11 +91,16 @@ export const createLazyComponent = <P extends object>(
 ) => {
   const LazyComponent = lazy(importFunc)
 
-  return React.forwardRef<any, P>((props, ref) => (
-    <LazyWrapper fallback={fallback}>
-      <LazyComponent {...props} ref={ref} />
-    </LazyWrapper>
-  ))
+  return React.forwardRef<any, P>((props, ref) => {
+    // 确保 props 不为 undefined
+    const safeProps = props || ({} as P)
+
+    return (
+      <LazyWrapper fallback={fallback}>
+        <LazyComponent {...safeProps} ref={ref} />
+      </LazyWrapper>
+    )
+  })
 }
 
 // 预定义的懒加载组件

@@ -138,7 +138,7 @@ export function useCache<T>(
     }
 
     initializeData()
-  }, [key, ttl, staleWhileRevalidate, retryCount, retryDelay, fetcher, cacheKey, setCachedData])
+  }, [key, ttl, staleWhileRevalidate, retryCount, retryDelay, fetcher, cacheKey])
 
   return {
     data,
