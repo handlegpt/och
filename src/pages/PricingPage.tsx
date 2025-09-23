@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useTranslation } from '../../../i18n/context'
+import { useTranslation } from '../../i18n/context'
 import { PRICING_TIERS, FEATURE_COMPARISON } from '../config/pricing'
 
 export const PricingPage: React.FC = () => {
