@@ -13,9 +13,9 @@ export const SocialPage: React.FC = () => {
         {/* 页面标题 */}
         <div className='mb-8'>
           <h1 className='text-3xl font-bold text-[var(--text-primary)] mb-2'>
-            {t('social.title')}
+            {t('app.social.title')}
           </h1>
-          <p className='text-[var(--text-secondary)]'>{t('social.subtitle')}</p>
+          <p className='text-[var(--text-secondary)]'>{t('app.social.subtitle')}</p>
         </div>
 
         {/* 标签页导航 */}
@@ -29,7 +29,7 @@ export const SocialPage: React.FC = () => {
             }`}
           >
             <span className='mr-2'>🖼️</span>
-            {t('social.gallery.title')}
+            {t('app.social.gallery.title')}
           </button>
           <button
             onClick={() => setActiveTab('collections')}
@@ -40,7 +40,7 @@ export const SocialPage: React.FC = () => {
             }`}
           >
             <span className='mr-2'>📚</span>
-            {t('social.collections.title')}
+            {t('app.social.collections.title')}
           </button>
         </div>
 

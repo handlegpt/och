@@ -197,14 +197,14 @@ export const GalleryWall: React.FC<GalleryWallProps> = ({ userId, showUserGaller
             onClick={loadMore}
             className='px-6 py-2 bg-[var(--accent-primary)] text-white rounded-lg hover:opacity-90 transition-opacity'
           >
-            {t('social.loadMore')}
+            {t('app.social.loadMore')}
           </button>
         </div>
       )}
 
       {!hasMore && galleryItems.length > 0 && (
         <div className='text-center py-8 text-[var(--text-secondary)]'>
-          {t('social.noMoreItems')}
+          {t('app.social.noMoreItems')}
         </div>
       )}
     </div>
