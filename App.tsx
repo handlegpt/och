@@ -5,7 +5,7 @@ import { Navigation } from './src/components/Navigation'
 import { BottomNavigation } from './src/components/BottomNavigation'
 import { AuthCallback } from './src/components/auth/AuthCallback'
 import { UsageLimitAlert } from './src/components/UsageLimitAlert'
-import { AuthProvider } from './src/components/auth/AuthProvider'
+// import { AuthProvider } from './src/components/auth/AuthProvider'
 import { LanguageProvider } from './i18n/context'
 import { ThemeProvider } from './theme/context'
 import {
@@ -24,33 +24,33 @@ import { MorePage } from './src/pages/MorePage'
 const App: React.FC = () => {
   return (
     <ErrorBoundary>
-      <AuthProvider>
-        <ThemeProvider>
-          <LanguageProvider>
-            <div className='min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] font-sans'>
-              <Navigation />
+      {/* <AuthProvider> */}
+      <ThemeProvider>
+        <LanguageProvider>
+          <div className='min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] font-sans'>
+            <Navigation />
 
-              <Routes>
-                <Route path='/' element={<LazyHomePage />} />
-                <Route path='/profile' element={<LazyProfilePage />} />
-                <Route path='/categories' element={<CategoriesPage />} />
-                <Route path='/social' element={<LazySocialPage />} />
-                <Route path='/pricing' element={<LazyPricingPage />} />
-                <Route path='/privacy' element={<PrivacyPage />} />
-                <Route path='/settings' element={<SettingsPage />} />
-                <Route path='/more' element={<MorePage />} />
-                <Route path='/auth/callback' element={<AuthCallback />} />
-              </Routes>
+            <Routes>
+              <Route path='/' element={<LazyHomePage />} />
+              <Route path='/profile' element={<LazyProfilePage />} />
+              <Route path='/categories' element={<CategoriesPage />} />
+              <Route path='/social' element={<LazySocialPage />} />
+              <Route path='/pricing' element={<LazyPricingPage />} />
+              <Route path='/privacy' element={<PrivacyPage />} />
+              <Route path='/settings' element={<SettingsPage />} />
+              <Route path='/more' element={<MorePage />} />
+              <Route path='/auth/callback' element={<AuthCallback />} />
+            </Routes>
 
-              {/* 底部导航 */}
-              <BottomNavigation />
+            {/* 底部导航 */}
+            <BottomNavigation />
 
-              {/* 使用限制提示 */}
-              <UsageLimitAlert />
-            </div>
-          </LanguageProvider>
-        </ThemeProvider>
-      </AuthProvider>
+            {/* 使用限制提示 */}
+            <UsageLimitAlert />
+          </div>
+        </LanguageProvider>
+      </ThemeProvider>
+      {/* </AuthProvider> */}
     </ErrorBoundary>
   )
 }
