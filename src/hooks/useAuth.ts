@@ -222,5 +222,5 @@ export const useAuthProvider = () => {
   }
 }
 
-// Re-export useAuth from AuthProvider
-export { useAuthContext as useAuth } from '../components/auth/AuthProvider'
+// Re-export useAuth from SimpleAuthProvider
+export { useAuthContext as useAuth } from '../components/auth/SimpleAuthProvider'
