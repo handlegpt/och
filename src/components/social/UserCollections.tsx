@@ -40,7 +40,7 @@ export const UserCollections: React.FC<UserCollectionsProps> = ({
 
   useEffect(() => {
     fetchCollections()
-  }, [userId, fetchCollections])
+  }, [userId])
 
   const fetchCollections = useCallback(async () => {
     try {

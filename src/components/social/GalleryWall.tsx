@@ -81,7 +81,7 @@ export const GalleryWall: React.FC<GalleryWallProps> = ({ userId, showUserGaller
 
   useEffect(() => {
     fetchGalleryItems(0, true)
-  }, [userId, showUserGallery, fetchGalleryItems])
+  }, [userId, showUserGallery])
 
   const handleLike = async (galleryId: string, isLiked: boolean) => {
     if (!user) return
