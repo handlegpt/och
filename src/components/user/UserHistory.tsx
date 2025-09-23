@@ -56,7 +56,7 @@ export const UserHistory: React.FC = () => {
     if (user) {
       fetchUserHistory()
     }
-  }, [user, selectedType, fetchUserHistory])
+  }, [user, selectedType])
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)

@@ -177,7 +177,7 @@ export const PrivacyControls: React.FC = () => {
 
   useEffect(() => {
     fetchPrivacySettings()
-  }, [fetchPrivacySettings])
+  }, [user])
 
   const handleSettingChange = useCallback((key: keyof PrivacySettings, value: any) => {
     setSettings(prev => ({ ...prev, [key]: value }))
