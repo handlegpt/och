@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { AppMinimal } from './src/AppMinimal'
+import App from './App'
 import './index.css'
 
 const rootElement = document.getElementById('root')
@@ -13,7 +13,7 @@ const root = ReactDOM.createRoot(rootElement)
 root.render(
   <React.StrictMode>
     <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-      <AppMinimal />
+      <App />
     </Router>
   </React.StrictMode>
 )
