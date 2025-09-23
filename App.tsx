@@ -3,16 +3,20 @@ import { Routes, Route } from 'react-router-dom'
 import { ErrorBoundary } from './src/components/ErrorBoundary'
 import { Navigation } from './src/components/Navigation'
 import { BottomNavigation } from './src/components/BottomNavigation'
-import { HomePage } from './src/components/HomePage'
-import { ProfilePage } from './src/pages/ProfilePage'
+import { AuthCallback } from './src/components/auth/AuthCallback'
+import { UsageLimitAlert } from './src/components/UsageLimitAlert'
+import {
+  LazyHomePage,
+  LazyProfilePage,
+  LazySocialPage,
+  LazyPricingPage,
+} from './src/components/LazyWrapper'
+
+// 同步导入的轻量级页面
 import { CategoriesPage } from './src/pages/CategoriesPage'
 import { PrivacyPage } from './src/pages/PrivacyPage'
 import { SettingsPage } from './src/pages/SettingsPage'
 import { MorePage } from './src/pages/MorePage'
-import { SocialPage } from './src/pages/SocialPage'
-import { PricingPage } from './src/pages/PricingPage'
-import { AuthCallback } from './src/components/auth/AuthCallback'
-import { UsageLimitAlert } from './src/components/UsageLimitAlert'
 
 const App: React.FC = () => {
   return (
@@ -21,11 +25,11 @@ const App: React.FC = () => {
         <Navigation />
 
         <Routes>
-          <Route path='/' element={<HomePage />} />
-          <Route path='/profile' element={<ProfilePage />} />
+          <Route path='/' element={<LazyHomePage />} />
+          <Route path='/profile' element={<LazyProfilePage />} />
           <Route path='/categories' element={<CategoriesPage />} />
-          <Route path='/social' element={<SocialPage />} />
-          <Route path='/pricing' element={<PricingPage />} />
+          <Route path='/social' element={<LazySocialPage />} />
+          <Route path='/pricing' element={<LazyPricingPage />} />
           <Route path='/privacy' element={<PrivacyPage />} />
           <Route path='/settings' element={<SettingsPage />} />
           <Route path='/more' element={<MorePage />} />
