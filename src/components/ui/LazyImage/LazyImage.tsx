@@ -69,7 +69,7 @@ const LazyImage: React.FC<LazyImageProps> = ({
       }
       img.src = src
     }
-  }, [isInView, src, isLoaded, hasError, fallback, onLoad, onError])
+  }, [isInView, src, isLoaded, hasError, fallback])
 
   return (
     <div className={cn('relative overflow-hidden', className)}>

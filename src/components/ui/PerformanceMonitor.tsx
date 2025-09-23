@@ -64,7 +64,7 @@ export const PerformanceMonitor: React.FC<PerformanceMonitorProps> = ({
     const newMetrics = getPerformanceMetrics()
     setMetrics(newMetrics)
     onMetricsUpdate?.(newMetrics)
-  }, [getPerformanceMetrics, onMetricsUpdate])
+  }, [onMetricsUpdate])
 
   // 监听性能变化
   useEffect(() => {
@@ -85,7 +85,7 @@ export const PerformanceMonitor: React.FC<PerformanceMonitorProps> = ({
       clearInterval(interval)
       document.removeEventListener('visibilitychange', handleVisibilityChange)
     }
-  }, [enabled, updateMetrics, reportInterval])
+  }, [enabled, reportInterval])
 
   // 键盘快捷键显示/隐藏监控器
   useEffect(() => {

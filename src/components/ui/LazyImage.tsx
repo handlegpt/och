@@ -83,7 +83,7 @@ export const LazyImage: React.FC<LazyImageProps> = ({
       onError?.()
     }
     img.src = src
-  }, [src, isInView, isLoaded, hasError, onLoad, onError])
+  }, [src, isInView, isLoaded, hasError])
 
   // 清理 observer
   const cleanup = useCallback(() => {
@@ -226,12 +226,12 @@ export const LazyVideo: React.FC<LazyVideoProps> = ({
 
   const handleLoadedData = useCallback(() => {
     onLoad?.()
-  }, [onLoad])
+  }, [])
 
   const handleError = useCallback(() => {
     setHasError(true)
     onError?.()
-  }, [onError])
+  }, [])
 
   if (hasError) {
     return (

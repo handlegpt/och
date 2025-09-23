@@ -142,7 +142,7 @@ export const DashboardLayout: React.FC = () => {
       setLoading(false)
     }
     loadData()
-  }, [fetchStats, fetchRecentActivity])
+  }, [user])
 
   if (loading) {
     return (

@@ -85,7 +85,7 @@ export function useCache<T>(
     // 所有重试都失败了
     setError(lastError)
     setLoading(false)
-  }, [fetcher, retryCount, retryDelay, setCachedData])
+  }, [fetcher, retryCount, retryDelay])
 
   // 初始化数据
   useEffect(() => {
