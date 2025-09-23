@@ -306,8 +306,9 @@ export default {
         quickActions: {
           title: '快速操作',
           shareWork: '分享作品',
-          createNew: '开始创作',
+          createNew: '创建新作品',
         },
+        noActivity: '暂无活动记录',
         featureUsage: {
           title: '功能使用统计',
         },
@@ -322,7 +323,6 @@ export default {
           upload: '上传头像',
           change: '更换头像',
         },
-        noActivity: '暂无活动记录',
       },
       favorites: {
         title: '我的收藏',

@@ -317,8 +317,9 @@ export default {
         quickActions: {
           title: 'Quick Actions',
           shareWork: 'Share Work',
-          createNew: 'Start Creating',
+          createNew: 'Create New Work',
         },
+        noActivity: 'No recent activity',
         featureUsage: {
           title: 'Feature Usage Statistics',
         },
@@ -333,7 +334,6 @@ export default {
           upload: 'Upload Avatar',
           change: 'Change Avatar',
         },
-        noActivity: 'No activity records yet',
       },
       favorites: {
         title: 'My Favorites',
