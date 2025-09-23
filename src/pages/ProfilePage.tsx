@@ -4,7 +4,6 @@ import { useTranslation } from '../../i18n/context'
 import { UserSettings } from '../components/user/UserSettings'
 import { AdminPanel } from '../components/admin/AdminPanel'
 import { UserHistory } from '../components/user/UserHistory'
-import { ProfileImprovements } from '../components/user/ProfileImprovements'
 import { DashboardLayout } from '../components/user/DashboardLayout'
 import { FavoritesManager } from '../components/user/FavoritesManager'
 import { PrivacyControls } from '../components/user/PrivacyControls'
@@ -13,7 +12,7 @@ export const ProfilePage: React.FC = () => {
   const { user, isAdmin } = useAuth()
   const { t } = useTranslation()
   const [activeTab, setActiveTab] = useState<
-    'dashboard' | 'history' | 'favorites' | 'settings' | 'privacy' | 'improvements' | 'admin'
+    'dashboard' | 'history' | 'favorites' | 'settings' | 'privacy' | 'admin'
   >('dashboard')
 
   if (!user) {
@@ -38,7 +37,6 @@ export const ProfilePage: React.FC = () => {
     { key: 'favorites', label: '我的收藏', icon: '⭐' },
     { key: 'settings', label: t('app.profile.tabs.settings'), icon: '⚙️' },
     { key: 'privacy', label: '隐私控制', icon: '🔒' },
-    { key: 'improvements', label: '改善建议', icon: '🚀' },
     ...(isAdmin ? [{ key: 'admin', label: t('app.profile.tabs.admin'), icon: '🛡️' }] : []),
   ] as const
 
@@ -116,12 +114,6 @@ export const ProfilePage: React.FC = () => {
               <h2 className='text-xl font-semibold text-[var(--text-primary)] mb-4'>隐私控制</h2>
               <p className='text-[var(--text-secondary)] mb-6'>管理您的隐私设置和数据权限</p>
               <PrivacyControls />
-            </div>
-          )}
-
-          {activeTab === 'improvements' && (
-            <div>
-              <ProfileImprovements />
             </div>
           )}
 
