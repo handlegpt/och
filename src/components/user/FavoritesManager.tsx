@@ -181,7 +181,11 @@ export const FavoritesManager: React.FC = () => {
                 : 'bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
             }`}
           >
-            {type === 'all' ? '全部' : type === 'image' ? '图片' : '视频'}
+            {type === 'all'
+              ? t('common.all')
+              : type === 'image'
+                ? t('common.image')
+                : t('common.video')}
           </button>
         ))}
       </div>
@@ -190,8 +194,10 @@ export const FavoritesManager: React.FC = () => {
       {filteredFavorites.length === 0 ? (
         <div className='text-center py-12'>
           <div className='text-6xl mb-4'>⭐</div>
-          <h4 className='text-lg font-medium text-[var(--text-primary)] mb-2'>暂无收藏</h4>
-          <p className='text-[var(--text-secondary)]'>开始生成作品并添加到收藏吧！</p>
+          <h4 className='text-lg font-medium text-[var(--text-primary)] mb-2'>
+            {t('common.noFavorites')}
+          </h4>
+          <p className='text-[var(--text-secondary)]'>{t('common.startCreating')}</p>
         </div>
       ) : (
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>

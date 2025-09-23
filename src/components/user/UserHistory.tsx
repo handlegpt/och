@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useAuth } from '../../hooks/useAuth'
 // import { supabase } from '../../lib/supabase';
-// import { useTranslation } from '../../../i18n/context';
+import { useTranslation } from '../../../i18n/context'
 import { DataPersistenceService } from '../../services/dataPersistence'
 import ImagePreviewModal from '../../../components/ImagePreviewModal'
 import { SkeletonLoader } from '../ui/SkeletonLoader'
@@ -20,7 +20,7 @@ interface GenerationHistory {
 
 export const UserHistory: React.FC = () => {
   const { user } = useAuth()
-  // const { t } = useTranslation();
+  const { t } = useTranslation()
   const [history, setHistory] = useState<GenerationHistory[]>([])
   const [loading, setLoading] = useState(true)
   const [selectedType, setSelectedType] = useState<string>('all')
@@ -220,7 +220,9 @@ export const UserHistory: React.FC = () => {
   return (
     <div className='space-y-4'>
       <div className='flex justify-between items-center'>
-        <h3 className='text-lg font-semibold text-[var(--text-primary)]'>生成历史</h3>
+        <h3 className='text-lg font-semibold text-[var(--text-primary)]'>
+          {t('app.profile.history.title')}
+        </h3>
         <div className='flex items-center gap-2'>
           <select
             value={selectedType}
@@ -288,7 +290,9 @@ export const UserHistory: React.FC = () => {
                 className='w-4 h-4 text-[var(--accent-primary)] bg-[var(--bg-secondary)] border-[var(--border-primary)] rounded focus:ring-[var(--accent-primary)]'
               />
               <span className='text-sm text-[var(--text-secondary)]'>
-                {selectedItems.size === history.length ? '取消全选' : '全选'}
+                {selectedItems.size === history.length
+                  ? t('common.deselectAll')
+                  : t('common.selectAll')}
               </span>
             </div>
           )}

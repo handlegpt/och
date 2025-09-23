@@ -298,8 +298,8 @@ export const UserSettings: React.FC = () => {
                     onChange={e => setSettings({ ...settings, theme: e.target.value })}
                     className='w-full px-3 py-2 bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-lg focus:ring-2 focus:ring-[var(--accent-primary)] focus:border-[var(--accent-primary)] text-[var(--text-primary)]'
                   >
-                    <option value='dark'>深色模式</option>
-                    <option value='light'>浅色模式</option>
+                    <option value='dark'>{t('common.darkMode')}</option>
+                    <option value='light'>{t('common.lightMode')}</option>
                   </select>
                 </div>
 
@@ -402,7 +402,7 @@ export const UserSettings: React.FC = () => {
                       Google OAuth / Magic Link
                     </div>
                   </div>
-                  <span className='text-green-500 text-sm'>已启用</span>
+                  <span className='text-green-500 text-sm'>{t('common.enabled')}</span>
                 </div>
 
                 <div className='flex justify-between items-center'>
@@ -410,10 +410,12 @@ export const UserSettings: React.FC = () => {
                     <div className='text-[var(--text-primary)] font-medium'>
                       {t('app.userSettings.security.twoFactorAuth')}
                     </div>
-                    <div className='text-sm text-[var(--text-secondary)]'>增强账户安全性</div>
+                    <div className='text-sm text-[var(--text-secondary)]'>
+                      {t('common.enhanceSecurity')}
+                    </div>
                   </div>
                   <button className='px-3 py-1 text-xs bg-[var(--accent-primary)] bg-opacity-20 text-[var(--accent-primary)] rounded-md hover:bg-opacity-30 transition-colors'>
-                    启用
+                    {t('common.enable')}
                   </button>
                 </div>
               </div>
@@ -435,7 +437,7 @@ export const UserSettings: React.FC = () => {
                     </div>
                   </div>
                   <button className='px-3 py-1 text-xs bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors'>
-                    删除
+                    {t('common.delete')}
                   </button>
                 </div>
               </div>
@@ -458,14 +460,14 @@ export const UserSettings: React.FC = () => {
                       {t('app.userSettings.export.generationHistory')}
                     </div>
                     <div className='text-sm text-[var(--text-secondary)]'>
-                      导出所有生成记录为 JSON 格式
+                      {t('common.exportGenerations')}
                     </div>
                   </div>
                   <button
                     onClick={handleExportHistory}
                     className='px-4 py-2 text-sm bg-[var(--accent-primary)] text-white rounded-lg hover:bg-[var(--accent-primary-hover)] transition-colors'
                   >
-                    导出
+                    {t('common.export')}
                   </button>
                 </div>
 
@@ -474,13 +476,15 @@ export const UserSettings: React.FC = () => {
                     <div className='text-[var(--text-primary)] font-medium'>
                       {t('app.userSettings.export.userSettings')}
                     </div>
-                    <div className='text-sm text-[var(--text-secondary)]'>导出个人设置和偏好</div>
+                    <div className='text-sm text-[var(--text-secondary)]'>
+                      {t('common.exportSettings')}
+                    </div>
                   </div>
                   <button
                     onClick={handleExportSettings}
                     className='px-4 py-2 text-sm bg-[var(--accent-primary)] text-white rounded-lg hover:bg-[var(--accent-primary-hover)] transition-colors'
                   >
-                    导出
+                    {t('common.export')}
                   </button>
                 </div>
 
@@ -489,13 +493,15 @@ export const UserSettings: React.FC = () => {
                     <div className='text-[var(--text-primary)] font-medium'>
                       {t('app.userSettings.export.completeData')}
                     </div>
-                    <div className='text-sm text-[var(--text-secondary)]'>导出所有用户数据</div>
+                    <div className='text-sm text-[var(--text-secondary)]'>
+                      {t('common.exportAllData')}
+                    </div>
                   </div>
                   <button
                     onClick={handleExportAll}
                     className='px-4 py-2 text-sm bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white rounded-lg hover:from-[var(--accent-primary-hover)] hover:to-[var(--accent-secondary-hover)] transition-colors'
                   >
-                    导出全部
+                    {t('common.export')}全部
                   </button>
                 </div>
               </div>
