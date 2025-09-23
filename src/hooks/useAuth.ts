@@ -42,7 +42,7 @@ export const useAuthProvider = () => {
     })
 
     return () => subscription.unsubscribe()
-  }, [])
+  }, [fetchUserProfile])
 
   const fetchUserProfile = useCallback(async (userId: string) => {
     if (!supabase) return

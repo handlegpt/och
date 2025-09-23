@@ -36,28 +36,6 @@ export function useCache<T>(
 
   const cacheKey = `${CACHE_PREFIX}${key}`
 
-  // 从缓存获取数据
-  const getCachedData = useCallback((): T | null => {
-    try {
-      const cached = localStorage.getItem(cacheKey)
-      if (!cached) return null
-
-      const { data: cachedData, timestamp } = JSON.parse(cached)
-      const now = Date.now()
-
-      // 检查是否过期
-      if (now - timestamp > ttl) {
-        localStorage.removeItem(cacheKey)
-        return null
-      }
-
-      return cachedData
-    } catch (error) {
-      console.error('Cache read error:', error)
-      return null
-    }
-  }, [cacheKey, ttl])
-
   // 保存数据到缓存
   const setCachedData = useCallback(
     (newData: T) => {
@@ -113,20 +91,56 @@ export function useCache<T>(
 
   // 初始化数据
   useEffect(() => {
-    const cachedData = getCachedData()
+    const initializeData = async () => {
+      try {
+        const cached = localStorage.getItem(cacheKey)
+        if (cached) {
+          const { data: cachedData, timestamp } = JSON.parse(cached)
+          const now = Date.now()
 
-    if (cachedData) {
-      setData(cachedData)
+          // 检查是否过期
+          if (now - timestamp <= ttl) {
+            setData(cachedData)
 
-      // 如果启用后台重新验证，在后台更新数据
-      if (staleWhileRevalidate) {
-        fetchData()
+            // 如果启用后台重新验证，在后台更新数据
+            if (staleWhileRevalidate) {
+              try {
+                const result = await fetcher()
+                setData(result)
+                setCachedData(result)
+              } catch (error) {
+                console.error('Background refresh failed:', error)
+              }
+            }
+            return
+          } else {
+            localStorage.removeItem(cacheKey)
+          }
+        }
+
+        // 没有缓存数据，直接获取
+        setLoading(true)
+        setError(null)
+
+        try {
+          const result = await fetcher()
+          setData(result)
+          setCachedData(result)
+        } catch (err) {
+          const error = err instanceof Error ? err : new Error('Unknown error')
+          setError(error)
+        } finally {
+          setLoading(false)
+        }
+      } catch (error) {
+        console.error('Cache initialization error:', error)
+        setError(error instanceof Error ? error : new Error('Cache initialization failed'))
+        setLoading(false)
       }
-    } else {
-      // 没有缓存数据，直接获取
-      fetchData()
     }
-  }, [key, ttl, staleWhileRevalidate, retryCount, retryDelay])
+
+    initializeData()
+  }, [key, ttl, staleWhileRevalidate, retryCount, retryDelay, fetcher, cacheKey, setCachedData])
 
   return {
     data,
