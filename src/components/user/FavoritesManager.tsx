@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-// import { useTranslation } from '../../../i18n/context';
+import { useTranslation } from '../../../i18n/context'
 import { useAuth } from '../../hooks/useAuth'
 import { supabase } from '../../lib/supabase'
 import { LazyImage, LazyVideo } from '../ui/LazyImage'
@@ -16,7 +16,7 @@ interface FavoriteItem {
 }
 
 export const FavoritesManager: React.FC = () => {
-  // const { t } = useTranslation();
+  const { t } = useTranslation()
   const { user } = useAuth()
   const [favorites, setFavorites] = useState<FavoriteItem[]>([])
   const [loading, setLoading] = useState(true)
@@ -160,8 +160,12 @@ export const FavoritesManager: React.FC = () => {
       {/* 标题和统计 */}
       <div className='flex items-center justify-between'>
         <div>
-          <h3 className='text-lg font-semibold text-[var(--text-primary)]'>我的收藏</h3>
-          <p className='text-sm text-[var(--text-secondary)]'>共 {favorites.length} 个收藏</p>
+          <h3 className='text-lg font-semibold text-[var(--text-primary)]'>
+            {t('app.profile.favorites.title')}
+          </h3>
+          <p className='text-sm text-[var(--text-secondary)]'>
+            {t('app.profile.favorites.count', { count: favorites.length })}
+          </p>
         </div>
       </div>
 

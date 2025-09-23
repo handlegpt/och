@@ -38,6 +38,10 @@ export const UserCollections: React.FC<UserCollectionsProps> = ({
   const [loading, setLoading] = useState(true)
   const [showCreateForm, setShowCreateForm] = useState(false)
 
+  useEffect(() => {
+    fetchCollections()
+  }, [userId, fetchCollections])
+
   const fetchCollections = useCallback(async () => {
     try {
       setLoading(true)
@@ -59,10 +63,6 @@ export const UserCollections: React.FC<UserCollectionsProps> = ({
       setLoading(false)
     }
   }, [userId, user])
-
-  useEffect(() => {
-    fetchCollections()
-  }, [fetchCollections])
 
   const createCollection = async (name: string, description: string, isPublic: boolean) => {
     if (!user) return
@@ -118,14 +118,14 @@ export const UserCollections: React.FC<UserCollectionsProps> = ({
     <div className='user-collections'>
       <div className='flex items-center justify-between mb-6'>
         <h2 className='text-2xl font-bold text-[var(--text-primary)]'>
-          {t('app.social.collections.title')}
+          {t('social.collections.title')}
         </h2>
         {isOwnProfile && (
           <button
             onClick={() => setShowCreateForm(true)}
             className='px-4 py-2 bg-[var(--accent-primary)] text-white rounded-lg hover:opacity-90 transition-opacity'
           >
-            {t('app.social.collections.createNew')}
+            {t('social.collections.createNew')}
           </button>
         )}
       </div>
@@ -152,17 +152,17 @@ export const UserCollections: React.FC<UserCollectionsProps> = ({
         <div className='text-center py-12'>
           <div className='text-6xl mb-4'>📚</div>
           <h3 className='text-xl font-semibold text-[var(--text-primary)] mb-2'>
-            {t('app.social.collections.empty.title')}
+            {t('social.collections.empty.title')}
           </h3>
           <p className='text-[var(--text-secondary)] mb-4'>
-            {t('app.social.collections.empty.description')}
+            {t('social.collections.empty.description')}
           </p>
           {isOwnProfile && (
             <button
               onClick={() => setShowCreateForm(true)}
               className='px-6 py-2 bg-[var(--accent-primary)] text-white rounded-lg hover:opacity-90 transition-opacity'
             >
-              {t('app.social.collections.createFirst')}
+              {t('social.collections.createFirst')}
             </button>
           )}
         </div>
@@ -192,33 +192,33 @@ const CreateCollectionForm: React.FC<CreateCollectionFormProps> = ({ onSubmit, o
   return (
     <div className='bg-[var(--bg-card)] rounded-xl border border-[var(--border-primary)] p-6 mb-6'>
       <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-4'>
-        {t('app.social.collections.createNew')}
+        {t('social.collections.createNew')}
       </h3>
 
       <form onSubmit={handleSubmit} className='space-y-4'>
         <div>
           <label className='block text-sm font-medium text-[var(--text-primary)] mb-2'>
-            {t('app.social.collections.name')}
+            {t('social.collections.name')}
           </label>
           <input
             type='text'
             value={name}
             onChange={e => setName(e.target.value)}
             className='w-full px-3 py-2 bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-lg focus:ring-2 focus:ring-[var(--accent-primary)] focus:border-transparent'
-            placeholder={t('app.social.collections.namePlaceholder')}
+            placeholder={t('social.collections.namePlaceholder')}
             required
           />
         </div>
 
         <div>
           <label className='block text-sm font-medium text-[var(--text-primary)] mb-2'>
-            {t('app.social.collections.description')}
+            {t('social.collections.description')}
           </label>
           <textarea
             value={description}
             onChange={e => setDescription(e.target.value)}
             className='w-full px-3 py-2 bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-lg focus:ring-2 focus:ring-[var(--accent-primary)] focus:border-transparent'
-            placeholder={t('app.social.collections.descriptionPlaceholder')}
+            placeholder={t('social.collections.descriptionPlaceholder')}
             rows={3}
           />
         </div>
@@ -232,7 +232,7 @@ const CreateCollectionForm: React.FC<CreateCollectionFormProps> = ({ onSubmit, o
             className='mr-2'
           />
           <label htmlFor='isPublic' className='text-sm text-[var(--text-primary)]'>
-            {t('app.social.collections.makePublic')}
+            {t('social.collections.makePublic')}
           </label>
         </div>
 
@@ -241,7 +241,7 @@ const CreateCollectionForm: React.FC<CreateCollectionFormProps> = ({ onSubmit, o
             type='submit'
             className='px-4 py-2 bg-[var(--accent-primary)] text-white rounded-lg hover:opacity-90 transition-opacity'
           >
-            {t('app.social.collections.create')}
+            {t('social.collections.create')}
           </button>
           <button
             type='button'
@@ -304,8 +304,8 @@ const CollectionCard: React.FC<CollectionCardProps> = ({ collection, isOwnProfil
             }`}
           >
             {collection.is_public
-              ? t('app.social.collections.public')
-              : t('app.social.collections.private')}
+              ? t('social.collections.public')
+              : t('social.collections.private')}
           </span>
         </div>
 
@@ -315,7 +315,7 @@ const CollectionCard: React.FC<CollectionCardProps> = ({ collection, isOwnProfil
 
         <div className='flex items-center justify-between text-sm text-[var(--text-secondary)]'>
           <span>
-            {collection.item_count} {t('app.social.collections.items')}
+            {collection.item_count} {t('social.collections.items')}
           </span>
           <span>{new Date(collection.updated_at).toLocaleDateString()}</span>
         </div>
@@ -326,7 +326,7 @@ const CollectionCard: React.FC<CollectionCardProps> = ({ collection, isOwnProfil
         <div className='absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10'>
           <div className='bg-[var(--bg-card)] rounded-lg p-4 m-4'>
             <p className='text-[var(--text-primary)] mb-4'>
-              {t('app.social.collections.deleteConfirm')}
+              {t('social.collections.deleteConfirm')}
             </p>
             <div className='flex gap-2'>
               <button

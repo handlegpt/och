@@ -32,11 +32,11 @@ export const ProfilePage: React.FC = () => {
   }
 
   const tabs = [
-    { key: 'dashboard', label: '仪表板', icon: '📊' },
+    { key: 'dashboard', label: t('app.profile.tabs.dashboard'), icon: '📊' },
     { key: 'history', label: t('app.profile.tabs.history'), icon: '📝' },
-    { key: 'favorites', label: '我的收藏', icon: '⭐' },
+    { key: 'favorites', label: t('app.profile.favorites.title'), icon: '⭐' },
     { key: 'settings', label: t('app.profile.tabs.settings'), icon: '⚙️' },
-    { key: 'privacy', label: '隐私控制', icon: '🔒' },
+    { key: 'privacy', label: t('app.profile.privacy.title'), icon: '🔒' },
     ...(isAdmin ? [{ key: 'admin', label: t('app.profile.tabs.admin'), icon: '🛡️' }] : []),
   ] as const
 
@@ -91,8 +91,12 @@ export const ProfilePage: React.FC = () => {
 
           {activeTab === 'favorites' && (
             <div>
-              <h2 className='text-xl font-semibold text-[var(--text-primary)] mb-4'>我的收藏</h2>
-              <p className='text-[var(--text-secondary)] mb-6'>管理您收藏的生成作品</p>
+              <h2 className='text-xl font-semibold text-[var(--text-primary)] mb-4'>
+                {t('app.profile.favorites.title')}
+              </h2>
+              <p className='text-[var(--text-secondary)] mb-6'>
+                {t('app.profile.favorites.description')}
+              </p>
               <FavoritesManager />
             </div>
           )}

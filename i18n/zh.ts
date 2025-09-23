@@ -327,6 +327,7 @@ export default {
       favorites: {
         title: '我的收藏',
         description: '管理您收藏的生成作品',
+        count: '共 {count} 个收藏',
         empty: '还没有收藏任何作品',
         share: '分享作品',
         download: '下载',

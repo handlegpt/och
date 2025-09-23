@@ -338,6 +338,7 @@ export default {
       favorites: {
         title: 'My Favorites',
         description: 'Manage your favorite generated works',
+        count: '{count} favorites',
         empty: 'No favorite works yet',
         share: 'Share Work',
         download: 'Download',
