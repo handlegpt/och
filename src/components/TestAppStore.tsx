@@ -25,7 +25,7 @@ export const TestAppStore: React.FC = () => {
   const { language, setLanguage, setBrowserDetected } = useLanguage()
   const { ui, setSidebarOpen, setModalOpen, setUIError } = useUI()
 
-  // 测试状态更新
+  // 测试状态更新 - 只运行一次
   useEffect(() => {
     console.log('TestAppStore: Testing store updates')
 
@@ -73,20 +73,7 @@ export const TestAppStore: React.FC = () => {
       setResult('Generated successfully!')
       setGenerating(false)
     }, 2000)
-  }, [
-    setUser,
-    setAuthenticated,
-    setLoading,
-    setUsageLimit,
-    setGenerating,
-    setProgress,
-    setCurrentStep,
-    setTheme,
-    setLanguage,
-    setBrowserDetected,
-    setSidebarOpen,
-    setModalOpen,
-  ])
+  }, []) // 空依赖数组，只运行一次
 
   const handleToggleTheme = () => {
     toggleTheme()
