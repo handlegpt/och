@@ -99,7 +99,7 @@ export const useUsageLimit = () => {
     }
 
     fetchUsage()
-  }, [user, authLoading])
+  }, [user?.id, authLoading]) // 只依赖 user.id 而不是整个 user 对象
 
   const recordUsage = async (
     actionType: 'image_generation' | 'video_generation',

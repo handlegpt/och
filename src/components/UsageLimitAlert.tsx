@@ -10,8 +10,10 @@ export const UsageLimitAlert: React.FC = () => {
 
   const { dailyLimit, usedToday, remainingToday, canGenerate } = usageLimit
 
-  // 调试信息
-  console.log('UsageLimitAlert - usageLimit:', usageLimit)
+  // 调试信息 - 只在开发环境输出
+  if (process.env.NODE_ENV === 'development') {
+    console.log('UsageLimitAlert - usageLimit:', usageLimit)
+  }
 
   // 如果数据无效，不显示警告
   if (dailyLimit === undefined || usedToday === undefined || remainingToday === undefined) {
