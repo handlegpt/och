@@ -27,11 +27,11 @@ BEGIN
   
   -- Set limits based on subscription tier
   CASE user_tier
-    WHEN 'free' THEN limit_count := 50;  -- 更新为50次
+    WHEN 'free' THEN limit_count := 10;  -- 更新为10次
     WHEN 'pro' THEN limit_count := 100;
     WHEN 'enterprise' THEN limit_count := 1000;
     WHEN 'admin' THEN limit_count := 10000;
-    ELSE limit_count := 50;
+    ELSE limit_count := 10;
   END CASE;
   
   -- Calculate today's usage (使用正确的表名 ai_generations)

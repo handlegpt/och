@@ -169,7 +169,7 @@ export const FEATURE_COMPARISON = [
   {
     feature: '每日生成次数',
     free: '5次',
-    standard: '50次',
+    standard: '10次',
     professional: '200次',
     enterprise: '无限制',
   },
