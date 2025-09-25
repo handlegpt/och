@@ -177,7 +177,7 @@ export const EnhancedFeatureGrid: React.FC<EnhancedFeatureGridProps> = ({
           </div>
           <input
             type='text'
-            placeholder='搜索功能...'
+            placeholder={t('features.allFeatures.searchPlaceholder')}
             value={searchQuery}
             onChange={handleSearchChange}
             className='w-full pl-10 pr-4 py-3 bg-[var(--bg-card)] border border-[var(--border-primary)] rounded-lg text-[var(--text-primary)] placeholder-[var(--text-secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-primary)] focus:border-transparent'
