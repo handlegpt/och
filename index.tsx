@@ -1,7 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter as Router } from 'react-router-dom'
 import App from './App'
+import { LanguageProvider } from './i18n/context'
+import { ThemeProvider } from './theme/context'
+import { BrowserRouter as Router } from 'react-router-dom'
+import { AuthProvider } from './src/components/auth/AuthProvider'
 import './index.css'
 
 const rootElement = document.getElementById('root')
@@ -12,8 +15,14 @@ if (!rootElement) {
 const root = ReactDOM.createRoot(rootElement)
 root.render(
   <React.StrictMode>
-    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-      <App />
-    </Router>
+    <LanguageProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+            <App />
+          </Router>
+        </AuthProvider>
+      </ThemeProvider>
+    </LanguageProvider>
   </React.StrictMode>
 )

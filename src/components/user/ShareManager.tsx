@@ -105,7 +105,7 @@ export const ShareManager: React.FC<ShareManagerProps> = ({
     } catch {
       console.log('Share cancelled')
     }
-  }, [title, description, shareUrl])
+  }, [title, description, shareUrl, generateShareUrl])
 
   // 下载二维码
   const downloadQRCode = useCallback(async () => {
@@ -132,7 +132,7 @@ export const ShareManager: React.FC<ShareManagerProps> = ({
     const url = generateShareUrl()
     generateQRCode(url)
     setShowShareModal(true)
-  }, [])
+  }, [generateShareUrl, generateQRCode])
 
   return (
     <div className='space-y-4'>

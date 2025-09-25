@@ -13,7 +13,13 @@
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
     "type-check": "tsc --noEmit",
+    "test": "vitest",
+    "test:unit": "vitest run --coverage",
+    "test:integration": "vitest run --config vitest.integration.config.ts",
+    "test:all": "npm run test:unit && npm run test:integration",
     "test:build": "npm run build && npm run preview & sleep 5 && curl -f http://localhost:4173/ && pkill -f 'vite preview'",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -21,13 +27,10 @@
     "@supabase/supabase-js": "^2.57.4",
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/typography": "^0.5.18",
-    "clsx": "^2.1.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^6.30.1",
-    "tailwind-merge": "^3.3.1",
-    "tailwindcss": "^3.4.17",
-    "zustand": "^5.0.8"
+    "tailwindcss": "^3.4.17"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
@@ -39,16 +42,19 @@
     "@typescript-eslint/parser": "^8.15.0",
     "@vitejs/plugin-react": "^4.3.3",
     "@vitest/coverage-v8": "^3.2.4",
+    "@vitest/ui": "^3.2.4",
     "autoprefixer": "^10.4.21",
     "eslint": "^9.15.0",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",
     "husky": "^9.1.7",
+    "jsdom": "^25.0.1",
     "lint-staged": "^15.2.10",
     "postcss": "^8.5.6",
     "prettier": "^3.3.3",
     "typescript": "~5.8.2",
-    "vite": "^6.2.0"
+    "vite": "^6.2.0",
+    "vitest": "^3.2.4"
   }
 }

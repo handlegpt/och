@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useAuth } from '../../hooks/useAuth'
-import { supabase } from '../../lib/supabase'
+// import { supabase } from '../../lib/supabase';
 import { useTranslation } from '../../../i18n/context'
 import { DataPersistenceService } from '../../services/dataPersistence'
 import ImagePreviewModal from '../../../components/ImagePreviewModal'
@@ -54,33 +54,9 @@ export const UserHistory: React.FC = () => {
 
   useEffect(() => {
     if (user) {
-      const fetchUserHistory = async () => {
-        try {
-          setLoading(true)
-          let query = supabase.from('ai_generations').select('*').eq('user_id', user.id)
-
-          if (selectedType !== 'all') {
-            query = query.eq('transformation_type', selectedType)
-          }
-
-          const { data, error } = await query.order('created_at', { ascending: false })
-
-          if (error) {
-            console.error('Error fetching user history:', error)
-            return
-          }
-
-          setHistory(data || [])
-        } catch (error) {
-          console.error('Error fetching user history:', error)
-        } finally {
-          setLoading(false)
-        }
-      }
-
       fetchUserHistory()
     }
-  }, [])
+  }, [user, selectedType, fetchUserHistory])
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useAuth } from '../../hooks/useAuth'
-import { useLanguage } from '../../hooks/useLanguage'
+import { useTranslation } from '../../../i18n/context'
 
 interface AuthModalProps {
   isOpen: boolean
@@ -13,7 +13,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState<string | null>(null)
   const { signInWithGoogle, signInWithEmail } = useAuth()
-  const { t } = useLanguage()
+  const { t } = useTranslation()
 
   const handleGoogleLogin = async () => {
     setLoading(true)

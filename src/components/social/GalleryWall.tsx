@@ -3,8 +3,6 @@ import { useAuth } from '../../hooks/useAuth'
 import { useTranslation } from '../../../i18n/context'
 import { supabase } from '../../lib/supabase'
 
-const ITEMS_PER_PAGE = 12
-
 interface GalleryItem {
   id: string
   title: string
@@ -82,79 +80,8 @@ export const GalleryWall: React.FC<GalleryWallProps> = ({ userId, showUserGaller
   )
 
   useEffect(() => {
-    const fetchItems = async (pageNum: number = 0, reset: boolean = false) => {
-      try {
-        setLoading(true)
-
-        if (reset) {
-          setGalleryItems([])
-        }
-
-        const query = supabase
-          .from('public_gallery')
-          .select(
-            `
-            *,
-            user_profiles!public_gallery_user_id_fkey (
-              id,
-              display_name,
-              avatar_url
-            ),
-            gallery_likes!gallery_likes_gallery_id_fkey (
-              id,
-              user_id
-            ),
-            gallery_comments!gallery_comments_gallery_id_fkey (
-              id,
-              content,
-              user_id,
-              created_at,
-              user_profiles!gallery_comments_user_id_fkey (
-                display_name,
-                avatar_url
-              )
-            )
-          `
-          )
-          .order('created_at', { ascending: false })
-          .range(pageNum * ITEMS_PER_PAGE, (pageNum + 1) * ITEMS_PER_PAGE - 1)
-
-        if (showUserGallery && userId) {
-          query.eq('user_id', userId)
-        }
-
-        const { data, error } = await query
-
-        if (error) {
-          console.error('Error fetching gallery items:', error)
-          return
-        }
-
-        if (data) {
-          const processedItems = data.map(item => ({
-            ...item,
-            isLiked: item.gallery_likes?.some((like: any) => like.user_id === user?.id) || false,
-            likesCount: item.gallery_likes?.length || 0,
-            commentsCount: item.gallery_comments?.length || 0,
-          }))
-
-          if (reset) {
-            setGalleryItems(processedItems)
-          } else {
-            setGalleryItems(prev => [...prev, ...processedItems])
-          }
-
-          setHasMore(data.length === ITEMS_PER_PAGE)
-        }
-      } catch (error) {
-        console.error('Error fetching gallery items:', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchItems(0, true)
-  }, [])
+    fetchGalleryItems(0, true)
+  }, [userId, showUserGallery, fetchGalleryItems])
 
   const handleLike = async (galleryId: string, isLiked: boolean) => {
     if (!user) return

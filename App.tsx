@@ -1,41 +1,42 @@
 import React from 'react'
-// import { Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { ErrorBoundary } from './src/components/ErrorBoundary'
-// import { Navigation } from './src/components/Navigation'
-// import { BottomNavigation } from './src/components/BottomNavigation'
-// import { AuthCallback } from './src/components/auth/AuthCallback'
-// import { UsageLimitAlert } from './src/components/UsageLimitAlert'
-// import { SimpleAuthProvider } from './src/components/auth/SimpleAuthProvider'
-// import { LanguageProvider } from './i18n/context'
-// import { ThemeProvider } from './theme/context'
-// import {
-//   LazyHomePage,
-//   LazyProfilePage,
-//   LazySocialPage,
-//   LazyPricingPage,
-// } from './src/components/LazyWrapper'
-
-// 同步导入的轻量级页面
-// import { CategoriesPage } from './src/pages/CategoriesPage'
-// import { PrivacyPage } from './src/pages/PrivacyPage'
-// import { SettingsPage } from './src/pages/SettingsPage'
-// import { MorePage } from './src/pages/MorePage'
+import { Navigation } from './src/components/Navigation'
+import { BottomNavigation } from './src/components/BottomNavigation'
+import { HomePage } from './src/components/HomePage'
+import { ProfilePage } from './src/pages/ProfilePage'
+import { CategoriesPage } from './src/pages/CategoriesPage'
+import { PrivacyPage } from './src/pages/PrivacyPage'
+import { SettingsPage } from './src/pages/SettingsPage'
+import { MorePage } from './src/pages/MorePage'
+import { SocialPage } from './src/pages/SocialPage'
+import { PricingPage } from './src/pages/PricingPage'
+import { AuthCallback } from './src/components/auth/AuthCallback'
+import { UsageLimitAlert } from './src/components/UsageLimitAlert'
 
 const App: React.FC = () => {
   return (
     <ErrorBoundary>
-      <div className='min-h-screen bg-gray-100 text-gray-900 font-sans'>
-        <div className='p-8'>
-          <h1 className='text-3xl font-bold mb-4'>Och AI - Minimal Test</h1>
-          <p className='text-lg mb-4'>This is a minimal version to test for React error #185.</p>
-          <div className='bg-white p-4 rounded-lg shadow'>
-            <h2 className='text-xl font-semibold mb-2'>Status</h2>
-            <p>✅ ErrorBoundary - Working</p>
-            <p>✅ Basic React - Working</p>
-            <p>✅ Tailwind CSS - Working</p>
-            <p>❌ Complex Providers - Disabled</p>
-          </div>
-        </div>
+      <div className='min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] font-sans'>
+        <Navigation />
+
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/profile' element={<ProfilePage />} />
+          <Route path='/categories' element={<CategoriesPage />} />
+          <Route path='/social' element={<SocialPage />} />
+          <Route path='/pricing' element={<PricingPage />} />
+          <Route path='/privacy' element={<PrivacyPage />} />
+          <Route path='/settings' element={<SettingsPage />} />
+          <Route path='/more' element={<MorePage />} />
+          <Route path='/auth/callback' element={<AuthCallback />} />
+        </Routes>
+
+        {/* 底部导航 */}
+        <BottomNavigation />
+
+        {/* 使用限制提示 */}
+        <UsageLimitAlert />
       </div>
     </ErrorBoundary>
   )

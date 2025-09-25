@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { User, Session } from '@supabase/supabase-js'
 import { supabase } from '../lib/supabase'
 
@@ -7,28 +7,6 @@ export const useAuthProvider = () => {
   const [session, setSession] = useState<Session | null>(null)
   const [loading, setLoading] = useState(true)
   const [userProfile, setUserProfile] = useState<any>(null)
-
-  const fetchUserProfile = useCallback(async (userId: string) => {
-    if (!supabase) return
-
-    try {
-      const { data, error } = await supabase
-        .from('user_profiles')
-        .select('*')
-        .eq('id', userId)
-        .single()
-
-      if (error && error.code !== 'PGRST116') {
-        // PGRST116 = no rows returned
-        console.error('Error fetching user profile:', error)
-        return
-      }
-
-      setUserProfile(data)
-    } catch (error) {
-      console.error('Error fetching user profile:', error)
-    }
-  }, [])
 
   useEffect(() => {
     if (!supabase) {
@@ -64,7 +42,29 @@ export const useAuthProvider = () => {
     })
 
     return () => subscription.unsubscribe()
-  }, [fetchUserProfile])
+  }, [])
+
+  const fetchUserProfile = async (userId: string) => {
+    if (!supabase) return
+
+    try {
+      const { data, error } = await supabase
+        .from('user_profiles')
+        .select('*')
+        .eq('id', userId)
+        .single()
+
+      if (error && error.code !== 'PGRST116') {
+        // PGRST116 = no rows returned
+        console.error('Error fetching user profile:', error)
+        return
+      }
+
+      setUserProfile(data)
+    } catch (error) {
+      console.error('Error fetching user profile:', error)
+    }
+  }
 
   const signIn = async (email: string, password: string) => {
     if (!supabase) throw new Error('Supabase client not initialized')
@@ -222,5 +222,5 @@ export const useAuthProvider = () => {
   }
 }
 
-// Re-export useAuth from SimpleAuthProvider
-export { useAuthContext as useAuth } from '../components/auth/SimpleAuthProvider'
+// Re-export useAuth from AuthProvider
+export { useAuthContext as useAuth } from '../components/auth/AuthProvider'

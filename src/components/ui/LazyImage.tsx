@@ -83,7 +83,7 @@ export const LazyImage: React.FC<LazyImageProps> = ({
       onError?.()
     }
     img.src = src
-  }, [src, isInView, isLoaded, hasError])
+  }, [src, isInView, isLoaded, hasError, onLoad, onError])
 
   // 清理 observer
   const cleanup = useCallback(() => {
@@ -96,11 +96,11 @@ export const LazyImage: React.FC<LazyImageProps> = ({
   useEffect(() => {
     createObserver()
     return cleanup
-  }, [loading, threshold, rootMargin])
+  }, [createObserver, cleanup])
 
   useEffect(() => {
     loadImage()
-  }, [src, isInView, isLoaded, hasError])
+  }, [loadImage])
 
   // 获取当前显示的图片源
   const getCurrentSrc = () => {
@@ -222,16 +222,16 @@ export const LazyVideo: React.FC<LazyVideoProps> = ({
   useEffect(() => {
     createObserver()
     return cleanup
-  }, [threshold, rootMargin])
+  }, [createObserver, cleanup])
 
   const handleLoadedData = useCallback(() => {
     onLoad?.()
-  }, [])
+  }, [onLoad])
 
   const handleError = useCallback(() => {
     setHasError(true)
     onError?.()
-  }, [])
+  }, [onError])
 
   if (hasError) {
     return (
