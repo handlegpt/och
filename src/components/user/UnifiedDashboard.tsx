@@ -33,6 +33,10 @@ interface RecentActivity {
   title?: string
 }
 
+// 缓存统计数据
+const statsCache = new Map<string, { data: UnifiedStats; timestamp: number }>()
+const CACHE_DURATION = 5 * 60 * 1000 // 5分钟缓存
+
 export const UnifiedDashboard: React.FC = () => {
   const { user } = useAuth()
   const { t } = useTranslation()
@@ -57,6 +61,15 @@ export const UnifiedDashboard: React.FC = () => {
   // 获取综合统计数据
   const fetchUnifiedStats = useCallback(async () => {
     if (!user) return
+
+    // 检查缓存
+    const cacheKey = `stats_${user.id}`
+    const cached = statsCache.get(cacheKey)
+    if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
+      setStats(cached.data)
+      setLoading(false)
+      return
+    }
 
     try {
       setLoading(true)
@@ -164,7 +177,7 @@ export const UnifiedDashboard: React.FC = () => {
           )
         : 1
 
-      setStats({
+      const newStats = {
         totalGenerations: totalGen || 0,
         totalFavorites: totalFav || 0,
         thisWeekGenerations: weekResult.count || 0,
@@ -177,7 +190,12 @@ export const UnifiedDashboard: React.FC = () => {
         publicWorks: publicWorksResult.count || 0,
         totalLikes: likesResult.count || 0,
         totalComments: commentsResult.count || 0,
-      })
+      }
+
+      setStats(newStats)
+
+      // 缓存数据
+      statsCache.set(cacheKey, { data: newStats, timestamp: Date.now() })
 
       // 获取最近活动
       const { data: recentData } = await supabase

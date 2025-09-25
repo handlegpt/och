@@ -14,6 +14,12 @@ export const ProfilePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<
     'dashboard' | 'history' | 'favorites' | 'settings' | 'privacy' | 'admin'
   >('dashboard')
+  const [loadedTabs, setLoadedTabs] = useState<Set<string>>(new Set(['dashboard']))
+
+  const handleTabChange = (tab: string) => {
+    setActiveTab(tab as any)
+    setLoadedTabs(prev => new Set([...prev, tab]))
+  }
 
   if (!user) {
     return (
@@ -56,7 +62,7 @@ export const ProfilePage: React.FC = () => {
           {tabs.map(tab => (
             <button
               key={tab.key}
-              onClick={() => setActiveTab(tab.key as any)}
+              onClick={() => handleTabChange(tab.key)}
               className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${
                 activeTab === tab.key
                   ? 'border-[var(--accent-primary)] text-[var(--accent-primary)]'
@@ -71,13 +77,13 @@ export const ProfilePage: React.FC = () => {
 
         {/* 标签页内容 */}
         <div className='bg-[var(--bg-card-alpha)] backdrop-blur-lg rounded-xl border border-[var(--border-primary)] p-6'>
-          {activeTab === 'dashboard' && (
+          {activeTab === 'dashboard' && loadedTabs.has('dashboard') && (
             <div>
               <UnifiedDashboard />
             </div>
           )}
 
-          {activeTab === 'history' && (
+          {activeTab === 'history' && loadedTabs.has('history') && (
             <div>
               <h2 className='text-xl font-semibold text-[var(--text-primary)] mb-4'>
                 {t('app.profile.history.title')}
@@ -89,7 +95,7 @@ export const ProfilePage: React.FC = () => {
             </div>
           )}
 
-          {activeTab === 'favorites' && (
+          {activeTab === 'favorites' && loadedTabs.has('favorites') && (
             <div>
               <h2 className='text-xl font-semibold text-[var(--text-primary)] mb-4'>
                 {t('app.profile.favorites.title')}
@@ -101,7 +107,7 @@ export const ProfilePage: React.FC = () => {
             </div>
           )}
 
-          {activeTab === 'settings' && (
+          {activeTab === 'settings' && loadedTabs.has('settings') && (
             <div>
               <h2 className='text-xl font-semibold text-[var(--text-primary)] mb-4'>
                 {t('app.profile.settings.title')}
@@ -113,7 +119,7 @@ export const ProfilePage: React.FC = () => {
             </div>
           )}
 
-          {activeTab === 'privacy' && (
+          {activeTab === 'privacy' && loadedTabs.has('privacy') && (
             <div>
               <h2 className='text-xl font-semibold text-[var(--text-primary)] mb-4'>隐私控制</h2>
               <p className='text-[var(--text-secondary)] mb-6'>管理您的隐私设置和数据权限</p>
@@ -121,7 +127,7 @@ export const ProfilePage: React.FC = () => {
             </div>
           )}
 
-          {activeTab === 'admin' && isAdmin && (
+          {activeTab === 'admin' && isAdmin && loadedTabs.has('admin') && (
             <div>
               <h2 className='text-xl font-semibold text-[var(--text-primary)] mb-4'>
                 {t('app.profile.admin.title')}
@@ -130,6 +136,13 @@ export const ProfilePage: React.FC = () => {
                 {t('app.profile.admin.description')}
               </p>
               <AdminPanel />
+            </div>
+          )}
+
+          {/* 显示加载状态 */}
+          {!loadedTabs.has(activeTab) && (
+            <div className='flex justify-center py-8'>
+              <div className='animate-spin rounded-full h-8 w-8 border-b-2 border-[var(--accent-primary)]'></div>
             </div>
           )}
         </div>
