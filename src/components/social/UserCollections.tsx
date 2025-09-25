@@ -38,10 +38,6 @@ export const UserCollections: React.FC<UserCollectionsProps> = ({
   const [loading, setLoading] = useState(true)
   const [showCreateForm, setShowCreateForm] = useState(false)
 
-  useEffect(() => {
-    fetchCollections()
-  }, [userId, fetchCollections])
-
   const fetchCollections = useCallback(async () => {
     try {
       setLoading(true)
@@ -63,6 +59,10 @@ export const UserCollections: React.FC<UserCollectionsProps> = ({
       setLoading(false)
     }
   }, [userId, user])
+
+  useEffect(() => {
+    fetchCollections()
+  }, [fetchCollections])
 
   const createCollection = async (name: string, description: string, isPublic: boolean) => {
     if (!user) return

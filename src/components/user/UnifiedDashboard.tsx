@@ -219,7 +219,7 @@ export const UnifiedDashboard: React.FC = () => {
               : 'bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
           }`}
         >
-          {t('app.app.profile.dashboard.overview')}
+          {t('app.profile.dashboard.overview')}
         </button>
         <button
           onClick={() => setActiveView('detailed')}
