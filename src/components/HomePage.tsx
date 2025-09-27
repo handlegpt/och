@@ -82,22 +82,6 @@ export const HomePage: React.FC = () => {
     setSearchParams(newSearchParams, { replace: false })
   }, [searchParams, setSearchParams])
 
-  const handleFeatureClick = useCallback(
-    (feature: any) => {
-      // 从 TRANSFORMATIONS 中找到对应的转换
-      const transformation = state.transformations.find(t => t.key === feature.id)
-      if (transformation) {
-        actions.setSelectedTransformation(transformation)
-        // 更新URL参数
-        const newSearchParams = new URLSearchParams(searchParams)
-        newSearchParams.set('view', 'create')
-        newSearchParams.set('feature', feature.id)
-        setSearchParams(newSearchParams, { replace: false })
-      }
-    },
-    [actions, state.transformations, searchParams, setSearchParams]
-  )
-
   // 如果用户选择了功能，显示生成界面
   // 检查URL参数或状态中是否有选中的功能
   const isCreateView = searchParams.get('view') === 'create'
@@ -196,780 +180,487 @@ export const HomePage: React.FC = () => {
     )
   }
 
-  // 主要功能预览
-  const featuredTransformations = [
-    {
-      id: 'customPrompt',
-      name: t('transformations.effects.customPrompt.title'),
-      description: t('transformations.effects.customPrompt.description'),
-      icon: '✨',
-      category: 'creative',
-    },
-    {
-      id: 'hdEnhance',
-      name: t('transformations.effects.hdEnhance.title'),
-      description: t('transformations.effects.hdEnhance.description'),
-      icon: '🔍',
-      category: 'enhancement',
-    },
-    {
-      id: 'figurine',
-      name: t('transformations.effects.figurine.title'),
-      description: t('transformations.effects.figurine.description'),
-      icon: '🎭',
-      category: '3d',
-    },
-    {
-      id: 'cosplay',
-      name: t('transformations.effects.cosplay.title'),
-      description: t('transformations.effects.cosplay.description'),
-      icon: '🎭',
-      category: 'style',
-    },
-  ]
-
   return (
-    <div className='min-h-screen bg-[var(--bg-primary)] pb-20'>
-      {/* Hero Section */}
+    <div className='min-h-screen bg-[var(--bg-primary)]'>
+      {/* Hero Section - 重新设计 */}
       <section className='relative overflow-hidden min-h-screen flex items-center'>
-        {/* Animated Background */}
+        {/* Background Effects */}
         <div className='absolute inset-0'>
-          {/* Gradient Background */}
-          <div className='absolute inset-0 bg-gradient-to-br from-[var(--accent-primary)]/20 via-[var(--accent-secondary)]/10 to-transparent'></div>
-
-          {/* Floating Particles */}
-          <div className='absolute inset-0'>
-            {[...Array(20)].map((_, i) => (
-              <div
-                key={i}
-                className='absolute w-2 h-2 bg-[var(--accent-primary)]/30 rounded-full animate-float'
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 3}s`,
-                  animationDuration: `${3 + Math.random() * 2}s`,
-                }}
-              />
-            ))}
-          </div>
-
-          {/* Geometric Shapes */}
+          <div className='absolute inset-0 bg-gradient-to-br from-[var(--accent-primary)]/10 via-[var(--accent-secondary)]/5 to-transparent'></div>
           <div className='absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-[var(--accent-primary)]/20 to-transparent rounded-full blur-xl animate-pulse'></div>
           <div
             className='absolute bottom-20 right-10 w-48 h-48 bg-gradient-to-l from-[var(--accent-secondary)]/20 to-transparent rounded-full blur-xl animate-pulse'
             style={{ animationDelay: '1s' }}
           ></div>
-          <div
-            className='absolute top-1/2 left-1/4 w-24 h-24 bg-gradient-to-r from-[var(--accent-primary)]/15 to-[var(--accent-secondary)]/15 rounded-full blur-lg animate-bounce'
-            style={{ animationDuration: '4s' }}
-          ></div>
         </div>
 
         <div className='relative container mx-auto px-4 py-20'>
-          <div className='text-center max-w-5xl mx-auto'>
-            {/* Badge */}
-            <div className='inline-flex items-center gap-2 px-4 py-2 bg-[var(--bg-card-alpha)] backdrop-blur-lg border border-[var(--border-primary)] rounded-full text-sm text-[var(--text-secondary)] mb-8 animate-fade-in'>
-              <span className='w-2 h-2 bg-green-500 rounded-full animate-pulse'></span>
-              {t('home.hero.badge')}
-            </div>
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>
+            {/* Left Column - 主要内容 */}
+            <div className='text-center lg:text-left'>
+              {/* Badge */}
+              <div className='inline-flex items-center gap-2 px-4 py-2 bg-[var(--bg-card-alpha)] backdrop-blur-lg border border-[var(--border-primary)] rounded-full text-sm text-[var(--text-secondary)] mb-6'>
+                <span className='w-2 h-2 bg-green-500 rounded-full animate-pulse'></span>
+                Powered by Nano Banana AI
+              </div>
 
-            {/* Main Title */}
-            <h1 className='text-6xl md:text-8xl lg:text-9xl font-black mb-8 leading-tight'>
-              <span className='block text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent-primary)] via-[var(--accent-secondary)] to-[var(--accent-primary)] animate-gradient-x'>
-                {t('home.hero.title')}
-              </span>
-            </h1>
-
-            {/* Subtitle */}
-            <p className='text-xl md:text-2xl lg:text-3xl text-[var(--text-secondary)] mb-12 leading-relaxed max-w-3xl mx-auto'>
-              {t('home.hero.subtitle')}
-            </p>
-
-            {/* CTA Buttons */}
-            <div className='flex flex-col sm:flex-row gap-6 justify-center items-center mb-16'>
-              <button
-                onClick={handleStartCreating}
-                className='group relative px-10 py-5 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white font-bold text-lg rounded-2xl shadow-2xl hover:shadow-[var(--accent-primary)]/25 transform hover:scale-105 transition-all duration-300 overflow-hidden'
-              >
-                <span className='relative z-10 flex items-center gap-3'>
-                  <span>🚀</span>
-                  {t('home.hero.cta')}
+              {/* Main Title */}
+              <h1 className='text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight'>
+                <span className='block text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent-primary)] via-[var(--accent-secondary)] to-[var(--accent-primary)]'>
+                  Transform Every Photo Into Art
                 </span>
-                <div className='absolute inset-0 bg-gradient-to-r from-[var(--accent-primary-hover)] to-[var(--accent-secondary-hover)] opacity-0 group-hover:opacity-100 transition-opacity duration-300'></div>
-              </button>
+              </h1>
 
-              <button
-                onClick={() => navigate('/profile')}
-                className='group px-10 py-5 border-2 border-[var(--accent-primary)] text-[var(--accent-primary)] font-bold text-lg rounded-2xl hover:bg-[var(--accent-primary)] hover:text-white transition-all duration-300 backdrop-blur-lg bg-[var(--bg-card-alpha)]/50'
-              >
-                <span className='flex items-center gap-3'>
-                  <span>👤</span>
-                  {t('home.hero.explore')}
-                </span>
-              </button>
+              {/* 具体副标题 */}
+              <p className='text-xl md:text-2xl text-[var(--text-secondary)] mb-8 leading-relaxed'>
+                Upload your photo → AI transforms it into a painting, sketch, cartoon, or unique
+                artwork in seconds.
+              </p>
+
+              {/* 前后对比展示 */}
+              <div className='mb-8'>
+                <div className='flex items-center justify-center lg:justify-start gap-4 mb-4'>
+                  <div className='text-center'>
+                    <div className='w-24 h-24 bg-gradient-to-br from-gray-300 to-gray-400 rounded-xl flex items-center justify-center text-gray-600 text-sm font-medium'>
+                      Before
+                    </div>
+                    <p className='text-xs text-[var(--text-secondary)] mt-2'>Original Photo</p>
+                  </div>
+                  <div className='text-2xl text-[var(--accent-primary)]'>→</div>
+                  <div className='text-center'>
+                    <div className='w-24 h-24 bg-gradient-to-br from-[var(--accent-primary)] to-[var(--accent-secondary)] rounded-xl flex items-center justify-center text-white text-sm font-medium'>
+                      After
+                    </div>
+                    <p className='text-xs text-[var(--text-secondary)] mt-2'>AI Artwork</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* CTA Buttons */}
+              <div className='flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8'>
+                <button
+                  onClick={handleStartCreating}
+                  className='group relative px-8 py-4 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white font-bold text-lg rounded-xl shadow-2xl hover:shadow-[var(--accent-primary)]/25 transform hover:scale-105 transition-all duration-300'
+                >
+                  <span className='flex items-center gap-2'>
+                    <span>🚀</span>
+                    Try Free Now
+                  </span>
+                </button>
+                <button
+                  onClick={() => navigate('/pricing')}
+                  className='group px-8 py-4 border-2 border-[var(--accent-primary)] text-[var(--accent-primary)] font-bold text-lg rounded-xl hover:bg-[var(--accent-primary)] hover:text-white transition-all duration-300 backdrop-blur-lg bg-[var(--bg-card-alpha)]/50'
+                >
+                  <span className='flex items-center gap-2'>
+                    <span>💎</span>
+                    Go Pro
+                  </span>
+                </button>
+              </div>
+
+              {/* 免费额度提示 */}
+              <div className='text-sm text-[var(--text-secondary)] mb-8'>
+                ✨ 3 free generations • No credit card required
+              </div>
             </div>
 
-            {/* Stats */}
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-8 max-w-2xl mx-auto'>
-              <div className='text-center'>
-                <div className='text-3xl md:text-4xl font-bold text-[var(--accent-primary)] mb-2'>
-                  10K+
+            {/* Right Column - 演示图片 */}
+            <div className='relative'>
+              <div className='relative bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-6 border border-[var(--border-primary)] shadow-2xl'>
+                {/* 演示图片轮播 */}
+                <div className='grid grid-cols-2 gap-4'>
+                  <div className='space-y-4'>
+                    <div className='aspect-square bg-gradient-to-br from-gray-200 to-gray-300 rounded-lg flex items-center justify-center text-gray-500 text-sm'>
+                      Original
+                    </div>
+                    <div className='aspect-square bg-gradient-to-br from-[var(--accent-primary)]/20 to-[var(--accent-secondary)]/20 rounded-lg flex items-center justify-center text-[var(--accent-primary)] text-sm font-medium'>
+                      → 3D Figurine
+                    </div>
+                  </div>
+                  <div className='space-y-4'>
+                    <div className='aspect-square bg-gradient-to-br from-[var(--accent-secondary)]/20 to-pink-500/20 rounded-lg flex items-center justify-center text-[var(--accent-secondary)] text-sm font-medium'>
+                      → Anime Style
+                    </div>
+                    <div className='aspect-square bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-lg flex items-center justify-center text-purple-500 text-sm font-medium'>
+                      → Plushie
+                    </div>
+                  </div>
                 </div>
-                <div className='text-[var(--text-secondary)]'>{t('home.hero.stats.users')}</div>
-              </div>
-              <div className='text-center'>
-                <div className='text-3xl md:text-4xl font-bold text-[var(--accent-secondary)] mb-2'>
-                  50+
+
+                {/* 技术标识 */}
+                <div className='absolute -bottom-3 -right-3 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white text-xs px-3 py-1 rounded-full font-medium shadow-lg'>
+                  Powered by Nano Banana AI
                 </div>
-                <div className='text-[var(--text-secondary)]'>{t('home.hero.stats.models')}</div>
-              </div>
-              <div className='text-center'>
-                <div className='text-3xl md:text-4xl font-bold text-[var(--accent-primary)] mb-2'>
-                  99.9%
-                </div>
-                <div className='text-[var(--text-secondary)]'>{t('home.hero.stats.uptime')}</div>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className='absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce'>
-          <div className='w-6 h-10 border-2 border-[var(--accent-primary)] rounded-full flex justify-center'>
-            <div className='w-1 h-3 bg-[var(--accent-primary)] rounded-full mt-2 animate-pulse'></div>
           </div>
         </div>
       </section>
 
-      {/* Features Preview */}
-      <section className='py-32 relative'>
-        {/* Background Pattern */}
-        <div className='absolute inset-0 opacity-5'>
-          <div
-            className='absolute inset-0'
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Cpath d='M20 20c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10zm10 0c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10z'/%3E%3C/g%3E%3C/svg%3E")`,
-            }}
-          ></div>
-        </div>
-
+      {/* 功能亮点区域 - Why och.ai */}
+      <section className='py-20 bg-[var(--bg-secondary)] relative overflow-hidden'>
         <div className='container mx-auto px-4 relative'>
-          <div className='text-center mb-20'>
+          <div className='text-center mb-16'>
             <div className='inline-flex items-center gap-2 px-4 py-2 bg-[var(--accent-primary)]/10 border border-[var(--accent-primary)]/20 rounded-full text-sm text-[var(--accent-primary)] mb-6'>
               <span>✨</span>
-              {t('home.features.badge')}
+              Why Choose och.ai
             </div>
-            <h2 className='text-4xl md:text-6xl font-bold text-[var(--text-primary)] mb-6'>
-              {t('home.features.title')}
+            <h2 className='text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-6'>
+              Advanced AI Image Generation
             </h2>
             <p className='text-xl text-[var(--text-secondary)] max-w-3xl mx-auto leading-relaxed'>
-              {t('home.features.subtitle')}
+              Experience the power of Nano Banana AI technology with superior character consistency
+              and scene preservation
             </p>
           </div>
 
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16'>
-            {featuredTransformations.map((feature, index) => (
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
+            {[
+              {
+                icon: '🎨',
+                title: 'Multiple Art Styles',
+                description: '50+ artistic transformations from 3D figurines to anime styles',
+                color: 'from-blue-500 to-cyan-500',
+              },
+              {
+                icon: '⚡',
+                title: 'Lightning Fast',
+                description: 'Generate stunning artwork in seconds with optimized AI processing',
+                color: 'from-yellow-500 to-orange-500',
+              },
+              {
+                icon: '🔒',
+                title: 'Privacy First',
+                description: 'Your photos are never stored or used for training - complete privacy',
+                color: 'from-green-500 to-emerald-500',
+              },
+              {
+                icon: '💎',
+                title: 'HD Quality',
+                description:
+                  'High-resolution outputs perfect for professional use and social media',
+                color: 'from-purple-500 to-pink-500',
+              },
+            ].map((feature, index) => (
               <div
-                key={feature.id}
-                className='group relative cursor-pointer overflow-hidden transform-gpu perspective-1000'
-                onClick={() => handleFeatureClick(feature)}
-                style={{
-                  animationDelay: `${index * 150}ms`,
-                  animation: 'fadeInUp 0.8s ease-out forwards',
-                }}
+                key={index}
+                className='group relative bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-6 border border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-all duration-500 hover:shadow-2xl hover:shadow-[var(--accent-primary)]/20 hover:-translate-y-2 text-center'
               >
-                {/* 3D Card Container */}
-                <div className='relative w-full h-full transform-gpu transition-all duration-700 group-hover:rotate-y-12 group-hover:rotate-x-5 group-hover:scale-105'>
-                  {/* Outer Glow Ring */}
-                  <div className='absolute inset-0 rounded-3xl bg-gradient-to-r from-[var(--accent-primary)] via-[var(--accent-secondary)] to-[var(--accent-primary)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl scale-110 animate-pulse'></div>
-
-                  {/* Main Card */}
-                  <div className='relative bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-3xl p-8 border border-[var(--border-primary)] group-hover:border-[var(--accent-primary)] transition-all duration-700 shadow-2xl group-hover:shadow-[var(--accent-primary)]/30'>
-                    {/* Animated Background Grid */}
-                    <div className='absolute inset-0 rounded-3xl opacity-20'>
-                      <div
-                        className='absolute inset-0'
-                        style={{
-                          backgroundImage: `
-                          linear-gradient(rgba(var(--accent-primary-rgb), 0.1) 1px, transparent 1px),
-                          linear-gradient(90deg, rgba(var(--accent-primary-rgb), 0.1) 1px, transparent 1px)
-                        `,
-                          backgroundSize: '20px 20px',
-                          animation: 'gridMove 20s linear infinite',
-                        }}
-                      ></div>
-                    </div>
-
-                    {/* Floating Particles */}
-                    <div className='absolute inset-0 overflow-hidden rounded-3xl'>
-                      {[...Array(8)].map((_, i) => (
-                        <div
-                          key={i}
-                          className='absolute w-1 h-1 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] rounded-full animate-float'
-                          style={{
-                            left: `${Math.random() * 100}%`,
-                            top: `${Math.random() * 100}%`,
-                            animationDelay: `${Math.random() * 3}s`,
-                            animationDuration: `${3 + Math.random() * 2}s`,
-                          }}
-                        />
-                      ))}
-                    </div>
-
-                    {/* Icon Section with 3D Effects */}
-                    <div className='relative mb-6'>
-                      {/* Icon Background with Multiple Layers */}
-                      <div className='absolute inset-0 w-24 h-24 bg-gradient-to-r from-[var(--accent-primary)]/40 to-[var(--accent-secondary)]/40 rounded-3xl blur-2xl scale-0 group-hover:scale-125 transition-transform duration-700'></div>
-                      <div className='absolute inset-0 w-20 h-20 bg-gradient-to-br from-[var(--accent-primary)]/30 to-[var(--accent-secondary)]/30 rounded-2xl blur-lg scale-0 group-hover:scale-110 transition-transform duration-500'></div>
-
-                      {/* Main Icon Container with 3D Effect */}
-                      <div className='relative w-16 h-16 bg-gradient-to-br from-[var(--accent-primary)]/20 via-[var(--accent-secondary)]/20 to-[var(--accent-primary)]/20 rounded-2xl flex items-center justify-center text-3xl group-hover:scale-110 group-hover:rotate-12 group-hover:-translate-y-2 transition-all duration-700 shadow-2xl group-hover:shadow-[var(--accent-primary)]/50'>
-                        <span className='group-hover:animate-bounce group-hover:drop-shadow-lg'>
-                          {feature.icon}
-                        </span>
-                      </div>
-
-                      {/* Floating Action Indicator with Enhanced Animation */}
-                      <div className='absolute -top-3 -right-3 w-10 h-10 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] rounded-full flex items-center justify-center text-white text-sm font-bold opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-0 group-hover:scale-100 shadow-2xl group-hover:shadow-[var(--accent-primary)]/50'>
-                        <span className='animate-bounce text-lg'>→</span>
-                      </div>
-
-                      {/* Enhanced Sparkle Effects */}
-                      <div className='absolute top-0 right-0 w-3 h-3 bg-yellow-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-ping shadow-lg'></div>
-                      <div
-                        className='absolute bottom-0 left-0 w-2 h-2 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-ping shadow-lg'
-                        style={{ animationDelay: '0.5s' }}
-                      ></div>
-                      <div
-                        className='absolute top-1/2 left-0 w-1 h-1 bg-pink-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-600 animate-ping shadow-lg'
-                        style={{ animationDelay: '1s' }}
-                      ></div>
-                    </div>
-
-                    {/* Content with Enhanced Typography */}
-                    <div className='relative z-10'>
-                      <h3 className='text-xl font-bold text-[var(--text-primary)] mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[var(--accent-primary)] group-hover:to-[var(--accent-secondary)] transition-all duration-700 group-hover:drop-shadow-lg'>
-                        {feature.name}
-                      </h3>
-                      <p className='text-[var(--text-secondary)] leading-relaxed group-hover:text-[var(--text-primary)] transition-colors duration-700 group-hover:drop-shadow-md'>
-                        {feature.description}
-                      </p>
-                    </div>
-
-                    {/* Enhanced Bottom Progress Bar */}
-                    <div className='absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-[var(--accent-primary)] via-[var(--accent-secondary)] to-[var(--accent-primary)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left rounded-full shadow-lg'></div>
-
-                    {/* Corner Accents with Enhanced Effects */}
-                    <div className='absolute top-4 right-4 w-3 h-3 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse shadow-lg'></div>
-                    <div className='absolute bottom-4 left-4 w-2 h-2 bg-gradient-to-r from-[var(--accent-secondary)] to-[var(--accent-primary)] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse shadow-lg'></div>
-                    <div className='absolute top-4 left-4 w-1 h-1 bg-yellow-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-600 animate-ping'></div>
-                    <div className='absolute bottom-4 right-4 w-1 h-1 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-800 animate-ping'></div>
-                  </div>
-
-                  {/* Hover Overlay with Enhanced Gradient */}
-                  <div className='absolute inset-0 bg-gradient-to-br from-[var(--accent-primary)]/10 via-transparent to-[var(--accent-secondary)]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-3xl'></div>
-
-                  {/* Shimmer Effect */}
-                  <div className='absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700'>
-                    <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000'></div>
-                  </div>
+                <div
+                  className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}
+                >
+                  {feature.icon}
                 </div>
+                <h3 className='text-lg font-bold text-[var(--text-primary)] mb-2 group-hover:text-[var(--accent-primary)] transition-colors duration-300'>
+                  {feature.title}
+                </h3>
+                <p className='text-[var(--text-secondary)] text-sm leading-relaxed group-hover:text-[var(--text-primary)] transition-colors duration-300'>
+                  {feature.description}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Demo Section */}
-      <section className='py-20'>
-        <div className='container mx-auto px-4'>
+      {/* 使用流程区域 - How it works */}
+      <section className='py-20 relative overflow-hidden'>
+        <div className='container mx-auto px-4 relative'>
           <div className='text-center mb-16'>
-            <h2 className='text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-4'>
-              {t('home.demo.title')}
-            </h2>
-            <p className='text-lg text-[var(--text-secondary)] max-w-2xl mx-auto'>
-              {t('home.demo.subtitle')}
-            </p>
-          </div>
-
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-            {/* Demo Card 1 - 3D Figurine */}
-            <div className='group bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-6 border border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-all duration-500 hover:shadow-2xl hover:shadow-[var(--accent-primary)]/20 hover:-translate-y-4 cursor-pointer overflow-hidden'>
-              <div className='relative mb-4'>
-                {/* Demo Image Container */}
-                <div className='aspect-square bg-gradient-to-br from-[var(--accent-primary)]/10 to-[var(--accent-secondary)]/10 rounded-xl overflow-hidden relative group-hover:shadow-lg transition-all duration-300'>
-                  <img
-                    src='/images/demo-figurine.png'
-                    alt='3D Figurine Demo'
-                    className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
-                  />
-                  <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
-                    <div className='absolute bottom-3 left-3 right-3'>
-                      <div className='text-white text-sm font-medium'>3D Figurine Effect</div>
-                      <div className='text-white/80 text-xs'>AI Generated Result</div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className='absolute top-2 right-2 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white text-xs px-3 py-1 rounded-full font-medium shadow-lg'>
-                  {t('home.features.preview.figurine.badge')}
-                </div>
-              </div>
-              <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-2 group-hover:text-[var(--accent-primary)] transition-colors duration-300'>
-                {t('home.features.preview.figurine.title')}
-              </h3>
-              <p className='text-[var(--text-secondary)] text-sm mb-4 group-hover:text-[var(--text-primary)] transition-colors duration-300'>
-                {t('home.features.preview.figurine.description')}
-              </p>
-              <div className='flex items-center justify-between text-xs text-[var(--text-secondary)]'>
-                <span className='flex items-center gap-1'>
-                  <span className='w-2 h-2 bg-green-500 rounded-full animate-pulse'></span>
-                  {t('home.features.preview.figurine.processingTime')}
-                </span>
-                <span className='flex items-center gap-1'>
-                  <span className='w-2 h-2 bg-blue-500 rounded-full'></span>
-                  {t('home.features.preview.figurine.resolution')}
-                </span>
-              </div>
-            </div>
-
-            {/* Demo Card 2 - Anime Style */}
-            <div className='group bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-6 border border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-all duration-500 hover:shadow-2xl hover:shadow-[var(--accent-primary)]/20 hover:-translate-y-4 cursor-pointer overflow-hidden'>
-              <div className='relative mb-4'>
-                {/* Demo Image Container */}
-                <div className='aspect-square bg-gradient-to-br from-[var(--accent-primary)]/10 to-[var(--accent-secondary)]/10 rounded-xl overflow-hidden relative group-hover:shadow-lg transition-all duration-300'>
-                  <img
-                    src='/images/demo-anime.png'
-                    alt='Anime Style Demo'
-                    className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
-                  />
-                  <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
-                    <div className='absolute bottom-3 left-3 right-3'>
-                      <div className='text-white text-sm font-medium'>Anime Style Effect</div>
-                      <div className='text-white/80 text-xs'>AI Generated Result</div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className='absolute top-2 right-2 bg-gradient-to-r from-[var(--accent-secondary)] to-[var(--accent-primary)] text-white text-xs px-3 py-1 rounded-full font-medium shadow-lg'>
-                  {t('home.features.preview.anime.badge')}
-                </div>
-              </div>
-              <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-2 group-hover:text-[var(--accent-secondary)] transition-colors duration-300'>
-                {t('home.features.preview.anime.title')}
-              </h3>
-              <p className='text-[var(--text-secondary)] text-sm mb-4 group-hover:text-[var(--text-primary)] transition-colors duration-300'>
-                {t('home.features.preview.anime.description')}
-              </p>
-              <div className='flex items-center justify-between text-xs text-[var(--text-secondary)]'>
-                <span className='flex items-center gap-1'>
-                  <span className='w-2 h-2 bg-green-500 rounded-full animate-pulse'></span>
-                  {t('home.features.preview.anime.processingTime')}
-                </span>
-                <span className='flex items-center gap-1'>
-                  <span className='w-2 h-2 bg-blue-500 rounded-full'></span>
-                  {t('home.features.preview.anime.resolution')}
-                </span>
-              </div>
-            </div>
-
-            {/* Demo Card 3 - Plushie */}
-            <div className='group bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-6 border border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-all duration-500 hover:shadow-2xl hover:shadow-[var(--accent-primary)]/20 hover:-translate-y-4 cursor-pointer overflow-hidden'>
-              <div className='relative mb-4'>
-                {/* Demo Image Container */}
-                <div className='aspect-square bg-gradient-to-br from-[var(--accent-primary)]/10 to-[var(--accent-secondary)]/10 rounded-xl overflow-hidden relative group-hover:shadow-lg transition-all duration-300'>
-                  <img
-                    src='/images/demo-plushie.png'
-                    alt='Plushie Demo'
-                    className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
-                  />
-                  <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
-                    <div className='absolute bottom-3 left-3 right-3'>
-                      <div className='text-white text-sm font-medium'>Plushie Effect</div>
-                      <div className='text-white/80 text-xs'>AI Generated Result</div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className='absolute top-2 right-2 bg-gradient-to-r from-pink-500 to-purple-500 text-white text-xs px-3 py-1 rounded-full font-medium shadow-lg'>
-                  {t('home.features.preview.plushie.badge')}
-                </div>
-              </div>
-              <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-2 group-hover:text-pink-500 transition-colors duration-300'>
-                {t('home.features.preview.plushie.title')}
-              </h3>
-              <p className='text-[var(--text-secondary)] text-sm mb-4 group-hover:text-[var(--text-primary)] transition-colors duration-300'>
-                {t('home.features.preview.plushie.description')}
-              </p>
-              <div className='flex items-center justify-between text-xs text-[var(--text-secondary)]'>
-                <span className='flex items-center gap-1'>
-                  <span className='w-2 h-2 bg-pink-500 rounded-full animate-pulse'></span>
-                  {t('home.features.preview.plushie.processingTime')}
-                </span>
-                <span className='flex items-center gap-1'>
-                  <span className='w-2 h-2 bg-purple-500 rounded-full'></span>
-                  {t('home.features.preview.plushie.resolution')}
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div className='text-center mt-12'>
-            <button
-              onClick={handleStartCreating}
-              className='px-8 py-3 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200'
-            >
-              {t('home.demo.seeMore')}
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section className='py-20 bg-[var(--bg-secondary)] relative overflow-hidden'>
-        {/* Background Pattern */}
-        <div className='absolute inset-0 opacity-5'>
-          <div
-            className='absolute inset-0'
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-            }}
-          ></div>
-        </div>
-
-        <div className='container mx-auto px-4 relative'>
-          <div className='text-center mb-20'>
-            <div className='inline-flex items-center gap-2 px-4 py-2 bg-[var(--accent-primary)]/10 border border-[var(--accent-primary)]/20 rounded-full text-sm text-[var(--accent-primary)] mb-6'>
+            <div className='inline-flex items-center gap-2 px-4 py-2 bg-[var(--accent-secondary)]/10 border border-[var(--accent-secondary)]/20 rounded-full text-sm text-[var(--accent-secondary)] mb-6'>
               <span>⚡</span>
-              {t('home.howItWorks.badge')}
+              How It Works
             </div>
-            <h2 className='text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-4'>
-              {t('home.howItWorks.title')}
-            </h2>
-            <p className='text-lg text-[var(--text-secondary)] max-w-2xl mx-auto'>
-              {t('home.howItWorks.subtitle')}
-            </p>
-          </div>
-
-          <div className='relative'>
-            {/* Connection Lines */}
-            <div className='hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[var(--accent-primary)]/30 to-transparent transform -translate-y-1/2'></div>
-            <div className='hidden md:block absolute top-1/2 left-1/3 w-1/3 h-0.5 bg-gradient-to-r from-[var(--accent-primary)]/50 via-[var(--accent-secondary)]/50 to-[var(--accent-primary)]/50 transform -translate-y-1/2 animate-pulse'></div>
-
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-8 relative'>
-              {[
-                {
-                  step: 1,
-                  icon: '📸',
-                  title: t('home.howItWorks.step1.title'),
-                  description: t('home.howItWorks.step1.description'),
-                  color: 'from-blue-500 to-cyan-500',
-                  bgColor: 'from-blue-500/10 to-cyan-500/10',
-                },
-                {
-                  step: 2,
-                  icon: '🎨',
-                  title: t('home.howItWorks.step2.title'),
-                  description: t('home.howItWorks.step2.description'),
-                  color: 'from-[var(--accent-primary)] to-[var(--accent-secondary)]',
-                  bgColor: 'from-[var(--accent-primary)]/10 to-[var(--accent-secondary)]/10',
-                },
-                {
-                  step: 3,
-                  icon: '✨',
-                  title: t('home.howItWorks.step3.title'),
-                  description: t('home.howItWorks.step3.description'),
-                  color: 'from-green-500 to-emerald-500',
-                  bgColor: 'from-green-500/10 to-emerald-500/10',
-                },
-              ].map((step, index) => (
-                <div key={step.step} className='relative group cursor-pointer'>
-                  {/* Step Card */}
-                  <div className='relative bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-3xl p-8 border border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-all duration-700 hover:shadow-2xl hover:shadow-[var(--accent-primary)]/30 hover:-translate-y-6 text-center overflow-hidden transform-gpu'>
-                    {/* Outer Glow Ring */}
-                    <div
-                      className={`absolute inset-0 rounded-3xl bg-gradient-to-r ${step.color} opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl scale-110 animate-pulse`}
-                    ></div>
-
-                    {/* Animated Background */}
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-br ${step.bgColor} opacity-0 group-hover:opacity-100 transition-opacity duration-700`}
-                    ></div>
-
-                    {/* Floating Particles */}
-                    <div className='absolute inset-0 overflow-hidden'>
-                      {[...Array(8)].map((_, i) => (
-                        <div
-                          key={i}
-                          className='absolute w-1 h-1 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] rounded-full animate-float'
-                          style={{
-                            left: `${Math.random() * 100}%`,
-                            top: `${Math.random() * 100}%`,
-                            animationDelay: `${Math.random() * 3}s`,
-                            animationDuration: `${3 + Math.random() * 2}s`,
-                          }}
-                        />
-                      ))}
-                    </div>
-
-                    {/* Step Number Badge with Enhanced Effects */}
-                    <div className='absolute -top-10 left-1/2 transform -translate-x-1/2 z-20'>
-                      <div className='relative'>
-                        {/* Badge Glow */}
-                        <div
-                          className={`absolute inset-0 w-20 h-20 bg-gradient-to-r ${step.color} rounded-full blur-xl scale-0 group-hover:scale-125 transition-transform duration-500`}
-                        ></div>
-
-                        {/* Main Badge */}
-                        <div
-                          className={`relative w-18 h-18 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center text-white font-black text-3xl shadow-2xl group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 border-4 border-[var(--bg-card-alpha)]`}
-                        >
-                          <span className='group-hover:animate-bounce drop-shadow-lg leading-none'>
-                            {step.step}
-                          </span>
-                        </div>
-
-                        {/* Badge Sparkles */}
-                        <div className='absolute -top-2 -right-2 w-4 h-4 bg-yellow-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-ping shadow-lg'></div>
-                        <div
-                          className='absolute -bottom-2 -left-2 w-3 h-3 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-ping shadow-lg'
-                          style={{ animationDelay: '0.5s' }}
-                        ></div>
-                      </div>
-                    </div>
-
-                    {/* Icon Container with 3D Effects */}
-                    <div className='relative mb-8 mt-10'>
-                      {/* Multiple Glow Layers */}
-                      <div
-                        className={`absolute inset-0 w-24 h-24 bg-gradient-to-r ${step.color} rounded-3xl blur-2xl scale-0 group-hover:scale-125 transition-transform duration-700 mx-auto`}
-                      ></div>
-                      <div
-                        className={`absolute inset-0 w-20 h-20 bg-gradient-to-r ${step.color} rounded-2xl blur-lg scale-0 group-hover:scale-110 transition-transform duration-500 mx-auto`}
-                      ></div>
-
-                      {/* Main Icon Container */}
-                      <div
-                        className={`relative w-20 h-20 bg-gradient-to-br ${step.color} rounded-2xl flex items-center justify-center text-4xl mx-auto group-hover:scale-110 group-hover:rotate-12 group-hover:-translate-y-2 transition-all duration-700 shadow-2xl group-hover:shadow-[var(--accent-primary)]/50`}
-                      >
-                        <span className='group-hover:animate-bounce group-hover:drop-shadow-lg'>
-                          {step.icon}
-                        </span>
-                      </div>
-
-                      {/* Icon Decorative Elements */}
-                      <div className='absolute top-0 right-0 w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-ping'></div>
-                      <div
-                        className='absolute bottom-0 left-0 w-3 h-3 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-ping'
-                        style={{ animationDelay: '0.5s' }}
-                      ></div>
-                      <div
-                        className='absolute top-1/2 left-0 w-2 h-2 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-600 animate-ping'
-                        style={{ animationDelay: '1s' }}
-                      ></div>
-                    </div>
-
-                    {/* Content with Enhanced Typography */}
-                    <div className='relative z-10'>
-                      <h3 className='text-xl font-bold text-[var(--text-primary)] mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[var(--accent-primary)] group-hover:to-[var(--accent-secondary)] transition-all duration-700 group-hover:drop-shadow-lg'>
-                        {step.title}
-                      </h3>
-                      <p className='text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition-colors duration-700 leading-relaxed group-hover:drop-shadow-md'>
-                        {step.description}
-                      </p>
-                    </div>
-
-                    {/* Enhanced Bottom Progress Bar */}
-                    <div
-                      className={`absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r ${step.color} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left rounded-full shadow-lg`}
-                    ></div>
-
-                    {/* Corner Accents */}
-                    <div className='absolute top-4 right-4 w-3 h-3 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse shadow-lg'></div>
-                    <div className='absolute bottom-4 left-4 w-2 h-2 bg-gradient-to-r from-[var(--accent-secondary)] to-[var(--accent-primary)] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse shadow-lg'></div>
-                    <div className='absolute top-4 left-4 w-1 h-1 bg-yellow-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-600 animate-ping'></div>
-                    <div className='absolute bottom-4 right-4 w-1 h-1 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-800 animate-ping'></div>
-                  </div>
-
-                  {/* Enhanced Connection Arrow (Mobile) */}
-                  {index < 2 && (
-                    <div className='md:hidden flex justify-center mt-8 mb-8'>
-                      <div className='relative'>
-                        {/* Arrow Glow */}
-                        <div className='absolute inset-0 w-12 h-12 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] rounded-full blur-lg scale-0 animate-pulse'></div>
-
-                        {/* Main Arrow */}
-                        <div className='relative w-10 h-10 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] rounded-full flex items-center justify-center text-white text-lg font-bold animate-bounce shadow-2xl'>
-                          ↓
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Use Cases */}
-      <section className='py-20 relative overflow-hidden bg-gradient-to-br from-[var(--bg-secondary)] via-[var(--bg-primary)] to-[var(--bg-secondary)]'>
-        {/* Enhanced Background Effects */}
-        <div className='absolute inset-0'>
-          {/* Floating Orbs */}
-          <div className='absolute top-20 left-10 w-40 h-40 bg-gradient-to-r from-[var(--accent-primary)]/15 to-transparent rounded-full blur-2xl animate-pulse'></div>
-          <div
-            className='absolute bottom-20 right-10 w-56 h-56 bg-gradient-to-l from-[var(--accent-secondary)]/15 to-transparent rounded-full blur-2xl animate-pulse'
-            style={{ animationDelay: '1s' }}
-          ></div>
-          <div
-            className='absolute top-1/2 left-1/4 w-32 h-32 bg-gradient-to-r from-[var(--accent-primary)]/10 to-[var(--accent-secondary)]/10 rounded-full blur-xl animate-pulse'
-            style={{ animationDelay: '2s' }}
-          ></div>
-
-          {/* Grid Pattern */}
-          <div className='absolute inset-0 opacity-5'>
-            <div
-              className='absolute inset-0'
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-                animation: 'gridMove 30s linear infinite',
-              }}
-            ></div>
-          </div>
-        </div>
-
-        <div className='container mx-auto px-4 relative'>
-          <div className='text-center mb-24'>
-            <div className='inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-[var(--accent-secondary)]/10 to-[var(--accent-primary)]/10 border border-[var(--accent-secondary)]/30 rounded-full text-sm text-[var(--accent-secondary)] mb-8 shadow-lg backdrop-blur-lg'>
-              <span className='text-lg animate-bounce'>🎯</span>
-              <span className='font-semibold'>{t('home.useCases.badge')}</span>
-            </div>
-            <h2 className='text-4xl md:text-5xl font-black text-[var(--text-primary)] mb-6'>
-              <span className='bg-gradient-to-r from-[var(--accent-primary)] via-[var(--accent-secondary)] to-[var(--accent-primary)] bg-clip-text text-transparent'>
-                {t('home.useCases.title')}
-              </span>
+            <h2 className='text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-6'>
+              Simple 3-Step Process
             </h2>
             <p className='text-xl text-[var(--text-secondary)] max-w-3xl mx-auto leading-relaxed'>
-              {t('home.useCases.subtitle')}
+              Transform your photos into stunning artwork in just three easy steps
             </p>
           </div>
 
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10'>
-            {(() => {
-              const cases = t('home.useCases.cases')
-              const casesArray = Array.isArray(cases) ? cases : []
-              return casesArray.map((useCase: any, index: number) => (
-                <div
-                  key={index}
-                  className='group relative cursor-pointer transform-gpu'
-                  style={{
-                    animationDelay: `${index * 150}ms`,
-                    animation: 'fadeInUp 0.8s ease-out forwards',
-                  }}
-                >
-                  {/* Card Container */}
-                  <div className='relative bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-3xl p-8 border border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-all duration-700 hover:shadow-2xl hover:shadow-[var(--accent-primary)]/30 hover:-translate-y-8 text-center overflow-hidden'>
-                    {/* Outer Glow Ring */}
-                    <div className='absolute inset-0 rounded-3xl bg-gradient-to-r from-[var(--accent-primary)] via-[var(--accent-secondary)] to-[var(--accent-primary)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl scale-110 animate-pulse'></div>
+          <div className='grid grid-cols-1 md:grid-cols-3 gap-8 relative'>
+            {/* Connection Lines */}
+            <div className='hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[var(--accent-primary)]/30 to-transparent transform -translate-y-1/2'></div>
 
-                    {/* Animated Background */}
-                    <div className='absolute inset-0 bg-gradient-to-br from-[var(--accent-primary)]/8 via-transparent to-[var(--accent-secondary)]/8 opacity-0 group-hover:opacity-100 transition-opacity duration-700'></div>
-
-                    {/* Floating Particles */}
-                    <div className='absolute inset-0 overflow-hidden'>
-                      {[...Array(10)].map((_, i) => (
-                        <div
-                          key={i}
-                          className='absolute w-1 h-1 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] rounded-full animate-float'
-                          style={{
-                            left: `${Math.random() * 100}%`,
-                            top: `${Math.random() * 100}%`,
-                            animationDelay: `${Math.random() * 3}s`,
-                            animationDuration: `${3 + Math.random() * 2}s`,
-                          }}
-                        />
-                      ))}
+            {[
+              {
+                step: 1,
+                icon: '📸',
+                title: 'Upload Your Photo',
+                description: 'Choose any image - JPEG, PNG, or WebP formats up to 5MB',
+                color: 'from-blue-500 to-cyan-500',
+              },
+              {
+                step: 2,
+                icon: '🎨',
+                title: 'Select Art Style',
+                description:
+                  'Pick from 50+ AI effects including 3D figurine, anime, plushie styles',
+                color: 'from-[var(--accent-primary)] to-[var(--accent-secondary)]',
+              },
+              {
+                step: 3,
+                icon: '✨',
+                title: 'Download & Share',
+                description: 'Get your transformed artwork instantly and share on social media',
+                color: 'from-green-500 to-emerald-500',
+              },
+            ].map((step, index) => (
+              <div key={step.step} className='relative group'>
+                <div className='relative bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-8 border border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-all duration-500 hover:shadow-2xl hover:shadow-[var(--accent-primary)]/30 text-center'>
+                  {/* Step Number */}
+                  <div className='absolute -top-4 left-1/2 transform -translate-x-1/2'>
+                    <div
+                      className={`w-8 h-8 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg`}
+                    >
+                      {step.step}
                     </div>
-
-                    {/* Icon Section with Enhanced Effects */}
-                    <div className='relative mb-8'>
-                      {/* Multiple Glow Layers */}
-                      <div className='absolute inset-0 w-24 h-24 bg-gradient-to-r from-[var(--accent-primary)]/40 to-[var(--accent-secondary)]/40 rounded-3xl blur-2xl scale-0 group-hover:scale-125 transition-transform duration-700 mx-auto'></div>
-                      <div className='absolute inset-0 w-20 h-20 bg-gradient-to-r from-[var(--accent-primary)]/30 to-[var(--accent-secondary)]/30 rounded-2xl blur-lg scale-0 group-hover:scale-110 transition-transform duration-500 mx-auto'></div>
-
-                      {/* Main Icon Container */}
-                      <div className='relative w-20 h-20 bg-gradient-to-br from-[var(--accent-primary)]/25 via-[var(--accent-secondary)]/25 to-[var(--accent-primary)]/25 rounded-2xl flex items-center justify-center text-5xl mx-auto group-hover:scale-110 group-hover:rotate-12 group-hover:-translate-y-2 transition-all duration-700 shadow-2xl group-hover:shadow-[var(--accent-primary)]/50'>
-                        <span className='group-hover:animate-bounce group-hover:drop-shadow-lg'>
-                          {useCase.icon}
-                        </span>
-                      </div>
-
-                      {/* Enhanced Sparkle Effects */}
-                      <div className='absolute top-0 right-0 w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-ping shadow-lg'></div>
-                      <div
-                        className='absolute bottom-0 left-0 w-3 h-3 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-ping shadow-lg'
-                        style={{ animationDelay: '0.5s' }}
-                      ></div>
-                      <div
-                        className='absolute top-1/2 left-0 w-2 h-2 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-600 animate-ping'
-                        style={{ animationDelay: '1s' }}
-                      ></div>
-                      <div
-                        className='absolute top-0 left-1/2 w-1 h-1 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-800 animate-ping'
-                        style={{ animationDelay: '1.5s' }}
-                      ></div>
-                    </div>
-
-                    {/* Content with Enhanced Typography */}
-                    <div className='relative z-10'>
-                      <h3 className='text-xl font-bold text-[var(--text-primary)] mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[var(--accent-primary)] group-hover:to-[var(--accent-secondary)] transition-all duration-700 group-hover:drop-shadow-lg'>
-                        {useCase.title}
-                      </h3>
-                      <p className='text-[var(--text-secondary)] text-sm leading-relaxed group-hover:text-[var(--text-primary)] transition-colors duration-700 group-hover:drop-shadow-md'>
-                        {useCase.description}
-                      </p>
-                    </div>
-
-                    {/* Enhanced Bottom Progress Bar */}
-                    <div className='absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-[var(--accent-primary)] via-[var(--accent-secondary)] to-[var(--accent-primary)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left rounded-full shadow-lg'></div>
-
-                    {/* Corner Accents with Enhanced Effects */}
-                    <div className='absolute top-4 right-4 w-3 h-3 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse shadow-lg'></div>
-                    <div className='absolute bottom-4 left-4 w-2 h-2 bg-gradient-to-r from-[var(--accent-secondary)] to-[var(--accent-primary)] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse shadow-lg'></div>
-                    <div className='absolute top-4 left-4 w-1 h-1 bg-yellow-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-600 animate-ping'></div>
-                    <div className='absolute bottom-4 right-4 w-1 h-1 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-800 animate-ping'></div>
                   </div>
 
-                  {/* Enhanced Hover Overlay */}
-                  <div className='absolute inset-0 bg-gradient-to-br from-[var(--accent-primary)]/8 via-transparent to-[var(--accent-secondary)]/8 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-3xl'></div>
-
-                  {/* Shimmer Effect */}
-                  <div className='absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700'>
-                    <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000'></div>
+                  {/* Icon */}
+                  <div
+                    className={`w-16 h-16 bg-gradient-to-r ${step.color} rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}
+                  >
+                    {step.icon}
                   </div>
+
+                  {/* Content */}
+                  <h3 className='text-xl font-bold text-[var(--text-primary)] mb-3 group-hover:text-[var(--accent-primary)] transition-colors duration-300'>
+                    {step.title}
+                  </h3>
+                  <p className='text-[var(--text-secondary)] leading-relaxed group-hover:text-[var(--text-primary)] transition-colors duration-300'>
+                    {step.description}
+                  </p>
                 </div>
-              ))
-            })()}
+
+                {/* Arrow for mobile */}
+                {index < 2 && (
+                  <div className='md:hidden flex justify-center mt-6 mb-6'>
+                    <div className='w-8 h-8 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] rounded-full flex items-center justify-center text-white text-sm font-bold'>
+                      ↓
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className='py-20'>
-        <div className='container mx-auto px-4 text-center'>
-          <h2 className='text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-4'>
-            {t('home.cta.title')}
+      {/* 价格/订阅区域 */}
+      <section className='py-20 bg-[var(--bg-secondary)] relative overflow-hidden'>
+        <div className='container mx-auto px-4 relative'>
+          <div className='text-center mb-16'>
+            <div className='inline-flex items-center gap-2 px-4 py-2 bg-[var(--accent-primary)]/10 border border-[var(--accent-primary)]/20 rounded-full text-sm text-[var(--accent-primary)] mb-6'>
+              <span>💎</span>
+              Transparent Pricing
+            </div>
+            <h2 className='text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-6'>
+              Choose Your Plan
+            </h2>
+            <p className='text-xl text-[var(--text-secondary)] max-w-3xl mx-auto leading-relaxed'>
+              Start with 3 free generations, then choose the plan that fits your needs
+            </p>
+          </div>
+
+          <div className='grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto'>
+            {/* Free Plan */}
+            <div className='bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-6 border border-[var(--border-primary)] text-center'>
+              <div className='mb-4'>
+                <h3 className='text-2xl font-bold text-[var(--text-primary)] mb-2'>Free</h3>
+                <div className='text-4xl font-bold text-[var(--accent-primary)] mb-2'>$0</div>
+                <p className='text-[var(--text-secondary)]'>Perfect for trying out</p>
+              </div>
+              <ul className='space-y-3 mb-6 text-left'>
+                <li className='flex items-center gap-2 text-sm'>
+                  <span className='w-2 h-2 bg-green-500 rounded-full'></span>3 free generations
+                </li>
+                <li className='flex items-center gap-2 text-sm'>
+                  <span className='w-2 h-2 bg-green-500 rounded-full'></span>
+                  Standard quality
+                </li>
+                <li className='flex items-center gap-2 text-sm'>
+                  <span className='w-2 h-2 bg-green-500 rounded-full'></span>
+                  No credit card required
+                </li>
+              </ul>
+              <button
+                onClick={handleStartCreating}
+                className='w-full px-6 py-3 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300'
+              >
+                Try Free Now
+              </button>
+            </div>
+
+            {/* Pro Plan */}
+            <div className='bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-6 border-2 border-[var(--accent-primary)] text-center relative'>
+              <div className='absolute -top-3 left-1/2 transform -translate-x-1/2'>
+                <div className='bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white text-xs px-4 py-1 rounded-full font-medium'>
+                  Most Popular
+                </div>
+              </div>
+              <div className='mb-4'>
+                <h3 className='text-2xl font-bold text-[var(--text-primary)] mb-2'>Pro</h3>
+                <div className='text-4xl font-bold text-[var(--accent-primary)] mb-2'>$9.99</div>
+                <p className='text-[var(--text-secondary)]'>per month</p>
+              </div>
+              <ul className='space-y-3 mb-6 text-left'>
+                <li className='flex items-center gap-2 text-sm'>
+                  <span className='w-2 h-2 bg-green-500 rounded-full'></span>
+                  100 generations/month
+                </li>
+                <li className='flex items-center gap-2 text-sm'>
+                  <span className='w-2 h-2 bg-green-500 rounded-full'></span>
+                  HD quality output
+                </li>
+                <li className='flex items-center gap-2 text-sm'>
+                  <span className='w-2 h-2 bg-green-500 rounded-full'></span>
+                  Priority processing
+                </li>
+                <li className='flex items-center gap-2 text-sm'>
+                  <span className='w-2 h-2 bg-green-500 rounded-full'></span>
+                  All art styles included
+                </li>
+              </ul>
+              <button
+                onClick={() => navigate('/pricing')}
+                className='w-full px-6 py-3 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300'
+              >
+                Go Pro
+              </button>
+            </div>
+
+            {/* Enterprise Plan */}
+            <div className='bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-6 border border-[var(--border-primary)] text-center'>
+              <div className='mb-4'>
+                <h3 className='text-2xl font-bold text-[var(--text-primary)] mb-2'>Enterprise</h3>
+                <div className='text-4xl font-bold text-[var(--accent-primary)] mb-2'>$29.99</div>
+                <p className='text-[var(--text-secondary)]'>per month</p>
+              </div>
+              <ul className='space-y-3 mb-6 text-left'>
+                <li className='flex items-center gap-2 text-sm'>
+                  <span className='w-2 h-2 bg-green-500 rounded-full'></span>
+                  Unlimited generations
+                </li>
+                <li className='flex items-center gap-2 text-sm'>
+                  <span className='w-2 h-2 bg-green-500 rounded-full'></span>
+                  Ultra HD quality
+                </li>
+                <li className='flex items-center gap-2 text-sm'>
+                  <span className='w-2 h-2 bg-green-500 rounded-full'></span>
+                  API access
+                </li>
+                <li className='flex items-center gap-2 text-sm'>
+                  <span className='w-2 h-2 bg-green-500 rounded-full'></span>
+                  Priority support
+                </li>
+              </ul>
+              <button
+                onClick={() => navigate('/pricing')}
+                className='w-full px-6 py-3 border-2 border-[var(--accent-primary)] text-[var(--accent-primary)] font-semibold rounded-xl hover:bg-[var(--accent-primary)] hover:text-white transition-all duration-300'
+              >
+                Contact Sales
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 信任背书区域 */}
+      <section className='py-20 relative overflow-hidden'>
+        <div className='container mx-auto px-4 relative'>
+          <div className='text-center mb-16'>
+            <div className='inline-flex items-center gap-2 px-4 py-2 bg-[var(--accent-secondary)]/10 border border-[var(--accent-secondary)]/20 rounded-full text-sm text-[var(--accent-secondary)] mb-6'>
+              <span>🛡️</span>
+              Trusted & Secure
+            </div>
+            <h2 className='text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-6'>
+              Built on Advanced AI Technology
+            </h2>
+            <p className='text-xl text-[var(--text-secondary)] max-w-3xl mx-auto leading-relaxed'>
+              Powered by Nano Banana AI with Google's Gemini 2.5 Flash Image API for superior
+              results
+            </p>
+          </div>
+
+          <div className='grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto'>
+            {/* 技术来源 */}
+            <div className='bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-8 border border-[var(--border-primary)] text-center'>
+              <div className='w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4'>
+                🤖
+              </div>
+              <h3 className='text-xl font-bold text-[var(--text-primary)] mb-3'>
+                Powered by Nano Banana AI
+              </h3>
+              <p className='text-[var(--text-secondary)] text-sm leading-relaxed'>
+                Advanced AI technology utilizing Google's Gemini 2.5 Flash Image API for superior
+                character consistency and scene preservation
+              </p>
+            </div>
+
+            {/* 隐私安全 */}
+            <div className='bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-8 border border-[var(--border-primary)] text-center'>
+              <div className='w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4'>
+                🔒
+              </div>
+              <h3 className='text-xl font-bold text-[var(--text-primary)] mb-3'>Privacy First</h3>
+              <p className='text-[var(--text-secondary)] text-sm leading-relaxed'>
+                Your photos are never stored, shared, or used for training. Complete privacy
+                protection with automatic deletion after processing
+              </p>
+            </div>
+
+            {/* 用户评价 */}
+            <div className='bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-8 border border-[var(--border-primary)] text-center'>
+              <div className='w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4'>
+                ⭐
+              </div>
+              <h3 className='text-xl font-bold text-[var(--text-primary)] mb-3'>User Reviews</h3>
+              <p className='text-[var(--text-secondary)] text-sm leading-relaxed'>
+                "Amazing results! The 3D figurine effect is incredible. Much better than other AI
+                tools I've tried." - Sarah M.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 最终CTA区域 */}
+      <section className='py-20 bg-gradient-to-br from-[var(--accent-primary)]/10 via-[var(--accent-secondary)]/5 to-[var(--accent-primary)]/10 relative overflow-hidden'>
+        <div className='container mx-auto px-4 text-center relative'>
+          <h2 className='text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-6'>
+            Ready to Transform Your Photos?
           </h2>
-          <p className='text-lg text-[var(--text-secondary)] mb-8 max-w-2xl mx-auto'>
-            {t('home.cta.subtitle')}
+          <p className='text-xl text-[var(--text-secondary)] mb-8 max-w-2xl mx-auto'>
+            Join thousands of creators using och.ai to create stunning AI artwork. Start with 3 free
+            generations today!
           </p>
-          <button
-            onClick={handleStartCreating}
-            className='px-10 py-4 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 text-lg'
-          >
-            {t('home.cta.button')}
-          </button>
+
+          <div className='flex flex-col sm:flex-row gap-4 justify-center items-center mb-8'>
+            <button
+              onClick={handleStartCreating}
+              className='group relative px-10 py-5 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white font-bold text-lg rounded-2xl shadow-2xl hover:shadow-[var(--accent-primary)]/25 transform hover:scale-105 transition-all duration-300'
+            >
+              <span className='flex items-center gap-3'>
+                <span>🚀</span>
+                Try Free Now
+              </span>
+            </button>
+            <button
+              onClick={() => navigate('/pricing')}
+              className='group px-10 py-5 border-2 border-[var(--accent-primary)] text-[var(--accent-primary)] font-bold text-lg rounded-2xl hover:bg-[var(--accent-primary)] hover:text-white transition-all duration-300 backdrop-blur-lg bg-[var(--bg-card-alpha)]/50'
+            >
+              <span className='flex items-center gap-3'>
+                <span>💎</span>
+                View Pricing
+              </span>
+            </button>
+          </div>
+
+          <div className='text-sm text-[var(--text-secondary)]'>
+            ✨ No credit card required • 3 free generations • Powered by Nano Banana AI
+          </div>
         </div>
       </section>
 
