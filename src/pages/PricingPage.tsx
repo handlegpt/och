@@ -35,10 +35,10 @@ export const PricingPage: React.FC = () => {
             Powered by Nano Banana AI
           </div>
           <h1 className='text-5xl md:text-6xl font-black text-[var(--text-primary)] mb-6 leading-tight'>
-            {t('pricing.title')}
+            {t('app.pricing.title')}
           </h1>
           <p className='text-xl md:text-2xl text-[var(--text-secondary)] mb-8 max-w-3xl mx-auto leading-relaxed'>
-            {t('pricing.subtitle')}
+            {t('app.pricing.subtitle')}
           </p>
 
           {/* 计费周期切换 */}
@@ -46,7 +46,7 @@ export const PricingPage: React.FC = () => {
             <span
               className={`text-sm ${billingCycle === 'monthly' ? 'text-[var(--text-primary)]' : 'text-[var(--text-secondary)]'}`}
             >
-              {t('pricing.monthly')}
+              {t('app.pricing.monthly')}
             </span>
             <button
               onClick={() => setBillingCycle(billingCycle === 'monthly' ? 'yearly' : 'monthly')}
@@ -61,11 +61,11 @@ export const PricingPage: React.FC = () => {
             <span
               className={`text-sm ${billingCycle === 'yearly' ? 'text-[var(--text-primary)]' : 'text-[var(--text-secondary)]'}`}
             >
-              {t('pricing.yearly')}
+              {t('app.pricing.yearly')}
             </span>
             {billingCycle === 'yearly' && (
               <span className='ml-2 px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full'>
-                {t('pricing.save').replace('{percent}', '17')}
+                {t('app.pricing.save').replace('{percent}', '17')}
               </span>
             )}
           </div>
@@ -86,7 +86,7 @@ export const PricingPage: React.FC = () => {
               {tier.popular && (
                 <div className='absolute -top-4 left-1/2 transform -translate-x-1/2'>
                   <span className='bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white px-6 py-2 text-sm font-bold rounded-full shadow-lg'>
-                    {t('pricing.mostPopular')}
+                    {t('app.pricing.mostPopular')}
                   </span>
                 </div>
               )}
@@ -104,7 +104,7 @@ export const PricingPage: React.FC = () => {
                 <div className='mb-6'>
                   {tier.price.monthly === 0 ? (
                     <div className='text-4xl font-black text-[var(--text-primary)]'>
-                      {t('pricing.free')}
+                      {t('app.pricing.free')}
                     </div>
                   ) : (
                     <div className='flex items-baseline justify-center'>
@@ -112,7 +112,8 @@ export const PricingPage: React.FC = () => {
                         ${getPrice(tier)}
                       </span>
                       <span className='text-lg text-[var(--text-secondary)] ml-2'>
-                        /{billingCycle === 'yearly' ? t('pricing.year') : t('pricing.month')}
+                        /
+                        {billingCycle === 'yearly' ? t('app.pricing.year') : t('app.pricing.month')}
                       </span>
                     </div>
                   )}
@@ -120,7 +121,10 @@ export const PricingPage: React.FC = () => {
                   {/* 年度节省 */}
                   {billingCycle === 'yearly' && tier.price.yearly > 0 && (
                     <div className='text-sm text-green-600 mt-1'>
-                      {t('pricing.saveAmount').replace('{percent}', getSavings(tier).toString())}
+                      {t('app.pricing.saveAmount').replace(
+                        '{percent}',
+                        getSavings(tier).toString()
+                      )}
                     </div>
                   )}
                 </div>
@@ -128,10 +132,10 @@ export const PricingPage: React.FC = () => {
                 {/* 限制信息 */}
                 <div className='text-sm text-[var(--text-secondary)] mb-6'>
                   {tier.limits.dailyGenerations === -1 ? (
-                    <span>{t('pricing.unlimitedGenerations')}</span>
+                    <span>{t('app.pricing.unlimitedGenerations')}</span>
                   ) : (
                     <span>
-                      {t('pricing.dailyGenerations').replace(
+                      {t('app.pricing.dailyGenerations').replace(
                         '{count}',
                         tier.limits.dailyGenerations.toString()
                       )}
@@ -165,14 +169,14 @@ export const PricingPage: React.FC = () => {
                       : 'bg-[var(--accent-primary)] text-white hover:opacity-90 shadow-lg hover:shadow-xl'
                 }`}
               >
-                {tier.id === 'free' ? t('pricing.getStarted') : t('pricing.selectPlan')}
+                {tier.id === 'free' ? t('app.pricing.getStarted') : t('app.pricing.selectPlan')}
               </button>
 
               {/* 企业版特殊处理 */}
               {tier.id === 'enterprise' && (
                 <div className='mt-4 text-center'>
                   <button className='text-[var(--accent-primary)] text-sm hover:underline'>
-                    {t('pricing.contactSales')}
+                    {t('app.pricing.contactSales')}
                   </button>
                 </div>
               )}
@@ -184,7 +188,7 @@ export const PricingPage: React.FC = () => {
         <div className='bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl border border-[var(--border-primary)] overflow-hidden shadow-2xl'>
           <div className='p-8 border-b border-[var(--border-primary)] bg-gradient-to-r from-[var(--accent-primary)]/5 to-[var(--accent-secondary)]/5'>
             <h2 className='text-3xl font-bold text-[var(--text-primary)] text-center'>
-              {t('pricing.featureComparison')}
+              {t('app.pricing.featureComparison')}
             </h2>
             <p className='text-[var(--text-secondary)] text-center mt-2'>
               详细功能对比，帮助您选择最适合的方案
@@ -196,7 +200,7 @@ export const PricingPage: React.FC = () => {
               <thead>
                 <tr className='border-b border-[var(--border-primary)]'>
                   <th className='text-left p-4 text-[var(--text-primary)] font-medium'>
-                    {t('pricing.features')}
+                    {t('app.pricing.features')}
                   </th>
                   {PRICING_TIERS.map(tier => (
                     <th
@@ -235,7 +239,7 @@ export const PricingPage: React.FC = () => {
               Frequently Asked Questions
             </div>
             <h2 className='text-4xl font-bold text-[var(--text-primary)] mb-4'>
-              {t('pricing.faq.title')}
+              {t('app.pricing.faq.title')}
             </h2>
             <p className='text-xl text-[var(--text-secondary)] max-w-3xl mx-auto'>
               解答您关于定价和服务的常见问题
@@ -244,27 +248,35 @@ export const PricingPage: React.FC = () => {
           <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
             <div className='bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-8 border border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-all duration-300 hover:shadow-xl'>
               <h3 className='text-xl font-bold text-[var(--text-primary)] mb-4'>
-                {t('pricing.faq.q1')}
+                {t('app.pricing.faq.q1')}
               </h3>
-              <p className='text-[var(--text-secondary)] leading-relaxed'>{t('pricing.faq.a1')}</p>
+              <p className='text-[var(--text-secondary)] leading-relaxed'>
+                {t('app.pricing.faq.a1')}
+              </p>
             </div>
             <div className='bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-8 border border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-all duration-300 hover:shadow-xl'>
               <h3 className='text-xl font-bold text-[var(--text-primary)] mb-4'>
-                {t('pricing.faq.q2')}
+                {t('app.pricing.faq.q2')}
               </h3>
-              <p className='text-[var(--text-secondary)] leading-relaxed'>{t('pricing.faq.a2')}</p>
+              <p className='text-[var(--text-secondary)] leading-relaxed'>
+                {t('app.pricing.faq.a2')}
+              </p>
             </div>
             <div className='bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-8 border border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-all duration-300 hover:shadow-xl'>
               <h3 className='text-xl font-bold text-[var(--text-primary)] mb-4'>
-                {t('pricing.faq.q3')}
+                {t('app.pricing.faq.q3')}
               </h3>
-              <p className='text-[var(--text-secondary)] leading-relaxed'>{t('pricing.faq.a3')}</p>
+              <p className='text-[var(--text-secondary)] leading-relaxed'>
+                {t('app.pricing.faq.a3')}
+              </p>
             </div>
             <div className='bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-8 border border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-all duration-300 hover:shadow-xl'>
               <h3 className='text-xl font-bold text-[var(--text-primary)] mb-4'>
-                {t('pricing.faq.q4')}
+                {t('app.pricing.faq.q4')}
               </h3>
-              <p className='text-[var(--text-secondary)] leading-relaxed'>{t('pricing.faq.a4')}</p>
+              <p className='text-[var(--text-secondary)] leading-relaxed'>
+                {t('app.pricing.faq.a4')}
+              </p>
             </div>
           </div>
         </div>
