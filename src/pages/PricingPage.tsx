@@ -28,12 +28,18 @@ export const PricingPage: React.FC = () => {
   return (
     <div className='min-h-screen bg-[var(--bg-primary)] pb-20'>
       <div className='container mx-auto p-4 md:p-8'>
-        {/* 页面标题 */}
-        <div className='text-center mb-12'>
-          <h1 className='text-4xl font-bold text-[var(--text-primary)] mb-4'>
+        {/* 页面标题 - 参考 Nano Banana AI 的大气设计 */}
+        <div className='text-center mb-16'>
+          <div className='inline-flex items-center gap-2 px-4 py-2 bg-[var(--accent-primary)]/10 border border-[var(--accent-primary)]/20 rounded-full text-sm text-[var(--accent-primary)] mb-6'>
+            <span>✨</span>
+            Powered by Nano Banana AI
+          </div>
+          <h1 className='text-5xl md:text-6xl font-black text-[var(--text-primary)] mb-6 leading-tight'>
             {t('pricing.title')}
           </h1>
-          <p className='text-xl text-[var(--text-secondary)] mb-8'>{t('pricing.subtitle')}</p>
+          <p className='text-xl md:text-2xl text-[var(--text-secondary)] mb-8 max-w-3xl mx-auto leading-relaxed'>
+            {t('pricing.subtitle')}
+          </p>
 
           {/* 计费周期切换 */}
           <div className='flex items-center justify-center gap-4 mb-8'>
@@ -59,51 +65,53 @@ export const PricingPage: React.FC = () => {
             </span>
             {billingCycle === 'yearly' && (
               <span className='ml-2 px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full'>
-                {t('pricing.save', { percent: 17 })}
+                {t('pricing.save').replace('{percent}', '17')}
               </span>
             )}
           </div>
         </div>
 
-        {/* 定价卡片 */}
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16'>
+        {/* 定价卡片 - 参考 Nano Banana AI 的专业设计 */}
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20'>
           {PRICING_TIERS.map(tier => (
             <div
               key={tier.id}
-              className={`relative bg-[var(--bg-card)] rounded-xl border-2 p-6 transition-all duration-200 hover:shadow-lg ${
+              className={`relative bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl border-2 p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-[var(--accent-primary)]/20 hover:-translate-y-2 ${
                 tier.popular
-                  ? 'border-[var(--accent-primary)] ring-2 ring-[var(--accent-primary)] ring-opacity-20'
-                  : 'border-[var(--border-primary)]'
+                  ? 'border-[var(--accent-primary)] ring-2 ring-[var(--accent-primary)] ring-opacity-30 shadow-2xl shadow-[var(--accent-primary)]/20'
+                  : 'border-[var(--border-primary)] hover:border-[var(--accent-primary)]'
               } ${selectedTier === tier.id ? 'ring-2 ring-[var(--accent-primary)]' : ''}`}
             >
-              {/* 推荐标签 */}
+              {/* 推荐标签 - 参考 Nano Banana AI */}
               {tier.popular && (
-                <div className='absolute -top-3 left-1/2 transform -translate-x-1/2'>
-                  <span className='bg-[var(--accent-primary)] text-white px-4 py-1 text-sm font-medium rounded-full'>
+                <div className='absolute -top-4 left-1/2 transform -translate-x-1/2'>
+                  <span className='bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white px-6 py-2 text-sm font-bold rounded-full shadow-lg'>
                     {t('pricing.mostPopular')}
                   </span>
                 </div>
               )}
 
-              {/* 套餐信息 */}
-              <div className='text-center mb-6'>
-                <h3 className='text-xl font-bold text-[var(--text-primary)] mb-2'>
+              {/* 套餐信息 - 参考 Nano Banana AI 的专业展示 */}
+              <div className='text-center mb-8'>
+                <h3 className='text-2xl font-bold text-[var(--text-primary)] mb-3'>
                   {t(tier.name)}
                 </h3>
-                <p className='text-sm text-[var(--text-secondary)] mb-4'>{t(tier.description)}</p>
+                <p className='text-base text-[var(--text-secondary)] mb-6 leading-relaxed'>
+                  {t(tier.description)}
+                </p>
 
-                {/* 价格 */}
-                <div className='mb-4'>
+                {/* 价格 - 参考 Nano Banana AI 的突出展示 */}
+                <div className='mb-6'>
                   {tier.price.monthly === 0 ? (
-                    <div className='text-3xl font-bold text-[var(--text-primary)]'>
+                    <div className='text-4xl font-black text-[var(--text-primary)]'>
                       {t('pricing.free')}
                     </div>
                   ) : (
                     <div className='flex items-baseline justify-center'>
-                      <span className='text-4xl font-bold text-[var(--text-primary)]'>
+                      <span className='text-5xl font-black text-[var(--text-primary)]'>
                         ${getPrice(tier)}
                       </span>
-                      <span className='text-[var(--text-secondary)] ml-1'>
+                      <span className='text-lg text-[var(--text-secondary)] ml-2'>
                         /{billingCycle === 'yearly' ? t('pricing.year') : t('pricing.month')}
                       </span>
                     </div>
@@ -112,7 +120,7 @@ export const PricingPage: React.FC = () => {
                   {/* 年度节省 */}
                   {billingCycle === 'yearly' && tier.price.yearly > 0 && (
                     <div className='text-sm text-green-600 mt-1'>
-                      {t('pricing.saveAmount', { percent: getSavings(tier) })}
+                      {t('pricing.saveAmount').replace('{percent}', getSavings(tier).toString())}
                     </div>
                   )}
                 </div>
@@ -123,7 +131,10 @@ export const PricingPage: React.FC = () => {
                     <span>{t('pricing.unlimitedGenerations')}</span>
                   ) : (
                     <span>
-                      {t('pricing.dailyGenerations', { count: tier.limits.dailyGenerations })}
+                      {t('pricing.dailyGenerations').replace(
+                        '{count}',
+                        tier.limits.dailyGenerations.toString()
+                      )}
                     </span>
                   )}
                 </div>
@@ -143,13 +154,15 @@ export const PricingPage: React.FC = () => {
                 ))}
               </div>
 
-              {/* 选择按钮 */}
+              {/* 选择按钮 - 参考 Nano Banana AI 的专业CTA */}
               <button
                 onClick={() => handleSelectPlan(tier.id)}
-                className={`w-full py-3 px-4 rounded-lg font-medium transition-colors ${
+                className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 transform hover:scale-105 ${
                   tier.id === 'free'
-                    ? 'bg-[var(--bg-secondary)] text-[var(--text-primary)] border border-[var(--border-primary)] hover:bg-[var(--bg-primary)]'
-                    : 'bg-[var(--accent-primary)] text-white hover:opacity-90'
+                    ? 'bg-[var(--bg-secondary)] text-[var(--text-primary)] border-2 border-[var(--border-primary)] hover:bg-[var(--bg-primary)] hover:border-[var(--accent-primary)]'
+                    : tier.popular
+                      ? 'bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white shadow-2xl hover:shadow-[var(--accent-primary)]/25'
+                      : 'bg-[var(--accent-primary)] text-white hover:opacity-90 shadow-lg hover:shadow-xl'
                 }`}
               >
                 {tier.id === 'free' ? t('pricing.getStarted') : t('pricing.selectPlan')}
@@ -167,12 +180,15 @@ export const PricingPage: React.FC = () => {
           ))}
         </div>
 
-        {/* 功能对比表 */}
-        <div className='bg-[var(--bg-card)] rounded-xl border border-[var(--border-primary)] overflow-hidden'>
-          <div className='p-6 border-b border-[var(--border-primary)]'>
-            <h2 className='text-2xl font-bold text-[var(--text-primary)] text-center'>
+        {/* 功能对比表 - 参考 Nano Banana AI 的专业设计 */}
+        <div className='bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl border border-[var(--border-primary)] overflow-hidden shadow-2xl'>
+          <div className='p-8 border-b border-[var(--border-primary)] bg-gradient-to-r from-[var(--accent-primary)]/5 to-[var(--accent-secondary)]/5'>
+            <h2 className='text-3xl font-bold text-[var(--text-primary)] text-center'>
               {t('pricing.featureComparison')}
             </h2>
+            <p className='text-[var(--text-secondary)] text-center mt-2'>
+              详细功能对比，帮助您选择最适合的方案
+            </p>
           </div>
 
           <div className='overflow-x-auto'>
@@ -211,35 +227,44 @@ export const PricingPage: React.FC = () => {
           </div>
         </div>
 
-        {/* FAQ 部分 */}
-        <div className='mt-16'>
-          <h2 className='text-2xl font-bold text-[var(--text-primary)] text-center mb-8'>
-            {t('pricing.faq.title')}
-          </h2>
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-            <div className='bg-[var(--bg-card)] rounded-lg p-6 border border-[var(--border-primary)]'>
-              <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-2'>
+        {/* FAQ 部分 - 参考 Nano Banana AI 的专业设计 */}
+        <div className='mt-20'>
+          <div className='text-center mb-12'>
+            <div className='inline-flex items-center gap-2 px-4 py-2 bg-[var(--accent-secondary)]/10 border border-[var(--accent-secondary)]/20 rounded-full text-sm text-[var(--accent-secondary)] mb-6'>
+              <span>❓</span>
+              Frequently Asked Questions
+            </div>
+            <h2 className='text-4xl font-bold text-[var(--text-primary)] mb-4'>
+              {t('pricing.faq.title')}
+            </h2>
+            <p className='text-xl text-[var(--text-secondary)] max-w-3xl mx-auto'>
+              解答您关于定价和服务的常见问题
+            </p>
+          </div>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
+            <div className='bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-8 border border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-all duration-300 hover:shadow-xl'>
+              <h3 className='text-xl font-bold text-[var(--text-primary)] mb-4'>
                 {t('pricing.faq.q1')}
               </h3>
-              <p className='text-[var(--text-secondary)]'>{t('pricing.faq.a1')}</p>
+              <p className='text-[var(--text-secondary)] leading-relaxed'>{t('pricing.faq.a1')}</p>
             </div>
-            <div className='bg-[var(--bg-card)] rounded-lg p-6 border border-[var(--border-primary)]'>
-              <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-2'>
+            <div className='bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-8 border border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-all duration-300 hover:shadow-xl'>
+              <h3 className='text-xl font-bold text-[var(--text-primary)] mb-4'>
                 {t('pricing.faq.q2')}
               </h3>
-              <p className='text-[var(--text-secondary)]'>{t('pricing.faq.a2')}</p>
+              <p className='text-[var(--text-secondary)] leading-relaxed'>{t('pricing.faq.a2')}</p>
             </div>
-            <div className='bg-[var(--bg-card)] rounded-lg p-6 border border-[var(--border-primary)]'>
-              <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-2'>
+            <div className='bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-8 border border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-all duration-300 hover:shadow-xl'>
+              <h3 className='text-xl font-bold text-[var(--text-primary)] mb-4'>
                 {t('pricing.faq.q3')}
               </h3>
-              <p className='text-[var(--text-secondary)]'>{t('pricing.faq.a3')}</p>
+              <p className='text-[var(--text-secondary)] leading-relaxed'>{t('pricing.faq.a3')}</p>
             </div>
-            <div className='bg-[var(--bg-card)] rounded-lg p-6 border border-[var(--border-primary)]'>
-              <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-2'>
+            <div className='bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-8 border border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-all duration-300 hover:shadow-xl'>
+              <h3 className='text-xl font-bold text-[var(--text-primary)] mb-4'>
                 {t('pricing.faq.q4')}
               </h3>
-              <p className='text-[var(--text-secondary)]'>{t('pricing.faq.a4')}</p>
+              <p className='text-[var(--text-secondary)] leading-relaxed'>{t('pricing.faq.a4')}</p>
             </div>
           </div>
         </div>
