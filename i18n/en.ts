@@ -583,6 +583,18 @@ export default {
       enterPrompt: 'Please enter a prompt describing the change you want to see.',
       unknown: 'An unknown error occurred.',
       useAsInputFailed: 'Could not use the generated image as a new input.',
+      title: 'An Error Occurred',
+      message:
+        'Sorry, the application encountered an unexpected error. We have logged this issue and will fix it as soon as possible.',
+      retry: 'Retry',
+      reload: 'Reload Page',
+      contactSupport: 'If the problem persists, please contact technical support',
+      errorDetails: 'Error Details (Development Mode)',
+      errorMessage: 'Error Message:',
+      stackTrace: 'Stack Trace:',
+      componentLoadFailed: 'Component Load Failed',
+      componentLoadFailedMessage:
+        'Please refresh the page and try again, or contact technical support',
     },
     loading: {
       step1: 'Step 1: Creating line art...',

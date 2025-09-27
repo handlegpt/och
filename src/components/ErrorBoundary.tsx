@@ -1,4 +1,55 @@
 import React, { Component, ErrorInfo, ReactNode } from 'react'
+import { useTranslation } from '../../i18n/context'
+
+// 错误边界内容组件（使用hooks）
+const ErrorBoundaryContent: React.FC<{ error?: Error }> = ({ error }) => {
+  const { t } = useTranslation()
+
+  return (
+    <>
+      <h2 className='text-xl font-semibold text-[var(--text-primary)] mb-2'>{t('error.title')}</h2>
+
+      <p className='text-[var(--text-secondary)] mb-6'>{t('error.message')}</p>
+
+      {process.env.NODE_ENV === 'development' && error && (
+        <details className='mb-6 text-left'>
+          <summary className='cursor-pointer text-sm text-[var(--text-tertiary)] mb-2'>
+            {t('error.errorDetails')}
+          </summary>
+          <div className='bg-[var(--bg-secondary)] p-3 rounded-lg text-xs font-mono text-[var(--text-secondary)] overflow-auto max-h-32'>
+            <div className='mb-2'>
+              <strong>{t('error.errorMessage')}</strong>
+              <div className='text-red-400'>{error.message}</div>
+            </div>
+            {error.stack && (
+              <div>
+                <strong>{t('error.stackTrace')}</strong>
+                <pre className='whitespace-pre-wrap text-xs'>{error.stack}</pre>
+              </div>
+            )}
+          </div>
+        </details>
+      )}
+
+      <div className='flex gap-3 justify-center'>
+        <button
+          onClick={() => window.location.reload()}
+          className='px-4 py-2 bg-[var(--accent-primary)] text-white rounded-lg hover:bg-[var(--accent-primary-hover)] transition-colors'
+        >
+          {t('error.retry')}
+        </button>
+        <button
+          onClick={() => window.location.reload()}
+          className='px-4 py-2 bg-[var(--bg-secondary)] text-[var(--text-primary)] border border-[var(--border-primary)] rounded-lg hover:bg-[var(--bg-primary)] transition-colors'
+        >
+          {t('error.reload')}
+        </button>
+      </div>
+
+      <div className='mt-4 text-xs text-[var(--text-tertiary)]'>{t('error.contactSupport')}</div>
+    </>
+  )
+}
 
 interface Props {
   children: ReactNode
@@ -95,52 +146,7 @@ export class ErrorBoundary extends Component<Props, State> {
               </svg>
             </div>
 
-            <h2 className='text-xl font-semibold text-[var(--text-primary)] mb-2'>
-              出现了一个错误
-            </h2>
-
-            <p className='text-[var(--text-secondary)] mb-6'>
-              很抱歉，应用程序遇到了一个意外错误。我们已经记录了这个问题，并会尽快修复。
-            </p>
-
-            {process.env.NODE_ENV === 'development' && this.state.error && (
-              <details className='mb-6 text-left'>
-                <summary className='cursor-pointer text-sm text-[var(--text-tertiary)] mb-2'>
-                  错误详情（开发模式）
-                </summary>
-                <div className='bg-[var(--bg-secondary)] p-3 rounded-lg text-xs font-mono text-[var(--text-secondary)] overflow-auto max-h-32'>
-                  <div className='mb-2'>
-                    <strong>错误信息：</strong>
-                    <div className='text-red-400'>{this.state.error.message}</div>
-                  </div>
-                  {this.state.error.stack && (
-                    <div>
-                      <strong>堆栈跟踪：</strong>
-                      <pre className='whitespace-pre-wrap text-xs'>{this.state.error.stack}</pre>
-                    </div>
-                  )}
-                </div>
-              </details>
-            )}
-
-            <div className='flex gap-3 justify-center'>
-              <button
-                onClick={this.handleRetry}
-                className='px-4 py-2 bg-[var(--accent-primary)] text-white rounded-lg hover:bg-[var(--accent-primary-hover)] transition-colors'
-              >
-                重试
-              </button>
-              <button
-                onClick={this.handleReload}
-                className='px-4 py-2 bg-[var(--bg-secondary)] text-[var(--text-primary)] border border-[var(--border-primary)] rounded-lg hover:bg-[var(--bg-primary)] transition-colors'
-              >
-                刷新页面
-              </button>
-            </div>
-
-            <div className='mt-4 text-xs text-[var(--text-tertiary)]'>
-              如果问题持续存在，请联系技术支持
-            </div>
+            <ErrorBoundaryContent error={this.state.error} />
           </div>
         </div>
       )
@@ -169,27 +175,31 @@ export function withErrorBoundary<P extends object>(
 // 用于特定组件的错误边界
 export const ComponentErrorBoundary: React.FC<{ children: ReactNode; componentName?: string }> = ({
   children,
-  componentName = '组件',
-}) => (
-  <ErrorBoundary
-    fallback={
-      <div className='p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg'>
-        <div className='flex items-center gap-2 text-red-600 dark:text-red-400'>
-          <svg className='w-5 h-5' fill='currentColor' viewBox='0 0 20 20'>
-            <path
-              fillRule='evenodd'
-              d='M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z'
-              clipRule='evenodd'
-            />
-          </svg>
-          <span className='font-medium'>{componentName}加载失败</span>
+  componentName: _componentName = '组件',
+}) => {
+  const { t } = useTranslation()
+
+  return (
+    <ErrorBoundary
+      fallback={
+        <div className='p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg'>
+          <div className='flex items-center gap-2 text-red-600 dark:text-red-400'>
+            <svg className='w-5 h-5' fill='currentColor' viewBox='0 0 20 20'>
+              <path
+                fillRule='evenodd'
+                d='M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z'
+                clipRule='evenodd'
+              />
+            </svg>
+            <span className='font-medium'>{t('error.componentLoadFailed')}</span>
+          </div>
+          <p className='text-sm text-red-500 dark:text-red-300 mt-1'>
+            {t('error.componentLoadFailedMessage')}
+          </p>
         </div>
-        <p className='text-sm text-red-500 dark:text-red-300 mt-1'>
-          请刷新页面重试，或联系技术支持
-        </p>
-      </div>
-    }
-  >
-    {children}
-  </ErrorBoundary>
-)
+      }
+    >
+      {children}
+    </ErrorBoundary>
+  )
+}
