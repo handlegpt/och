@@ -29,12 +29,16 @@ export const useAuthProvider = () => {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (event, session) => {
+      console.log('🔄 Auth state change:', event, session?.user?.email || 'no user')
+
       setSession(session)
       setUser(session?.user ?? null)
 
       if (session?.user) {
+        console.log('👤 User logged in, fetching profile...')
         await fetchUserProfile(session.user.id)
       } else {
+        console.log('👋 User logged out, clearing profile...')
         setUserProfile(null)
       }
 
@@ -154,7 +158,9 @@ export const useAuthProvider = () => {
     }
 
     try {
-      console.log('Calling supabase.auth.signOut()...')
+      console.log('🚪 Starting sign out process...')
+      console.log('Current user before signOut:', user?.email)
+      console.log('Current session before signOut:', session?.access_token ? 'exists' : 'none')
 
       // 使用 Promise.race 来设置超时，防止某些浏览器卡住
       const signOutPromise = supabase.auth.signOut()
@@ -165,18 +171,19 @@ export const useAuthProvider = () => {
       const { error } = (await Promise.race([signOutPromise, timeoutPromise])) as any
 
       if (error) {
-        console.error('Supabase signOut error:', error)
+        console.error('❌ Supabase signOut error:', error)
         throw error
       }
 
-      console.log('Supabase signOut successful')
+      console.log('✅ Supabase signOut successful')
 
       // 清除本地存储的认证信息
       try {
         localStorage.removeItem('supabase.auth.token')
         sessionStorage.clear()
+        console.log('🧹 Local storage cleared')
       } catch (e) {
-        console.warn('Failed to clear local storage:', e)
+        console.warn('⚠️ Failed to clear local storage:', e)
       }
     } catch (error) {
       console.error('Error in signOut function:', error)
@@ -185,9 +192,8 @@ export const useAuthProvider = () => {
       try {
         localStorage.removeItem('supabase.auth.token')
         sessionStorage.clear()
-        // 强制清除用户状态
-        setUser(null)
-        setSession(null)
+        // 注意：不要手动设置状态，让onAuthStateChange处理
+        // 这样可以确保状态管理的一致性
       } catch (e) {
         console.warn('Failed to clear local storage after error:', e)
       }

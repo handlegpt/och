@@ -92,8 +92,8 @@ export const UserInfo: React.FC = () => {
               await signOut()
               console.log('Sign out successful')
 
-              // 强制刷新页面以确保状态完全重置
-              window.location.reload()
+              // 不需要手动刷新页面，React状态会自动更新
+              // 用户状态会通过onAuthStateChange自动清除
             } catch (error) {
               console.error('Sign out error:', error)
               alert('退出登录失败，请重试')
