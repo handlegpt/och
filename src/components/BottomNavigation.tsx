@@ -8,7 +8,7 @@ export const BottomNavigation: React.FC = () => {
     return location.pathname === path
   }
 
-  // 参考 Nano Banana AI 的导航结构
+  // 参考 Nano Banana AI 的完整导航结构
   const navItems = [
     {
       path: '/',
@@ -37,6 +37,13 @@ export const BottomNavigation: React.FC = () => {
       activeIcon: '🖼️',
       label: 'Showcase',
       description: 'Gallery & Examples',
+    },
+    {
+      path: '/profile',
+      icon: '👤',
+      activeIcon: '👤',
+      label: 'Profile',
+      description: 'User Center',
     },
   ]
 

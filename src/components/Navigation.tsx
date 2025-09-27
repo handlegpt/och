@@ -93,6 +93,17 @@ export const Navigation: React.FC = () => {
             >
               Profile
             </Link>
+
+            <Link
+              to='/more'
+              className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                isActive('/more')
+                  ? 'text-[var(--accent-primary)]'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+              }`}
+            >
+              More
+            </Link>
           </nav>
 
           {/* 右侧工具 */}
@@ -148,6 +159,17 @@ export const Navigation: React.FC = () => {
               }`}
             >
               Profile
+            </Link>
+
+            <Link
+              to='/more'
+              className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                isActive('/more')
+                  ? 'text-[var(--accent-primary)]'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+              }`}
+            >
+              More
             </Link>
           </nav>
         </div>
