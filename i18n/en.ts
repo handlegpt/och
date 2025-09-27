@@ -504,6 +504,24 @@ export default {
         privateDeployment: 'Private Deployment',
         whiteLabel: 'White Label Solution',
       },
+      tiers: {
+        free: {
+          name: 'Free',
+          description: 'Perfect for personal use and trial',
+        },
+        standard: {
+          name: 'Standard',
+          description: 'For content creators and small businesses',
+        },
+        professional: {
+          name: 'Professional',
+          description: 'For developers and medium enterprises',
+        },
+        enterprise: {
+          name: 'Enterprise',
+          description: 'For large enterprises and platform integration',
+        },
+      },
       faq: {
         title: 'Frequently Asked Questions',
         q1: 'Can I cancel my subscription anytime?',

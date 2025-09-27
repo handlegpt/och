@@ -33,8 +33,8 @@ export interface PricingTier {
 export const PRICING_TIERS: PricingTier[] = [
   {
     id: 'free',
-    name: '免费版',
-    description: '适合个人用户和试用',
+    name: 'pricing.tiers.free.name',
+    description: 'pricing.tiers.free.description',
     price: {
       monthly: 0,
       yearly: 0,
@@ -61,8 +61,8 @@ export const PRICING_TIERS: PricingTier[] = [
   },
   {
     id: 'standard',
-    name: '标准版',
-    description: '适合内容创作者和小企业',
+    name: 'pricing.tiers.standard.name',
+    description: 'pricing.tiers.standard.description',
     price: {
       monthly: 9.99,
       yearly: 99.99,
@@ -90,8 +90,8 @@ export const PRICING_TIERS: PricingTier[] = [
   },
   {
     id: 'professional',
-    name: '专业版',
-    description: '适合开发者和中型企业',
+    name: 'pricing.tiers.professional.name',
+    description: 'pricing.tiers.professional.description',
     price: {
       monthly: 29.99,
       yearly: 299.99,
@@ -119,8 +119,8 @@ export const PRICING_TIERS: PricingTier[] = [
   },
   {
     id: 'enterprise',
-    name: '企业版',
-    description: '适合大型企业和平台集成',
+    name: 'pricing.tiers.enterprise.name',
+    description: 'pricing.tiers.enterprise.description',
     price: {
       monthly: 0, // 定制报价
       yearly: 0,

@@ -87,8 +87,10 @@ export const PricingPage: React.FC = () => {
 
               {/* 套餐信息 */}
               <div className='text-center mb-6'>
-                <h3 className='text-xl font-bold text-[var(--text-primary)] mb-2'>{tier.name}</h3>
-                <p className='text-sm text-[var(--text-secondary)] mb-4'>{tier.description}</p>
+                <h3 className='text-xl font-bold text-[var(--text-primary)] mb-2'>
+                  {t(tier.name)}
+                </h3>
+                <p className='text-sm text-[var(--text-secondary)] mb-4'>{t(tier.description)}</p>
 
                 {/* 价格 */}
                 <div className='mb-4'>
@@ -185,7 +187,7 @@ export const PricingPage: React.FC = () => {
                       key={tier.id}
                       className='text-center p-4 text-[var(--text-primary)] font-medium'
                     >
-                      {tier.name}
+                      {t(tier.name)}
                     </th>
                   ))}
                 </tr>

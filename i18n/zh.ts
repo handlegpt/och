@@ -493,6 +493,24 @@ export default {
         privateDeployment: '私有部署',
         whiteLabel: '白标解决方案',
       },
+      tiers: {
+        free: {
+          name: '免费版',
+          description: '适合个人用户和试用',
+        },
+        standard: {
+          name: '标准版',
+          description: '适合内容创作者和小企业',
+        },
+        professional: {
+          name: '专业版',
+          description: '适合开发者和中型企业',
+        },
+        enterprise: {
+          name: '企业版',
+          description: '适合大型企业和平台集成',
+        },
+      },
       faq: {
         title: '常见问题',
         q1: '可以随时取消订阅吗？',
