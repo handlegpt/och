@@ -491,6 +491,8 @@ export default {
       selectPlan: 'Select Plan',
       contactSales: 'Contact Sales',
       featureComparison: 'Feature Comparison',
+      featureComparisonDescription:
+        'Detailed feature comparison to help you choose the most suitable plan',
       features: {
         basicEffects: 'Basic AI Effects',
         advancedEffects: 'Advanced AI Effects',

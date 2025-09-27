@@ -480,6 +480,7 @@ export default {
       selectPlan: '选择套餐',
       contactSales: '联系销售',
       featureComparison: '功能对比',
+      featureComparisonDescription: '详细功能对比，帮助您选择最适合的方案',
       features: {
         basicEffects: '基础AI效果',
         advancedEffects: '高级AI效果',

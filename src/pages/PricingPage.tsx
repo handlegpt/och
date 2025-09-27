@@ -152,23 +152,7 @@ export const PricingPage: React.FC = () => {
                     <span
                       className={`text-sm ${enabled ? 'text-[var(--text-primary)]' : 'text-[var(--text-secondary)]'}`}
                     >
-                      {(() => {
-                        // 直接映射功能名称到中文翻译
-                        const featureTranslations: Record<string, string> = {
-                          basicEffects: '基础AI效果',
-                          advancedEffects: '高级AI效果',
-                          batchProcessing: '批量处理',
-                          highResolution: '高分辨率输出',
-                          noWatermark: '无水印',
-                          apiAccess: 'API访问',
-                          commercialUse: '商业使用',
-                          customModels: '自定义模型',
-                          prioritySupport: '优先支持',
-                          privateDeployment: '私有部署',
-                          whiteLabel: '白标解决方案',
-                        }
-                        return featureTranslations[feature] || feature
-                      })()}
+                      {t(`app.pricing.features.${feature}`) || feature}
                     </span>
                   </div>
                 ))}
@@ -207,7 +191,7 @@ export const PricingPage: React.FC = () => {
               {t('app.pricing.featureComparison')}
             </h2>
             <p className='text-[var(--text-secondary)] text-center mt-2'>
-              详细功能对比，帮助您选择最适合的方案
+              {t('app.pricing.featureComparisonDescription')}
             </p>
           </div>
 
@@ -215,7 +199,9 @@ export const PricingPage: React.FC = () => {
             <table className='w-full'>
               <thead>
                 <tr className='border-b border-[var(--border-primary)]'>
-                  <th className='text-left p-4 text-[var(--text-primary)] font-medium'>功能</th>
+                  <th className='text-left p-4 text-[var(--text-primary)] font-medium'>
+                    {t('app.pricing.featureComparison')}
+                  </th>
                   {PRICING_TIERS.map(tier => (
                     <th
                       key={tier.id}
