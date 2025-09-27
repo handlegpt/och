@@ -152,7 +152,12 @@ export const PricingPage: React.FC = () => {
                     <span
                       className={`text-sm ${enabled ? 'text-[var(--text-primary)]' : 'text-[var(--text-secondary)]'}`}
                     >
-                      {t(`pricing.features.${feature}`) || feature}
+                      {(() => {
+                        const translation = t(`app.pricing.features.${feature}`)
+                        return translation && translation !== `app.pricing.features.${feature}`
+                          ? translation
+                          : feature
+                      })()}
                     </span>
                   </div>
                 ))}
