@@ -215,9 +215,7 @@ export const PricingPage: React.FC = () => {
             <table className='w-full'>
               <thead>
                 <tr className='border-b border-[var(--border-primary)]'>
-                  <th className='text-left p-4 text-[var(--text-primary)] font-medium'>
-                    {t('app.pricing.features')}
-                  </th>
+                  <th className='text-left p-4 text-[var(--text-primary)] font-medium'>功能</th>
                   {PRICING_TIERS.map(tier => (
                     <th
                       key={tier.id}
