@@ -38,6 +38,8 @@ export const PricingPage: React.FC = () => {
           <div className='text-xs text-red-500 mb-4'>
             Debug: pricing.title = "{t('pricing.title')}" | pricing.tiers.free.name = "
             {t('pricing.tiers.free.name')}"
+            <br />
+            Simple test: home = "{t('nav.home')}" | loading = "{t('common.loading')}"
           </div>
 
           {/* 计费周期切换 */}
