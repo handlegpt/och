@@ -260,7 +260,7 @@ export const HomePage: React.FC = () => {
 
               {/* 免费额度提示 */}
               <div className='text-sm text-[var(--text-secondary)] mb-8'>
-                ✨ 3 free generations • No credit card required
+                ✨ 3 free generations • No credit card required • Powered by Nano Banana AI
               </div>
             </div>
 
@@ -484,6 +484,10 @@ export const HomePage: React.FC = () => {
                   <span className='w-2 h-2 bg-green-500 rounded-full'></span>
                   No credit card required
                 </li>
+                <li className='flex items-center gap-2 text-sm'>
+                  <span className='w-2 h-2 bg-green-500 rounded-full'></span>
+                  Powered by Nano Banana AI
+                </li>
               </ul>
               <button
                 onClick={handleStartCreating}
@@ -622,6 +626,69 @@ export const HomePage: React.FC = () => {
                 tools I've tried." - Sarah M.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ 区域 */}
+      <section className='py-20 bg-[var(--bg-secondary)] relative overflow-hidden'>
+        <div className='container mx-auto px-4 relative'>
+          <div className='text-center mb-16'>
+            <div className='inline-flex items-center gap-2 px-4 py-2 bg-[var(--accent-primary)]/10 border border-[var(--accent-primary)]/20 rounded-full text-sm text-[var(--accent-primary)] mb-6'>
+              <span>❓</span>
+              Frequently Asked Questions
+            </div>
+            <h2 className='text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-6'>
+              Everything You Need to Know
+            </h2>
+            <p className='text-xl text-[var(--text-secondary)] max-w-3xl mx-auto leading-relaxed'>
+              Get answers to common questions about och.ai and our AI image generation service
+            </p>
+          </div>
+
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto'>
+            {[
+              {
+                question: 'How does och.ai work?',
+                answer:
+                  'Simply upload your photo, choose an AI art style, and get your transformed image in seconds. Powered by Nano Banana AI technology.',
+              },
+              {
+                question: 'Is my data safe?',
+                answer:
+                  'Yes! Your photos are never stored, shared, or used for training. Complete privacy protection with automatic deletion after processing.',
+              },
+              {
+                question: 'Do you offer a free trial?',
+                answer:
+                  'Yes! New users get 3 free generations to try our service. No credit card required to get started.',
+              },
+              {
+                question: 'Can I use generated images commercially?',
+                answer:
+                  'Absolutely! All generated images can be used for commercial projects, social media, marketing materials, and more.',
+              },
+              {
+                question: 'What makes och.ai different?',
+                answer:
+                  'We use advanced Nano Banana AI technology with superior character consistency and scene preservation compared to other AI tools.',
+              },
+              {
+                question: 'How can I get support?',
+                answer:
+                  'Contact us at support@och.ai for technical support and customer service. We typically respond within 24 hours.',
+              },
+            ].map((faq, index) => (
+              <div
+                key={index}
+                className='bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-6 border border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-all duration-300'
+              >
+                <h3 className='text-lg font-bold text-[var(--text-primary)] mb-3'>
+                  {faq.question}
+                </h3>
+                <p className='text-[var(--text-secondary)] leading-relaxed'>{faq.answer}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
