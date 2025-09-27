@@ -1,13 +1,11 @@
 import React from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { useTranslation } from '../../i18n/context'
 import LanguageSwitcher from '../../components/LanguageSwitcher'
 import ThemeSwitcher from '../../components/ThemeSwitcher'
 import { UserInfo } from './UserInfo'
 import { useGenerationState } from '../hooks/useGenerationState'
 
 export const Navigation: React.FC = () => {
-  const { t } = useTranslation()
   const location = useLocation()
   const navigate = useNavigate()
   const [, actions] = useGenerationState()
@@ -39,74 +37,120 @@ export const Navigation: React.FC = () => {
   }
 
   return (
-    <header className='bg-[var(--bg-card-alpha)] backdrop-blur-lg sticky top-0 z-20 p-4 border-b border-[var(--border-primary)]'>
-      <div className='container mx-auto flex justify-between items-center'>
-        {/* Logo */}
-        <button
-          onClick={handleLogoClick}
-          className='text-2xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] hover:from-[var(--accent-primary-hover)] hover:to-[var(--accent-secondary-hover)] transition-all duration-200 cursor-pointer'
-        >
-          {t('app.title')}
-        </button>
-
-        {/* 主导航 */}
-        <nav className='hidden md:flex items-center gap-6'>
-          <Link
-            to='/'
-            className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${
-              isActive('/')
-                ? 'text-[var(--accent-primary)] bg-[var(--accent-primary)] bg-opacity-10'
-                : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)]'
-            }`}
+    <header className='bg-[var(--bg-card-alpha)] backdrop-blur-lg sticky top-0 z-20 border-b border-[var(--border-primary)]'>
+      <div className='container mx-auto px-4 py-3'>
+        <div className='flex justify-between items-center'>
+          {/* Logo */}
+          <button
+            onClick={handleLogoClick}
+            className='text-2xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] hover:from-[var(--accent-primary-hover)] hover:to-[var(--accent-secondary-hover)] transition-all duration-200 cursor-pointer'
           >
-            🏠 {t('nav.home')}
-          </Link>
+            och.ai
+          </button>
 
-          <Link
-            to='/profile'
-            className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${
-              isActive('/profile')
-                ? 'text-[var(--accent-primary)] bg-[var(--accent-primary)] bg-opacity-10'
-                : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)]'
-            }`}
-          >
-            👤 {t('nav.profile')}
-          </Link>
-        </nav>
+          {/* 主导航 - 参考 Nano Banana AI */}
+          <nav className='hidden md:flex items-center gap-8'>
+            <Link
+              to='/categories'
+              className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                isActive('/categories')
+                  ? 'text-[var(--accent-primary)]'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+              }`}
+            >
+              Features
+            </Link>
 
-        {/* 右侧工具 */}
-        <div className='flex items-center gap-2 md:gap-4'>
-          <LanguageSwitcher />
-          <ThemeSwitcher />
-          <UserInfo />
+            <Link
+              to='/pricing'
+              className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                isActive('/pricing')
+                  ? 'text-[var(--accent-primary)]'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+              }`}
+            >
+              Pricing
+            </Link>
+
+            <Link
+              to='/social'
+              className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                isActive('/social')
+                  ? 'text-[var(--accent-primary)]'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+              }`}
+            >
+              Showcase
+            </Link>
+
+            <Link
+              to='/profile'
+              className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                isActive('/profile')
+                  ? 'text-[var(--accent-primary)]'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+              }`}
+            >
+              Profile
+            </Link>
+          </nav>
+
+          {/* 右侧工具 */}
+          <div className='flex items-center gap-3'>
+            <LanguageSwitcher />
+            <ThemeSwitcher />
+            <UserInfo />
+          </div>
         </div>
-      </div>
 
-      {/* 移动端导航 */}
-      <div className='md:hidden mt-4 pt-4 border-t border-[var(--border-primary)]'>
-        <nav className='flex items-center gap-4'>
-          <Link
-            to='/'
-            className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${
-              isActive('/')
-                ? 'text-[var(--accent-primary)] bg-[var(--accent-primary)] bg-opacity-10'
-                : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)]'
-            }`}
-          >
-            🏠 {t('nav.home')}
-          </Link>
+        {/* 移动端导航 */}
+        <div className='md:hidden mt-3 pt-3 border-t border-[var(--border-primary)]'>
+          <nav className='flex items-center gap-4 flex-wrap'>
+            <Link
+              to='/categories'
+              className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                isActive('/categories')
+                  ? 'text-[var(--accent-primary)]'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+              }`}
+            >
+              Features
+            </Link>
 
-          <Link
-            to='/profile'
-            className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${
-              isActive('/profile')
-                ? 'text-[var(--accent-primary)] bg-[var(--accent-primary)] bg-opacity-10'
-                : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)]'
-            }`}
-          >
-            👤 {t('nav.profile')}
-          </Link>
-        </nav>
+            <Link
+              to='/pricing'
+              className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                isActive('/pricing')
+                  ? 'text-[var(--accent-primary)]'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+              }`}
+            >
+              Pricing
+            </Link>
+
+            <Link
+              to='/social'
+              className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                isActive('/social')
+                  ? 'text-[var(--accent-primary)]'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+              }`}
+            >
+              Showcase
+            </Link>
+
+            <Link
+              to='/profile'
+              className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                isActive('/profile')
+                  ? 'text-[var(--accent-primary)]'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+              }`}
+            >
+              Profile
+            </Link>
+          </nav>
+        </div>
       </div>
     </header>
   )
