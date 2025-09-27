@@ -153,10 +153,21 @@ export const PricingPage: React.FC = () => {
                       className={`text-sm ${enabled ? 'text-[var(--text-primary)]' : 'text-[var(--text-secondary)]'}`}
                     >
                       {(() => {
-                        const translation = t(`app.pricing.features.${feature}`)
-                        return translation && translation !== `app.pricing.features.${feature}`
-                          ? translation
-                          : feature
+                        // 直接映射功能名称到中文翻译
+                        const featureTranslations: Record<string, string> = {
+                          basicEffects: '基础AI效果',
+                          advancedEffects: '高级AI效果',
+                          batchProcessing: '批量处理',
+                          highResolution: '高分辨率输出',
+                          noWatermark: '无水印',
+                          apiAccess: 'API访问',
+                          commercialUse: '商业使用',
+                          customModels: '自定义模型',
+                          prioritySupport: '优先支持',
+                          privateDeployment: '私有部署',
+                          whiteLabel: '白标解决方案',
+                        }
+                        return featureTranslations[feature] || feature
                       })()}
                     </span>
                   </div>
