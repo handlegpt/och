@@ -94,10 +94,10 @@ export const PricingPage: React.FC = () => {
               {/* 套餐信息 - 参考 Nano Banana AI 的专业展示 */}
               <div className='text-center mb-8'>
                 <h3 className='text-2xl font-bold text-[var(--text-primary)] mb-3'>
-                  {t(tier.name)}
+                  {t(`app.${tier.name}`)}
                 </h3>
                 <p className='text-base text-[var(--text-secondary)] mb-6 leading-relaxed'>
-                  {t(tier.description)}
+                  {t(`app.${tier.description}`)}
                 </p>
 
                 {/* 价格 - 参考 Nano Banana AI 的突出展示 */}
@@ -221,7 +221,7 @@ export const PricingPage: React.FC = () => {
                       key={tier.id}
                       className='text-center p-4 text-[var(--text-primary)] font-medium'
                     >
-                      {t(tier.name)}
+                      {t(`app.${tier.name}`)}
                     </th>
                   ))}
                 </tr>
