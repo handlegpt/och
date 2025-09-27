@@ -34,6 +34,11 @@ export const PricingPage: React.FC = () => {
             {t('pricing.title')}
           </h1>
           <p className='text-xl text-[var(--text-secondary)] mb-8'>{t('pricing.subtitle')}</p>
+          {/* 调试信息 */}
+          <div className='text-xs text-red-500 mb-4'>
+            Debug: pricing.title = "{t('pricing.title')}" | pricing.tiers.free.name = "
+            {t('pricing.tiers.free.name')}"
+          </div>
 
           {/* 计费周期切换 */}
           <div className='flex items-center justify-center gap-4 mb-8'>
