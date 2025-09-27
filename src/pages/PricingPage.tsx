@@ -215,14 +215,26 @@ export const PricingPage: React.FC = () => {
               <tbody>
                 {FEATURE_COMPARISON.map((row, index) => (
                   <tr key={index} className='border-b border-[var(--border-primary)]'>
-                    <td className='p-4 text-[var(--text-primary)] font-medium'>{row.feature}</td>
-                    <td className='p-4 text-center text-[var(--text-secondary)]'>{row.free}</td>
-                    <td className='p-4 text-center text-[var(--text-secondary)]'>{row.standard}</td>
-                    <td className='p-4 text-center text-[var(--text-secondary)]'>
-                      {row.professional}
+                    <td className='p-4 text-[var(--text-primary)] font-medium'>
+                      {t(`app.${row.feature}`)}
                     </td>
                     <td className='p-4 text-center text-[var(--text-secondary)]'>
-                      {row.enterprise}
+                      {row.free.startsWith('pricing.') ? t(`app.${row.free}`) : row.free}
+                    </td>
+                    <td className='p-4 text-center text-[var(--text-secondary)]'>
+                      {row.standard.startsWith('pricing.')
+                        ? t(`app.${row.standard}`)
+                        : row.standard}
+                    </td>
+                    <td className='p-4 text-center text-[var(--text-secondary)]'>
+                      {row.professional.startsWith('pricing.')
+                        ? t(`app.${row.professional}`)
+                        : row.professional}
+                    </td>
+                    <td className='p-4 text-center text-[var(--text-secondary)]'>
+                      {row.enterprise.startsWith('pricing.')
+                        ? t(`app.${row.enterprise}`)
+                        : row.enterprise}
                     </td>
                   </tr>
                 ))}

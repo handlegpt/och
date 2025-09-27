@@ -481,6 +481,34 @@ export default {
       contactSales: '联系销售',
       featureComparison: '功能对比',
       featureComparisonDescription: '详细功能对比，帮助您选择最适合的方案',
+      featureComparisonDetails: {
+        dailyGenerations: '每日生成次数',
+        basicEffects: '基础AI效果',
+        advancedEffects: '高级AI效果',
+        batchProcessing: '批量处理',
+        highResolution: '高分辨率输出',
+        noWatermark: '无水印',
+        apiAccess: 'API访问',
+        commercialUse: '商业使用',
+        customModels: '自定义模型',
+        privateDeployment: '私有部署',
+        whiteLabel: '白标解决方案',
+        free: {
+          dailyGenerations: '5次',
+        },
+        standard: {
+          dailyGenerations: '10次',
+          batchProcessing: '10张',
+        },
+        professional: {
+          dailyGenerations: '200次',
+          batchProcessing: '无限制',
+        },
+        enterprise: {
+          dailyGenerations: '无限制',
+          batchProcessing: '无限制',
+        },
+      },
       features: {
         basicEffects: '基础AI效果',
         advancedEffects: '高级AI效果',

@@ -493,6 +493,34 @@ export default {
       featureComparison: 'Feature Comparison',
       featureComparisonDescription:
         'Detailed feature comparison to help you choose the most suitable plan',
+      featureComparisonDetails: {
+        dailyGenerations: 'Daily Generations',
+        basicEffects: 'Basic AI Effects',
+        advancedEffects: 'Advanced AI Effects',
+        batchProcessing: 'Batch Processing',
+        highResolution: 'High Resolution Output',
+        noWatermark: 'No Watermark',
+        apiAccess: 'API Access',
+        commercialUse: 'Commercial Use',
+        customModels: 'Custom Models',
+        privateDeployment: 'Private Deployment',
+        whiteLabel: 'White Label Solution',
+        free: {
+          dailyGenerations: '5 times',
+        },
+        standard: {
+          dailyGenerations: '10 times',
+          batchProcessing: '10 images',
+        },
+        professional: {
+          dailyGenerations: '200 times',
+          batchProcessing: 'Unlimited',
+        },
+        enterprise: {
+          dailyGenerations: 'Unlimited',
+          batchProcessing: 'Unlimited',
+        },
+      },
       features: {
         basicEffects: 'Basic AI Effects',
         advancedEffects: 'Advanced AI Effects',
