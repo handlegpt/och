@@ -52,7 +52,7 @@ export const PrivacyControls: React.FC = () => {
       }
     } catch (err) {
       console.error('Error fetching privacy settings:', err)
-      setMessage({ type: 'error', text: '获取隐私设置失败' })
+      setMessage({ type: 'error', text: 'Failed to fetch privacy settings' })
     } finally {
       setLoading(false)
     }
@@ -74,10 +74,10 @@ export const PrivacyControls: React.FC = () => {
 
       if (error) throw error
 
-      setMessage({ type: 'success', text: '隐私设置已保存' })
+      setMessage({ type: 'success', text: 'Privacy settings saved successfully' })
     } catch (err) {
       console.error('Error saving privacy settings:', err)
-      setMessage({ type: 'error', text: '保存隐私设置失败' })
+      setMessage({ type: 'error', text: 'Failed to save privacy settings' })
     } finally {
       setSaving(false)
     }
@@ -129,10 +129,10 @@ export const PrivacyControls: React.FC = () => {
       document.body.removeChild(link)
       URL.revokeObjectURL(url)
 
-      setMessage({ type: 'success', text: '数据导出成功' })
+      setMessage({ type: 'success', text: 'Data exported successfully' })
     } catch (err) {
       console.error('Error exporting data:', err)
-      setMessage({ type: 'error', text: '数据导出失败' })
+      setMessage({ type: 'error', text: 'Failed to export data' })
     }
   }, [user, settings])
 
@@ -141,7 +141,7 @@ export const PrivacyControls: React.FC = () => {
     if (!user) return
 
     const confirmed = window.confirm(
-      '警告：此操作将永久删除您的所有数据，包括生成历史、收藏等。此操作不可撤销。确定要继续吗？'
+      'Warning: This action will permanently delete all your data, including generation history, favorites, etc. This action cannot be undone. Are you sure you want to continue?'
     )
 
     if (!confirmed) return
@@ -163,7 +163,10 @@ export const PrivacyControls: React.FC = () => {
       // 删除隐私设置
       await supabase.from('user_privacy_settings').delete().eq('user_id', user.id)
 
-      setMessage({ type: 'success', text: '所有数据已删除，页面将刷新以更新显示' })
+      setMessage({
+        type: 'success',
+        text: 'All data has been deleted. Page will refresh to update display',
+      })
 
       // 延迟刷新页面，让用户看到成功消息
       setTimeout(() => {
@@ -171,7 +174,7 @@ export const PrivacyControls: React.FC = () => {
       }, 2000)
     } catch (err) {
       console.error('Error deleting data:', err)
-      setMessage({ type: 'error', text: '删除数据失败' })
+      setMessage({ type: 'error', text: 'Failed to delete data' })
     }
   }, [user])
 
@@ -221,9 +224,9 @@ export const PrivacyControls: React.FC = () => {
               onChange={e => handleSettingChange('profile_visibility', e.target.value)}
               className='w-full px-3 py-2 bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-lg text-[var(--text-primary)]'
             >
-              <option value='public'>公开 - 所有人都可以看到</option>
-              <option value='friends'>仅好友 - 只有好友可以看到</option>
-              <option value='private'>私密 - 只有自己可以看到</option>
+              <option value='public'>Public - Everyone can see</option>
+              <option value='friends'>Friends Only - Only friends can see</option>
+              <option value='private'>Private - Only you can see</option>
             </select>
           </div>
 
@@ -282,9 +285,9 @@ export const PrivacyControls: React.FC = () => {
               onChange={e => handleSettingChange('content_sharing_permission', e.target.value)}
               className='w-full px-3 py-2 bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-lg text-[var(--text-primary)]'
             >
-              <option value='public'>公开 - 所有人都可以分享</option>
-              <option value='friends'>仅好友 - 只有好友可以分享</option>
-              <option value='private'>私密 - 只有自己可以分享</option>
+              <option value='public'>Public - Everyone can share</option>
+              <option value='friends'>Friends Only - Only friends can share</option>
+              <option value='private'>Private - Only you can share</option>
             </select>
           </div>
 
@@ -411,7 +414,7 @@ export const PrivacyControls: React.FC = () => {
           disabled={saving}
           className='px-6 py-3 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white rounded-lg hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed'
         >
-          {saving ? '保存中...' : '保存设置'}
+          {saving ? 'Saving...' : 'Save Settings'}
         </button>
       </div>
     </div>
