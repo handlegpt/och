@@ -119,20 +119,6 @@ export const BottomNavigation: React.FC = () => {
                       For technical support and customer service
                     </p>
                   </div>
-                  <div>
-                    <p className='text-sm font-medium text-[var(--text-primary)]'>
-                      Business Partnership Email
-                    </p>
-                    <a
-                      href='mailto:business@och.ai'
-                      className='text-sm text-[var(--accent-primary)] hover:underline'
-                    >
-                      business@och.ai
-                    </a>
-                    <p className='text-xs text-[var(--text-secondary)] mt-1'>
-                      For business partnerships and collaborations
-                    </p>
-                  </div>
                 </div>
               </div>
             </div>
