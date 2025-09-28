@@ -86,25 +86,25 @@ export const UserHistory: React.FC = () => {
   const getStatusText = (status: string) => {
     switch (status) {
       case 'completed':
-        return '完成'
+        return 'Completed'
       case 'processing':
-        return '处理中'
+        return 'Processing'
       case 'failed':
-        return '失败'
+        return 'Failed'
       case 'pending':
-        return '等待中'
+        return 'Pending'
       default:
-        return '未知'
+        return 'Unknown'
     }
   }
 
   const transformationTypes = [
-    { value: 'all', label: '全部' },
-    { value: 'pose', label: '姿态变换' },
-    { value: 'style', label: '风格变换' },
-    { value: 'background', label: '背景变换' },
-    { value: 'face', label: '面部变换' },
-    { value: 'custom', label: '自定义' },
+    { value: 'all', label: 'All' },
+    { value: 'pose', label: 'Pose Transform' },
+    { value: 'style', label: 'Style Transform' },
+    { value: 'background', label: 'Background Transform' },
+    { value: 'face', label: 'Face Transform' },
+    { value: 'custom', label: 'Custom' },
   ]
 
   // 批量操作功能
@@ -243,20 +243,20 @@ export const UserHistory: React.FC = () => {
         <div className='bg-[var(--accent-primary)] bg-opacity-10 border border-[var(--accent-primary)] border-opacity-30 rounded-lg p-3'>
           <div className='flex items-center justify-between'>
             <span className='text-sm text-[var(--accent-primary)] font-medium'>
-              已选择 {selectedItems.size} 项
+              {selectedItems.size} items selected
             </span>
             <div className='flex items-center gap-2'>
               <button
                 onClick={handleBatchDownload}
                 className='px-3 py-1 text-xs bg-[var(--accent-primary)] text-white rounded-md hover:bg-[var(--accent-primary-hover)] transition-colors'
               >
-                批量下载
+                Batch Download
               </button>
               <button
                 onClick={handleBatchDelete}
                 className='px-3 py-1 text-xs bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors'
               >
-                批量删除
+                Batch Delete
               </button>
               <button
                 onClick={() => {
@@ -265,7 +265,7 @@ export const UserHistory: React.FC = () => {
                 }}
                 className='px-3 py-1 text-xs bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors'
               >
-                取消选择
+                Cancel Selection
               </button>
             </div>
           </div>
@@ -275,8 +275,8 @@ export const UserHistory: React.FC = () => {
       {history.length === 0 ? (
         <div className='text-center py-8'>
           <div className='text-4xl mb-2'>🎨</div>
-          <p className='text-[var(--text-secondary)]'>还没有生成记录</p>
-          <p className='text-sm text-[var(--text-tertiary)]'>开始创作您的第一张图片吧！</p>
+          <p className='text-[var(--text-secondary)]'>No generation history yet</p>
+          <p className='text-sm text-[var(--text-tertiary)]'>Start creating your first image!</p>
         </div>
       ) : (
         <div className='space-y-3 max-h-96 overflow-y-auto'>
@@ -323,7 +323,7 @@ export const UserHistory: React.FC = () => {
                 </div>
                 <div className='flex items-center gap-2'>
                   <span className='text-xs text-[var(--text-tertiary)]'>
-                    {item.created_at ? formatDate(item.created_at) : '未知时间'}
+                    {item.created_at ? formatDate(item.created_at) : 'Unknown time'}
                   </span>
                   <div className='flex items-center gap-1'>
                     {item.output_image_url && (
@@ -335,7 +335,7 @@ export const UserHistory: React.FC = () => {
                           link.click()
                         }}
                         className='p-1 text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors'
-                        title='下载'
+                        title='Download'
                       >
                         <svg
                           className='w-4 h-4'
@@ -354,7 +354,7 @@ export const UserHistory: React.FC = () => {
                     )}
                     <button
                       onClick={() => {
-                        if (item.id && confirm('确定要删除这条记录吗？')) {
+                        if (item.id && confirm('Are you sure you want to delete this record?')) {
                           DataPersistenceService.deleteGenerationRecord(
                             item.id,
                             user?.id || ''
@@ -364,7 +364,7 @@ export const UserHistory: React.FC = () => {
                         }
                       }}
                       className='p-1 text-[var(--text-secondary)] hover:text-red-500 transition-colors'
-                      title='删除'
+                      title='Delete'
                     >
                       <svg
                         className='w-4 h-4'
@@ -406,7 +406,7 @@ export const UserHistory: React.FC = () => {
                       />
                     </div>
                     <div className='absolute -top-1 -right-1 bg-[var(--accent-primary)] text-white text-xs px-1 rounded text-center opacity-0 group-hover:opacity-100 transition-opacity'>
-                      原图
+                      Original
                     </div>
                     <div className='absolute bottom-0 right-0 bg-black bg-opacity-50 text-white text-xs p-1 rounded-tl opacity-0 group-hover:opacity-100 transition-opacity'>
                       <button
@@ -418,7 +418,7 @@ export const UserHistory: React.FC = () => {
                           )
                         }}
                         className='hover:text-[var(--accent-primary)]'
-                        title='下载原图'
+                        title='Download Original'
                       >
                         <svg
                           className='w-3 h-3'
@@ -452,7 +452,7 @@ export const UserHistory: React.FC = () => {
                       />
                     </div>
                     <div className='absolute -top-1 -right-1 bg-[var(--accent-secondary)] text-white text-xs px-1 rounded text-center opacity-0 group-hover:opacity-100 transition-opacity'>
-                      生成
+                      Generated
                     </div>
                     <div className='absolute bottom-0 right-0 bg-black bg-opacity-50 text-white text-xs p-1 rounded-tl opacity-0 group-hover:opacity-100 transition-opacity'>
                       <button
@@ -464,7 +464,7 @@ export const UserHistory: React.FC = () => {
                           )
                         }}
                         className='hover:text-[var(--accent-primary)]'
-                        title='下载生成图'
+                        title='Download Generated'
                       >
                         <svg
                           className='w-3 h-3'
