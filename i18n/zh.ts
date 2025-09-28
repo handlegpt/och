@@ -121,6 +121,13 @@ export default {
       explore: '查看所有效果',
       badge: 'AI驱动的图像创作工具',
       slogan: '让每张照片都成为艺术品',
+      before: '原图',
+      after: '效果',
+      originalPhoto: '原始照片',
+      aiArtwork: 'AI艺术品',
+      tryFree: '免费试用',
+      goPro: '升级专业版',
+      freeTrial: '✨ 3次免费生成 • 无需信用卡 • 由Nano Banana AI驱动',
       stats: {
         users: '用户生成',
         models: 'AI效果',

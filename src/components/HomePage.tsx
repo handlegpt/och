@@ -207,14 +207,13 @@ export const HomePage: React.FC = () => {
               {/* Main Title */}
               <h1 className='text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight'>
                 <span className='block text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent-primary)] via-[var(--accent-secondary)] to-[var(--accent-primary)]'>
-                  Transform Every Photo Into Art
+                  {t('home.hero.title')}
                 </span>
               </h1>
 
               {/* 具体副标题 */}
               <p className='text-xl md:text-2xl text-[var(--text-secondary)] mb-8 leading-relaxed'>
-                Upload your photo → AI transforms it into a painting, sketch, cartoon, or unique
-                artwork in seconds.
+                {t('home.hero.subtitle')}
               </p>
 
               {/* 前后对比展示 */}
@@ -222,16 +221,20 @@ export const HomePage: React.FC = () => {
                 <div className='flex items-center justify-center lg:justify-start gap-4 mb-4'>
                   <div className='text-center'>
                     <div className='w-24 h-24 bg-gradient-to-br from-gray-300 to-gray-400 rounded-xl flex items-center justify-center text-gray-600 text-sm font-medium'>
-                      Before
+                      {t('home.hero.before')}
                     </div>
-                    <p className='text-xs text-[var(--text-secondary)] mt-2'>Original Photo</p>
+                    <p className='text-xs text-[var(--text-secondary)] mt-2'>
+                      {t('home.hero.originalPhoto')}
+                    </p>
                   </div>
                   <div className='text-2xl text-[var(--accent-primary)]'>→</div>
                   <div className='text-center'>
                     <div className='w-24 h-24 bg-gradient-to-br from-[var(--accent-primary)] to-[var(--accent-secondary)] rounded-xl flex items-center justify-center text-white text-sm font-medium'>
-                      After
+                      {t('home.hero.after')}
                     </div>
-                    <p className='text-xs text-[var(--text-secondary)] mt-2'>AI Artwork</p>
+                    <p className='text-xs text-[var(--text-secondary)] mt-2'>
+                      {t('home.hero.aiArtwork')}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -244,7 +247,7 @@ export const HomePage: React.FC = () => {
                 >
                   <span className='flex items-center gap-2'>
                     <span>🚀</span>
-                    Try Free Now
+                    {t('home.hero.tryFree')}
                   </span>
                 </button>
                 <button
@@ -253,14 +256,14 @@ export const HomePage: React.FC = () => {
                 >
                   <span className='flex items-center gap-2'>
                     <span>💎</span>
-                    Go Pro
+                    {t('home.hero.goPro')}
                   </span>
                 </button>
               </div>
 
               {/* 免费额度提示 */}
               <div className='text-sm text-[var(--text-secondary)] mb-8'>
-                ✨ 3 free generations • No credit card required • Powered by Nano Banana AI
+                {t('home.hero.freeTrial')}
               </div>
             </div>
 
@@ -271,7 +274,7 @@ export const HomePage: React.FC = () => {
                 <div className='grid grid-cols-2 gap-4'>
                   <div className='space-y-4'>
                     <div className='aspect-square bg-gradient-to-br from-gray-200 to-gray-300 rounded-lg flex items-center justify-center text-gray-500 text-sm'>
-                      Original
+                      {t('home.hero.originalPhoto')}
                     </div>
                     <div className='aspect-square bg-gradient-to-br from-[var(--accent-primary)]/20 to-[var(--accent-secondary)]/20 rounded-lg flex items-center justify-center text-[var(--accent-primary)] text-sm font-medium'>
                       → 3D Figurine
@@ -302,11 +305,10 @@ export const HomePage: React.FC = () => {
         <div className='container mx-auto px-4 relative'>
           <div className='text-center mb-16'>
             <h2 className='text-4xl md:text-5xl font-bold text-black mb-6'>
-              Advanced och.ai Features
+              {t('home.features.title')}
             </h2>
             <p className='text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed'>
-              Discover why och.ai utilizing advanced AI models leads the industry with revolutionary
-              image editing capabilities and natural language processing.
+              {t('home.features.subtitle')}
             </p>
           </div>
 
@@ -381,10 +383,10 @@ export const HomePage: React.FC = () => {
               How It Works
             </div>
             <h2 className='text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-6'>
-              Simple 3-Step Process
+              {t('home.howItWorks.title')}
             </h2>
             <p className='text-xl text-[var(--text-secondary)] max-w-3xl mx-auto leading-relaxed'>
-              Transform your photos into stunning artwork in just three easy steps
+              {t('home.howItWorks.subtitle')}
             </p>
           </div>
 
@@ -507,7 +509,10 @@ export const HomePage: React.FC = () => {
                     className='w-full h-full object-cover rounded-lg'
                     onError={e => {
                       e.currentTarget.style.display = 'none'
-                      e.currentTarget.nextElementSibling.style.display = 'flex'
+                      const nextElement = e.currentTarget.nextElementSibling as HTMLElement
+                      if (nextElement) {
+                        nextElement.style.display = 'flex'
+                      }
                     }}
                   />
                   <div className='hidden w-full h-full items-center justify-center text-gray-500 text-sm'>
