@@ -9,7 +9,6 @@ import { ProfilePage } from './src/pages/ProfilePage'
 import { CategoriesPage } from './src/pages/CategoriesPage'
 import { PrivacyPage } from './src/pages/PrivacyPage'
 import { SettingsPage } from './src/pages/SettingsPage'
-import { MorePage } from './src/pages/MorePage'
 import { SocialPage } from './src/pages/SocialPage'
 import { PricingPage } from './src/pages/PricingPage'
 import { AuthCallback } from './src/components/auth/AuthCallback'
@@ -30,7 +29,6 @@ const App: React.FC = () => {
             <Route path='/pricing' element={<PricingPage />} />
             <Route path='/privacy' element={<PrivacyPage />} />
             <Route path='/settings' element={<SettingsPage />} />
-            <Route path='/more' element={<MorePage />} />
             <Route path='/auth/callback' element={<AuthCallback />} />
           </Routes>
 

@@ -45,14 +45,14 @@ export const BottomNavigation: React.FC = () => {
 
   const resourceLinks = [
     { path: '/pricing', label: 'Pricing' },
-    { path: '/more', label: 'Support' },
-    { path: '/more', label: 'API' },
+    { path: '/profile', label: 'Support' },
+    { path: '/profile', label: 'API' },
   ]
 
   const companyLinks = [
-    { path: '/more', label: 'About' },
-    { path: '/more', label: 'Blog' },
-    { path: '/more', label: 'Contact' },
+    { path: '/profile', label: 'About' },
+    { path: '/profile', label: 'Blog' },
+    { path: '/profile', label: 'Contact' },
   ]
 
   return (
