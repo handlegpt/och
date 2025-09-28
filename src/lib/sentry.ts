@@ -4,27 +4,29 @@
  */
 
 import * as Sentry from '@sentry/react'
+import { getSentryDSN, checkEnvironmentVariables } from '../utils/envCheck'
 
-// Sentry配置
-const SENTRY_DSN = process.env.VITE_SENTRY_DSN || process.env.REACT_APP_SENTRY_DSN
+// Sentry配置 - 使用工具函数获取DSN
+const SENTRY_DSN = getSentryDSN()
 
 // 初始化Sentry
 export const initSentry = () => {
-  console.log('🔍 Sentry DSN check:', {
-    VITE_SENTRY_DSN: process.env.VITE_SENTRY_DSN,
-    REACT_APP_SENTRY_DSN: process.env.REACT_APP_SENTRY_DSN,
-    SENTRY_DSN: SENTRY_DSN,
-    NODE_ENV: process.env.NODE_ENV,
-  })
+  // 检查所有环境变量
+  checkEnvironmentVariables()
 
   if (!SENTRY_DSN) {
     console.warn('⚠️ Sentry DSN not configured. Error monitoring disabled.')
+    console.warn(
+      '💡 Make sure VITE_SENTRY_DSN is set in your .env file and restart the dev server.'
+    )
     return
   }
 
+  console.log('✅ Initializing Sentry with DSN:', SENTRY_DSN.substring(0, 20) + '...')
+
   Sentry.init({
     dsn: SENTRY_DSN,
-    environment: process.env.NODE_ENV || 'development',
+    environment: process.env.NODE_ENV || (import.meta as any).env?.MODE || 'development',
 
     // 性能监控
     integrations: [Sentry.browserTracingIntegration()],
