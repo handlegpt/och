@@ -74,11 +74,38 @@ export const UnifiedDashboard: React.FC = () => {
     try {
       setLoading(true)
 
+      // 测试数据库连接
+      console.log('🔍 Testing database connection for user:', user.id)
+
       // 基础生成统计
-      const { count: totalGen } = await supabase
+      const { count: totalGen, error: totalGenError } = await supabase
         .from('ai_generations')
         .select('*', { count: 'exact', head: true })
         .eq('user_id', user.id)
+
+      if (totalGenError) {
+        console.error('❌ Error fetching total generations:', totalGenError)
+        console.error('Error details:', {
+          code: totalGenError.code,
+          message: totalGenError.message,
+          details: totalGenError.details,
+          hint: totalGenError.hint,
+        })
+
+        // 如果表不存在或权限问题，使用默认值
+        if (
+          totalGenError.code === 'PGRST116' ||
+          totalGenError.message.includes('relation') ||
+          totalGenError.message.includes('does not exist') ||
+          totalGenError.code === 'PGRST301'
+        ) {
+          console.warn(
+            '⚠️ ai_generations table may not exist or no permission, using default values'
+          )
+        }
+      } else {
+        console.log('✅ Successfully fetched total generations:', totalGen)
+      }
 
       // 收藏统计
       const { count: totalFav } = await supabase
