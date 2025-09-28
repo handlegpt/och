@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useAuth } from '../../hooks/useAuth'
 import { supabase } from '../../lib/supabase'
+import { MonitoringDashboard } from './MonitoringDashboard'
 // import { useTranslation } from '../../../i18n/context';
 // import { DataPersistenceService } from '../../services/dataPersistence';
 
@@ -23,7 +24,9 @@ export const AdminPanel: React.FC = () => {
     systemStatus: 'healthy',
   })
   const [loading, setLoading] = useState(true)
-  const [activeTab, setActiveTab] = useState<'overview' | 'users' | 'system'>('overview')
+  const [activeTab, setActiveTab] = useState<'overview' | 'monitoring' | 'users' | 'system'>(
+    'overview'
+  )
 
   useEffect(() => {
     fetchAdminStats()
@@ -118,6 +121,7 @@ export const AdminPanel: React.FC = () => {
       <div className='flex border-b border-[var(--border-primary)] mb-6'>
         {[
           { key: 'overview', label: '概览', icon: '📊' },
+          { key: 'monitoring', label: '监控仪表板', icon: '📈' },
           { key: 'users', label: '用户管理', icon: '👥' },
           { key: 'system', label: '系统设置', icon: '⚙️' },
         ].map(tab => (
@@ -261,6 +265,13 @@ export const AdminPanel: React.FC = () => {
               </span>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* 监控仪表板标签页 */}
+      {activeTab === 'monitoring' && (
+        <div className='space-y-6'>
+          <MonitoringDashboard />
         </div>
       )}
 
