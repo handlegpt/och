@@ -5,7 +5,7 @@
 CREATE TABLE IF NOT EXISTS api_cost_records (
   id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
   user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
-  operation_type VARCHAR(50) NOT NULL CHECK (operation_type IN ('image_generation', 'image_edit', 'video_generation', 'text_processing')),
+  operation_type VARCHAR(50) NOT NULL CHECK (operation_type IN ('IMAGE_GENERATION', 'IMAGE_EDIT', 'VIDEO_GENERATION', 'TEXT_PROCESSING')),
   estimated_cost DECIMAL(10,4) NOT NULL DEFAULT 0,
   actual_cost DECIMAL(10,4),
   tokens_used INTEGER,

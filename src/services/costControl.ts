@@ -43,7 +43,7 @@ export const API_COST_CONFIG = {
 export interface CostRecord {
   id: string
   user_id: string
-  operation_type: 'image_generation' | 'image_edit' | 'video_generation' | 'text_processing'
+  operation_type: 'IMAGE_GENERATION' | 'IMAGE_EDIT' | 'VIDEO_GENERATION' | 'TEXT_PROCESSING'
   estimated_cost: number
   actual_cost?: number
   tokens_used?: number
@@ -365,7 +365,7 @@ export const withCostControl = async (
     const result = await operation()
 
     // 记录成本
-    await CostControlService.recordAPICost(userId, operationType, estimatedCost)
+    await CostControlService.recordAPICost(userId, operationType as string, estimatedCost)
 
     // 发送预警（如果需要）
     if (budgetCheck.stats) {
