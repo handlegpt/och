@@ -55,17 +55,17 @@ export const UserSettings: React.FC = () => {
       : { isValid: true }
 
     if (!displayNameValidation.isValid) {
-      setError(displayNameValidation.error || '显示名称验证失败')
+      setError(displayNameValidation.error || 'Display name validation failed')
       return
     }
 
     if (!usernameValidation.isValid) {
-      setError(usernameValidation.error || '用户名验证失败')
+      setError(usernameValidation.error || 'Username validation failed')
       return
     }
 
     if (!avatarUrlValidation.isValid) {
-      setError(avatarUrlValidation.error || '头像URL验证失败')
+      setError(avatarUrlValidation.error || 'Avatar URL validation failed')
       return
     }
 
@@ -91,7 +91,7 @@ export const UserSettings: React.FC = () => {
       }
     } catch (error) {
       console.error('Error saving settings:', error)
-      setError('保存设置失败，请重试')
+      setError('Failed to save settings, please try again')
     } finally {
       setLoading(false)
     }
@@ -284,7 +284,7 @@ export const UserSettings: React.FC = () => {
                     onChange={e => setSettings({ ...settings, language: e.target.value })}
                     className='w-full px-3 py-2 bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-lg focus:ring-2 focus:ring-[var(--accent-primary)] focus:border-[var(--accent-primary)] text-[var(--text-primary)]'
                   >
-                    <option value='zh'>中文</option>
+                    <option value='zh'>中文 (Chinese)</option>
                     <option value='en'>English</option>
                   </select>
                 </div>
@@ -328,7 +328,7 @@ export const UserSettings: React.FC = () => {
                       clipRule='evenodd'
                     />
                   </svg>
-                  <span className='font-medium'>保存失败</span>
+                  <span className='font-medium'>Save Failed</span>
                 </div>
                 <p className='text-sm text-red-500 dark:text-red-300 mt-1'>{error}</p>
               </div>
@@ -372,8 +372,8 @@ export const UserSettings: React.FC = () => {
                   </span>
                   <span className='text-[var(--text-primary)] font-medium'>
                     {user?.created_at
-                      ? new Date(user.created_at).toLocaleDateString('zh-CN')
-                      : '未知'}
+                      ? new Date(user.created_at).toLocaleDateString('en-US')
+                      : 'Unknown'}
                   </span>
                 </div>
                 <div className='flex justify-between items-center'>
@@ -501,7 +501,7 @@ export const UserSettings: React.FC = () => {
                     onClick={handleExportAll}
                     className='px-4 py-2 text-sm bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white rounded-lg hover:from-[var(--accent-primary-hover)] hover:to-[var(--accent-secondary-hover)] transition-colors'
                   >
-                    {t('common.export')}全部
+                    {t('common.export')} All
                   </button>
                 </div>
               </div>
