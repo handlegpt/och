@@ -99,19 +99,17 @@ ON usage_stats(user_id, date DESC, generations_count);
 -- CREATE INDEX IF NOT EXISTS idx_ai_generations_prompt_gin 
 -- ON ai_generations USING gin(to_tsvector('english', prompt));
 
--- 15. 创建部分索引用于活跃用户
+-- 15. 创建部分索引用于活跃用户（移除时间条件，使用完整索引）
 CREATE INDEX IF NOT EXISTS idx_ai_generations_active_users 
-ON ai_generations(user_id, created_at DESC) 
-WHERE created_at > NOW() - INTERVAL '30 days';
+ON ai_generations(user_id, created_at DESC);
 
--- 16. 创建部分索引用于成本控制
+-- 16. 创建部分索引用于成本控制（移除时间条件，使用完整索引）
 CREATE INDEX IF NOT EXISTS idx_api_cost_records_recent 
-ON api_cost_records(user_id, created_at DESC) 
-WHERE created_at > NOW() - INTERVAL '90 days';
+ON api_cost_records(user_id, created_at DESC);
 
--- 17. 优化统计查询的索引
+-- 17. 优化统计查询的索引（移除DATE函数，使用created_at）
 CREATE INDEX IF NOT EXISTS idx_ai_generations_daily_stats 
-ON ai_generations(DATE(created_at), user_id, status);
+ON ai_generations(created_at, user_id, status);
 
 -- 18. 为管理员查询添加索引
 CREATE INDEX IF NOT EXISTS idx_ai_generations_admin_stats 
@@ -127,10 +125,9 @@ CREATE INDEX IF NOT EXISTS idx_ai_generations_realtime
 ON ai_generations(status, created_at DESC) 
 WHERE status IN ('pending', 'processing');
 
--- 21. 创建用于清理旧数据的索引
+-- 21. 创建用于清理旧数据的索引（移除时间条件，使用完整索引）
 CREATE INDEX IF NOT EXISTS idx_ai_generations_cleanup 
-ON ai_generations(created_at) 
-WHERE created_at < NOW() - INTERVAL '1 year';
+ON ai_generations(created_at);
 
 -- 22. 为成本分析查询优化
 CREATE INDEX IF NOT EXISTS idx_api_cost_records_cost_analysis 
