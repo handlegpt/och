@@ -1,6 +1,7 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { ErrorBoundary } from './src/components/ErrorBoundary'
+import { SentryErrorBoundary } from './src/components/SentryErrorBoundary'
 import { Navigation } from './src/components/Navigation'
 import { BottomNavigation } from './src/components/BottomNavigation'
 import { HomePage } from './src/components/HomePage'
@@ -16,29 +17,31 @@ import { UsageLimitAlert } from './src/components/UsageLimitAlert'
 
 const App: React.FC = () => {
   return (
-    <ErrorBoundary>
-      <div className='min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] font-sans'>
-        <Navigation />
+    <SentryErrorBoundary>
+      <ErrorBoundary>
+        <div className='min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] font-sans'>
+          <Navigation />
 
-        <Routes>
-          <Route path='/' element={<HomePage />} />
-          <Route path='/profile' element={<ProfilePage />} />
-          <Route path='/categories' element={<CategoriesPage />} />
-          <Route path='/social' element={<SocialPage />} />
-          <Route path='/pricing' element={<PricingPage />} />
-          <Route path='/privacy' element={<PrivacyPage />} />
-          <Route path='/settings' element={<SettingsPage />} />
-          <Route path='/more' element={<MorePage />} />
-          <Route path='/auth/callback' element={<AuthCallback />} />
-        </Routes>
+          <Routes>
+            <Route path='/' element={<HomePage />} />
+            <Route path='/profile' element={<ProfilePage />} />
+            <Route path='/categories' element={<CategoriesPage />} />
+            <Route path='/social' element={<SocialPage />} />
+            <Route path='/pricing' element={<PricingPage />} />
+            <Route path='/privacy' element={<PrivacyPage />} />
+            <Route path='/settings' element={<SettingsPage />} />
+            <Route path='/more' element={<MorePage />} />
+            <Route path='/auth/callback' element={<AuthCallback />} />
+          </Routes>
 
-        {/* 底部导航 */}
-        <BottomNavigation />
+          {/* 底部导航 */}
+          <BottomNavigation />
 
-        {/* 使用限制提示 */}
-        <UsageLimitAlert />
-      </div>
-    </ErrorBoundary>
+          {/* 使用限制提示 */}
+          <UsageLimitAlert />
+        </div>
+      </ErrorBoundary>
+    </SentryErrorBoundary>
   )
 }
 

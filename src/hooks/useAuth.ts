@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { User, Session } from '@supabase/supabase-js'
 import { supabase } from '../lib/supabase'
+import { setSentryUser, clearSentryUser, captureUserAction } from '../lib/sentry'
 
 export const useAuthProvider = () => {
   const [user, setUser] = useState<User | null>(null)
@@ -37,9 +38,20 @@ export const useAuthProvider = () => {
       if (session?.user) {
         console.log('👤 User logged in, fetching profile...')
         await fetchUserProfile(session.user.id)
+
+        // 设置Sentry用户上下文
+        setSentryUser(session.user)
+        captureUserAction('user_login', {
+          userId: session.user.id,
+          email: session.user.email,
+        })
       } else {
         console.log('👋 User logged out, clearing profile...')
         setUserProfile(null)
+
+        // 清除Sentry用户上下文
+        clearSentryUser()
+        captureUserAction('user_logout')
       }
 
       setLoading(false)

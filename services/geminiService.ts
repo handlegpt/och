@@ -1,6 +1,7 @@
 import { GoogleGenAI, Modality } from '@google/genai'
 import type { GeneratedContent } from '../types'
 import { generationRateLimiter, getUserIdentifier } from '../src/services/rateLimiter'
+import { withCostControl } from '../src/services/costControl'
 
 // 支持多种环境变量名称
 const apiKey = process.env.API_KEY || process.env.GEMINI_API_KEY
@@ -28,6 +29,20 @@ export async function editImage(
     ;(error as any).statusCode = 429
     ;(error as any).retryAfter = limitResult.retryAfter
     throw error
+  }
+
+  // 成本控制检查
+  if (userId) {
+    const costResult = await withCostControl(userId, 'IMAGE_EDIT', async () => {
+      // 实际的API调用逻辑将在下面执行
+      return null
+    })
+
+    if (!costResult.success) {
+      const error = new Error(`Cost limit exceeded: ${costResult.error}`)
+      ;(error as any).statusCode = 402 // Payment Required
+      throw error
+    }
   }
 
   try {

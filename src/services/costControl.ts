@@ -4,6 +4,7 @@
  */
 
 import { supabase } from '../lib/supabase'
+import { captureError } from '../lib/sentry'
 
 // API成本配置 (基于Google Gemini定价)
 export const API_COST_CONFIG = {
@@ -158,6 +159,12 @@ export class CostControlService {
 
       if (error) {
         console.error('Error recording API cost:', error)
+        captureError(error, {
+          context: 'cost_control',
+          userId,
+          operationType,
+          estimatedCost,
+        })
         // 不抛出错误，避免影响用户体验
       }
 
@@ -165,6 +172,12 @@ export class CostControlService {
       await this.updateUserCostStats(userId)
     } catch (error) {
       console.error('Error recording API cost:', error)
+      captureError(error as Error, {
+        context: 'cost_control_record',
+        userId,
+        operationType,
+        estimatedCost,
+      })
     }
   }
 

@@ -5,7 +5,11 @@ import { LanguageProvider } from './i18n/context'
 import { ThemeProvider } from './theme/context'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { AuthProvider } from './src/components/auth/AuthProvider'
+import { initSentry } from './src/lib/sentry'
 import './index.css'
+
+// 初始化Sentry错误监控
+initSentry()
 
 const rootElement = document.getElementById('root')
 if (!rootElement) {
