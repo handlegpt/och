@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react'
 // import { useTranslation } from '../../../i18n/context';
 // import { useAuth } from '../../hooks/useAuth';
+import { LazyImage } from '../ui/LazyImage'
 
 interface ShareManagerProps {
   contentUrl?: string
@@ -189,7 +190,12 @@ export const ShareManager: React.FC<ShareManagerProps> = ({
                     二维码
                   </label>
                   <div className='inline-block p-4 bg-white rounded-lg'>
-                    <img src={qrCodeUrl} alt='QR Code' className='w-32 h-32' />
+                    <LazyImage
+                      src={qrCodeUrl}
+                      alt='QR Code'
+                      className='w-32 h-32'
+                      loading='eager'
+                    />
                   </div>
                   <button
                     onClick={downloadQRCode}

@@ -6,6 +6,7 @@ import { DataPersistenceService } from '../../services/dataPersistence'
 import ImagePreviewModal from '../../../components/ImagePreviewModal'
 import { SkeletonLoader } from '../ui/SkeletonLoader'
 import { LazyImage } from '../ui/LazyImage'
+import { HistorySearch } from './HistorySearch'
 
 interface GenerationHistory {
   id?: string
@@ -22,11 +23,14 @@ export const UserHistory: React.FC = () => {
   const { user } = useAuth()
   const { t } = useTranslation()
   const [history, setHistory] = useState<GenerationHistory[]>([])
+  const [filteredHistory, setFilteredHistory] = useState<GenerationHistory[]>([])
   const [loading, setLoading] = useState(true)
+  const [searching, setSearching] = useState(false)
   const [selectedType, setSelectedType] = useState<string>('all')
   const [selectedItems, setSelectedItems] = useState<Set<string>>(new Set())
   const [showBatchActions, setShowBatchActions] = useState(false)
   const [previewImageUrl, setPreviewImageUrl] = useState<string | null>(null)
+  const [searchFilters, setSearchFilters] = useState<any>(null)
 
   const fetchUserHistory = useCallback(async () => {
     if (!user) return
@@ -36,13 +40,15 @@ export const UserHistory: React.FC = () => {
       // 使用数据持久化服务获取历史记录
       const historyData = await DataPersistenceService.getUserGenerationHistory(user.id, 20, 0)
 
-      // 如果选择了特定类型，进行过滤
-      const filteredHistory =
+      setHistory(historyData)
+
+      // 应用类型过滤
+      const typeFilteredHistory =
         selectedType === 'all'
           ? historyData
           : historyData.filter(item => item.transformation_type === selectedType)
 
-      setHistory(filteredHistory)
+      setFilteredHistory(typeFilteredHistory)
     } catch (error) {
       console.error('Error fetching user history:', error)
       // 设置空数组，避免一直加载
@@ -52,11 +58,80 @@ export const UserHistory: React.FC = () => {
     }
   }, [user, selectedType])
 
+  // 搜索处理函数
+  const handleSearch = useCallback(
+    (filters: any) => {
+      setSearching(true)
+      setSearchFilters(filters)
+
+      let filtered = [...history]
+
+      // 文本搜索
+      if (filters.query) {
+        const query = filters.query.toLowerCase()
+        filtered = filtered.filter(
+          item =>
+            item.prompt?.toLowerCase().includes(query) ||
+            item.custom_prompt?.toLowerCase().includes(query) ||
+            item.transformation_type?.toLowerCase().includes(query)
+        )
+      }
+
+      // 类型过滤
+      if (filters.transformationType !== 'all') {
+        filtered = filtered.filter(item => item.transformation_type === filters.transformationType)
+      }
+
+      // 状态过滤
+      if (filters.status !== 'all') {
+        filtered = filtered.filter(item => item.status === filters.status)
+      }
+
+      // 日期范围过滤
+      if (filters.dateRange.start || filters.dateRange.end) {
+        filtered = filtered.filter(item => {
+          if (!item.created_at) return false
+
+          const itemDate = new Date(item.created_at)
+          const startDate = filters.dateRange.start ? new Date(filters.dateRange.start) : null
+          const endDate = filters.dateRange.end ? new Date(filters.dateRange.end) : null
+
+          if (startDate && itemDate < startDate) return false
+          if (endDate && itemDate > endDate) return false
+
+          return true
+        })
+      }
+
+      setFilteredHistory(filtered)
+      setSearching(false)
+    },
+    [history]
+  )
+
+  const handleClearSearch = useCallback(() => {
+    setSearchFilters(null)
+    setFilteredHistory(
+      history.filter(item => selectedType === 'all' || item.transformation_type === selectedType)
+    )
+  }, [history, selectedType])
+
   useEffect(() => {
     if (user) {
       fetchUserHistory()
     }
   }, [user, selectedType, fetchUserHistory])
+
+  // 当类型改变时更新过滤结果
+  useEffect(() => {
+    if (searchFilters) {
+      handleSearch(searchFilters)
+    } else {
+      setFilteredHistory(
+        history.filter(item => selectedType === 'all' || item.transformation_type === selectedType)
+      )
+    }
+  }, [selectedType, history, searchFilters, handleSearch])
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
@@ -120,11 +195,11 @@ export const UserHistory: React.FC = () => {
   }
 
   const handleSelectAll = () => {
-    if (selectedItems.size === history.length) {
+    if (selectedItems.size === filteredHistory.length) {
       setSelectedItems(new Set())
       setShowBatchActions(false)
     } else {
-      setSelectedItems(new Set(history.map(item => item.id || '').filter(id => id)))
+      setSelectedItems(new Set(filteredHistory.map(item => item.id || '').filter(id => id)))
       setShowBatchActions(true)
     }
   }
@@ -148,7 +223,7 @@ export const UserHistory: React.FC = () => {
 
   const handleBatchDownload = () => {
     selectedItems.forEach(itemId => {
-      const item = history.find(h => h.id === itemId)
+      const item = filteredHistory.find(h => h.id === itemId)
       if (item?.output_image_url && item.id) {
         const link = document.createElement('a')
         link.href = item.output_image_url
@@ -238,6 +313,14 @@ export const UserHistory: React.FC = () => {
         </div>
       </div>
 
+      {/* 搜索组件 */}
+      <HistorySearch
+        onSearch={handleSearch}
+        onClear={handleClearSearch}
+        totalResults={filteredHistory.length}
+        isLoading={searching}
+      />
+
       {/* 批量操作工具栏 */}
       {showBatchActions && (
         <div className='bg-[var(--accent-primary)] bg-opacity-10 border border-[var(--accent-primary)] border-opacity-30 rounded-lg p-3'>
@@ -272,32 +355,38 @@ export const UserHistory: React.FC = () => {
         </div>
       )}
 
-      {history.length === 0 ? (
+      {filteredHistory.length === 0 ? (
         <div className='text-center py-8'>
           <div className='text-4xl mb-2'>🎨</div>
-          <p className='text-[var(--text-secondary)]'>No generation history yet</p>
-          <p className='text-sm text-[var(--text-tertiary)]'>Start creating your first image!</p>
+          <p className='text-[var(--text-secondary)]'>
+            {searchFilters ? 'No results found for your search' : 'No generation history yet'}
+          </p>
+          <p className='text-sm text-[var(--text-tertiary)]'>
+            {searchFilters
+              ? 'Try adjusting your search criteria'
+              : 'Start creating your first image!'}
+          </p>
         </div>
       ) : (
         <div className='space-y-3 max-h-96 overflow-y-auto'>
           {/* 全选按钮 */}
-          {history.length > 0 && (
+          {filteredHistory.length > 0 && (
             <div className='flex items-center gap-2 p-2 bg-[var(--bg-secondary)] rounded-lg border border-[var(--border-primary)]'>
               <input
                 type='checkbox'
-                checked={selectedItems.size === history.length}
+                checked={selectedItems.size === filteredHistory.length}
                 onChange={handleSelectAll}
                 className='w-4 h-4 text-[var(--accent-primary)] bg-[var(--bg-secondary)] border-[var(--border-primary)] rounded focus:ring-[var(--accent-primary)]'
               />
               <span className='text-sm text-[var(--text-secondary)]'>
-                {selectedItems.size === history.length
+                {selectedItems.size === filteredHistory.length
                   ? t('common.deselectAll')
                   : t('common.selectAll')}
               </span>
             </div>
           )}
 
-          {history.map((item, index) => (
+          {filteredHistory.map((item, index) => (
             <div
               key={item.id || `item-${index}`}
               className={`bg-[var(--bg-secondary)] rounded-lg p-3 border transition-colors ${

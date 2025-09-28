@@ -1,6 +1,7 @@
 import React, { useState, useRef, useCallback } from 'react'
 // import { useTranslation } from '../../../i18n/context';
 import { useAuth } from '../../hooks/useAuth'
+import { LazyImage } from '../ui/LazyImage'
 
 interface AvatarUploadProps {
   currentAvatar?: string
@@ -93,7 +94,12 @@ export const AvatarUpload: React.FC<AvatarUploadProps> = ({
           className={`${sizeClasses[size]} rounded-full overflow-hidden border-4 border-[var(--border-primary)] bg-[var(--bg-secondary)] flex items-center justify-center`}
         >
           {displayAvatar ? (
-            <img src={displayAvatar} alt='用户头像' className='w-full h-full object-cover' />
+            <LazyImage
+              src={displayAvatar}
+              alt='用户头像'
+              className='w-full h-full object-cover'
+              loading='eager'
+            />
           ) : (
             <div className='text-4xl text-[var(--text-secondary)]'>
               {user?.email?.charAt(0).toUpperCase() || '👤'}

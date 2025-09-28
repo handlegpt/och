@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { useAuth } from '../../hooks/useAuth'
 import { useTranslation } from '../../../i18n/context'
 import { supabase } from '../../lib/supabase'
+import { LazyImage } from '../ui/LazyImage'
 
 interface GalleryItem {
   id: string
@@ -76,7 +77,7 @@ export const GalleryWall: React.FC<GalleryWallProps> = ({ userId, showUserGaller
         setLoading(false)
       }
     },
-    [showUserGallery, userId, user]
+    [showUserGallery, userId]
   )
 
   useEffect(() => {
@@ -224,7 +225,13 @@ const GalleryCard: React.FC<GalleryCardProps> = ({ item, onLike, onShare }) => {
     <div className='bg-[var(--bg-card)] rounded-xl border border-[var(--border-primary)] overflow-hidden hover:shadow-lg transition-shadow'>
       {/* 图片 */}
       <div className='aspect-square relative group'>
-        <img src={item.image_url} alt={item.title} className='w-full h-full object-cover' />
+        <LazyImage
+          src={item.image_url}
+          alt={item.title}
+          className='w-full h-full object-cover'
+          threshold={0.1}
+          rootMargin='100px'
+        />
 
         {/* 悬停操作 */}
         <div className='absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-200 flex items-center justify-center opacity-0 group-hover:opacity-100'>
