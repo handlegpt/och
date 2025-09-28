@@ -30,6 +30,11 @@ export const BottomNavigation: React.FC = () => {
       icon: '🖼️',
       label: 'Showcase',
     },
+    {
+      path: '/profile',
+      icon: '👤',
+      label: 'Profile',
+    },
   ]
 
   const productLinks = [

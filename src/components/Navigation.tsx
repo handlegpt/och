@@ -113,66 +113,6 @@ export const Navigation: React.FC = () => {
             <UserInfo />
           </div>
         </div>
-
-        {/* 移动端导航 */}
-        <div className='md:hidden mt-3 pt-3 border-t border-[var(--border-primary)]'>
-          <nav className='flex items-center gap-4 flex-wrap'>
-            <Link
-              to='/categories'
-              className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${
-                isActive('/categories')
-                  ? 'text-[var(--accent-primary)]'
-                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-              }`}
-            >
-              Features
-            </Link>
-
-            <Link
-              to='/pricing'
-              className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${
-                isActive('/pricing')
-                  ? 'text-[var(--accent-primary)]'
-                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-              }`}
-            >
-              Pricing
-            </Link>
-
-            <Link
-              to='/social'
-              className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${
-                isActive('/social')
-                  ? 'text-[var(--accent-primary)]'
-                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-              }`}
-            >
-              Showcase
-            </Link>
-
-            <Link
-              to='/profile'
-              className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${
-                isActive('/profile')
-                  ? 'text-[var(--accent-primary)]'
-                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-              }`}
-            >
-              Profile
-            </Link>
-
-            <Link
-              to='/more'
-              className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${
-                isActive('/more')
-                  ? 'text-[var(--accent-primary)]'
-                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-              }`}
-            >
-              More
-            </Link>
-          </nav>
-        </div>
       </div>
     </header>
   )
