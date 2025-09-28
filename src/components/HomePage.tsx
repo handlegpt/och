@@ -305,8 +305,8 @@ export const HomePage: React.FC = () => {
               Advanced och.ai Features
             </h2>
             <p className='text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed'>
-              Discover why och.ai utilizing Google's Gemini 2.5 Flash Image API leads the industry
-              with revolutionary AI image editing capabilities and natural language processing.
+              Discover why och.ai utilizing advanced AI models leads the industry with revolutionary
+              image editing capabilities and natural language processing.
             </p>
           </div>
 
@@ -330,7 +330,7 @@ export const HomePage: React.FC = () => {
                 icon: '▮',
                 title: 'World Knowledge Integration',
                 description:
-                  "Leverage Gemini's vast knowledge base for contextually accurate image generation. och.ai model understands real-world relationships and semantics.",
+                  "Leverage advanced AI's vast knowledge base for contextually accurate image generation. och.ai model understands real-world relationships and semantics.",
                 color: 'text-yellow-500',
               },
               {
@@ -465,9 +465,8 @@ export const HomePage: React.FC = () => {
               och.ai Gallery - Real Examples
             </h2>
             <p className='text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed'>
-              Explore stunning examples created with och.ai utilizing Google's Gemini 2.5 Flash
-              Image API. See how och.ai technology delivers superior results compared to other
-              models.
+              Explore stunning examples created with och.ai utilizing advanced AI technology. See
+              how och.ai delivers superior results compared to other models.
             </p>
           </div>
 
