@@ -297,66 +297,75 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 功能亮点区域 - Why och.ai */}
-      <section className='py-20 bg-[var(--bg-secondary)] relative overflow-hidden'>
+      {/* Advanced Features Section - 参考 Nano Banana AI */}
+      <section className='py-20 bg-white relative overflow-hidden'>
         <div className='container mx-auto px-4 relative'>
           <div className='text-center mb-16'>
-            <div className='inline-flex items-center gap-2 px-4 py-2 bg-[var(--accent-primary)]/10 border border-[var(--accent-primary)]/20 rounded-full text-sm text-[var(--accent-primary)] mb-6'>
-              <span>✨</span>
-              Why Choose och.ai
-            </div>
-            <h2 className='text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-6'>
-              Advanced AI Image Generation
+            <h2 className='text-4xl md:text-5xl font-bold text-black mb-6'>
+              Advanced och.ai Features
             </h2>
-            <p className='text-xl text-[var(--text-secondary)] max-w-3xl mx-auto leading-relaxed'>
-              Experience the power of Nano Banana AI technology with superior character consistency
-              and scene preservation
+            <p className='text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed'>
+              Discover why och.ai utilizing Google's Gemini 2.5 Flash Image API leads the industry
+              with revolutionary AI image editing capabilities and natural language processing.
             </p>
           </div>
 
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
             {[
               {
-                icon: '🎨',
-                title: 'Multiple Art Styles',
-                description: '50+ artistic transformations from 3D figurines to anime styles',
-                color: 'from-blue-500 to-cyan-500',
-              },
-              {
-                icon: '⚡',
-                title: 'Lightning Fast',
-                description: 'Generate stunning artwork in seconds with optimized AI processing',
-                color: 'from-yellow-500 to-orange-500',
-              },
-              {
-                icon: '🔒',
-                title: 'Privacy First',
-                description: 'Your photos are never stored or used for training - complete privacy',
-                color: 'from-green-500 to-emerald-500',
-              },
-              {
-                icon: '💎',
-                title: 'HD Quality',
+                icon: '○',
+                title: 'Prompt-Based Local Edits',
                 description:
-                  'High-resolution outputs perfect for professional use and social media',
-                color: 'from-purple-500 to-pink-500',
+                  'Make precise, context-aware updates with och.ai without breaking composition. Superior to traditional image editing tools.',
+                color: 'text-yellow-500',
+              },
+              {
+                icon: '▬',
+                title: 'Multi-Image Fusion',
+                description:
+                  'Blend multiple images seamlessly with och.ai technology. Advanced multi-image context understanding for complex compositions.',
+                color: 'text-yellow-500',
+              },
+              {
+                icon: '▮',
+                title: 'World Knowledge Integration',
+                description:
+                  "Leverage Gemini's vast knowledge base for contextually accurate image generation. och.ai model understands real-world relationships and semantics.",
+                color: 'text-yellow-500',
+              },
+              {
+                icon: '👥',
+                title: 'Character Identity Preservation',
+                description:
+                  'Maintain perfect facial identity and stylistic consistency across edits. Leading LMArena och.ai performance in character consistency.',
+                color: 'text-yellow-500',
+              },
+              {
+                icon: '🏔️',
+                title: 'Scene-Aware Processing',
+                description:
+                  'Preserve lighting, depth, and composition while applying targeted edits. Superior scene integration compared to other AI models.',
+                color: 'text-yellow-500',
+              },
+              {
+                icon: '★',
+                title: 'Professional Content Creation',
+                description:
+                  'Generate consistent AI-powered content for social media, marketing, and storytelling. Learn how to use och.ai for professional workflows.',
+                color: 'text-yellow-500',
               },
             ].map((feature, index) => (
               <div
                 key={index}
-                className='group relative bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-6 border border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-all duration-500 hover:shadow-2xl hover:shadow-[var(--accent-primary)]/20 hover:-translate-y-2 text-center'
+                className='group relative bg-white rounded-xl p-6 border border-gray-200 hover:border-yellow-400 transition-all duration-300 hover:shadow-lg text-center'
               >
                 <div
-                  className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}
+                  className={`w-12 h-12 ${feature.color} text-2xl flex items-center justify-center mx-auto mb-4`}
                 >
                   {feature.icon}
                 </div>
-                <h3 className='text-lg font-bold text-[var(--text-primary)] mb-2 group-hover:text-[var(--accent-primary)] transition-colors duration-300'>
-                  {feature.title}
-                </h3>
-                <p className='text-[var(--text-secondary)] text-sm leading-relaxed group-hover:text-[var(--text-primary)] transition-colors duration-300'>
-                  {feature.description}
-                </p>
+                <h3 className='text-lg font-bold text-black mb-3'>{feature.title}</h3>
+                <p className='text-gray-600 text-sm leading-relaxed'>{feature.description}</p>
               </div>
             ))}
           </div>
@@ -442,6 +451,72 @@ export const HomePage: React.FC = () => {
                     </div>
                   </div>
                 )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery Section - 参考 Nano Banana AI */}
+      <section className='py-20 bg-white relative overflow-hidden'>
+        <div className='container mx-auto px-4 relative'>
+          <div className='text-center mb-16'>
+            <h2 className='text-4xl md:text-5xl font-bold text-black mb-6'>
+              och.ai Gallery - Real Examples
+            </h2>
+            <p className='text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed'>
+              Explore stunning examples created with och.ai utilizing Google's Gemini 2.5 Flash
+              Image API. See how och.ai technology delivers superior results compared to other
+              models.
+            </p>
+          </div>
+
+          <div className='grid grid-cols-2 md:grid-cols-4 gap-6'>
+            {[
+              {
+                title: '3D Figurine Transformation',
+                description:
+                  'Transform any photo into a detailed 3D figurine with perfect character preservation',
+                image: 'demo-figurine.png',
+              },
+              {
+                title: 'Anime Style Conversion',
+                description:
+                  'Convert real photos into anime-style artwork with consistent character identity',
+                image: 'demo-anime.png',
+              },
+              {
+                title: 'Plushie Style Creation',
+                description: 'Create adorable plushie versions of any character or person',
+                image: 'demo-plushie.png',
+              },
+              {
+                title: 'Artistic Enhancement',
+                description:
+                  'Enhance photos with artistic styles while maintaining original composition',
+                image: 'demo-artistic.png',
+              },
+            ].map((example, index) => (
+              <div
+                key={index}
+                className='group relative bg-white rounded-xl p-4 border border-gray-200 hover:border-yellow-400 transition-all duration-300 hover:shadow-lg'
+              >
+                <div className='aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-300'>
+                  <img
+                    src={`/images/${example.image}`}
+                    alt={example.title}
+                    className='w-full h-full object-cover rounded-lg'
+                    onError={e => {
+                      e.currentTarget.style.display = 'none'
+                      e.currentTarget.nextElementSibling.style.display = 'flex'
+                    }}
+                  />
+                  <div className='hidden w-full h-full items-center justify-center text-gray-500 text-sm'>
+                    {example.title}
+                  </div>
+                </div>
+                <h3 className='text-sm font-bold text-black mb-2'>{example.title}</h3>
+                <p className='text-xs text-gray-600 leading-relaxed'>{example.description}</p>
               </div>
             ))}
           </div>
