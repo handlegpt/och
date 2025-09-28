@@ -162,49 +162,80 @@ export const useAuthProvider = () => {
       console.log('Current user before signOut:', user?.email)
       console.log('Current session before signOut:', session?.access_token ? 'exists' : 'none')
 
-      // 使用 Promise.race 来设置超时，防止某些浏览器卡住
-      const signOutPromise = supabase.auth.signOut()
-      const timeoutPromise = new Promise(
-        (_, reject) => setTimeout(() => reject(new Error('Sign out timeout')), 15000) // 增加到15秒
-      )
-
-      const { error } = (await Promise.race([signOutPromise, timeoutPromise])) as any
-
-      if (error) {
-        console.error('❌ Supabase signOut error:', error)
-        throw error
-      }
-
-      console.log('✅ Supabase signOut successful')
-
-      // 清除本地存储的认证信息
+      // 首先清除本地存储，确保用户立即看到登出效果
       try {
         localStorage.removeItem('supabase.auth.token')
+        // 清除所有可能的Supabase认证token
+        Object.keys(localStorage).forEach(key => {
+          if (key.startsWith('sb-') && key.includes('-auth-token')) {
+            localStorage.removeItem(key)
+          }
+        })
         sessionStorage.clear()
-        console.log('🧹 Local storage cleared')
+        console.log('🧹 Local storage cleared immediately')
       } catch (e) {
         console.warn('⚠️ Failed to clear local storage:', e)
       }
+
+      // 使用更短的超时时间，并添加重试机制
+      const signOutWithRetry = async (retries = 2) => {
+        for (let i = 0; i < retries; i++) {
+          try {
+            console.log(`🔄 Attempting signOut (attempt ${i + 1}/${retries})`)
+
+            const signOutPromise = supabase.auth.signOut()
+            const timeoutPromise = new Promise(
+              (_, reject) => setTimeout(() => reject(new Error('Sign out timeout')), 8000) // 减少到8秒
+            )
+
+            const { error } = (await Promise.race([signOutPromise, timeoutPromise])) as any
+
+            if (error) {
+              console.warn(`⚠️ SignOut attempt ${i + 1} failed:`, error.message)
+              if (i === retries - 1) throw error
+              // 等待1秒后重试
+              await new Promise(resolve => setTimeout(resolve, 1000))
+            } else {
+              console.log('✅ Supabase signOut successful')
+              return
+            }
+          } catch (error) {
+            if (i === retries - 1) throw error
+            console.warn(`⚠️ SignOut attempt ${i + 1} failed:`, error.message)
+            await new Promise(resolve => setTimeout(resolve, 1000))
+          }
+        }
+      }
+
+      await signOutWithRetry()
     } catch (error) {
       console.error('Error in signOut function:', error)
 
-      // 即使 Supabase signOut 失败，也尝试清除本地状态
+      // 确保本地状态被清除，即使Supabase调用失败
       try {
         localStorage.removeItem('supabase.auth.token')
+        // 清除所有可能的Supabase认证token
+        Object.keys(localStorage).forEach(key => {
+          if (key.startsWith('sb-') && key.includes('-auth-token')) {
+            localStorage.removeItem(key)
+          }
+        })
         sessionStorage.clear()
-        // 注意：不要手动设置状态，让onAuthStateChange处理
-        // 这样可以确保状态管理的一致性
+        console.log('🧹 Local storage cleared after error')
       } catch (e) {
         console.warn('Failed to clear local storage after error:', e)
       }
 
-      // 如果是超时错误，不抛出异常，而是继续执行
+      // 如果是超时错误，不抛出异常，因为本地状态已经清除
       if (error.message === 'Sign out timeout') {
-        console.warn('Sign out timed out, but local state has been cleared')
+        console.warn('⚠️ Sign out timed out, but local state has been cleared')
+        console.log('✅ Sign out successful (local cleanup completed)')
         return
       }
 
-      throw error
+      // 对于其他错误，也尝试继续执行，因为本地状态已经清除
+      console.warn('⚠️ Supabase signOut failed, but local state has been cleared')
+      console.log('✅ Sign out successful (local cleanup completed)')
     }
   }
 

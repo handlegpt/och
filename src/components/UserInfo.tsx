@@ -96,7 +96,8 @@ export const UserInfo: React.FC = () => {
               // 用户状态会通过onAuthStateChange自动清除
             } catch (error) {
               console.error('Sign out error:', error)
-              alert('退出登录失败，请重试')
+              // 即使有错误，也显示成功消息，因为本地状态已经被清除
+              console.log('Sign out completed (local cleanup successful)')
             } finally {
               // 重新启用按钮（检查按钮是否仍然存在）
               if (button && button.parentNode) {
