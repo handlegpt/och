@@ -10,6 +10,13 @@ const SENTRY_DSN = process.env.VITE_SENTRY_DSN || process.env.REACT_APP_SENTRY_D
 
 // 初始化Sentry
 export const initSentry = () => {
+  console.log('🔍 Sentry DSN check:', {
+    VITE_SENTRY_DSN: process.env.VITE_SENTRY_DSN,
+    REACT_APP_SENTRY_DSN: process.env.REACT_APP_SENTRY_DSN,
+    SENTRY_DSN: SENTRY_DSN,
+    NODE_ENV: process.env.NODE_ENV,
+  })
+
   if (!SENTRY_DSN) {
     console.warn('⚠️ Sentry DSN not configured. Error monitoring disabled.')
     return
