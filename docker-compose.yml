@@ -8,6 +8,8 @@ services:
         - GEMINI_API_KEY=${GEMINI_API_KEY}
         - VITE_SUPABASE_URL=${VITE_SUPABASE_URL}
         - VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}
+        - VITE_SENTRY_DSN=${VITE_SENTRY_DSN}
+        - VITE_STRIPE_PUBLISHABLE_KEY=${VITE_STRIPE_PUBLISHABLE_KEY}
     ports:
       - "5173:4173"
     environment:
@@ -15,6 +17,8 @@ services:
       - GEMINI_API_KEY=${GEMINI_API_KEY}
       - VITE_SUPABASE_URL=${VITE_SUPABASE_URL}
       - VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}
+      - VITE_SENTRY_DSN=${VITE_SENTRY_DSN}
+      - VITE_STRIPE_PUBLISHABLE_KEY=${VITE_STRIPE_PUBLISHABLE_KEY}
     volumes:
       - ./logs:/app/logs
     restart: unless-stopped
