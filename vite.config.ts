@@ -5,8 +5,11 @@ export default defineConfig(({ mode }) => {
   // 加载环境变量，包括 .env 文件
   const env = loadEnv(mode, process.cwd(), '')
 
-  // 直接从 process.env 获取，作为备用
-  const sentryDsn = env.VITE_SENTRY_DSN || process.env.VITE_SENTRY_DSN
+  // 直接从 process.env 获取，作为备用，如果都没有则使用硬编码值
+  const sentryDsn =
+    env.VITE_SENTRY_DSN ||
+    process.env.VITE_SENTRY_DSN ||
+    'https://a739df68bf9fb7676585b122df48022d@o4510095342567424.ingest.us.sentry.io/4510095349579776'
 
   console.log('🔧 Vite config - Environment variables:', {
     mode,
