@@ -3,8 +3,10 @@ import { loadStripe, Stripe } from '@stripe/stripe-js'
 // Stripe 配置
 const STRIPE_PUBLISHABLE_KEY = (import.meta as any).env?.VITE_STRIPE_PUBLISHABLE_KEY
 
+// 安全检查：确保Stripe配置正确
 if (!STRIPE_PUBLISHABLE_KEY) {
   console.warn('⚠️ Stripe publishable key not found. Payment functionality will be disabled.')
+  console.warn('Please set VITE_STRIPE_PUBLISHABLE_KEY in your environment variables.')
 }
 
 // 初始化 Stripe

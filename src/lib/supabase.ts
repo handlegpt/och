@@ -6,11 +6,12 @@ const supabaseUrl =
 const supabaseAnonKey =
   (import.meta as any).env?.VITE_SUPABASE_ANON_KEY || process.env.REACT_APP_SUPABASE_ANON_KEY
 
-// 检查环境变量
+// 安全检查：确保必要的环境变量存在
 if (!supabaseUrl || !supabaseAnonKey) {
-  console.warn('Supabase URL or Anon Key not found. Please check your environment variables.')
-  console.warn('VITE_SUPABASE_URL:', supabaseUrl)
-  console.warn('VITE_SUPABASE_ANON_KEY:', supabaseAnonKey ? 'SET' : 'NOT SET')
+  console.error('❌ Missing required Supabase environment variables')
+  console.error('VITE_SUPABASE_URL:', supabaseUrl ? 'SET' : 'NOT SET')
+  console.error('VITE_SUPABASE_ANON_KEY:', supabaseAnonKey ? 'SET' : 'NOT SET')
+  throw new Error('Supabase configuration is incomplete')
 }
 
 // 创建 Supabase 客户端
