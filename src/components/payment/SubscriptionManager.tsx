@@ -1,6 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { PaymentService, SubscriptionInfo, SubscriptionStatus } from '../../services/paymentService'
-import { getPlanDisplayName, getPlanDescription, getPlanFeatures } from '../../lib/stripe'
+import { PaymentService, SubscriptionInfo } from '../../services/paymentService'
+import {
+  getPlanDisplayName,
+  getPlanDescription,
+  getPlanFeatures,
+  SubscriptionStatus,
+} from '../../lib/stripe'
 import { useAuth } from '../../hooks/useAuth'
 
 export const SubscriptionManager: React.FC = () => {
