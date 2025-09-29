@@ -543,7 +543,7 @@ export const HomePage: React.FC = () => {
             <div className='bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-6 border border-[var(--border-primary)] text-center'>
               <div className='mb-4'>
                 <h3 className='text-2xl font-bold text-[var(--text-primary)] mb-2'>免费</h3>
-                <div className='text-4xl font-bold text-[var(--accent-primary)] mb-2'>¥0</div>
+                <div className='text-4xl font-bold text-[var(--accent-primary)] mb-2'>$0</div>
                 <p className='text-[var(--text-secondary)]'>适合试用</p>
               </div>
               <ul className='space-y-3 mb-6 text-left'>
@@ -579,7 +579,7 @@ export const HomePage: React.FC = () => {
               </div>
               <div className='mb-4'>
                 <h3 className='text-2xl font-bold text-[var(--text-primary)] mb-2'>专业版</h3>
-                <div className='text-4xl font-bold text-[var(--accent-primary)] mb-2'>¥69</div>
+                <div className='text-4xl font-bold text-[var(--accent-primary)] mb-2'>$9.99</div>
                 <p className='text-[var(--text-secondary)]'>每月</p>
               </div>
               <ul className='space-y-3 mb-6 text-left'>
@@ -612,7 +612,7 @@ export const HomePage: React.FC = () => {
             <div className='bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-6 border border-[var(--border-primary)] text-center'>
               <div className='mb-4'>
                 <h3 className='text-2xl font-bold text-[var(--text-primary)] mb-2'>企业版</h3>
-                <div className='text-4xl font-bold text-[var(--accent-primary)] mb-2'>¥199</div>
+                <div className='text-4xl font-bold text-[var(--accent-primary)] mb-2'>$19.99</div>
                 <p className='text-[var(--text-secondary)]'>每月</p>
               </div>
               <ul className='space-y-3 mb-6 text-left'>

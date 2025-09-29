@@ -60,8 +60,10 @@ export interface Database {
           transformation_type: string
           input_image_url: string | null
           output_image_url: string | null
+          content_url: string | null
           prompt: string | null
           custom_prompt: string | null
+          title: string | null
           status: 'pending' | 'processing' | 'completed' | 'failed'
           tokens_used: number
           processing_time_ms: number | null
@@ -72,14 +74,18 @@ export interface Database {
           transformation_type: string
           input_image_url?: string | null
           output_image_url?: string | null
+          content_url?: string | null
           prompt?: string | null
           custom_prompt?: string | null
+          title?: string | null
           status?: 'pending' | 'processing' | 'completed' | 'failed'
           tokens_used?: number
           processing_time_ms?: number | null
         }
         Update: {
           output_image_url?: string | null
+          content_url?: string | null
+          title?: string | null
           status?: 'pending' | 'processing' | 'completed' | 'failed'
           tokens_used?: number
           processing_time_ms?: number | null
