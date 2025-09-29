@@ -316,44 +316,38 @@ export const HomePage: React.FC = () => {
             {[
               {
                 icon: '○',
-                title: '基于提示的局部编辑',
-                description:
-                  '使用 och.ai 进行精确、上下文感知的更新，不会破坏构图。优于传统图像编辑工具。',
+                title: t('home.advancedFeatures.features.promptBased.title'),
+                description: t('home.advancedFeatures.features.promptBased.description'),
                 color: 'text-yellow-500',
               },
               {
                 icon: '▬',
-                title: '多图像融合',
-                description:
-                  '使用 och.ai 技术无缝融合多张图像。先进的多图像上下文理解，适用于复杂构图。',
+                title: t('home.advancedFeatures.features.multiImage.title'),
+                description: t('home.advancedFeatures.features.multiImage.description'),
                 color: 'text-yellow-500',
               },
               {
                 icon: '▮',
-                title: '世界知识整合',
-                description:
-                  '利用先进AI的庞大知识库进行上下文准确的图像生成。och.ai 模型理解现实世界的关系和语义。',
+                title: t('home.advancedFeatures.features.worldKnowledge.title'),
+                description: t('home.advancedFeatures.features.worldKnowledge.description'),
                 color: 'text-yellow-500',
               },
               {
                 icon: '👥',
-                title: '角色身份保持',
-                description:
-                  '在编辑过程中保持完美的面部身份和风格一致性。在角色一致性方面领先的 LMArena och.ai 性能。',
+                title: t('home.advancedFeatures.features.characterConsistency.title'),
+                description: t('home.advancedFeatures.features.characterConsistency.description'),
                 color: 'text-yellow-500',
               },
               {
                 icon: '🏔️',
-                title: '场景感知处理',
-                description:
-                  '在应用针对性编辑时保持光照、深度和构图。与其他AI模型相比具有优越的场景集成能力。',
+                title: t('home.advancedFeatures.features.sceneAware.title'),
+                description: t('home.advancedFeatures.features.sceneAware.description'),
                 color: 'text-yellow-500',
               },
               {
                 icon: '★',
-                title: '专业内容创作',
-                description:
-                  '为社交媒体、营销和故事讲述生成一致的AI驱动内容。学习如何在专业工作流程中使用 och.ai。',
+                title: t('home.advancedFeatures.features.professionalContent.title'),
+                description: t('home.advancedFeatures.features.professionalContent.description'),
                 color: 'text-yellow-500',
               },
             ].map((feature, index) => (
@@ -380,7 +374,7 @@ export const HomePage: React.FC = () => {
           <div className='text-center mb-16'>
             <div className='inline-flex items-center gap-2 px-4 py-2 bg-[var(--accent-secondary)]/10 border border-[var(--accent-secondary)]/20 rounded-full text-sm text-[var(--accent-secondary)] mb-6'>
               <span>⚡</span>
-              工作原理
+              {t('home.howItWorks.badge')}
             </div>
             <h2 className='text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-6'>
               {t('home.howItWorks.title')}
@@ -398,22 +392,22 @@ export const HomePage: React.FC = () => {
               {
                 step: 1,
                 icon: '📸',
-                title: '上传您的照片',
-                description: '选择任意图像 - 支持 JPEG、PNG 或 WebP 格式，最大 5MB',
+                title: t('home.howItWorks.steps.upload.title'),
+                description: t('home.howItWorks.steps.upload.description'),
                 color: 'from-blue-500 to-cyan-500',
               },
               {
                 step: 2,
                 icon: '🎨',
-                title: '选择艺术风格',
-                description: '从 50+ 种 AI 效果中选择，包括 3D 手办、动漫、毛绒玩具风格',
+                title: t('home.howItWorks.steps.choose.title'),
+                description: t('home.howItWorks.steps.choose.description'),
                 color: 'from-[var(--accent-primary)] to-[var(--accent-secondary)]',
               },
               {
                 step: 3,
                 icon: '✨',
-                title: '下载与分享',
-                description: '立即获得您转换后的艺术作品并在社交媒体上分享',
+                title: t('home.howItWorks.steps.download.title'),
+                description: t('home.howItWorks.steps.download.description'),
                 color: 'from-green-500 to-emerald-500',
               },
             ].map((step, index) => (
@@ -463,33 +457,33 @@ export const HomePage: React.FC = () => {
         <div className='container mx-auto px-4 relative'>
           <div className='text-center mb-16'>
             <h2 className='text-4xl md:text-5xl font-bold text-black mb-6'>
-              och.ai 画廊 - 真实案例
+              {t('home.gallery.title')}
             </h2>
             <p className='text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed'>
-              探索使用 och.ai 先进 AI 技术创建的精彩案例。了解 och.ai 如何提供优于其他模型的结果。
+              {t('home.gallery.subtitle')}
             </p>
           </div>
 
           <div className='grid grid-cols-2 md:grid-cols-4 gap-6'>
             {[
               {
-                title: '3D 手办转换',
-                description: '将任意照片转换为详细的 3D 手办，完美保持角色特征',
+                title: t('home.gallery.cases.figurine.title'),
+                description: t('home.gallery.cases.figurine.description'),
                 image: 'demo-figurine.png',
               },
               {
-                title: '动漫风格转换',
-                description: '将真实照片转换为动漫风格艺术作品，保持一致的角色身份',
+                title: t('home.gallery.cases.anime.title'),
+                description: t('home.gallery.cases.anime.description'),
                 image: 'demo-anime.png',
               },
               {
-                title: '毛绒玩具风格创作',
-                description: '为任何角色或人物创建可爱的毛绒玩具版本',
+                title: t('home.gallery.cases.plushie.title'),
+                description: t('home.gallery.cases.plushie.description'),
                 image: 'demo-plushie.png',
               },
               {
-                title: '艺术增强',
-                description: '用艺术风格增强照片，同时保持原始构图',
+                title: t('home.gallery.cases.artistic.title'),
+                description: t('home.gallery.cases.artistic.description'),
                 image: 'demo-artistic.png',
               },
             ].map((example, index) => (
@@ -528,13 +522,13 @@ export const HomePage: React.FC = () => {
           <div className='text-center mb-16'>
             <div className='inline-flex items-center gap-2 px-4 py-2 bg-[var(--accent-primary)]/10 border border-[var(--accent-primary)]/20 rounded-full text-sm text-[var(--accent-primary)] mb-6'>
               <span>💎</span>
-              透明定价
+              {t('home.pricing.transparent')}
             </div>
             <h2 className='text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-6'>
-              选择您的方案
+              {t('home.pricing.title')}
             </h2>
             <p className='text-xl text-[var(--text-secondary)] max-w-3xl mx-auto leading-relaxed'>
-              从 3 次免费生成开始，然后选择适合您需求的方案
+              {t('home.pricing.subtitle')}
             </p>
           </div>
 
@@ -542,31 +536,35 @@ export const HomePage: React.FC = () => {
             {/* Free Plan */}
             <div className='bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-6 border border-[var(--border-primary)] text-center'>
               <div className='mb-4'>
-                <h3 className='text-2xl font-bold text-[var(--text-primary)] mb-2'>免费</h3>
+                <h3 className='text-2xl font-bold text-[var(--text-primary)] mb-2'>
+                  {t('home.pricing.free')}
+                </h3>
                 <div className='text-4xl font-bold text-[var(--accent-primary)] mb-2'>$0</div>
                 <p className='text-[var(--text-secondary)]'>适合试用</p>
               </div>
               <ul className='space-y-3 mb-6 text-left'>
                 <li className='flex items-center gap-2 text-sm'>
-                  <span className='w-2 h-2 bg-green-500 rounded-full'></span>3 次免费生成
+                  <span className='w-2 h-2 bg-green-500 rounded-full'></span>
+                  {t('home.pricing.freeFeatures.generations')}
                 </li>
                 <li className='flex items-center gap-2 text-sm'>
                   <span className='w-2 h-2 bg-green-500 rounded-full'></span>
-                  标准质量
+                  {t('home.pricing.freeFeatures.quality')}
                 </li>
                 <li className='flex items-center gap-2 text-sm'>
                   <span className='w-2 h-2 bg-green-500 rounded-full'></span>
-                  无需信用卡
+                  {t('home.pricing.freeFeatures.noCard')}
                 </li>
                 <li className='flex items-center gap-2 text-sm'>
-                  <span className='w-2 h-2 bg-green-500 rounded-full'></span>由 Nano Banana AI 驱动
+                  <span className='w-2 h-2 bg-green-500 rounded-full'></span>
+                  {t('home.pricing.freeFeatures.poweredBy')}
                 </li>
               </ul>
               <button
                 onClick={handleStartCreating}
                 className='w-full px-6 py-3 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300'
               >
-                立即免费试用
+                {t('home.pricing.tryFree')}
               </button>
             </div>
 
@@ -778,7 +776,7 @@ export const HomePage: React.FC = () => {
             >
               <span className='flex items-center gap-3'>
                 <span>🚀</span>
-                立即免费试用
+                {t('home.pricing.tryFree')}
               </span>
             </button>
             <button
