@@ -200,8 +200,8 @@ export const HomePage: React.FC = () => {
             <div className='text-center lg:text-left'>
               {/* Badge */}
               <div className='inline-flex items-center gap-2 px-4 py-2 bg-[var(--bg-card-alpha)] backdrop-blur-lg border border-[var(--border-primary)] rounded-full text-sm text-[var(--text-secondary)] mb-6'>
-                <span className='w-2 h-2 bg-green-500 rounded-full animate-pulse'></span>
-                Powered by Nano Banana AI
+                <span className='w-2 h-2 bg-green-500 rounded-full animate-pulse'></span>由 Nano
+                Banana AI 驱动
               </div>
 
               {/* Main Title */}
@@ -277,22 +277,22 @@ export const HomePage: React.FC = () => {
                       {t('home.hero.originalPhoto')}
                     </div>
                     <div className='aspect-square bg-gradient-to-br from-[var(--accent-primary)]/20 to-[var(--accent-secondary)]/20 rounded-lg flex items-center justify-center text-[var(--accent-primary)] text-sm font-medium'>
-                      → 3D Figurine
+                      → 3D 手办
                     </div>
                   </div>
                   <div className='space-y-4'>
                     <div className='aspect-square bg-gradient-to-br from-[var(--accent-secondary)]/20 to-pink-500/20 rounded-lg flex items-center justify-center text-[var(--accent-secondary)] text-sm font-medium'>
-                      → Anime Style
+                      → 动漫风格
                     </div>
                     <div className='aspect-square bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-lg flex items-center justify-center text-purple-500 text-sm font-medium'>
-                      → Plushie
+                      → 毛绒玩具
                     </div>
                   </div>
                 </div>
 
                 {/* 技术标识 */}
                 <div className='absolute -bottom-3 -right-3 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white text-xs px-3 py-1 rounded-full font-medium shadow-lg'>
-                  Powered by Nano Banana AI
+                  由 Nano Banana AI 驱动
                 </div>
               </div>
             </div>
@@ -316,44 +316,44 @@ export const HomePage: React.FC = () => {
             {[
               {
                 icon: '○',
-                title: 'Prompt-Based Local Edits',
+                title: '基于提示的局部编辑',
                 description:
-                  'Make precise, context-aware updates with och.ai without breaking composition. Superior to traditional image editing tools.',
+                  '使用 och.ai 进行精确、上下文感知的更新，不会破坏构图。优于传统图像编辑工具。',
                 color: 'text-yellow-500',
               },
               {
                 icon: '▬',
-                title: 'Multi-Image Fusion',
+                title: '多图像融合',
                 description:
-                  'Blend multiple images seamlessly with och.ai technology. Advanced multi-image context understanding for complex compositions.',
+                  '使用 och.ai 技术无缝融合多张图像。先进的多图像上下文理解，适用于复杂构图。',
                 color: 'text-yellow-500',
               },
               {
                 icon: '▮',
-                title: 'World Knowledge Integration',
+                title: '世界知识整合',
                 description:
-                  "Leverage advanced AI's vast knowledge base for contextually accurate image generation. och.ai model understands real-world relationships and semantics.",
+                  '利用先进AI的庞大知识库进行上下文准确的图像生成。och.ai 模型理解现实世界的关系和语义。',
                 color: 'text-yellow-500',
               },
               {
                 icon: '👥',
-                title: 'Character Identity Preservation',
+                title: '角色身份保持',
                 description:
-                  'Maintain perfect facial identity and stylistic consistency across edits. Leading LMArena och.ai performance in character consistency.',
+                  '在编辑过程中保持完美的面部身份和风格一致性。在角色一致性方面领先的 LMArena och.ai 性能。',
                 color: 'text-yellow-500',
               },
               {
                 icon: '🏔️',
-                title: 'Scene-Aware Processing',
+                title: '场景感知处理',
                 description:
-                  'Preserve lighting, depth, and composition while applying targeted edits. Superior scene integration compared to other AI models.',
+                  '在应用针对性编辑时保持光照、深度和构图。与其他AI模型相比具有优越的场景集成能力。',
                 color: 'text-yellow-500',
               },
               {
                 icon: '★',
-                title: 'Professional Content Creation',
+                title: '专业内容创作',
                 description:
-                  'Generate consistent AI-powered content for social media, marketing, and storytelling. Learn how to use och.ai for professional workflows.',
+                  '为社交媒体、营销和故事讲述生成一致的AI驱动内容。学习如何在专业工作流程中使用 och.ai。',
                 color: 'text-yellow-500',
               },
             ].map((feature, index) => (
@@ -380,7 +380,7 @@ export const HomePage: React.FC = () => {
           <div className='text-center mb-16'>
             <div className='inline-flex items-center gap-2 px-4 py-2 bg-[var(--accent-secondary)]/10 border border-[var(--accent-secondary)]/20 rounded-full text-sm text-[var(--accent-secondary)] mb-6'>
               <span>⚡</span>
-              How It Works
+              工作原理
             </div>
             <h2 className='text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-6'>
               {t('home.howItWorks.title')}
@@ -398,23 +398,22 @@ export const HomePage: React.FC = () => {
               {
                 step: 1,
                 icon: '📸',
-                title: 'Upload Your Photo',
-                description: 'Choose any image - JPEG, PNG, or WebP formats up to 5MB',
+                title: '上传您的照片',
+                description: '选择任意图像 - 支持 JPEG、PNG 或 WebP 格式，最大 5MB',
                 color: 'from-blue-500 to-cyan-500',
               },
               {
                 step: 2,
                 icon: '🎨',
-                title: 'Select Art Style',
-                description:
-                  'Pick from 50+ AI effects including 3D figurine, anime, plushie styles',
+                title: '选择艺术风格',
+                description: '从 50+ 种 AI 效果中选择，包括 3D 手办、动漫、毛绒玩具风格',
                 color: 'from-[var(--accent-primary)] to-[var(--accent-secondary)]',
               },
               {
                 step: 3,
                 icon: '✨',
-                title: 'Download & Share',
-                description: 'Get your transformed artwork instantly and share on social media',
+                title: '下载与分享',
+                description: '立即获得您转换后的艺术作品并在社交媒体上分享',
                 color: 'from-green-500 to-emerald-500',
               },
             ].map((step, index) => (
@@ -464,37 +463,33 @@ export const HomePage: React.FC = () => {
         <div className='container mx-auto px-4 relative'>
           <div className='text-center mb-16'>
             <h2 className='text-4xl md:text-5xl font-bold text-black mb-6'>
-              och.ai Gallery - Real Examples
+              och.ai 画廊 - 真实案例
             </h2>
             <p className='text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed'>
-              Explore stunning examples created with och.ai utilizing advanced AI technology. See
-              how och.ai delivers superior results compared to other models.
+              探索使用 och.ai 先进 AI 技术创建的精彩案例。了解 och.ai 如何提供优于其他模型的结果。
             </p>
           </div>
 
           <div className='grid grid-cols-2 md:grid-cols-4 gap-6'>
             {[
               {
-                title: '3D Figurine Transformation',
-                description:
-                  'Transform any photo into a detailed 3D figurine with perfect character preservation',
+                title: '3D 手办转换',
+                description: '将任意照片转换为详细的 3D 手办，完美保持角色特征',
                 image: 'demo-figurine.png',
               },
               {
-                title: 'Anime Style Conversion',
-                description:
-                  'Convert real photos into anime-style artwork with consistent character identity',
+                title: '动漫风格转换',
+                description: '将真实照片转换为动漫风格艺术作品，保持一致的角色身份',
                 image: 'demo-anime.png',
               },
               {
-                title: 'Plushie Style Creation',
-                description: 'Create adorable plushie versions of any character or person',
+                title: '毛绒玩具风格创作',
+                description: '为任何角色或人物创建可爱的毛绒玩具版本',
                 image: 'demo-plushie.png',
               },
               {
-                title: 'Artistic Enhancement',
-                description:
-                  'Enhance photos with artistic styles while maintaining original composition',
+                title: '艺术增强',
+                description: '用艺术风格增强照片，同时保持原始构图',
                 image: 'demo-artistic.png',
               },
             ].map((example, index) => (
@@ -533,13 +528,13 @@ export const HomePage: React.FC = () => {
           <div className='text-center mb-16'>
             <div className='inline-flex items-center gap-2 px-4 py-2 bg-[var(--accent-primary)]/10 border border-[var(--accent-primary)]/20 rounded-full text-sm text-[var(--accent-primary)] mb-6'>
               <span>💎</span>
-              Transparent Pricing
+              透明定价
             </div>
             <h2 className='text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-6'>
-              Choose Your Plan
+              选择您的方案
             </h2>
             <p className='text-xl text-[var(--text-secondary)] max-w-3xl mx-auto leading-relaxed'>
-              Start with 3 free generations, then choose the plan that fits your needs
+              从 3 次免费生成开始，然后选择适合您需求的方案
             </p>
           </div>
 
@@ -547,32 +542,31 @@ export const HomePage: React.FC = () => {
             {/* Free Plan */}
             <div className='bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-6 border border-[var(--border-primary)] text-center'>
               <div className='mb-4'>
-                <h3 className='text-2xl font-bold text-[var(--text-primary)] mb-2'>Free</h3>
-                <div className='text-4xl font-bold text-[var(--accent-primary)] mb-2'>$0</div>
-                <p className='text-[var(--text-secondary)]'>Perfect for trying out</p>
+                <h3 className='text-2xl font-bold text-[var(--text-primary)] mb-2'>免费</h3>
+                <div className='text-4xl font-bold text-[var(--accent-primary)] mb-2'>¥0</div>
+                <p className='text-[var(--text-secondary)]'>适合试用</p>
               </div>
               <ul className='space-y-3 mb-6 text-left'>
                 <li className='flex items-center gap-2 text-sm'>
-                  <span className='w-2 h-2 bg-green-500 rounded-full'></span>3 free generations
+                  <span className='w-2 h-2 bg-green-500 rounded-full'></span>3 次免费生成
                 </li>
                 <li className='flex items-center gap-2 text-sm'>
                   <span className='w-2 h-2 bg-green-500 rounded-full'></span>
-                  Standard quality
+                  标准质量
                 </li>
                 <li className='flex items-center gap-2 text-sm'>
                   <span className='w-2 h-2 bg-green-500 rounded-full'></span>
-                  No credit card required
+                  无需信用卡
                 </li>
                 <li className='flex items-center gap-2 text-sm'>
-                  <span className='w-2 h-2 bg-green-500 rounded-full'></span>
-                  Powered by Nano Banana AI
+                  <span className='w-2 h-2 bg-green-500 rounded-full'></span>由 Nano Banana AI 驱动
                 </li>
               </ul>
               <button
                 onClick={handleStartCreating}
                 className='w-full px-6 py-3 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300'
               >
-                Try Free Now
+                立即免费试用
               </button>
             </div>
 
@@ -580,70 +574,70 @@ export const HomePage: React.FC = () => {
             <div className='bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-6 border-2 border-[var(--accent-primary)] text-center relative'>
               <div className='absolute -top-3 left-1/2 transform -translate-x-1/2'>
                 <div className='bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white text-xs px-4 py-1 rounded-full font-medium'>
-                  Most Popular
+                  最受欢迎
                 </div>
               </div>
               <div className='mb-4'>
-                <h3 className='text-2xl font-bold text-[var(--text-primary)] mb-2'>Pro</h3>
-                <div className='text-4xl font-bold text-[var(--accent-primary)] mb-2'>$9.99</div>
-                <p className='text-[var(--text-secondary)]'>per month</p>
+                <h3 className='text-2xl font-bold text-[var(--text-primary)] mb-2'>专业版</h3>
+                <div className='text-4xl font-bold text-[var(--accent-primary)] mb-2'>¥69</div>
+                <p className='text-[var(--text-secondary)]'>每月</p>
               </div>
               <ul className='space-y-3 mb-6 text-left'>
                 <li className='flex items-center gap-2 text-sm'>
                   <span className='w-2 h-2 bg-green-500 rounded-full'></span>
-                  100 generations/month
+                  100 次生成/月
                 </li>
                 <li className='flex items-center gap-2 text-sm'>
                   <span className='w-2 h-2 bg-green-500 rounded-full'></span>
-                  HD quality output
+                  高清质量输出
                 </li>
                 <li className='flex items-center gap-2 text-sm'>
                   <span className='w-2 h-2 bg-green-500 rounded-full'></span>
-                  Priority processing
+                  优先处理
                 </li>
                 <li className='flex items-center gap-2 text-sm'>
                   <span className='w-2 h-2 bg-green-500 rounded-full'></span>
-                  All art styles included
+                  包含所有艺术风格
                 </li>
               </ul>
               <button
                 onClick={() => navigate('/pricing')}
                 className='w-full px-6 py-3 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300'
               >
-                Go Pro
+                升级专业版
               </button>
             </div>
 
             {/* Enterprise Plan */}
             <div className='bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-6 border border-[var(--border-primary)] text-center'>
               <div className='mb-4'>
-                <h3 className='text-2xl font-bold text-[var(--text-primary)] mb-2'>Enterprise</h3>
-                <div className='text-4xl font-bold text-[var(--accent-primary)] mb-2'>$29.99</div>
-                <p className='text-[var(--text-secondary)]'>per month</p>
+                <h3 className='text-2xl font-bold text-[var(--text-primary)] mb-2'>企业版</h3>
+                <div className='text-4xl font-bold text-[var(--accent-primary)] mb-2'>¥199</div>
+                <p className='text-[var(--text-secondary)]'>每月</p>
               </div>
               <ul className='space-y-3 mb-6 text-left'>
                 <li className='flex items-center gap-2 text-sm'>
                   <span className='w-2 h-2 bg-green-500 rounded-full'></span>
-                  Unlimited generations
+                  无限生成
                 </li>
                 <li className='flex items-center gap-2 text-sm'>
                   <span className='w-2 h-2 bg-green-500 rounded-full'></span>
-                  Ultra HD quality
+                  超高清质量
                 </li>
                 <li className='flex items-center gap-2 text-sm'>
                   <span className='w-2 h-2 bg-green-500 rounded-full'></span>
-                  API access
+                  API 访问
                 </li>
                 <li className='flex items-center gap-2 text-sm'>
                   <span className='w-2 h-2 bg-green-500 rounded-full'></span>
-                  Priority support
+                  优先支持
                 </li>
               </ul>
               <button
                 onClick={() => navigate('/pricing')}
                 className='w-full px-6 py-3 border-2 border-[var(--accent-primary)] text-[var(--accent-primary)] font-semibold rounded-xl hover:bg-[var(--accent-primary)] hover:text-white transition-all duration-300'
               >
-                Contact Sales
+                联系销售
               </button>
             </div>
           </div>
@@ -656,14 +650,13 @@ export const HomePage: React.FC = () => {
           <div className='text-center mb-16'>
             <div className='inline-flex items-center gap-2 px-4 py-2 bg-[var(--accent-secondary)]/10 border border-[var(--accent-secondary)]/20 rounded-full text-sm text-[var(--accent-secondary)] mb-6'>
               <span>🛡️</span>
-              Trusted & Secure
+              值得信赖与安全
             </div>
             <h2 className='text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-6'>
-              Built on Advanced AI Technology
+              基于先进 AI 技术构建
             </h2>
             <p className='text-xl text-[var(--text-secondary)] max-w-3xl mx-auto leading-relaxed'>
-              Powered by Nano Banana AI with Google's Gemini 2.5 Flash Image API for superior
-              results
+              由 Nano Banana AI 驱动，使用 Google 的 Gemini 2.5 Flash Image API 提供卓越结果
             </p>
           </div>
 
@@ -674,11 +667,11 @@ export const HomePage: React.FC = () => {
                 🤖
               </div>
               <h3 className='text-xl font-bold text-[var(--text-primary)] mb-3'>
-                Powered by Nano Banana AI
+                由 Nano Banana AI 驱动
               </h3>
               <p className='text-[var(--text-secondary)] text-sm leading-relaxed'>
-                Advanced AI technology utilizing Google's Gemini 2.5 Flash Image API for superior
-                character consistency and scene preservation
+                先进的 AI 技术，利用 Google 的 Gemini 2.5 Flash Image API
+                提供卓越的角色一致性和场景保持
               </p>
             </div>
 
@@ -687,10 +680,9 @@ export const HomePage: React.FC = () => {
               <div className='w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4'>
                 🔒
               </div>
-              <h3 className='text-xl font-bold text-[var(--text-primary)] mb-3'>Privacy First</h3>
+              <h3 className='text-xl font-bold text-[var(--text-primary)] mb-3'>隐私优先</h3>
               <p className='text-[var(--text-secondary)] text-sm leading-relaxed'>
-                Your photos are never stored, shared, or used for training. Complete privacy
-                protection with automatic deletion after processing
+                您的照片永远不会被存储、分享或用于训练。完整的隐私保护，处理完成后自动删除
               </p>
             </div>
 
@@ -699,10 +691,9 @@ export const HomePage: React.FC = () => {
               <div className='w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4'>
                 ⭐
               </div>
-              <h3 className='text-xl font-bold text-[var(--text-primary)] mb-3'>User Reviews</h3>
+              <h3 className='text-xl font-bold text-[var(--text-primary)] mb-3'>用户评价</h3>
               <p className='text-[var(--text-secondary)] text-sm leading-relaxed'>
-                "Amazing results! The 3D figurine effect is incredible. Much better than other AI
-                tools I've tried." - Sarah M.
+                "效果惊人！3D 手办效果令人难以置信。比我尝试过的其他 AI 工具要好得多。" - 张女士
               </p>
             </div>
           </div>
@@ -715,47 +706,45 @@ export const HomePage: React.FC = () => {
           <div className='text-center mb-16'>
             <div className='inline-flex items-center gap-2 px-4 py-2 bg-[var(--accent-primary)]/10 border border-[var(--accent-primary)]/20 rounded-full text-sm text-[var(--accent-primary)] mb-6'>
               <span>❓</span>
-              Frequently Asked Questions
+              常见问题
             </div>
             <h2 className='text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-6'>
-              Everything You Need to Know
+              您需要了解的一切
             </h2>
             <p className='text-xl text-[var(--text-secondary)] max-w-3xl mx-auto leading-relaxed'>
-              Get answers to common questions about och.ai and our AI image generation service
+              获取关于 och.ai 和我们的 AI 图像生成服务的常见问题答案
             </p>
           </div>
 
           <div className='grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto'>
             {[
               {
-                question: 'How does och.ai work?',
+                question: 'och.ai 是如何工作的？',
                 answer:
-                  'Simply upload your photo, choose an AI art style, and get your transformed image in seconds. Powered by Nano Banana AI technology.',
+                  '只需上传您的照片，选择 AI 艺术风格，几秒钟内即可获得转换后的图像。由 Nano Banana AI 技术驱动。',
               },
               {
-                question: 'Is my data safe?',
+                question: '我的数据安全吗？',
                 answer:
-                  'Yes! Your photos are never stored, shared, or used for training. Complete privacy protection with automatic deletion after processing.',
+                  '是的！您的照片永远不会被存储、分享或用于训练。完整的隐私保护，处理完成后自动删除。',
               },
               {
-                question: 'Do you offer a free trial?',
-                answer:
-                  'Yes! New users get 3 free generations to try our service. No credit card required to get started.',
+                question: '你们提供免费试用吗？',
+                answer: '是的！新用户可以获得 3 次免费生成来试用我们的服务。开始使用无需信用卡。',
               },
               {
-                question: 'Can I use generated images commercially?',
-                answer:
-                  'Absolutely! All generated images can be used for commercial projects, social media, marketing materials, and more.',
+                question: '我可以将生成的图像用于商业用途吗？',
+                answer: '当然可以！所有生成的图像都可以用于商业项目、社交媒体、营销材料等。',
               },
               {
-                question: 'What makes och.ai different?',
+                question: 'och.ai 有什么不同？',
                 answer:
-                  'We use advanced Nano Banana AI technology with superior character consistency and scene preservation compared to other AI tools.',
+                  '我们使用先进的 Nano Banana AI 技术，与其他 AI 工具相比具有卓越的角色一致性和场景保持能力。',
               },
               {
-                question: 'How can I get support?',
+                question: '如何获得支持？',
                 answer:
-                  'Contact us at support@och.ai for technical support and customer service. We typically respond within 24 hours.',
+                  '如需技术支持或客户服务，请通过 support@och.ai 联系我们。我们通常在 24 小时内回复。',
               },
             ].map((faq, index) => (
               <div
@@ -776,11 +765,10 @@ export const HomePage: React.FC = () => {
       <section className='py-20 bg-gradient-to-br from-[var(--accent-primary)]/10 via-[var(--accent-secondary)]/5 to-[var(--accent-primary)]/10 relative overflow-hidden'>
         <div className='container mx-auto px-4 text-center relative'>
           <h2 className='text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-6'>
-            Ready to Transform Your Photos?
+            准备好转换您的照片了吗？
           </h2>
           <p className='text-xl text-[var(--text-secondary)] mb-8 max-w-2xl mx-auto'>
-            Join thousands of creators using och.ai to create stunning AI artwork. Start with 3 free
-            generations today!
+            加入数千名创作者，使用 och.ai 创建令人惊叹的 AI 艺术作品。今天就开始 3 次免费生成！
           </p>
 
           <div className='flex flex-col sm:flex-row gap-4 justify-center items-center mb-8'>
@@ -790,7 +778,7 @@ export const HomePage: React.FC = () => {
             >
               <span className='flex items-center gap-3'>
                 <span>🚀</span>
-                Try Free Now
+                立即免费试用
               </span>
             </button>
             <button
@@ -799,13 +787,13 @@ export const HomePage: React.FC = () => {
             >
               <span className='flex items-center gap-3'>
                 <span>💎</span>
-                View Pricing
+                查看价格
               </span>
             </button>
           </div>
 
           <div className='text-sm text-[var(--text-secondary)]'>
-            ✨ No credit card required • 3 free generations • Powered by Nano Banana AI
+            ✨ 无需信用卡 • 3 次免费生成 • 由 Nano Banana AI 驱动
           </div>
         </div>
       </section>
