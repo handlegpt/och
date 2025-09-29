@@ -5,6 +5,8 @@ import { useAuth } from '../hooks/useAuth'
 import { useGenerationState } from '../hooks/useGenerationState'
 import { LoginPromptModal } from './LoginPromptModal'
 import { MagicLinkModal } from './MagicLinkModal'
+import { SEOHead, SEO_CONFIGS } from './SEOHead'
+import { StructuredData } from './StructuredData'
 
 // Lazy load heavy components
 const GenerationWorkflow = lazy(() =>
@@ -182,6 +184,10 @@ export const HomePage: React.FC = () => {
 
   return (
     <div className='min-h-screen bg-[var(--bg-primary)]'>
+      {/* SEO优化 */}
+      <SEOHead {...SEO_CONFIGS.home} />
+      <StructuredData type='WebSite' />
+
       {/* Hero Section - 重新设计 */}
       <section className='relative overflow-hidden min-h-screen flex items-center'>
         {/* Background Effects */}

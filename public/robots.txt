@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://och.ai/sitemap.xml
+
+# Disallow private areas
+Disallow: /profile
+Disallow: /settings
+Disallow: /auth/
+Disallow: /payment/
+
+# Allow important pages
+Allow: /
+Allow: /pricing
+Allow: /categories
+Allow: /social
+Allow: /privacy
+
+# Crawl delay (optional)
+Crawl-delay: 1

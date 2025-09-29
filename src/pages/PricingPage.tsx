@@ -3,6 +3,8 @@ import { useTranslation } from '../../i18n/context'
 import { PRICING_TIERS, FEATURE_COMPARISON } from '../config/pricing'
 import { PaymentModal } from '../components/payment/PaymentModal'
 import { useAuth } from '../hooks/useAuth'
+import { SEOHead, SEO_CONFIGS } from '../components/SEOHead'
+import { StructuredData } from '../components/StructuredData'
 
 export const PricingPage: React.FC = () => {
   const { t } = useTranslation()
@@ -74,6 +76,10 @@ export const PricingPage: React.FC = () => {
 
   return (
     <div className='min-h-screen bg-[var(--bg-primary)] pb-20'>
+      {/* SEO优化 */}
+      <SEOHead {...SEO_CONFIGS.pricing} />
+      <StructuredData type='WebPage' />
+
       <div className='container mx-auto p-4 md:p-8'>
         {/* 页面标题 - 参考 Nano Banana AI 的大气设计 */}
         <div className='text-center mb-16'>
