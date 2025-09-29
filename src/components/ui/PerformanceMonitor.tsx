@@ -31,6 +31,16 @@ export const PerformanceMonitor: React.FC<PerformanceMonitorProps> = ({
 
   // 获取性能指标
   const getPerformanceMetrics = useCallback((): PerformanceMetrics => {
+    if (typeof window === 'undefined' || typeof performance === 'undefined') {
+      return {
+        loadTime: 0,
+        renderTime: 0,
+        memoryUsage: 0,
+        networkRequests: 0,
+        errors: 0,
+      }
+    }
+
     const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming
     const loadTime = navigation ? navigation.loadEventEnd - navigation.loadEventStart : 0
 
@@ -74,16 +84,20 @@ export const PerformanceMonitor: React.FC<PerformanceMonitorProps> = ({
 
     // 监听页面可见性变化
     const handleVisibilityChange = () => {
-      if (document.visibilityState === 'visible') {
+      if (typeof document !== 'undefined' && document.visibilityState === 'visible') {
         updateMetrics()
       }
     }
 
-    document.addEventListener('visibilitychange', handleVisibilityChange)
+    if (typeof document !== 'undefined') {
+      document.addEventListener('visibilitychange', handleVisibilityChange)
+    }
 
     return () => {
       clearInterval(interval)
-      document.removeEventListener('visibilitychange', handleVisibilityChange)
+      if (typeof document !== 'undefined') {
+        document.removeEventListener('visibilitychange', handleVisibilityChange)
+      }
     }
   }, [enabled, updateMetrics, reportInterval])
 
@@ -95,8 +109,10 @@ export const PerformanceMonitor: React.FC<PerformanceMonitorProps> = ({
       }
     }
 
-    document.addEventListener('keydown', handleKeyPress)
-    return () => document.removeEventListener('keydown', handleKeyPress)
+    if (typeof document !== 'undefined') {
+      document.addEventListener('keydown', handleKeyPress)
+      return () => document.removeEventListener('keydown', handleKeyPress)
+    }
   }, [])
 
   if (!enabled || !isVisible) {

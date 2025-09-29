@@ -30,7 +30,9 @@ export const PricingPage: React.FC = () => {
 
     // 如果是免费计划，直接跳转到首页
     if (tierId === 'free') {
-      window.location.href = '/'
+      if (typeof window !== 'undefined') {
+        window.location.href = '/'
+      }
       return
     }
 

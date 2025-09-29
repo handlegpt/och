@@ -33,13 +33,13 @@ const ErrorBoundaryContent: React.FC<{ error?: Error }> = ({ error }) => {
 
       <div className='flex gap-3 justify-center'>
         <button
-          onClick={() => window.location.reload()}
+          onClick={() => typeof window !== 'undefined' && window.location.reload()}
           className='px-4 py-2 bg-[var(--accent-primary)] text-white rounded-lg hover:bg-[var(--accent-primary-hover)] transition-colors'
         >
           {t('error.retry')}
         </button>
         <button
-          onClick={() => window.location.reload()}
+          onClick={() => typeof window !== 'undefined' && window.location.reload()}
           className='px-4 py-2 bg-[var(--bg-secondary)] text-[var(--text-primary)] border border-[var(--border-primary)] rounded-lg hover:bg-[var(--bg-primary)] transition-colors'
         >
           {t('error.reload')}
@@ -102,7 +102,7 @@ export class ErrorBoundary extends Component<Props, State> {
             componentStack: errorInfo.componentStack,
             timestamp: new Date().toISOString(),
             userAgent: navigator.userAgent,
-            url: window.location.href,
+            url: typeof window !== 'undefined' ? window.location.href : '',
           }),
         }).catch(console.error)
       }
@@ -116,7 +116,9 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   private handleReload = () => {
-    window.location.reload()
+    if (typeof window !== 'undefined') {
+      window.location.reload()
+    }
   }
 
   render() {
