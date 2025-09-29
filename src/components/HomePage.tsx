@@ -96,7 +96,7 @@ export const HomePage: React.FC = () => {
               <div className='flex items-center justify-center min-h-[400px]'>
                 <div className='text-center'>
                   <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-[var(--accent-primary)] mx-auto mb-4'></div>
-                  <p className='text-[var(--text-secondary)]'>加载中...</p>
+                  <p className='text-[var(--text-secondary)]'>{t('home.hero.loading')}</p>
                 </div>
               </div>
             }
@@ -143,7 +143,7 @@ export const HomePage: React.FC = () => {
               <div className='flex items-center justify-center min-h-[400px]'>
                 <div className='text-center'>
                   <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-[var(--accent-primary)] mx-auto mb-4'></div>
-                  <p className='text-[var(--text-secondary)]'>加载中...</p>
+                  <p className='text-[var(--text-secondary)]'>{t('home.hero.loading')}</p>
                 </div>
               </div>
             }
@@ -200,8 +200,8 @@ export const HomePage: React.FC = () => {
             <div className='text-center lg:text-left'>
               {/* Badge */}
               <div className='inline-flex items-center gap-2 px-4 py-2 bg-[var(--bg-card-alpha)] backdrop-blur-lg border border-[var(--border-primary)] rounded-full text-sm text-[var(--text-secondary)] mb-6'>
-                <span className='w-2 h-2 bg-green-500 rounded-full animate-pulse'></span>由 Nano
-                Banana AI 驱动
+                <span className='w-2 h-2 bg-green-500 rounded-full animate-pulse'></span>
+                {t('home.hero.poweredBy')}
               </div>
 
               {/* Main Title */}
@@ -277,22 +277,22 @@ export const HomePage: React.FC = () => {
                       {t('home.hero.originalPhoto')}
                     </div>
                     <div className='aspect-square bg-gradient-to-br from-[var(--accent-primary)]/20 to-[var(--accent-secondary)]/20 rounded-lg flex items-center justify-center text-[var(--accent-primary)] text-sm font-medium'>
-                      → 3D 手办
+                      → {t('home.features.preview.figurine.badge')}
                     </div>
                   </div>
                   <div className='space-y-4'>
                     <div className='aspect-square bg-gradient-to-br from-[var(--accent-secondary)]/20 to-pink-500/20 rounded-lg flex items-center justify-center text-[var(--accent-secondary)] text-sm font-medium'>
-                      → 动漫风格
+                      → {t('home.features.preview.anime.badge')}
                     </div>
                     <div className='aspect-square bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-lg flex items-center justify-center text-purple-500 text-sm font-medium'>
-                      → 毛绒玩具
+                      → {t('home.features.preview.plushie.badge')}
                     </div>
                   </div>
                 </div>
 
                 {/* 技术标识 */}
                 <div className='absolute -bottom-3 -right-3 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white text-xs px-3 py-1 rounded-full font-medium shadow-lg'>
-                  由 Nano Banana AI 驱动
+                  {t('home.hero.poweredBy')}
                 </div>
               </div>
             </div>

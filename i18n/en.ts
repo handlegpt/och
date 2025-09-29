@@ -122,6 +122,15 @@ export default {
       explore: 'Explore Features',
       badge: 'AI-Powered Creative Tools',
       slogan: 'Transform Every Photo Into Art',
+      before: 'Before',
+      after: 'After',
+      originalPhoto: 'Original Photo',
+      aiArtwork: 'AI Artwork',
+      tryFree: 'Try Free Now',
+      goPro: 'Go Pro',
+      freeTrial: '✨ 3 free generations • No credit card required • Powered by Nano Banana AI',
+      poweredBy: 'Powered by Nano Banana AI',
+      loading: 'Loading...',
       stats: {
         users: 'User Generations',
         models: 'AI Models',
@@ -164,19 +173,168 @@ export default {
     howItWorks: {
       title: 'How It Works',
       subtitle: 'Create amazing AI-generated content in just three simple steps',
-      badge: 'Simple 3 Steps',
-      step1: {
-        title: 'Upload Image',
-        description: 'Choose the image you want to transform, supporting multiple formats',
+      steps: {
+        upload: {
+          title: 'Upload Your Photo',
+          description: 'Select any image - supports JPEG, PNG or WebP format, max 5MB',
+        },
+        choose: {
+          title: 'Choose Art Style',
+          description: 'Select from 50+ AI effects including 3D figurines, anime, plushie styles',
+        },
+        download: {
+          title: 'Download & Share',
+          description: 'Get your transformed artwork instantly and share on social media',
+        },
       },
-      step2: {
-        title: 'Select Effect',
-        description: 'Choose from 15+ professional effects or use custom prompts',
+    },
+    advancedFeatures: {
+      title: 'Advanced AI Features',
+      subtitle:
+        "Powered by Nano Banana AI, using Google's Gemini 2.5 Flash Image API for superior results",
+      features: {
+        promptBased: {
+          title: 'Prompt-Based Local Editing',
+          description:
+            'Use och.ai for precise, context-aware updates without breaking composition. Superior to traditional image editing tools.',
+        },
+        multiImage: {
+          title: 'Multi-Image Fusion',
+          description:
+            'Seamlessly fuse multiple images using och.ai technology. Advanced multi-image context understanding for complex compositions.',
+        },
+        worldKnowledge: {
+          title: 'World Knowledge Integration',
+          description:
+            "Leverage advanced AI's vast knowledge base for contextually accurate image generation. och.ai models understand real-world relationships and semantics.",
+        },
+        characterConsistency: {
+          title: 'Character Identity Preservation',
+          description:
+            'Maintain perfect facial identity and style consistency during editing. Leading LMArena och.ai performance in character consistency.',
+        },
+        sceneAware: {
+          title: 'Scene-Aware Processing',
+          description:
+            'Maintain lighting, depth and composition when applying targeted edits. Superior scene integration capabilities compared to other AI models.',
+        },
+        professionalContent: {
+          title: 'Professional Content Creation',
+          description:
+            'Generate consistent AI-driven content for social media, marketing and storytelling. Learn how to use och.ai in professional workflows.',
+        },
       },
-      step3: {
-        title: 'Generate Result',
-        description: 'AI will generate high-quality results for you in seconds',
+    },
+    gallery: {
+      title: 'och.ai Gallery - Real Cases',
+      subtitle:
+        "Explore amazing cases created using och.ai's advanced AI technology. See how och.ai delivers superior results compared to other models.",
+      cases: {
+        figurine: {
+          title: '3D Figurine Conversion',
+          description:
+            'Transform any photo into detailed 3D figurines, perfectly preserving character features',
+        },
+        anime: {
+          title: 'Anime Style Conversion',
+          description:
+            'Convert real photos into anime-style artwork while maintaining consistent character identity',
+        },
+        plushie: {
+          title: 'Plushie Style Creation',
+          description: 'Create adorable plushie versions of any character or person',
+        },
+        artistic: {
+          title: 'Art Enhancement',
+          description: 'Enhance photos with artistic styles while maintaining original composition',
+        },
       },
+    },
+    pricing: {
+      title: 'Choose Your Plan',
+      subtitle: 'Start with 3 free generations, then choose the plan that fits your needs',
+      transparent: 'Transparent Pricing',
+      free: 'Free',
+      professional: 'Professional',
+      enterprise: 'Enterprise',
+      monthly: 'Monthly',
+      yearly: 'Yearly',
+      mostPopular: 'Most Popular',
+      freeFeatures: {
+        generations: '3 free generations',
+        quality: 'Standard quality',
+        noCard: 'No credit card required',
+        poweredBy: 'Powered by Nano Banana AI',
+      },
+      professionalFeatures: {
+        generations: '100 generations/month',
+        effects: 'All AI effects',
+        batch: 'Batch processing',
+        hd: 'HD output',
+        noWatermark: 'No watermark',
+        api: 'API access',
+        commercial: 'Commercial use',
+        support: 'Priority support',
+      },
+      enterpriseFeatures: {
+        generations: 'Unlimited generations',
+        effects: 'All AI effects',
+        batch: 'Unlimited batch processing',
+        hd: '4K output',
+        noWatermark: 'No watermark',
+        api: 'API access',
+        commercial: 'Commercial use',
+        custom: 'Custom models',
+        support: 'Dedicated support',
+        deployment: 'Private deployment',
+        whiteLabel: 'White label solution',
+      },
+      tryFree: 'Try Free Now',
+      selectPlan: 'Select Plan',
+      contactSales: 'Contact Sales',
+    },
+    testimonials: {
+      title: 'What Our Users Say',
+      subtitle:
+        'Join thousands of creators using och.ai to create amazing AI artwork. Start with 3 free generations today!',
+      testimonial:
+        '"Amazing results! The 3D figurine effect is incredible. Much better than other AI tools I\'ve tried." - Ms. Zhang',
+      cta: 'Start Creating Today',
+      features: '✨ No credit card required • 3 free generations • Powered by Nano Banana AI',
+    },
+    faq: {
+      title: 'Frequently Asked Questions',
+      questions: [
+        {
+          question: 'How does och.ai work?',
+          answer:
+            'och.ai uses advanced AI technology to transform your photos into various artistic styles. Simply upload your photo, choose an effect, and get your transformed image in seconds.',
+        },
+        {
+          question: 'What image formats are supported?',
+          answer: 'We support JPEG, PNG, and WebP formats with a maximum file size of 5MB.',
+        },
+        {
+          question: 'Do you offer free trials?',
+          answer:
+            'Yes! New users get 3 free generations to try our service. No credit card required to get started.',
+        },
+        {
+          question: 'Can I use the generated images commercially?',
+          answer:
+            'Yes, with our Professional and Enterprise plans, you can use the generated images for commercial purposes.',
+        },
+        {
+          question: 'How long does processing take?',
+          answer:
+            'Most transformations complete within 30 seconds. Complex effects may take up to 2 minutes.',
+        },
+        {
+          question: 'Is my data secure?',
+          answer:
+            'Yes, we take data security seriously. All uploaded images are processed securely and deleted after generation.',
+        },
+      ],
     },
     demo: {
       title: 'Demo Showcase',

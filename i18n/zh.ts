@@ -128,6 +128,8 @@ export default {
       tryFree: '免费试用',
       goPro: '升级专业版',
       freeTrial: '✨ 3次免费生成 • 无需信用卡 • 由Nano Banana AI驱动',
+      poweredBy: '由 Nano Banana AI 驱动',
+      loading: '加载中...',
       stats: {
         users: '用户生成',
         models: 'AI效果',
@@ -179,6 +181,160 @@ export default {
         title: '下载结果',
         description: 'AI在30秒内完成处理，下载高清图像到你的设备',
       },
+      steps: {
+        upload: {
+          title: '上传您的照片',
+          description: '选择任意图像 - 支持 JPEG、PNG 或 WebP 格式，最大 5MB',
+        },
+        choose: {
+          title: '选择艺术风格',
+          description: '从 50+ 种 AI 效果中选择，包括 3D 手办、动漫、毛绒玩具风格',
+        },
+        download: {
+          title: '下载与分享',
+          description: '立即获得您转换后的艺术作品并在社交媒体上分享',
+        },
+      },
+    },
+    advancedFeatures: {
+      title: '高级AI功能',
+      subtitle: '由 Nano Banana AI 驱动，使用 Google 的 Gemini 2.5 Flash Image API 提供卓越结果',
+      features: {
+        promptBased: {
+          title: '基于提示的局部编辑',
+          description:
+            '使用 och.ai 进行精确、上下文感知的更新，不会破坏构图。优于传统图像编辑工具。',
+        },
+        multiImage: {
+          title: '多图像融合',
+          description: '使用 och.ai 技术无缝融合多张图像。先进的多图像上下文理解，适用于复杂构图。',
+        },
+        worldKnowledge: {
+          title: '世界知识整合',
+          description:
+            '利用先进AI的庞大知识库进行上下文准确的图像生成。och.ai 模型理解现实世界的关系和语义。',
+        },
+        characterConsistency: {
+          title: '角色身份保持',
+          description:
+            '在编辑过程中保持完美的面部身份和风格一致性。在角色一致性方面领先的 LMArena och.ai 性能。',
+        },
+        sceneAware: {
+          title: '场景感知处理',
+          description:
+            '在应用针对性编辑时保持光照、深度和构图。与其他AI模型相比具有优越的场景集成能力。',
+        },
+        professionalContent: {
+          title: '专业内容创作',
+          description:
+            '为社交媒体、营销和故事讲述生成一致的AI驱动内容。学习如何在专业工作流程中使用 och.ai。',
+        },
+      },
+    },
+    gallery: {
+      title: 'och.ai 画廊 - 真实案例',
+      subtitle:
+        '探索使用 och.ai 先进 AI 技术创建的精彩案例。了解 och.ai 如何提供优于其他模型的结果。',
+      cases: {
+        figurine: {
+          title: '3D 手办转换',
+          description: '将任意照片转换为详细的 3D 手办，完美保持角色特征',
+        },
+        anime: {
+          title: '动漫风格转换',
+          description: '将真实照片转换为动漫风格艺术作品，保持一致的角色身份',
+        },
+        plushie: {
+          title: '毛绒玩具风格创作',
+          description: '为任何角色或人物创建可爱的毛绒玩具版本',
+        },
+        artistic: {
+          title: '艺术增强',
+          description: '用艺术风格增强照片，同时保持原始构图',
+        },
+      },
+    },
+    pricing: {
+      title: '选择您的方案',
+      subtitle: '从 3 次免费生成开始，然后选择适合您需求的方案',
+      transparent: '透明定价',
+      free: '免费',
+      professional: '专业版',
+      enterprise: '企业版',
+      monthly: '每月',
+      yearly: '每年',
+      mostPopular: '最受欢迎',
+      freeFeatures: {
+        generations: '3 次免费生成',
+        quality: '标准质量',
+        noCard: '无需信用卡',
+        poweredBy: '由 Nano Banana AI 驱动',
+      },
+      professionalFeatures: {
+        generations: '100 次生成/月',
+        effects: '所有AI效果',
+        batch: '批量处理',
+        hd: '高清输出',
+        noWatermark: '无水印',
+        api: 'API 访问',
+        commercial: '商业用途',
+        support: '优先支持',
+      },
+      enterpriseFeatures: {
+        generations: '无限生成',
+        effects: '所有AI效果',
+        batch: '无限批量处理',
+        hd: '4K输出',
+        noWatermark: '无水印',
+        api: 'API 访问',
+        commercial: '商业用途',
+        custom: '定制模型',
+        support: '专属支持',
+        deployment: '私有部署',
+        whiteLabel: '白标服务',
+      },
+      tryFree: '立即免费试用',
+      selectPlan: '选择方案',
+      contactSales: '联系销售',
+    },
+    testimonials: {
+      title: '用户评价',
+      subtitle:
+        '加入数千名创作者，使用 och.ai 创建令人惊叹的 AI 艺术作品。今天就开始 3 次免费生成！',
+      testimonial:
+        '"效果惊人！3D 手办效果令人难以置信。比我尝试过的其他 AI 工具要好得多。" - 张女士',
+      cta: '立即开始创作',
+      features: '✨ 无需信用卡 • 3 次免费生成 • 由 Nano Banana AI 驱动',
+    },
+    faq: {
+      title: '常见问题',
+      questions: [
+        {
+          question: 'och.ai 是如何工作的？',
+          answer:
+            'och.ai 使用先进的AI技术将您的照片转换为各种艺术风格。只需上传您的照片，选择效果，几秒钟内就能获得转换后的图像。',
+        },
+        {
+          question: '支持哪些图像格式？',
+          answer: '我们支持 JPEG、PNG 和 WebP 格式，最大文件大小为 5MB。',
+        },
+        {
+          question: '你们提供免费试用吗？',
+          answer: '是的！新用户可以获得 3 次免费生成来试用我们的服务。开始使用无需信用卡。',
+        },
+        {
+          question: '我可以将生成的图像用于商业用途吗？',
+          answer: '是的，使用我们的专业版和企业版计划，您可以将生成的图像用于商业目的。',
+        },
+        {
+          question: '处理需要多长时间？',
+          answer: '大多数转换在 30 秒内完成。复杂效果可能需要长达 2 分钟。',
+        },
+        {
+          question: '我的数据安全吗？',
+          answer: '是的，我们非常重视数据安全。所有上传的图像都经过安全处理，生成后会被删除。',
+        },
+      ],
     },
     demo: {
       title: '效果展示',
