@@ -35,9 +35,9 @@ export const useUsageLimit = () => {
       if (!user) {
         // 未登录用户使用默认限制
         setUsageLimit({
-          dailyLimit: 10, // 免费用户每日限制
+          dailyLimit: 3, // 免费用户每日限制
           usedToday: 0,
-          remainingToday: 10,
+          remainingToday: 3,
           canGenerate: true,
         })
         setLoading(false)
@@ -61,36 +61,36 @@ export const useUsageLimit = () => {
           console.error('Error checking usage limit:', error)
           // 使用默认限制
           setUsageLimit({
-            dailyLimit: 10,
+            dailyLimit: 3,
             usedToday: 0,
-            remainingToday: 10,
+            remainingToday: 3,
             canGenerate: true,
           })
         } else if (data && data.length > 0) {
           const result = data[0] // 函数返回的是数组
           console.log('Usage limit data:', result)
           setUsageLimit({
-            dailyLimit: result.daily_limit || 10,
+            dailyLimit: result.daily_limit || 3,
             usedToday: result.used_today || 0,
-            remainingToday: result.remaining || 10,
+            remainingToday: result.remaining || 3,
             canGenerate: result.can_generate !== false,
           })
         } else {
           console.warn('No data returned from usage limit function')
           // 使用默认限制
           setUsageLimit({
-            dailyLimit: 10,
+            dailyLimit: 3,
             usedToday: 0,
-            remainingToday: 10,
+            remainingToday: 3,
             canGenerate: true,
           })
         }
       } catch (error) {
         console.error('Error fetching usage limit:', error)
         setUsageLimit({
-          dailyLimit: 50,
+          dailyLimit: 3,
           usedToday: 0,
-          remainingToday: 50,
+          remainingToday: 3,
           canGenerate: true,
         })
       }
