@@ -24,7 +24,11 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
   const { language } = useTranslation()
   const location = useLocation()
 
-  const currentUrl = url || `${window.location.origin}${location.pathname}`
+  const currentUrl =
+    url ||
+    (typeof window !== 'undefined'
+      ? `${window.location.origin}${location.pathname}`
+      : location.pathname)
   const currentTitle = title || 'Och AI - Transform Every Photo Into Art'
   const currentDescription =
     description ||
@@ -33,81 +37,85 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     keywords || 'AI image generation, photo editing, 3D figurine, anime style, HD enhancement'
 
   useEffect(() => {
-    // 更新页面标题
-    document.title = currentTitle
+    try {
+      // 更新页面标题
+      document.title = currentTitle
 
-    // 更新或创建meta标签
-    const updateMetaTag = (name: string, content: string, property?: boolean) => {
-      const selector = property ? `meta[property="${name}"]` : `meta[name="${name}"]`
-      let meta = document.querySelector(selector) as HTMLMetaElement
+      // 更新或创建meta标签
+      const updateMetaTag = (name: string, content: string, property?: boolean) => {
+        const selector = property ? `meta[property="${name}"]` : `meta[name="${name}"]`
+        let meta = document.querySelector(selector) as HTMLMetaElement
 
-      if (!meta) {
-        meta = document.createElement('meta')
-        if (property) {
-          meta.setAttribute('property', name)
-        } else {
-          meta.setAttribute('name', name)
+        if (!meta) {
+          meta = document.createElement('meta')
+          if (property) {
+            meta.setAttribute('property', name)
+          } else {
+            meta.setAttribute('name', name)
+          }
+          document.head.appendChild(meta)
         }
-        document.head.appendChild(meta)
+        meta.setAttribute('content', content)
       }
-      meta.setAttribute('content', content)
-    }
 
-    // 基础meta标签
-    updateMetaTag('description', currentDescription)
-    updateMetaTag('keywords', currentKeywords)
-    updateMetaTag('robots', noindex ? 'noindex,nofollow' : 'index,follow')
+      // 基础meta标签
+      updateMetaTag('description', currentDescription)
+      updateMetaTag('keywords', currentKeywords)
+      updateMetaTag('robots', noindex ? 'noindex,nofollow' : 'index,follow')
 
-    // Open Graph标签
-    updateMetaTag('og:title', currentTitle, true)
-    updateMetaTag('og:description', currentDescription, true)
-    updateMetaTag('og:type', type, true)
-    updateMetaTag('og:url', currentUrl, true)
-    updateMetaTag('og:image', image, true)
-    updateMetaTag('og:site_name', 'Och AI', true)
-    updateMetaTag('og:locale', language === 'zh' ? 'zh_CN' : 'en_US', true)
+      // Open Graph标签
+      updateMetaTag('og:title', currentTitle, true)
+      updateMetaTag('og:description', currentDescription, true)
+      updateMetaTag('og:type', type, true)
+      updateMetaTag('og:url', currentUrl, true)
+      updateMetaTag('og:image', image, true)
+      updateMetaTag('og:site_name', 'Och AI', true)
+      updateMetaTag('og:locale', language === 'zh' ? 'zh_CN' : 'en_US', true)
 
-    // Twitter Card标签
-    updateMetaTag('twitter:card', 'summary_large_image')
-    updateMetaTag('twitter:title', currentTitle)
-    updateMetaTag('twitter:description', currentDescription)
-    updateMetaTag('twitter:image', image)
+      // Twitter Card标签
+      updateMetaTag('twitter:card', 'summary_large_image')
+      updateMetaTag('twitter:title', currentTitle)
+      updateMetaTag('twitter:description', currentDescription)
+      updateMetaTag('twitter:image', image)
 
-    // 语言标签
-    updateMetaTag('language', language)
-    updateMetaTag('content-language', language)
+      // 语言标签
+      updateMetaTag('language', language)
+      updateMetaTag('content-language', language)
 
-    // Canonical URL
-    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement
-    if (!canonical) {
-      canonical = document.createElement('link')
-      canonical.setAttribute('rel', 'canonical')
-      document.head.appendChild(canonical)
-    }
-    canonical.setAttribute('href', currentUrl)
+      // Canonical URL
+      let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement
+      if (!canonical) {
+        canonical = document.createElement('link')
+        canonical.setAttribute('rel', 'canonical')
+        document.head.appendChild(canonical)
+      }
+      canonical.setAttribute('href', currentUrl)
 
-    // Hreflang标签（多语言支持）
-    const hreflangEn = document.querySelector(
-      'link[rel="alternate"][hreflang="en"]'
-    ) as HTMLLinkElement
-    const hreflangZh = document.querySelector(
-      'link[rel="alternate"][hreflang="zh"]'
-    ) as HTMLLinkElement
+      // Hreflang标签（多语言支持）
+      const hreflangEn = document.querySelector(
+        'link[rel="alternate"][hreflang="en"]'
+      ) as HTMLLinkElement
+      const hreflangZh = document.querySelector(
+        'link[rel="alternate"][hreflang="zh"]'
+      ) as HTMLLinkElement
 
-    if (!hreflangEn) {
-      const link = document.createElement('link')
-      link.setAttribute('rel', 'alternate')
-      link.setAttribute('hreflang', 'en')
-      link.setAttribute('href', `${currentUrl}${currentUrl.includes('?') ? '&' : '?'}lang=en`)
-      document.head.appendChild(link)
-    }
+      if (!hreflangEn) {
+        const link = document.createElement('link')
+        link.setAttribute('rel', 'alternate')
+        link.setAttribute('hreflang', 'en')
+        link.setAttribute('href', `${currentUrl}${currentUrl.includes('?') ? '&' : '?'}lang=en`)
+        document.head.appendChild(link)
+      }
 
-    if (!hreflangZh) {
-      const link = document.createElement('link')
-      link.setAttribute('rel', 'alternate')
-      link.setAttribute('hreflang', 'zh')
-      link.setAttribute('href', `${currentUrl}${currentUrl.includes('?') ? '&' : '?'}lang=zh`)
-      document.head.appendChild(link)
+      if (!hreflangZh) {
+        const link = document.createElement('link')
+        link.setAttribute('rel', 'alternate')
+        link.setAttribute('hreflang', 'zh')
+        link.setAttribute('href', `${currentUrl}${currentUrl.includes('?') ? '&' : '?'}lang=zh`)
+        document.head.appendChild(link)
+      }
+    } catch (error) {
+      console.error('SEO Head error:', error)
     }
   }, [
     currentTitle,

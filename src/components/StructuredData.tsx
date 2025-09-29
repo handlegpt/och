@@ -19,15 +19,21 @@ export const StructuredData: React.FC<StructuredDataProps> = ({ type = 'WebSite'
       language === 'zh'
         ? 'AI驱动的图像生成和编辑工具，将您的照片转换为3D手办、动漫风格、高清增强等多种艺术效果。'
         : 'AI-powered image generation and editing tool that transforms your photos into 3D figurines, anime styles, HD enhancement and more.',
-    url: `${window.location.origin}${location.pathname}`,
+    url:
+      typeof window !== 'undefined'
+        ? `${window.location.origin}${location.pathname}`
+        : location.pathname,
     inLanguage: language === 'zh' ? 'zh-CN' : 'en-US',
     publisher: {
       '@type': 'Organization',
       name: 'Och AI',
-      url: window.location.origin,
+      url: typeof window !== 'undefined' ? window.location.origin : '',
       logo: {
         '@type': 'ImageObject',
-        url: `${window.location.origin}/images/logo.png`,
+        url:
+          typeof window !== 'undefined'
+            ? `${window.location.origin}/images/logo.png`
+            : '/images/logo.png',
       },
     },
   }
@@ -40,7 +46,10 @@ export const StructuredData: React.FC<StructuredDataProps> = ({ type = 'WebSite'
           '@type': 'WebSite',
           potentialAction: {
             '@type': 'SearchAction',
-            target: `${window.location.origin}/search?q={search_term_string}`,
+            target:
+              typeof window !== 'undefined'
+                ? `${window.location.origin}/search?q={search_term_string}`
+                : '/search?q={search_term_string}',
             'query-input': 'required name=search_term_string',
           },
           mainEntity: {
