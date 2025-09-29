@@ -11,6 +11,7 @@ import { PrivacyPage } from './src/pages/PrivacyPage'
 import { SettingsPage } from './src/pages/SettingsPage'
 import { SocialPage } from './src/pages/SocialPage'
 import { PricingPage } from './src/pages/PricingPage'
+import { PaymentSuccessPage } from './src/pages/PaymentSuccessPage'
 import { AuthCallback } from './src/components/auth/AuthCallback'
 import { UsageLimitAlert } from './src/components/UsageLimitAlert'
 
@@ -27,6 +28,7 @@ const App: React.FC = () => {
             <Route path='/categories' element={<CategoriesPage />} />
             <Route path='/social' element={<SocialPage />} />
             <Route path='/pricing' element={<PricingPage />} />
+            <Route path='/payment/success' element={<PaymentSuccessPage />} />
             <Route path='/privacy' element={<PrivacyPage />} />
             <Route path='/settings' element={<SettingsPage />} />
             <Route path='/auth/callback' element={<AuthCallback />} />

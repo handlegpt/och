@@ -1,15 +1,62 @@
 import React, { useState } from 'react'
 import { useTranslation } from '../../i18n/context'
 import { PRICING_TIERS, FEATURE_COMPARISON } from '../config/pricing'
+import { PaymentModal } from '../components/payment/PaymentModal'
+import { useAuth } from '../hooks/useAuth'
 
 export const PricingPage: React.FC = () => {
   const { t } = useTranslation()
+  const { user } = useAuth()
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly')
   const [selectedTier, setSelectedTier] = useState<string>('standard')
+  const [paymentModal, setPaymentModal] = useState<{
+    isOpen: boolean
+    planId: string
+    billingCycle: 'monthly' | 'yearly'
+    price: number
+    planName: string
+  }>({
+    isOpen: false,
+    planId: '',
+    billingCycle: 'monthly',
+    price: 0,
+    planName: '',
+  })
 
   const handleSelectPlan = (tierId: string) => {
     setSelectedTier(tierId)
-    // 这里可以添加选择计划的逻辑
+
+    // 如果是免费计划，直接跳转到首页
+    if (tierId === 'free') {
+      window.location.href = '/'
+      return
+    }
+
+    // 检查用户是否已登录
+    if (!user) {
+      // 可以显示登录提示或跳转到登录页面
+      alert('请先登录以订阅服务')
+      return
+    }
+
+    // 获取计划信息
+    const tier = PRICING_TIERS.find(t => t.id === tierId)
+    if (!tier) return
+
+    const price = billingCycle === 'yearly' ? tier.price.yearly : tier.price.monthly
+
+    // 打开支付模态框
+    setPaymentModal({
+      isOpen: true,
+      planId: tierId,
+      billingCycle,
+      price: price * 100, // 转换为分
+      planName: t(`app.${tier.name}`),
+    })
+  }
+
+  const handleClosePaymentModal = () => {
+    setPaymentModal(prev => ({ ...prev, isOpen: false }))
   }
 
   const getPrice = (tier: any) => {
@@ -293,6 +340,16 @@ export const PricingPage: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* 支付模态框 */}
+      <PaymentModal
+        isOpen={paymentModal.isOpen}
+        onClose={handleClosePaymentModal}
+        planId={paymentModal.planId}
+        billingCycle={paymentModal.billingCycle}
+        price={paymentModal.price}
+        planName={paymentModal.planName}
+      />
     </div>
   )
 }

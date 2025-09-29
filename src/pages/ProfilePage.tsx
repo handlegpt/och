@@ -7,12 +7,13 @@ import { UserHistory } from '../components/user/UserHistory'
 import { UnifiedDashboard } from '../components/user/UnifiedDashboard'
 import { FavoritesManager } from '../components/user/FavoritesManager'
 import { PrivacyControls } from '../components/user/PrivacyControls'
+import { SubscriptionManager } from '../components/payment/SubscriptionManager'
 
 export const ProfilePage: React.FC = () => {
   const { user, isAdmin } = useAuth()
   const { t } = useTranslation()
   const [activeTab, setActiveTab] = useState<
-    'dashboard' | 'history' | 'favorites' | 'settings' | 'privacy' | 'admin'
+    'dashboard' | 'history' | 'favorites' | 'settings' | 'privacy' | 'subscription' | 'admin'
   >('dashboard')
   const [loadedTabs, setLoadedTabs] = useState<Set<string>>(new Set(['dashboard']))
 
@@ -43,6 +44,7 @@ export const ProfilePage: React.FC = () => {
     { key: 'favorites', label: t('app.profile.favorites.title'), icon: '⭐' },
     { key: 'settings', label: t('app.profile.tabs.settings'), icon: '⚙️' },
     { key: 'privacy', label: t('app.profile.privacy.title'), icon: '🔒' },
+    { key: 'subscription', label: '订阅管理', icon: '💳' },
     ...(isAdmin ? [{ key: 'admin', label: t('app.profile.tabs.admin'), icon: '🛡️' }] : []),
   ] as const
 
@@ -124,6 +126,14 @@ export const ProfilePage: React.FC = () => {
               <h2 className='text-xl font-semibold text-[var(--text-primary)] mb-4'>隐私控制</h2>
               <p className='text-[var(--text-secondary)] mb-6'>管理您的隐私设置和数据权限</p>
               <PrivacyControls />
+            </div>
+          )}
+
+          {activeTab === 'subscription' && loadedTabs.has('subscription') && (
+            <div>
+              <h2 className='text-xl font-semibold text-[var(--text-primary)] mb-4'>订阅管理</h2>
+              <p className='text-[var(--text-secondary)] mb-6'>管理您的订阅和支付方式</p>
+              <SubscriptionManager />
             </div>
           )}
 
