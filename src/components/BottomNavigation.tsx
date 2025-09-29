@@ -1,42 +1,7 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export const BottomNavigation: React.FC = () => {
-  const location = useLocation()
-
-  const isActive = (path: string) => {
-    return location.pathname === path
-  }
-
-  // 参考 Nano Banana AI 的完整footer设计
-  const quickNavItems = [
-    {
-      path: '/',
-      icon: '🏠',
-      label: 'Home',
-    },
-    {
-      path: '/categories',
-      icon: '🎨',
-      label: 'Features',
-    },
-    {
-      path: '/pricing',
-      icon: '💎',
-      label: 'Pricing',
-    },
-    {
-      path: '/social',
-      icon: '🖼️',
-      label: 'Showcase',
-    },
-    {
-      path: '/profile',
-      icon: '👤',
-      label: 'Profile',
-    },
-  ]
-
   const productLinks = [
     { path: '/categories', label: 'AI Editor' },
     { path: '/categories', label: 'Features' },
@@ -200,57 +165,6 @@ export const BottomNavigation: React.FC = () => {
           </div>
         </div>
       </footer>
-
-      {/* 移动端快速导航 - 固定在底部 */}
-      <nav className='fixed bottom-0 left-0 right-0 z-50 bg-[var(--bg-card-alpha)] backdrop-blur-lg border-t border-[var(--border-primary)] shadow-lg md:hidden'>
-        <div className='pb-safe-area-inset-bottom'>
-          <div className='flex items-center justify-around py-3 px-4'>
-            {quickNavItems.map(item => {
-              const active = isActive(item.path)
-              return (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  className={`group relative flex flex-col items-center justify-center py-2 px-3 rounded-xl transition-all duration-300 min-w-0 flex-1 ${
-                    active
-                      ? 'text-[var(--accent-primary)]'
-                      : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-                  }`}
-                >
-                  {/* 活跃状态背景 */}
-                  {active && (
-                    <div className='absolute inset-0 bg-gradient-to-r from-[var(--accent-primary)]/10 to-[var(--accent-secondary)]/10 rounded-xl'></div>
-                  )}
-
-                  {/* 图标容器 */}
-                  <div
-                    className={`relative z-10 mb-1 transition-all duration-300 ${
-                      active ? 'scale-110' : 'group-hover:scale-105'
-                    }`}
-                  >
-                    <span className='text-lg'>{item.icon}</span>
-                    {/* 活跃状态指示器 */}
-                    {active && (
-                      <div className='absolute -top-1 -right-1 w-2 h-2 bg-[var(--accent-primary)] rounded-full'></div>
-                    )}
-                  </div>
-
-                  {/* 标签文字 */}
-                  <span
-                    className={`text-xs font-medium truncate w-full text-center transition-all duration-300 ${
-                      active
-                        ? 'text-[var(--accent-primary)] font-semibold'
-                        : 'text-[var(--text-secondary)] group-hover:text-[var(--text-primary)]'
-                    }`}
-                  >
-                    {item.label}
-                  </span>
-                </Link>
-              )
-            })}
-          </div>
-        </div>
-      </nav>
     </>
   )
 }
