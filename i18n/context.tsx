@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import en from './en'
 import zh from './zh'
 
@@ -15,9 +16,18 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const location = useLocation()
+
   const [language, setLanguage] = useState<Language>(() => {
     try {
-      // 首先检查是否有保存的语言设置
+      // 首先检查URL参数中的语言设置
+      const urlParams = new URLSearchParams(location.search)
+      const urlLang = urlParams.get('lang')
+      if (urlLang === 'en' || urlLang === 'zh') {
+        return urlLang
+      }
+
+      // 然后检查是否有保存的语言设置
       const savedLang = localStorage.getItem('language')
       if (savedLang === 'en' || savedLang === 'zh') {
         return savedLang
@@ -38,6 +48,15 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
       return 'en'
     }
   })
+
+  // 监听URL变化并更新语言
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search)
+    const urlLang = urlParams.get('lang')
+    if (urlLang === 'en' || urlLang === 'zh') {
+      setLanguage(urlLang)
+    }
+  }, [location.search])
 
   useEffect(() => {
     try {
