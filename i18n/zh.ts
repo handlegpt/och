@@ -690,17 +690,17 @@ export default {
           name: '免费版',
           description: '适合个人用户和初学者',
         },
-        standard: {
-          name: '标准版',
-          description: '适合个人创作者和小团队',
+        basic: {
+          name: '基础版',
+          description: '适合个人用户和轻度使用',
         },
-        professional: {
+        pro: {
           name: '专业版',
-          description: '适合专业创作者和中小企业',
+          description: '适合专业创作者和团队',
         },
-        enterprise: {
-          name: '企业版',
-          description: '适合大型企业和定制需求',
+        max: {
+          name: '旗舰版',
+          description: '适合大型企业和专业工作室',
         },
       },
       faq: {

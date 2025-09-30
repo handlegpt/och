@@ -636,17 +636,17 @@ export default {
           name: 'Free',
           description: 'Perfect for individuals and beginners',
         },
-        standard: {
-          name: 'Standard',
-          description: 'Great for individual creators and small teams',
+        basic: {
+          name: 'Basic',
+          description: 'Perfect for individuals and light users',
         },
-        professional: {
-          name: 'Professional',
-          description: 'Ideal for professional creators and small businesses',
+        pro: {
+          name: 'Pro',
+          description: 'For professional creators and teams',
         },
-        enterprise: {
-          name: 'Enterprise',
-          description: 'Perfect for large enterprises and custom needs',
+        max: {
+          name: 'Max',
+          description: 'Designed for large enterprises and professional studios',
         },
       },
       faq: {
@@ -913,17 +913,17 @@ export default {
           name: 'Free',
           description: 'Perfect for individuals and beginners',
         },
-        standard: {
-          name: 'Standard',
-          description: 'Great for individual creators and small teams',
+        basic: {
+          name: 'Basic',
+          description: 'Perfect for individuals and light users',
         },
-        professional: {
-          name: 'Professional',
-          description: 'Ideal for professional creators and small businesses',
+        pro: {
+          name: 'Pro',
+          description: 'For professional creators and teams',
         },
-        enterprise: {
-          name: 'Enterprise',
-          description: 'Perfect for large enterprises and custom needs',
+        max: {
+          name: 'Max',
+          description: 'Designed for large enterprises and professional studios',
         },
       },
       faq: {

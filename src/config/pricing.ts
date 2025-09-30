@@ -40,7 +40,7 @@ export const PRICING_TIERS: PricingTier[] = [
       yearly: 0,
     },
     limits: {
-      dailyGenerations: 3,
+      dailyGenerations: 3, // 每月3次
       maxBatchSize: 1,
       maxResolution: '1024x1024',
       apiCalls: 0,
@@ -60,16 +60,16 @@ export const PRICING_TIERS: PricingTier[] = [
     },
   },
   {
-    id: 'standard',
-    name: 'pricing.tiers.standard.name',
-    description: 'pricing.tiers.standard.description',
+    id: 'basic',
+    name: 'pricing.tiers.basic.name',
+    description: 'pricing.tiers.basic.description',
     price: {
       monthly: 9.99,
       yearly: 99.99,
     },
     limits: {
-      dailyGenerations: 50, // 实际是每月50次
-      maxBatchSize: 10,
+      dailyGenerations: 50, // 每月50次
+      maxBatchSize: 5,
       maxResolution: '2048x2048',
       apiCalls: 0,
     },
@@ -86,21 +86,20 @@ export const PRICING_TIERS: PricingTier[] = [
       privateDeployment: false,
       whiteLabel: false,
     },
-    popular: true,
   },
   {
-    id: 'professional',
-    name: 'pricing.tiers.professional.name',
-    description: 'pricing.tiers.professional.description',
+    id: 'pro',
+    name: 'pricing.tiers.pro.name',
+    description: 'pricing.tiers.pro.description',
     price: {
       monthly: 29.99,
       yearly: 299.99,
     },
     limits: {
-      dailyGenerations: 200, // 实际是每月200次
-      maxBatchSize: -1, // 无限制
+      dailyGenerations: 200, // 每月200次
+      maxBatchSize: 20,
       maxResolution: '4096x4096',
-      apiCalls: 1000, // 每月免费API调用次数
+      apiCalls: 1000, // 每月API调用次数
     },
     features: {
       basicEffects: true,
@@ -115,21 +114,21 @@ export const PRICING_TIERS: PricingTier[] = [
       privateDeployment: false,
       whiteLabel: false,
     },
-    recommended: true,
+    popular: true,
   },
   {
-    id: 'enterprise',
-    name: 'pricing.tiers.enterprise.name',
-    description: 'pricing.tiers.enterprise.description',
+    id: 'max',
+    name: 'pricing.tiers.max.name',
+    description: 'pricing.tiers.max.description',
     price: {
-      monthly: -1, // 定制报价，-1表示需要联系销售
-      yearly: -1,
+      monthly: 79.99,
+      yearly: 799.99,
     },
     limits: {
-      dailyGenerations: -1, // 无限制
-      maxBatchSize: -1,
+      dailyGenerations: 500, // 每月500次
+      maxBatchSize: -1, // 无限制
       maxResolution: '4096x4096',
-      apiCalls: -1, // 无限制
+      apiCalls: 5000, // 每月API调用次数
     },
     features: {
       basicEffects: true,
@@ -142,8 +141,9 @@ export const PRICING_TIERS: PricingTier[] = [
       customModels: true,
       prioritySupport: true,
       privateDeployment: true,
-      whiteLabel: true,
+      whiteLabel: false,
     },
+    recommended: true,
   },
 ]
 
