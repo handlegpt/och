@@ -546,7 +546,9 @@ export const HomePage: React.FC = () => {
                   {t('home.pricing.free')}
                 </h3>
                 <div className='text-4xl font-bold text-[var(--accent-primary)] mb-2'>$0</div>
-                <p className='text-[var(--text-secondary)]'>适合试用</p>
+                <p className='text-[var(--text-secondary)]'>
+                  {t('home.pricing.freeFeatures.noCard')}
+                </p>
               </div>
               <ul className='space-y-3 mb-6 text-left'>
                 <li className='flex items-center gap-2 text-sm'>
@@ -578,70 +580,74 @@ export const HomePage: React.FC = () => {
             <div className='bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-6 border-2 border-[var(--accent-primary)] text-center relative'>
               <div className='absolute -top-3 left-1/2 transform -translate-x-1/2'>
                 <div className='bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white text-xs px-4 py-1 rounded-full font-medium'>
-                  最受欢迎
+                  {t('home.pricing.mostPopular')}
                 </div>
               </div>
               <div className='mb-4'>
-                <h3 className='text-2xl font-bold text-[var(--text-primary)] mb-2'>专业版</h3>
+                <h3 className='text-2xl font-bold text-[var(--text-primary)] mb-2'>
+                  {t('home.pricing.professional')}
+                </h3>
                 <div className='text-4xl font-bold text-[var(--accent-primary)] mb-2'>$9.99</div>
-                <p className='text-[var(--text-secondary)]'>每月</p>
+                <p className='text-[var(--text-secondary)]'>{t('home.pricing.monthly')}</p>
               </div>
               <ul className='space-y-3 mb-6 text-left'>
                 <li className='flex items-center gap-2 text-sm'>
                   <span className='w-2 h-2 bg-green-500 rounded-full'></span>
-                  100 次生成/月
+                  {t('home.pricing.proFeatures.generations')}
                 </li>
                 <li className='flex items-center gap-2 text-sm'>
                   <span className='w-2 h-2 bg-green-500 rounded-full'></span>
-                  高清质量输出
+                  {t('home.pricing.proFeatures.quality')}
                 </li>
                 <li className='flex items-center gap-2 text-sm'>
                   <span className='w-2 h-2 bg-green-500 rounded-full'></span>
-                  优先处理
+                  {t('home.pricing.proFeatures.priority')}
                 </li>
                 <li className='flex items-center gap-2 text-sm'>
                   <span className='w-2 h-2 bg-green-500 rounded-full'></span>
-                  包含所有艺术风格
+                  {t('home.pricing.proFeatures.styles')}
                 </li>
               </ul>
               <button
                 onClick={() => navigate('/pricing')}
                 className='w-full px-6 py-3 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300'
               >
-                升级专业版
+                {t('home.pricing.upgradePro')}
               </button>
             </div>
 
             {/* Enterprise Plan */}
             <div className='bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-6 border border-[var(--border-primary)] text-center'>
               <div className='mb-4'>
-                <h3 className='text-2xl font-bold text-[var(--text-primary)] mb-2'>企业版</h3>
+                <h3 className='text-2xl font-bold text-[var(--text-primary)] mb-2'>
+                  {t('home.pricing.enterprise')}
+                </h3>
                 <div className='text-4xl font-bold text-[var(--accent-primary)] mb-2'>$19.99</div>
-                <p className='text-[var(--text-secondary)]'>每月</p>
+                <p className='text-[var(--text-secondary)]'>{t('home.pricing.monthly')}</p>
               </div>
               <ul className='space-y-3 mb-6 text-left'>
                 <li className='flex items-center gap-2 text-sm'>
                   <span className='w-2 h-2 bg-green-500 rounded-full'></span>
-                  无限生成
+                  {t('home.pricing.enterpriseFeatures.generations')}
                 </li>
                 <li className='flex items-center gap-2 text-sm'>
                   <span className='w-2 h-2 bg-green-500 rounded-full'></span>
-                  超高清质量
+                  {t('home.pricing.enterpriseFeatures.quality')}
                 </li>
                 <li className='flex items-center gap-2 text-sm'>
                   <span className='w-2 h-2 bg-green-500 rounded-full'></span>
-                  API 访问
+                  {t('home.pricing.enterpriseFeatures.api')}
                 </li>
                 <li className='flex items-center gap-2 text-sm'>
                   <span className='w-2 h-2 bg-green-500 rounded-full'></span>
-                  优先支持
+                  {t('home.pricing.enterpriseFeatures.support')}
                 </li>
               </ul>
               <button
                 onClick={() => navigate('/pricing')}
                 className='w-full px-6 py-3 border-2 border-[var(--accent-primary)] text-[var(--accent-primary)] font-semibold rounded-xl hover:bg-[var(--accent-primary)] hover:text-white transition-all duration-300'
               >
-                联系销售
+                {t('home.pricing.contactSales')}
               </button>
             </div>
           </div>
@@ -774,10 +780,10 @@ export const HomePage: React.FC = () => {
       <section className='py-20 bg-gradient-to-br from-[var(--accent-primary)]/10 via-[var(--accent-secondary)]/5 to-[var(--accent-primary)]/10 relative overflow-hidden'>
         <div className='container mx-auto px-4 text-center relative'>
           <h2 className='text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-6'>
-            准备好转换您的照片了吗？
+            {t('home.pricing.finalCta.title')}
           </h2>
           <p className='text-xl text-[var(--text-secondary)] mb-8 max-w-2xl mx-auto'>
-            加入数千名创作者，使用 och.ai 创建令人惊叹的 AI 艺术作品。今天就开始 3 次免费生成！
+            {t('home.pricing.finalCta.subtitle')}
           </p>
 
           <div className='flex flex-col sm:flex-row gap-4 justify-center items-center mb-8'>
@@ -796,7 +802,7 @@ export const HomePage: React.FC = () => {
             >
               <span className='flex items-center gap-3'>
                 <span>💎</span>
-                查看价格
+                {t('home.pricing.finalCta.viewPricing')}
               </span>
             </button>
           </div>
