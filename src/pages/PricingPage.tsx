@@ -172,7 +172,7 @@ export const PricingPage: React.FC = () => {
                     </div>
                   ) : tier.price.monthly === -1 ? (
                     <div className='text-3xl font-bold text-[var(--accent-primary)]'>
-                      {t('app.pricing.customPricing')}
+                      {t('pricing.customPricing')}
                     </div>
                   ) : (
                     <div className='flex items-baseline justify-center'>
