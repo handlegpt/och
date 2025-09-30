@@ -263,6 +263,103 @@ export default {
         },
       ],
     },
+    pricing: {
+      title: 'Choose Your Plan',
+      subtitle: 'Flexible pricing plans to meet different needs',
+      transparent: 'Transparent Pricing',
+      free: 'Free',
+      professional: 'Professional',
+      enterprise: 'Enterprise',
+      tryFree: 'Try Free Now',
+      upgradePro: 'Upgrade to Pro',
+      contactSales: 'Contact Sales',
+      freeFeatures: {
+        generations: '3 generations per day',
+        quality: 'High quality output',
+        noCard: 'No credit card required',
+        poweredBy: 'Powered by Nano Banana AI',
+      },
+      proFeatures: {
+        generations: '100 generations per month',
+        quality: 'HD quality output',
+        priority: 'Priority processing',
+        styles: 'All art styles included',
+      },
+      enterpriseFeatures: {
+        generations: 'Unlimited generations',
+        quality: 'Ultra HD quality',
+        api: 'API access',
+        support: 'Priority support',
+      },
+      trusted: {
+        title: 'Trusted & Secure',
+        subtitle: 'Built with advanced AI technology',
+        description:
+          "Powered by Nano Banana AI, using Google's Gemini 2.5 Flash Image API for exceptional results",
+      },
+      powered: {
+        title: 'Powered by Nano Banana AI',
+        subtitle: 'Advanced AI technology',
+        description:
+          "Advanced AI technology leveraging Google's Gemini 2.5 Flash Image API for exceptional character consistency and scene preservation",
+      },
+      privacy: {
+        title: 'Privacy First',
+        subtitle: 'Your photos are never stored, shared, or used for training',
+        description: 'Complete privacy protection with automatic deletion after processing',
+      },
+      testimonials: {
+        title: 'User Reviews',
+        quote:
+          '"Amazing results! The 3D figurine effect is incredible. Much better than other AI tools I\'ve tried." - Ms. Zhang',
+      },
+      faq: {
+        title: 'Frequently Asked Questions',
+        subtitle: 'Everything you need to know',
+        description:
+          'Get answers to common questions about och.ai and our AI image generation service',
+        questions: [
+          {
+            question: 'How does och.ai work?',
+            answer:
+              'Simply upload your photo, choose an AI art style, and get your transformed image in seconds. Powered by Nano Banana AI technology.',
+          },
+          {
+            question: 'Is my data safe?',
+            answer:
+              'Yes! Your photos are never stored, shared, or used for training. Complete privacy protection with automatic deletion after processing.',
+          },
+          {
+            question: 'Do you offer a free trial?',
+            answer:
+              'Yes! New users get 3 free generations to try our service. No credit card required to get started.',
+          },
+          {
+            question: 'Can I use generated images commercially?',
+            answer:
+              'Absolutely! All generated images can be used for commercial projects, social media, marketing materials, and more.',
+          },
+          {
+            question: 'What makes och.ai different?',
+            answer:
+              'We use advanced Nano Banana AI technology with superior character consistency and scene preservation compared to other AI tools.',
+          },
+          {
+            question: 'How can I get support?',
+            answer:
+              'For technical support or customer service, contact us at support@och.ai. We typically respond within 24 hours.',
+          },
+        ],
+      },
+      finalCta: {
+        title: 'Ready to transform your photos?',
+        subtitle:
+          'Join thousands of creators using och.ai to create amazing AI artwork. Start with 3 free generations today!',
+        button: 'Try Free Now',
+        viewPricing: 'View Pricing',
+        noCard: 'No credit card required • 3 free generations • Powered by Nano Banana AI',
+      },
+    },
     cta: {
       title: 'Ready to Start Creating?',
       subtitle: 'Join thousands of creators and experience the infinite possibilities of AI',
