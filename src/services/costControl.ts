@@ -13,31 +13,31 @@ export const API_COST_CONFIG = {
   IMAGE_EDIT: 0.05, // 图像编辑
   VIDEO_GENERATION: 0.1, // 视频生成
   TEXT_PROCESSING: 0.001, // 文本处理
+} as const
 
-  // 用户层级成本限制
-  USER_LIMITS: {
-    free: {
-      dailyLimit: 0.1, // 免费用户每日$0.10
-      monthlyLimit: 2.0, // 免费用户每月$2.00
-      maxSingleRequest: 0.05, // 单次请求最大$0.05
-    },
-    standard: {
-      dailyLimit: 5.0, // 标准用户每日$5.00
-      monthlyLimit: 100.0, // 标准用户每月$100.00
-      maxSingleRequest: 0.5,
-    },
-    professional: {
-      dailyLimit: 20.0, // 专业用户每日$20.00
-      monthlyLimit: 500.0, // 专业用户每月$500.00
-      maxSingleRequest: 2.0,
-    },
-    enterprise: {
-      dailyLimit: 100.0, // 企业用户每日$100.00
-      monthlyLimit: 2000.0, // 企业用户每月$2000.00
-      maxSingleRequest: 10.0,
-    },
+// 用户层级成本限制
+export const USER_LIMITS = {
+  free: {
+    dailyLimit: 0.1, // 免费用户每日$0.10
+    monthlyLimit: 2.0, // 免费用户每月$2.00
+    maxSingleRequest: 0.05, // 单次请求最大$0.05
   },
-}
+  standard: {
+    dailyLimit: 5.0, // 标准用户每日$5.00
+    monthlyLimit: 100.0, // 标准用户每月$100.00
+    maxSingleRequest: 0.5,
+  },
+  professional: {
+    dailyLimit: 20.0, // 专业用户每日$20.00
+    monthlyLimit: 500.0, // 专业用户每月$500.00
+    maxSingleRequest: 2.0,
+  },
+  enterprise: {
+    dailyLimit: 100.0, // 企业用户每日$100.00
+    monthlyLimit: 2000.0, // 企业用户每月$2000.00
+    maxSingleRequest: 10.0,
+  },
+} as const
 
 // 成本记录接口
 export interface CostRecord {
@@ -90,8 +90,13 @@ export class CostControlService {
       }
 
       const userTier = userProfile?.subscription_tier || 'free'
-      const limits =
-        API_COST_CONFIG.USER_LIMITS[userTier as keyof typeof API_COST_CONFIG.USER_LIMITS]
+      const limits = USER_LIMITS[userTier as keyof typeof USER_LIMITS]
+
+      // 检查限制是否存在
+      if (!limits) {
+        console.error(`No limits found for user tier: ${userTier}`)
+        return { allowed: false, reason: `Invalid user tier: ${userTier}` }
+      }
 
       // 检查单次请求限制
       if (estimatedCost > limits.maxSingleRequest) {
@@ -189,8 +194,7 @@ export class CostControlService {
    */
   static async getUserCostStats(userId: string, userTier: string): Promise<UserCostStats | null> {
     try {
-      const limits =
-        API_COST_CONFIG.USER_LIMITS[userTier as keyof typeof API_COST_CONFIG.USER_LIMITS]
+      const limits = USER_LIMITS[userTier as keyof typeof USER_LIMITS]
 
       const today = new Date()
       const startOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate())
@@ -345,7 +349,14 @@ export const withCostControl = async (
 ): Promise<{ success: boolean; result?: any; error?: string; cost?: number }> => {
   try {
     // 获取预估成本
-    const estimatedCost = API_COST_CONFIG[operationType] as number
+    const estimatedCost = API_COST_CONFIG[operationType]
+
+    if (typeof estimatedCost !== 'number') {
+      return {
+        success: false,
+        error: `Invalid operation type: ${operationType}`,
+      }
+    }
 
     // 检查用户预算
     const budgetCheck = await CostControlService.checkUserBudget(
