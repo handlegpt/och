@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useTranslation } from '../../i18n/context'
 import { PRICING_TIERS, FEATURE_COMPARISON } from '../config/pricing'
 import { PaymentModal } from '../components/payment/PaymentModal'
 import { useAuth } from '../hooks/useAuth'
 import { SEOHead, SEO_CONFIGS } from '../components/SEOHead'
 import { StructuredData } from '../components/StructuredData'
+import { AnalyticsEvents } from '../components/Analytics'
 
 export const PricingPage: React.FC = () => {
   const { t } = useTranslation()
@@ -24,6 +25,11 @@ export const PricingPage: React.FC = () => {
     price: 0,
     planName: '',
   })
+
+  // 跟踪页面访问
+  useEffect(() => {
+    AnalyticsEvents.PRICING_VIEW()
+  }, [])
 
   const handleSelectPlan = (tierId: string) => {
     setSelectedTier(tierId)
@@ -48,6 +54,9 @@ export const PricingPage: React.FC = () => {
     if (!tier) return
 
     const price = billingCycle === 'yearly' ? tier.price.yearly : tier.price.monthly
+
+    // 跟踪订阅开始事件
+    AnalyticsEvents.SUBSCRIPTION_START(tierId)
 
     // 打开支付模态框
     setPaymentModal({

@@ -15,6 +15,7 @@ import { PaymentSuccessPage } from './src/pages/PaymentSuccessPage'
 import { AuthCallback } from './src/components/auth/AuthCallback'
 import { UsageLimitAlert } from './src/components/UsageLimitAlert'
 import { AdminDashboard } from './src/components/admin/AdminDashboard'
+import { Analytics } from './src/components/Analytics'
 
 const App: React.FC = () => {
   return (
@@ -22,6 +23,7 @@ const App: React.FC = () => {
       <ErrorBoundary>
         <div className='min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] font-sans'>
           <Navigation />
+          <Analytics />
 
           <Routes>
             <Route path='/' element={<HomePage />} />

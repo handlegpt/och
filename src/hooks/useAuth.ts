@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { User, Session } from '@supabase/supabase-js'
 import { supabase } from '../lib/supabase'
 import { setSentryUser, clearSentryUser, captureUserAction } from '../lib/sentry'
+import { AnalyticsEvents } from '../components/Analytics'
 
 export const useAuthProvider = () => {
   const [user, setUser] = useState<User | null>(null)
@@ -90,6 +91,9 @@ export const useAuthProvider = () => {
       password,
     })
     if (error) throw error
+
+    // 跟踪登录事件
+    AnalyticsEvents.USER_LOGIN('email')
   }
 
   const signUp = async (email: string, password: string, username?: string) => {
@@ -106,6 +110,9 @@ export const useAuthProvider = () => {
     })
 
     if (error) throw error
+
+    // 跟踪注册事件
+    AnalyticsEvents.USER_SIGNUP('email')
 
     // 用户配置会在触发器自动创建
     // 不返回 data，保持接口一致性
@@ -137,6 +144,9 @@ export const useAuthProvider = () => {
       },
     })
     if (error) throw error
+
+    // 跟踪Google登录事件
+    AnalyticsEvents.USER_LOGIN('google')
   }
 
   const signInWithMagicLink = async (email: string) => {
@@ -168,6 +178,9 @@ export const useAuthProvider = () => {
       console.error('Supabase client not initialized')
       throw new Error('Supabase client not initialized')
     }
+
+    // 跟踪登出事件
+    AnalyticsEvents.USER_LOGOUT()
 
     try {
       console.log('🚪 Starting sign out process...')
