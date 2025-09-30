@@ -302,6 +302,68 @@ export default {
       tryFree: '立即免费试用',
       selectPlan: '选择方案',
       contactSales: '联系销售',
+      trusted: {
+        title: '值得信赖与安全',
+        subtitle: '基于先进 AI 技术构建',
+        description: '由 Nano Banana AI 驱动，提供卓越结果',
+      },
+      powered: {
+        title: '由 Nano Banana AI 驱动',
+        subtitle: '先进的 AI 技术',
+        description: '先进的 AI 技术，提供卓越的角色一致性和场景保持',
+      },
+      privacy: {
+        title: '隐私优先',
+        subtitle: '您的照片永远不会被存储、分享或用于训练',
+        description: '完整的隐私保护，处理完成后自动删除',
+      },
+      testimonials: {
+        title: '用户评价',
+        quote: '"效果惊人！3D 手办效果令人难以置信。比我尝试过的其他 AI 工具要好得多。" - 张女士',
+      },
+      faq: {
+        title: '常见问题',
+        subtitle: '您需要了解的一切',
+        description: '获取关于 och.ai 和我们的 AI 图像生成服务的常见问题答案',
+        questions: [
+          {
+            question: 'och.ai 是如何工作的？',
+            answer:
+              '只需上传您的照片，选择 AI 艺术风格，几秒钟内即可获得转换后的图像。由 Nano Banana AI 技术驱动。',
+          },
+          {
+            question: '我的数据安全吗？',
+            answer:
+              '是的！您的照片永远不会被存储、分享或用于训练。完整的隐私保护，处理完成后自动删除。',
+          },
+          {
+            question: '你们提供免费试用吗？',
+            answer: '是的！新用户可以获得 3 次免费生成来试用我们的服务。开始使用无需信用卡。',
+          },
+          {
+            question: '我可以将生成的图像用于商业用途吗？',
+            answer: '当然可以！所有生成的图像都可以用于商业项目、社交媒体、营销材料等。',
+          },
+          {
+            question: 'och.ai 有什么不同？',
+            answer:
+              '我们使用先进的 Nano Banana AI 技术，与其他 AI 工具相比具有卓越的角色一致性和场景保持能力。',
+          },
+          {
+            question: '如何获得支持？',
+            answer:
+              '如需技术支持或客户服务，请通过 support@och.ai 联系我们。我们通常在 24 小时内回复。',
+          },
+        ],
+      },
+      finalCta: {
+        title: '准备好转换您的照片了吗？',
+        subtitle:
+          '加入数千名创作者，使用 och.ai 创建令人惊叹的 AI 艺术作品。今天就开始 3 次免费生成！',
+        button: '立即免费试用',
+        viewPricing: '查看价格',
+        noCard: '无需信用卡 • 3 次免费生成 • 由 Nano Banana AI 驱动',
+      },
     },
     testimonials: {
       title: '用户评价',
