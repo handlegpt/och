@@ -143,16 +143,16 @@ export const GenerationWorkflow: React.FC<GenerationWorkflowProps> = ({
             <div className='mb-4'>
               <h2 className='text-xl font-semibold mb-1 text-[var(--accent-primary)] flex items-center gap-3'>
                 <span className='text-3xl'>{state.selectedTransformation.emoji}</span>
-                {t(state.selectedTransformation.titleKey)}
+                {t(state.selectedTransformation.titleKey || '')}
               </h2>
               {state.selectedTransformation.prompt !== 'CUSTOM' ? (
                 <p className='text-[var(--text-secondary)]'>
-                  {t(state.selectedTransformation.descriptionKey)}
+                  {t(state.selectedTransformation.descriptionKey || '')}
                 </p>
               ) : (
                 !state.selectedTransformation.isVideo && (
                   <p className='text-[var(--text-secondary)]'>
-                    {t(state.selectedTransformation.descriptionKey)}
+                    {t(state.selectedTransformation.descriptionKey || '')}
                   </p>
                 )
               )}
