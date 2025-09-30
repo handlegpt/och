@@ -301,7 +301,20 @@ export const EnhancedFeatureGrid: React.FC<EnhancedFeatureGridProps> = ({
               ?.items?.map((item: any) => (
                 <button
                   key={item.key}
-                  onClick={() => onSelect(item)}
+                  onClick={() => {
+                    // 将子效果转换为完整的transformation对象
+                    const fullTransformation = {
+                      key: item.key,
+                      titleKey: item.titleKey,
+                      prompt: item.prompt,
+                      emoji: item.emoji,
+                      descriptionKey: item.descriptionKey,
+                      isVideo: false,
+                      isMultiImage: false,
+                      isSecondaryOptional: false,
+                    }
+                    onSelect(fullTransformation)
+                  }}
                   className='group flex flex-col items-center justify-center text-center transition-all duration-200 ease-in-out transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[var(--bg-primary)] focus:ring-[var(--accent-primary)] p-4 aspect-square bg-[var(--bg-card)] rounded-xl border border-[var(--border-primary)] hover:border-[var(--accent-primary)]'
                 >
                   <span className='text-4xl mb-2 transition-transform duration-200 group-hover:scale-110'>
