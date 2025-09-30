@@ -80,10 +80,10 @@ export const GenerationWorkflow: React.FC<GenerationWorkflowProps> = ({
     if (!state.selectedTransformation) return true
 
     const isCustomPromptEmpty =
-      state.selectedTransformation.prompt === 'CUSTOM' && !state.customPrompt.trim()
+      state.selectedTransformation.prompt === 'CUSTOM' && !(state.customPrompt || '').trim()
 
     if (state.selectedTransformation.isVideo) {
-      return state.isLoading || !state.customPrompt.trim()
+      return state.isLoading || !(state.customPrompt || '').trim()
     } else {
       let imagesReady = false
       if (state.selectedTransformation.isMultiImage) {

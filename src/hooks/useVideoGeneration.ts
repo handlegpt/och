@@ -31,8 +31,8 @@ export const useVideoGeneration = ({ state, actions, user, t }: UseVideoGenerati
     try {
       let imagePayload = null
       if (primaryImageUrl) {
-        const primaryMimeType = primaryImageUrl?.split(';')[0]?.split(':')[1] ?? 'image/png'
-        const primaryBase64 = primaryImageUrl?.split(',')[1]
+        const primaryMimeType = (primaryImageUrl || '').split(';')[0]?.split(':')[1] ?? 'image/png'
+        const primaryBase64 = (primaryImageUrl || '').split(',')[1]
         imagePayload = { base64: primaryBase64, mimeType: primaryMimeType }
       }
 
