@@ -190,8 +190,7 @@ export default {
     },
     advancedFeatures: {
       title: 'Advanced AI Features',
-      subtitle:
-        "Powered by Nano Banana AI, using Google's Gemini 2.5 Flash Image API for superior results",
+      subtitle: 'Powered by Nano Banana AI for superior results',
       features: {
         promptBased: {
           title: 'Prompt-Based Local Editing',
@@ -295,14 +294,13 @@ export default {
       trusted: {
         title: 'Trusted & Secure',
         subtitle: 'Built with advanced AI technology',
-        description:
-          "Powered by Nano Banana AI, using Google's Gemini 2.5 Flash Image API for exceptional results",
+        description: 'Powered by Nano Banana AI for exceptional results',
       },
       powered: {
         title: 'Powered by Nano Banana AI',
         subtitle: 'Advanced AI technology',
         description:
-          "Advanced AI technology leveraging Google's Gemini 2.5 Flash Image API for exceptional character consistency and scene preservation",
+          'Advanced AI technology for exceptional character consistency and scene preservation',
       },
       privacy: {
         title: 'Privacy First',
@@ -1267,7 +1265,7 @@ export default {
       },
       technology: {
         title: 'Technical Features',
-        item1: 'Based on Google Gemini AI Technology',
+        item1: 'Based on Advanced AI Technology',
         item2: 'Real-time Generation Preview',
         item3: 'Cloud Secure Storage',
         item4: 'Multi-language Support',
