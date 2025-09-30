@@ -4,6 +4,27 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- 安全头部 -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
+    
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' 'unsafe-eval' https://aistudiocdn.com https://www.googletagmanager.com https://browser.sentry-cdn.com;
+      style-src 'self' 'unsafe-inline';
+      img-src 'self' data: https: blob:;
+      font-src 'self' data:;
+      connect-src 'self' https://nutnbcfeatbbdygmkqib.supabase.co https://api.stripe.com https://o4510095342567424.ingest.us.sentry.io https://www.google-analytics.com;
+      frame-src 'none';
+      object-src 'none';
+      base-uri 'self';
+      form-action 'self';
+    " />
     <title>Och AI - Transform Every Photo Into Art</title>
     <meta name="description" content="AI-powered image generation and editing. Transform your photos into 3D figurines, anime styles, HD enhancement and more. 50+ AI effects available." />
     <meta name="keywords" content="AI image generation, photo editing, 3D figurine, anime style, HD enhancement, artificial intelligence, image transformation" />

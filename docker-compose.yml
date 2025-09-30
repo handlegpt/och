@@ -27,10 +27,18 @@ services:
     # Enhanced security options for production
     security_opt:
       - no-new-privileges:true
+      - seccomp:unconfined
     read_only: true  # Read-only filesystem
     tmpfs:
       - /tmp
       - /var/tmp
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETGID
+      - SETUID
+    user: "1001:1001"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:4173/"]
       interval: 30s
