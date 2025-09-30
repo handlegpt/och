@@ -360,6 +360,28 @@ export default {
         noCard: 'No credit card required • 3 free generations • Powered by Nano Banana AI',
       },
     },
+    gallery: {
+      title: 'Gallery Showcase',
+      subtitle: 'See amazing works created by other users and get inspired for your own creations',
+      cases: {
+        figurine: {
+          title: '3D Figurine',
+          description: 'Transform photos into collectible 3D figurines',
+        },
+        anime: {
+          title: 'Anime Style',
+          description: 'Convert real photos to anime characters',
+        },
+        plushie: {
+          title: 'Plushie Style',
+          description: 'Create adorable plushie versions',
+        },
+        artistic: {
+          title: 'Artistic Effects',
+          description: 'Apply various artistic transformations',
+        },
+      },
+    },
     cta: {
       title: 'Ready to Start Creating?',
       subtitle: 'Join thousands of creators and experience the infinite possibilities of AI',
