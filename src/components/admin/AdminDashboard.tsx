@@ -79,6 +79,25 @@ export const AdminDashboard: React.FC = () => {
     )
   }
 
+  // 权限检查
+  if (!isAdmin) {
+    return (
+      <div className='min-h-screen bg-[var(--bg-primary)] flex items-center justify-center'>
+        <div className='text-center p-8 bg-[var(--bg-card-alpha)] backdrop-blur-lg rounded-xl border border-[var(--border-primary)]'>
+          <div className='text-6xl mb-4'>🚫</div>
+          <h2 className='text-2xl font-bold text-[var(--text-primary)] mb-2'>访问被拒绝</h2>
+          <p className='text-[var(--text-secondary)] mb-6'>您没有管理员权限访问此页面。</p>
+          <button
+            onClick={() => (window.location.href = '/')}
+            className='px-6 py-3 bg-[var(--accent-primary)] text-[var(--text-on-accent)] rounded-lg hover:bg-[var(--accent-primary-hover)] transition-colors'
+          >
+            返回首页
+          </button>
+        </div>
+      </div>
+    )
+  }
+
   if (loading) {
     return (
       <div className='min-h-screen bg-[var(--bg-primary)] flex items-center justify-center'>

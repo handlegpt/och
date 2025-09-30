@@ -62,7 +62,7 @@ export const UserInfo: React.FC = () => {
       <div className='flex items-center gap-2'>
         {isAdmin && (
           <button
-            onClick={() => setShowAdminPanel(!showAdminPanel)}
+            onClick={() => (window.location.href = '/admingame')}
             className='px-3 py-1.5 text-xs font-semibold text-[var(--accent-primary)] bg-[var(--accent-primary)] bg-opacity-20 rounded-md hover:bg-opacity-30 transition-colors duration-200 flex items-center gap-1'
           >
             <svg className='w-3 h-3' fill='none' stroke='currentColor' viewBox='0 0 24 24'>

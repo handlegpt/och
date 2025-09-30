@@ -34,7 +34,7 @@ const App: React.FC = () => {
             <Route path='/payment/success' element={<PaymentSuccessPage />} />
             <Route path='/privacy' element={<PrivacyPage />} />
             <Route path='/settings' element={<SettingsPage />} />
-            <Route path='/admin' element={<AdminDashboard />} />
+            <Route path='/admingame' element={<AdminDashboard />} />
             <Route path='/auth/callback' element={<AuthCallback />} />
           </Routes>
 
