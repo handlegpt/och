@@ -808,6 +808,7 @@ export default {
     year: '年',
     month: '月',
     free: '免费',
+    customPricing: '定制报价',
     mostPopular: '最受欢迎',
     save: '节省 {percent}%',
     saveAmount: '节省 {percent}%',

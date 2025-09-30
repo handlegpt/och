@@ -170,6 +170,10 @@ export const PricingPage: React.FC = () => {
                     <div className='text-4xl font-black text-[var(--text-primary)]'>
                       {t('app.pricing.free')}
                     </div>
+                  ) : tier.price.monthly === -1 ? (
+                    <div className='text-3xl font-bold text-[var(--accent-primary)]'>
+                      {t('app.pricing.customPricing')}
+                    </div>
                   ) : (
                     <div className='flex items-baseline justify-center'>
                       <span className='text-5xl font-black text-[var(--text-primary)]'>
@@ -228,12 +232,18 @@ export const PricingPage: React.FC = () => {
                 className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 transform hover:scale-105 ${
                   tier.id === 'free'
                     ? 'bg-[var(--bg-secondary)] text-[var(--text-primary)] border-2 border-[var(--border-primary)] hover:bg-[var(--bg-primary)] hover:border-[var(--accent-primary)]'
-                    : tier.popular
+                    : tier.id === 'enterprise'
                       ? 'bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white shadow-2xl hover:shadow-[var(--accent-primary)]/25'
-                      : 'bg-[var(--accent-primary)] text-white hover:opacity-90 shadow-lg hover:shadow-xl'
+                      : tier.popular
+                        ? 'bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white shadow-2xl hover:shadow-[var(--accent-primary)]/25'
+                        : 'bg-[var(--accent-primary)] text-white hover:opacity-90 shadow-lg hover:shadow-xl'
                 }`}
               >
-                {tier.id === 'free' ? t('app.pricing.getStarted') : t('app.pricing.selectPlan')}
+                {tier.id === 'free'
+                  ? t('app.pricing.getStarted')
+                  : tier.id === 'enterprise'
+                    ? t('app.pricing.contactSales')
+                    : t('app.pricing.selectPlan')}
               </button>
 
               {/* 企业版特殊处理 */}

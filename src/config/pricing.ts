@@ -122,8 +122,8 @@ export const PRICING_TIERS: PricingTier[] = [
     name: 'pricing.tiers.enterprise.name',
     description: 'pricing.tiers.enterprise.description',
     price: {
-      monthly: 0, // 定制报价
-      yearly: 0,
+      monthly: -1, // 定制报价，-1表示需要联系销售
+      yearly: -1,
     },
     limits: {
       dailyGenerations: -1, // 无限制

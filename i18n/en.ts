@@ -753,6 +753,7 @@ export default {
     year: 'year',
     month: 'month',
     free: 'Free',
+    customPricing: 'Custom Pricing',
     mostPopular: 'Most Popular',
     save: 'Save {percent}%',
     saveAmount: 'Save {percent}%',
