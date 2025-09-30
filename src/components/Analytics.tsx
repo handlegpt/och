@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
 // Google Analytics 配置
-const GA_TRACKING_ID = import.meta.env.VITE_GA_TRACKING_ID || 'G-E7DE94T8NW'
+const GA_TRACKING_ID = import.meta.env.VITE_GA_TRACKING_ID
 
 // 调试信息
 console.log('🔍 GA_TRACKING_ID:', GA_TRACKING_ID)
