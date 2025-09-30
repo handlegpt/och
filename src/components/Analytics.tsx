@@ -16,7 +16,7 @@ export const initGoogleAnalytics = () => {
 
   // 初始化 gtag
   window.dataLayer = window.dataLayer || []
-  function gtag(...args: any[]) {
+  const gtag = (...args: any[]) => {
     window.dataLayer.push(args)
   }
   window.gtag = gtag
