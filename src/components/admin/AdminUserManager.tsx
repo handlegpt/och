@@ -27,14 +27,26 @@ export const AdminUserManager: React.FC = () => {
     if (!supabase) return
 
     try {
+      // 简化版本：只获取 user_profiles 数据，不包含邮箱
       const { data, error } = await supabase
         .from('user_profiles')
-        .select('id, email, subscription_tier, created_at, last_active_at')
+        .select('id, subscription_tier, created_at, last_active_at, user_id')
         .order('created_at', { ascending: false })
         .limit(50)
 
       if (error) throw error
-      setUsers(data || [])
+
+      // 转换数据格式，使用 user_id 作为邮箱显示
+      const transformedUsers = (data || []).map(user => ({
+        id: user.id,
+        email: `用户 ${user.user_id.slice(0, 8)}...`, // 显示用户ID的前8位
+        subscription_tier: user.subscription_tier,
+        created_at: user.created_at,
+        last_active_at: user.last_active_at,
+        user_id: user.user_id,
+      }))
+
+      setUsers(transformedUsers)
     } catch (error) {
       console.error('Error fetching users:', error)
     } finally {
@@ -82,22 +94,22 @@ export const AdminUserManager: React.FC = () => {
 
   const addAdminByEmail = async () => {
     if (!newAdminEmail.trim()) {
-      setMessage('❌ 请输入邮箱地址')
+      setMessage('❌ 请输入用户ID')
       return
     }
 
     if (!supabase) return
 
     try {
-      // 查找用户
-      const { data: user, error: findError } = await supabase
+      // 直接通过 user_profiles 的 ID 查找用户
+      const { data: userProfile, error: profileError } = await supabase
         .from('user_profiles')
-        .select('id, email')
-        .eq('email', newAdminEmail.trim())
+        .select('id, user_id')
+        .eq('id', newAdminEmail.trim())
         .single()
 
-      if (findError) {
-        setMessage(`❌ 用户 ${newAdminEmail} 不存在`)
+      if (profileError || !userProfile) {
+        setMessage(`❌ 用户ID ${newAdminEmail} 不存在`)
         return
       }
 
@@ -105,11 +117,11 @@ export const AdminUserManager: React.FC = () => {
       const { error: updateError } = await supabase
         .from('user_profiles')
         .update({ subscription_tier: 'admin' })
-        .eq('id', user.id)
+        .eq('id', userProfile.id)
 
       if (updateError) throw updateError
 
-      setMessage(`✅ ${newAdminEmail} 已设置为管理员`)
+      setMessage(`✅ 用户 ${userProfile.user_id.slice(0, 8)}... 已设置为管理员`)
       setNewAdminEmail('')
       fetchUsers() // 刷新用户列表
     } catch (error) {
@@ -140,12 +152,15 @@ export const AdminUserManager: React.FC = () => {
     <div className='space-y-6'>
       <div className='bg-white rounded-lg shadow p-6'>
         <h3 className='text-lg font-semibold mb-4'>添加管理员</h3>
+        <p className='text-sm text-gray-600 mb-4'>
+          输入用户ID来设置管理员权限（用户ID在下方表格中显示）
+        </p>
         <div className='flex gap-2'>
           <input
-            type='email'
+            type='text'
             value={newAdminEmail}
             onChange={e => setNewAdminEmail(e.target.value)}
-            placeholder='输入用户邮箱'
+            placeholder='输入用户ID'
             className='flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
           />
           <button
@@ -173,7 +188,7 @@ export const AdminUserManager: React.FC = () => {
             <thead className='bg-gray-50'>
               <tr>
                 <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-                  邮箱
+                  用户ID
                 </th>
                 <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
                   权限等级
