@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useAuth } from '../../hooks/useAuth'
 import { supabase } from '../../lib/supabase'
 import { MonitoringDashboard } from './MonitoringDashboard'
+import { AdminUserManager } from './AdminUserManager'
 // import { useTranslation } from '../../../i18n/context';
 // import { DataPersistenceService } from '../../services/dataPersistence';
 
@@ -278,10 +279,7 @@ export const AdminPanel: React.FC = () => {
       {/* 用户管理标签页 */}
       {activeTab === 'users' && (
         <div className='space-y-6'>
-          <div className='bg-[var(--bg-card-alpha)] backdrop-blur-lg rounded-xl border border-[var(--border-primary)] p-6'>
-            <h3 className='text-lg font-semibold text-[var(--text-primary)] mb-4'>用户管理</h3>
-            <p className='text-[var(--text-secondary)]'>用户管理功能开发中...</p>
-          </div>
+          <AdminUserManager />
         </div>
       )}
 

@@ -254,7 +254,8 @@ export const useAuthProvider = () => {
   const isAdmin =
     userProfile?.subscription_tier === 'admin' ||
     user?.email?.includes('@och.ai') ||
-    user?.email === 'admin@och.ai'
+    user?.email === 'admin@och.ai' ||
+    user?.email === 'your-email@example.com' // 添加你的邮箱
 
   return {
     user,
