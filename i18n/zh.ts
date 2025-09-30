@@ -657,7 +657,7 @@ export default {
         privateDeployment: '私有部署',
         whiteLabel: '白标解决方案',
         free: {
-          dailyGenerations: '5次',
+          dailyGenerations: '3次',
         },
         standard: {
           dailyGenerations: '10次',
@@ -832,7 +832,7 @@ export default {
       privateDeployment: '私有部署',
       whiteLabel: '白标解决方案',
       free: {
-        dailyGenerations: '5次',
+        dailyGenerations: '3次',
       },
       standard: {
         dailyGenerations: '10次',

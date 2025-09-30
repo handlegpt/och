@@ -40,7 +40,7 @@ export const PRICING_TIERS: PricingTier[] = [
       yearly: 0,
     },
     limits: {
-      dailyGenerations: 5,
+      dailyGenerations: 3,
       maxBatchSize: 1,
       maxResolution: '1024x1024',
       apiCalls: 0,

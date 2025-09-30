@@ -603,7 +603,7 @@ export default {
         privateDeployment: 'Private Deployment',
         whiteLabel: 'White Label Solution',
         free: {
-          dailyGenerations: '5 times',
+          dailyGenerations: '3 times',
         },
         standard: {
           dailyGenerations: '10 times',
@@ -778,7 +778,7 @@ export default {
       privateDeployment: 'Private Deployment',
       whiteLabel: 'White Label Solution',
       free: {
-        dailyGenerations: '5 times',
+        dailyGenerations: '3 times',
       },
       standard: {
         dailyGenerations: '10 times',
@@ -880,7 +880,7 @@ export default {
         privateDeployment: 'Private Deployment',
         whiteLabel: 'White Label Solution',
         free: {
-          dailyGenerations: '5 times',
+          dailyGenerations: '3 times',
         },
         standard: {
           dailyGenerations: '10 times',
