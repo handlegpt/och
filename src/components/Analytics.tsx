@@ -4,9 +4,27 @@ import { useLocation } from 'react-router-dom'
 // Google Analytics 配置
 const GA_TRACKING_ID = import.meta.env.VITE_GA_TRACKING_ID
 
+// 调试信息
+console.log('🔍 GA_TRACKING_ID:', GA_TRACKING_ID)
+console.log('🔍 import.meta.env:', import.meta.env)
+
 // 初始化 Google Analytics
 export const initGoogleAnalytics = () => {
-  if (!GA_TRACKING_ID || typeof window === 'undefined') return
+  console.log('🔍 initGoogleAnalytics called')
+  console.log('🔍 GA_TRACKING_ID:', GA_TRACKING_ID)
+  console.log('🔍 typeof window:', typeof window)
+
+  if (!GA_TRACKING_ID) {
+    console.warn('⚠️ GA_TRACKING_ID is not defined')
+    return
+  }
+
+  if (typeof window === 'undefined') {
+    console.warn('⚠️ window is undefined (SSR)')
+    return
+  }
+
+  console.log('✅ Starting Google Analytics initialization...')
 
   // 加载 Google Analytics 脚本
   const script = document.createElement('script')
@@ -96,11 +114,14 @@ export const Analytics: React.FC = () => {
   const location = useLocation()
 
   useEffect(() => {
+    console.log('🔍 Analytics component mounted')
+    console.log('🔍 GA_TRACKING_ID in component:', GA_TRACKING_ID)
     // 初始化 Google Analytics
     initGoogleAnalytics()
   }, [])
 
   useEffect(() => {
+    console.log('🔍 Location changed:', location.pathname + location.search)
     // 跟踪页面浏览
     if (GA_TRACKING_ID) {
       trackPageView(location.pathname + location.search)
