@@ -133,14 +133,14 @@ export const PricingPage: React.FC = () => {
               key={tier.id}
               className={`relative bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl border-2 p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-[var(--accent-primary)]/20 hover:-translate-y-2 ${
                 tier.popular
-                  ? 'border-[var(--accent-primary)] ring-2 ring-[var(--accent-primary)] ring-opacity-30 shadow-2xl shadow-[var(--accent-primary)]/20'
+                  ? 'border-[var(--accent-primary)] ring-2 ring-[var(--accent-primary)] ring-opacity-30 shadow-2xl shadow-[var(--accent-primary)]/20 mt-6'
                   : 'border-[var(--border-primary)] hover:border-[var(--accent-primary)]'
               } ${selectedTier === tier.id ? 'ring-2 ring-[var(--accent-primary)]' : ''}`}
             >
               {/* 推荐标签 - 参考 Nano Banana AI */}
               {tier.popular && (
-                <div className='absolute -top-4 left-1/2 transform -translate-x-1/2'>
-                  <span className='bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white px-6 py-2 text-sm font-bold rounded-full shadow-lg'>
+                <div className='absolute -top-3 left-1/2 transform -translate-x-1/2 z-10'>
+                  <span className='bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white px-8 py-2 text-sm font-bold rounded-full shadow-xl border-2 border-white/20 backdrop-blur-sm whitespace-nowrap'>
                     {t('app.pricing.mostPopular')}
                   </span>
                 </div>
