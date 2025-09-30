@@ -270,6 +270,7 @@ export default {
       free: 'Free',
       professional: 'Professional',
       enterprise: 'Enterprise',
+      monthly: 'Monthly',
       tryFree: 'Try Free Now',
       upgradePro: 'Upgrade to Pro',
       contactSales: 'Contact Sales',
