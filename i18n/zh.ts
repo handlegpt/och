@@ -280,6 +280,12 @@ export default {
         commercial: '商业用途',
         support: '优先支持',
       },
+      proFeatures: {
+        generations: '100 次生成/月',
+        quality: '高清质量输出',
+        priority: '优先处理',
+        styles: '包含所有艺术风格',
+      },
       enterpriseFeatures: {
         generations: '无限生成',
         effects: '所有AI效果',
