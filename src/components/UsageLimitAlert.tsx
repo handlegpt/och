@@ -45,8 +45,8 @@ export const UsageLimitAlert: React.FC = () => {
           bg: 'bg-red-500/10 border-red-500/20',
           text: 'text-red-400',
           icon: '🚫',
-          title: '今日生成次数已用完',
-          message: `您今天已使用 ${usedToday}/${dailyLimit} 次生成，请明天再试或升级账户。`,
+          title: '本月生成次数已用完',
+          message: `您本月已使用 ${usedToday}/${dailyLimit} 次生成，请下月再试或升级账户。`,
         }
       case 'warning':
         return {
@@ -54,7 +54,7 @@ export const UsageLimitAlert: React.FC = () => {
           text: 'text-yellow-400',
           icon: '⚠️',
           title: '使用量接近限制',
-          message: `您今天已使用 ${usedToday}/${dailyLimit} 次生成，还剩 ${remainingToday} 次。`,
+          message: `您本月已使用 ${usedToday}/${dailyLimit} 次生成，还剩 ${remainingToday} 次。`,
         }
       case 'info':
         return {
@@ -62,7 +62,7 @@ export const UsageLimitAlert: React.FC = () => {
           text: 'text-blue-400',
           icon: 'ℹ️',
           title: '使用量提醒',
-          message: `您今天已使用 ${usedToday}/${dailyLimit} 次生成，还剩 ${remainingToday} 次。`,
+          message: `您本月已使用 ${usedToday}/${dailyLimit} 次生成，还剩 ${remainingToday} 次。`,
         }
       default:
         return null

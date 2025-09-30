@@ -70,9 +70,9 @@ export const useUsageLimit = () => {
           const result = data[0] // 函数返回的是数组
           console.log('Usage limit data:', result)
           setUsageLimit({
-            dailyLimit: result.daily_limit || 3,
-            usedToday: result.used_today || 0,
-            remainingToday: result.remaining || 3,
+            dailyLimit: result.daily_limit || 3, // 实际是每月限制
+            usedToday: result.used_today || 0, // 实际是本月已用
+            remainingToday: result.remaining || 3, // 实际是本月剩余
             canGenerate: result.can_generate !== false,
           })
         } else {
