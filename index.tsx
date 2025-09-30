@@ -19,14 +19,14 @@ if (!rootElement) {
 const root = ReactDOM.createRoot(rootElement)
 root.render(
   <React.StrictMode>
-    <LanguageProvider>
-      <ThemeProvider>
-        <AuthProvider>
-          <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+    <ThemeProvider>
+      <AuthProvider>
+        <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+          <LanguageProvider>
             <App />
-          </Router>
-        </AuthProvider>
-      </ThemeProvider>
-    </LanguageProvider>
+          </LanguageProvider>
+        </Router>
+      </AuthProvider>
+    </ThemeProvider>
   </React.StrictMode>
 )

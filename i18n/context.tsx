@@ -21,24 +21,28 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
   const [language, setLanguage] = useState<Language>(() => {
     try {
       // 首先检查URL参数中的语言设置
-      const urlParams = new URLSearchParams(location.search)
-      const urlLang = urlParams.get('lang')
-      if (urlLang === 'en' || urlLang === 'zh') {
-        return urlLang
+      if (location?.search) {
+        const urlParams = new URLSearchParams(location.search)
+        const urlLang = urlParams.get('lang')
+        if (urlLang === 'en' || urlLang === 'zh') {
+          return urlLang
+        }
       }
 
       // 然后检查是否有保存的语言设置
-      const savedLang = localStorage.getItem('language')
-      if (savedLang === 'en' || savedLang === 'zh') {
-        return savedLang
-      }
+      if (typeof window !== 'undefined') {
+        const savedLang = localStorage.getItem('language')
+        if (savedLang === 'en' || savedLang === 'zh') {
+          return savedLang
+        }
 
-      // 如果没有保存的设置，根据浏览器语言自动选择
-      const browserLang = navigator.language || navigator.languages?.[0] || 'en'
+        // 如果没有保存的设置，根据浏览器语言自动选择
+        const browserLang = navigator.language || navigator.languages?.[0] || 'en'
 
-      // 检查是否是中文（包括 zh-CN, zh-TW, zh-HK 等）
-      if (browserLang.startsWith('zh')) {
-        return 'zh'
+        // 检查是否是中文（包括 zh-CN, zh-TW, zh-HK 等）
+        if (browserLang.startsWith('zh')) {
+          return 'zh'
+        }
       }
 
       // 其他情况默认英文
@@ -51,16 +55,20 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
 
   // 监听URL变化并更新语言
   useEffect(() => {
-    const urlParams = new URLSearchParams(location.search)
-    const urlLang = urlParams.get('lang')
-    if (urlLang === 'en' || urlLang === 'zh') {
-      setLanguage(urlLang)
+    if (location?.search) {
+      const urlParams = new URLSearchParams(location.search)
+      const urlLang = urlParams.get('lang')
+      if (urlLang === 'en' || urlLang === 'zh') {
+        setLanguage(urlLang)
+      }
     }
   }, [location.search])
 
   useEffect(() => {
     try {
-      localStorage.setItem('language', language)
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('language', language)
+      }
     } catch (e) {
       console.error('Failed to save language to localStorage', e)
     }
