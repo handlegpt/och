@@ -654,13 +654,13 @@ export const HomePage: React.FC = () => {
           <div className='text-center mb-16'>
             <div className='inline-flex items-center gap-2 px-4 py-2 bg-[var(--accent-secondary)]/10 border border-[var(--accent-secondary)]/20 rounded-full text-sm text-[var(--accent-secondary)] mb-6'>
               <span>🛡️</span>
-              值得信赖与安全
+              {t('home.pricing.trusted.title')}
             </div>
             <h2 className='text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-6'>
-              基于先进 AI 技术构建
+              {t('home.pricing.trusted.subtitle')}
             </h2>
             <p className='text-xl text-[var(--text-secondary)] max-w-3xl mx-auto leading-relaxed'>
-              由 Nano Banana AI 驱动，使用 Google 的 Gemini 2.5 Flash Image API 提供卓越结果
+              {t('home.pricing.trusted.description')}
             </p>
           </div>
 
@@ -671,11 +671,13 @@ export const HomePage: React.FC = () => {
                 🤖
               </div>
               <h3 className='text-xl font-bold text-[var(--text-primary)] mb-3'>
-                由 Nano Banana AI 驱动
+                {t('home.pricing.powered.title')}
               </h3>
               <p className='text-[var(--text-secondary)] text-sm leading-relaxed'>
-                先进的 AI 技术，利用 Google 的 Gemini 2.5 Flash Image API
-                提供卓越的角色一致性和场景保持
+                {t('home.pricing.powered.subtitle')}
+              </p>
+              <p className='text-[var(--text-secondary)] text-sm leading-relaxed mt-2'>
+                {t('home.pricing.powered.description')}
               </p>
             </div>
 
@@ -684,9 +686,14 @@ export const HomePage: React.FC = () => {
               <div className='w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4'>
                 🔒
               </div>
-              <h3 className='text-xl font-bold text-[var(--text-primary)] mb-3'>隐私优先</h3>
+              <h3 className='text-xl font-bold text-[var(--text-primary)] mb-3'>
+                {t('home.pricing.privacy.title')}
+              </h3>
               <p className='text-[var(--text-secondary)] text-sm leading-relaxed'>
-                您的照片永远不会被存储、分享或用于训练。完整的隐私保护，处理完成后自动删除
+                {t('home.pricing.privacy.subtitle')}
+              </p>
+              <p className='text-[var(--text-secondary)] text-sm leading-relaxed mt-2'>
+                {t('home.pricing.privacy.description')}
               </p>
             </div>
 
@@ -695,9 +702,11 @@ export const HomePage: React.FC = () => {
               <div className='w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4'>
                 ⭐
               </div>
-              <h3 className='text-xl font-bold text-[var(--text-primary)] mb-3'>用户评价</h3>
+              <h3 className='text-xl font-bold text-[var(--text-primary)] mb-3'>
+                {t('home.pricing.testimonials.title')}
+              </h3>
               <p className='text-[var(--text-secondary)] text-sm leading-relaxed'>
-                "效果惊人！3D 手办效果令人难以置信。比我尝试过的其他 AI 工具要好得多。" - 张女士
+                {t('home.pricing.testimonials.quote')}
               </p>
             </div>
           </div>
@@ -710,45 +719,41 @@ export const HomePage: React.FC = () => {
           <div className='text-center mb-16'>
             <div className='inline-flex items-center gap-2 px-4 py-2 bg-[var(--accent-primary)]/10 border border-[var(--accent-primary)]/20 rounded-full text-sm text-[var(--accent-primary)] mb-6'>
               <span>❓</span>
-              常见问题
+              {t('home.pricing.faq.title')}
             </div>
             <h2 className='text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-6'>
-              您需要了解的一切
+              {t('home.pricing.faq.subtitle')}
             </h2>
             <p className='text-xl text-[var(--text-secondary)] max-w-3xl mx-auto leading-relaxed'>
-              获取关于 och.ai 和我们的 AI 图像生成服务的常见问题答案
+              {t('home.pricing.faq.description')}
             </p>
           </div>
 
           <div className='grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto'>
             {[
               {
-                question: 'och.ai 是如何工作的？',
-                answer:
-                  '只需上传您的照片，选择 AI 艺术风格，几秒钟内即可获得转换后的图像。由 Nano Banana AI 技术驱动。',
+                question: t('home.pricing.faq.questions.0.question'),
+                answer: t('home.pricing.faq.questions.0.answer'),
               },
               {
-                question: '我的数据安全吗？',
-                answer:
-                  '是的！您的照片永远不会被存储、分享或用于训练。完整的隐私保护，处理完成后自动删除。',
+                question: t('home.pricing.faq.questions.1.question'),
+                answer: t('home.pricing.faq.questions.1.answer'),
               },
               {
-                question: '你们提供免费试用吗？',
-                answer: '是的！新用户可以获得 3 次免费生成来试用我们的服务。开始使用无需信用卡。',
+                question: t('home.pricing.faq.questions.2.question'),
+                answer: t('home.pricing.faq.questions.2.answer'),
               },
               {
-                question: '我可以将生成的图像用于商业用途吗？',
-                answer: '当然可以！所有生成的图像都可以用于商业项目、社交媒体、营销材料等。',
+                question: t('home.pricing.faq.questions.3.question'),
+                answer: t('home.pricing.faq.questions.3.answer'),
               },
               {
-                question: 'och.ai 有什么不同？',
-                answer:
-                  '我们使用先进的 Nano Banana AI 技术，与其他 AI 工具相比具有卓越的角色一致性和场景保持能力。',
+                question: t('home.pricing.faq.questions.4.question'),
+                answer: t('home.pricing.faq.questions.4.answer'),
               },
               {
-                question: '如何获得支持？',
-                answer:
-                  '如需技术支持或客户服务，请通过 support@och.ai 联系我们。我们通常在 24 小时内回复。',
+                question: t('home.pricing.faq.questions.5.question'),
+                answer: t('home.pricing.faq.questions.5.answer'),
               },
             ].map((faq, index) => (
               <div
@@ -797,7 +802,7 @@ export const HomePage: React.FC = () => {
           </div>
 
           <div className='text-sm text-[var(--text-secondary)]'>
-            ✨ 无需信用卡 • 3 次免费生成 • 由 Nano Banana AI 驱动
+            ✨ {t('home.pricing.finalCta.noCard')}
           </div>
         </div>
       </section>
