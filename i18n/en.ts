@@ -606,7 +606,7 @@ export default {
           dailyGenerations: '3 times',
         },
         standard: {
-          dailyGenerations: '10 times',
+          dailyGenerations: '50 times',
           batchProcessing: '10 images',
         },
         professional: {
@@ -883,7 +883,7 @@ export default {
           dailyGenerations: '3 times',
         },
         standard: {
-          dailyGenerations: '10 times',
+          dailyGenerations: '50 times',
           batchProcessing: '10 images',
         },
         professional: {

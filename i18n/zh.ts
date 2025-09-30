@@ -660,7 +660,7 @@ export default {
           dailyGenerations: '3次',
         },
         standard: {
-          dailyGenerations: '10次',
+          dailyGenerations: '50次',
           batchProcessing: '10张',
         },
         professional: {
