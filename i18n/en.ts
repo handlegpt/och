@@ -173,6 +173,7 @@ export default {
     howItWorks: {
       title: 'How It Works',
       subtitle: 'Create amazing AI-generated content in just three simple steps',
+      badge: 'How It Works',
       steps: {
         upload: {
           title: 'Upload Your Photo',
