@@ -38,6 +38,7 @@ export const TransformationSelectorEnhanced: React.FC<TransformationSelectorEnha
       description: config?.description,
       difficulty: config?.difficulty,
       estimatedTime: config?.estimatedTime,
+      items: trans.items, // 添加items属性
     }
   })
 
@@ -45,6 +46,12 @@ export const TransformationSelectorEnhanced: React.FC<TransformationSelectorEnha
     (feature: any) => {
       const transformation = transformations.find(t => t.key === feature.key)
       if (transformation) {
+        // 如果是category_effects，需要特殊处理
+        if (transformation.key === 'category_effects' && transformation.items) {
+          // 显示50个艺术效果选项，而不是直接选择
+          // 这里需要展开items并显示为子选项
+          return
+        }
         onSelect(transformation)
       }
     },

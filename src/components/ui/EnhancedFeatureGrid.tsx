@@ -32,6 +32,7 @@ export const EnhancedFeatureGrid: React.FC<EnhancedFeatureGridProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
   const [sortBy, setSortBy] = useState<'default' | 'popular' | 'new' | 'name'>('default')
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
+  const [showCategoryEffects, setShowCategoryEffects] = useState(false)
 
   // 获取所有分类
   const categories = useMemo(() => {
@@ -102,6 +103,11 @@ export const EnhancedFeatureGrid: React.FC<EnhancedFeatureGridProps> = ({
 
   const handleFeatureClick = useCallback(
     (feature: Feature) => {
+      // 如果是category_effects且有items，显示子效果
+      if (feature.key === 'category_effects' && feature.items) {
+        setShowCategoryEffects(true)
+        return
+      }
       onSelect(feature)
     },
     [onSelect]
@@ -263,7 +269,52 @@ export const EnhancedFeatureGrid: React.FC<EnhancedFeatureGridProps> = ({
       </div>
 
       {/* 功能网格/列表 */}
-      {filteredAndSortedFeatures.length === 0 ? (
+      {showCategoryEffects ? (
+        // 显示50个艺术效果
+        <div className='space-y-6'>
+          <div className='flex items-center justify-between'>
+            <h2 className='text-2xl font-bold text-[var(--text-primary)]'>
+              {t('transformations.categories.effects.title')}
+            </h2>
+            <button
+              onClick={() => setShowCategoryEffects(false)}
+              className='flex items-center gap-2 text-[var(--accent-primary)] hover:text-[var(--accent-primary-hover)] transition-colors duration-200 py-2 px-4 rounded-lg hover:bg-[rgba(107,114,128,0.1)]'
+            >
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                className='h-5 w-5'
+                viewBox='0 0 20 20'
+                fill='currentColor'
+              >
+                <path
+                  fillRule='evenodd'
+                  d='M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z'
+                  clipRule='evenodd'
+                />
+              </svg>
+              {t('app.back')}
+            </button>
+          </div>
+          <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4'>
+            {features
+              .find(f => f.key === 'category_effects')
+              ?.items?.map((item: any) => (
+                <button
+                  key={item.key}
+                  onClick={() => onSelect(item)}
+                  className='group flex flex-col items-center justify-center text-center transition-all duration-200 ease-in-out transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[var(--bg-primary)] focus:ring-[var(--accent-primary)] p-4 aspect-square bg-[var(--bg-card)] rounded-xl border border-[var(--border-primary)] hover:border-[var(--accent-primary)]'
+                >
+                  <span className='text-4xl mb-2 transition-transform duration-200 group-hover:scale-110'>
+                    {item.emoji}
+                  </span>
+                  <span className='text-sm font-semibold text-[var(--text-primary)]'>
+                    {t(item.titleKey)}
+                  </span>
+                </button>
+              ))}
+          </div>
+        </div>
+      ) : filteredAndSortedFeatures.length === 0 ? (
         <div className='text-center py-12'>
           <div className='text-6xl mb-4'>🔍</div>
           <h3 className='text-xl font-semibold text-[var(--text-primary)] mb-2'>
