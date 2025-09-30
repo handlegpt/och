@@ -6,11 +6,18 @@ import { withCostControl } from '../src/services/costControl'
 // 支持多种环境变量名称
 const apiKey = process.env.API_KEY || process.env.GEMINI_API_KEY
 
-if (!apiKey) {
-  throw new Error('API_KEY or GEMINI_API_KEY environment variable is not set.')
-}
+// 延迟初始化AI实例，只在需要时检查API密钥
+let ai: GoogleGenAI | null = null
 
-const ai = new GoogleGenAI({ apiKey })
+const getAI = () => {
+  if (!ai) {
+    if (!apiKey) {
+      throw new Error('API_KEY or GEMINI_API_KEY environment variable is not set.')
+    }
+    ai = new GoogleGenAI({ apiKey })
+  }
+  return ai
+}
 
 export async function editImage(
   base64ImageData: string,
@@ -83,7 +90,7 @@ export async function editImage(
     )
 
     const response = (await Promise.race([
-      ai.models.generateContent({
+      getAI().models.generateContent({
         model: 'gemini-2.5-flash-image-preview',
         contents: { parts },
         config: {
@@ -196,7 +203,7 @@ export async function generateVideo(
       }),
     }
 
-    let operation = await ai.models.generateVideos(request)
+    let operation = await getAI().models.generateVideos(request)
 
     onProgress('Polling for results, this may take a few minutes...')
 
@@ -211,7 +218,7 @@ export async function generateVideo(
       }
 
       await new Promise(resolve => setTimeout(resolve, 10000))
-      operation = await ai.operations.getVideosOperation({ operation: operation })
+      operation = await getAI().operations.getVideosOperation({ operation: operation })
     }
 
     if (operation.error) {
