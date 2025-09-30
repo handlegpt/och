@@ -44,15 +44,20 @@ export const TransformationSelectorEnhanced: React.FC<TransformationSelectorEnha
 
   const handleFeatureSelect = useCallback(
     (feature: any) => {
+      // 如果是category_effects，需要特殊处理
+      if (feature.key === 'category_effects' && feature.items) {
+        // 显示50个艺术效果选项，而不是直接选择
+        // 这里需要展开items并显示为子选项
+        return
+      }
+
+      // 查找transformation，如果找不到，说明是子效果，直接传递
       const transformation = transformations.find(t => t.key === feature.key)
       if (transformation) {
-        // 如果是category_effects，需要特殊处理
-        if (transformation.key === 'category_effects' && transformation.items) {
-          // 显示50个艺术效果选项，而不是直接选择
-          // 这里需要展开items并显示为子选项
-          return
-        }
         onSelect(transformation)
+      } else {
+        // 如果是子效果（不在主transformations中），直接传递
+        onSelect(feature)
       }
     },
     [transformations, onSelect]
