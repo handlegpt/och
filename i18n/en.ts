@@ -720,6 +720,7 @@ export default {
       },
       faq: {
         title: 'Frequently Asked Questions',
+        subtitle: 'Get answers to common questions about pricing and services',
         q1: 'Can I cancel my subscription anytime?',
         a1: 'Yes, you can cancel your subscription at any time without any additional fees.',
         q2: 'What payment methods do you support?',

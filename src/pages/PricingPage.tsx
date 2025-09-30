@@ -309,7 +309,7 @@ export const PricingPage: React.FC = () => {
               {t('app.pricing.faq.title')}
             </h2>
             <p className='text-xl text-[var(--text-secondary)] max-w-3xl mx-auto'>
-              解答您关于定价和服务的常见问题
+              {t('app.pricing.faq.subtitle')}
             </p>
           </div>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
