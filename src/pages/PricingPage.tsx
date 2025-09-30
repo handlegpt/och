@@ -39,7 +39,7 @@ export const PricingPage: React.FC = () => {
     // 检查用户是否已登录
     if (!user) {
       // 可以显示登录提示或跳转到登录页面
-      alert('请先登录以订阅服务')
+      alert(t('app.pricing.loginRequired'))
       return
     }
 
