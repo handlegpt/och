@@ -5,7 +5,7 @@ export const BottomNavigation: React.FC = () => {
   const productLinks = [
     { path: '/categories', label: 'AI Editor' },
     { path: '/categories', label: 'Features' },
-    { path: '/social', label: 'Examples' },
+    { path: '/social', label: 'Gallery' },
   ]
 
   const resourceLinks = [

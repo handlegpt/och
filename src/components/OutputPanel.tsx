@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ResultDisplay from '../../components/ResultDisplay'
 import LoadingSpinner from '../../components/LoadingSpinner'
 import ErrorMessage from '../../components/ErrorMessage'
+import { ShareToGallery } from './social/ShareToGallery'
 import type { GenerationState } from '../hooks/useGenerationState'
 
 interface OutputPanelProps {
@@ -17,7 +18,33 @@ export const OutputPanel: React.FC<OutputPanelProps> = ({
   onImageClick,
   t,
 }) => {
-  const { isLoading, loadingMessage, error, generatedContent, primaryImageUrl } = state
+  const {
+    isLoading,
+    loadingMessage,
+    error,
+    generatedContent,
+    primaryImageUrl,
+    selectedTransformation,
+  } = state
+  const [showShareModal, setShowShareModal] = useState(false)
+  const [shareImageUrl, setShareImageUrl] = useState('')
+
+  const handleShareToGallery = (imageUrl: string) => {
+    setShareImageUrl(imageUrl)
+    setShowShareModal(true)
+  }
+
+  const handleShareSuccess = () => {
+    setShowShareModal(false)
+    setShareImageUrl('')
+    // 可以添加成功提示
+    console.log('Successfully shared to gallery!')
+  }
+
+  const handleShareCancel = () => {
+    setShowShareModal(false)
+    setShareImageUrl('')
+  }
 
   return (
     <div className='flex flex-col p-6 bg-[var(--bg-card-alpha)] backdrop-blur-lg rounded-xl border border-[var(--border-primary)] shadow-2xl shadow-black/20'>
@@ -42,6 +69,7 @@ export const OutputPanel: React.FC<OutputPanelProps> = ({
           content={generatedContent}
           onUseImageAsInput={onUseImageAsInput}
           onImageClick={onImageClick}
+          onShareToGallery={handleShareToGallery}
           originalImageUrl={primaryImageUrl}
         />
       )}
@@ -64,6 +92,17 @@ export const OutputPanel: React.FC<OutputPanelProps> = ({
           </svg>
           <p className='mt-2'>{t('app.yourImageWillAppear')}</p>
         </div>
+      )}
+
+      {/* 分享到画廊模态框 */}
+      {showShareModal && shareImageUrl && (
+        <ShareToGallery
+          imageUrl={shareImageUrl}
+          transformationType={selectedTransformation?.key || 'unknown'}
+          title={selectedTransformation?.titleKey ? t(selectedTransformation.titleKey) : undefined}
+          onSuccess={handleShareSuccess}
+          onCancel={handleShareCancel}
+        />
       )}
     </div>
   )

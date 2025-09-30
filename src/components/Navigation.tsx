@@ -82,7 +82,7 @@ export const Navigation: React.FC = () => {
                   : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
               }`}
             >
-              Showcase
+              Gallery
             </Link>
 
             <Link
