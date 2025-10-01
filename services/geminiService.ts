@@ -1,4 +1,4 @@
-import { GoogleGenAI, Modality } from '@google/generative-ai'
+import { GoogleGenAI, Modality } from '@google/genai'
 import type { GeneratedContent } from '../types'
 import { generationRateLimiter, getUserIdentifier } from '../src/services/rateLimiter'
 import { withCostControl } from '../src/services/costControl'
