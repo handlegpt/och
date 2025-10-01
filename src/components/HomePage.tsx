@@ -622,7 +622,7 @@ export const HomePage: React.FC = () => {
                 <h3 className='text-2xl font-bold text-[var(--text-primary)] mb-2'>
                   {t('home.pricing.enterprise')}
                 </h3>
-                <div className='text-4xl font-bold text-[var(--accent-primary)] mb-2'>$19.99</div>
+                <div className='text-4xl font-bold text-[var(--accent-primary)] mb-2'>$29.99</div>
                 <p className='text-[var(--text-secondary)]'>{t('home.pricing.monthly')}</p>
               </div>
               <ul className='space-y-3 mb-6 text-left'>
