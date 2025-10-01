@@ -10,7 +10,7 @@ interface AdminStats {
 }
 
 export const AdminDashboard: React.FC = () => {
-  const { user, isAdmin } = useAuth()
+  const { user, isAdmin, userProfile } = useAuth()
   const [stats, setStats] = useState<AdminStats>({
     totalUsers: 0,
     totalGenerations: 0,
@@ -18,6 +18,16 @@ export const AdminDashboard: React.FC = () => {
     activeUsers: 0,
   })
   const [loading, setLoading] = useState(true)
+
+  // 调试信息
+  if (process.env.NODE_ENV === 'development') {
+    console.log('AdminDashboard - Debug info:', {
+      user: user?.email,
+      isAdmin,
+      userProfile: userProfile?.subscription_tier,
+      isAdminFlag: userProfile?.is_admin,
+    })
+  }
 
   useEffect(() => {
     if (isAdmin && supabase) {
@@ -68,18 +78,6 @@ export const AdminDashboard: React.FC = () => {
     }
   }
 
-  if (!isAdmin) {
-    return (
-      <div className='min-h-screen bg-[var(--bg-primary)] flex items-center justify-center'>
-        <div className='text-center'>
-          <h1 className='text-2xl font-bold text-[var(--text-primary)] mb-4'>访问被拒绝</h1>
-          <p className='text-[var(--text-secondary)]'>您没有管理员权限访问此页面。</p>
-        </div>
-      </div>
-    )
-  }
-
-  // 权限检查
   if (!isAdmin) {
     return (
       <div className='min-h-screen bg-[var(--bg-primary)] flex items-center justify-center'>

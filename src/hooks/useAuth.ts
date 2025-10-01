@@ -271,6 +271,7 @@ export const useAuthProvider = () => {
   }
 
   const isAdmin =
+    userProfile?.is_admin === true ||
     userProfile?.subscription_tier === 'admin' ||
     user?.email?.includes('@och.ai') ||
     user?.email === 'admin@och.ai' ||

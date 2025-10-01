@@ -36,7 +36,8 @@ export interface Database {
           username: string | null
           display_name: string | null
           avatar_url: string | null
-          subscription_tier: 'free' | 'pro' | 'enterprise' | 'admin'
+          subscription_tier: 'free' | 'basic' | 'pro' | 'max' | 'admin'
+          is_admin: boolean
           created_at: string
           updated_at: string
         }
@@ -45,13 +46,15 @@ export interface Database {
           username?: string | null
           display_name?: string | null
           avatar_url?: string | null
-          subscription_tier?: 'free' | 'pro' | 'enterprise' | 'admin'
+          subscription_tier?: 'free' | 'basic' | 'pro' | 'max' | 'admin'
+          is_admin?: boolean
         }
         Update: {
           username?: string | null
           display_name?: string | null
           avatar_url?: string | null
-          subscription_tier?: 'free' | 'pro' | 'enterprise' | 'admin'
+          subscription_tier?: 'free' | 'basic' | 'pro' | 'max' | 'admin'
+          is_admin?: boolean
         }
       }
       ai_generations: {
