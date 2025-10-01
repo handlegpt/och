@@ -115,9 +115,9 @@ export const PRICING_TIERS: PricingTier[] = [
       apiAccess: true,
       commercialUse: true,
       customModels: true,
-      prioritySupport: true,
+      prioritySupport: false, // Pro计划不包含优先支持
       privateDeployment: false,
-      whiteLabel: false,
+      whiteLabel: true, // Pro计划包含白标解决方案
       videoGeneration: true, // Pro计划支持视频生成
     },
     popular: true,
