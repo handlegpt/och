@@ -22,7 +22,6 @@ export interface PricingTier {
     noWatermark: boolean
     customModels: boolean
     prioritySupport: boolean
-    whiteLabel: boolean
     videoGeneration: boolean // 是否支持视频生成
   }
   popular?: boolean
@@ -52,7 +51,6 @@ export const PRICING_TIERS: PricingTier[] = [
       noWatermark: false,
       customModels: false,
       prioritySupport: false,
-      whiteLabel: false,
       videoGeneration: false, // 免费计划不支持视频生成
     },
   },
@@ -80,7 +78,6 @@ export const PRICING_TIERS: PricingTier[] = [
       noWatermark: false, // Basic计划有水印
       customModels: false,
       prioritySupport: false,
-      whiteLabel: false,
       videoGeneration: false, // Basic计划不支持视频生成
     },
   },
@@ -107,7 +104,6 @@ export const PRICING_TIERS: PricingTier[] = [
       highResolution: true,
       noWatermark: true,
       customModels: true,
-      whiteLabel: true, // Pro计划包含白标解决方案
       videoGeneration: true, // Pro计划支持视频生成
       // 不支持的功能
       prioritySupport: false, // Pro计划不包含优先支持
@@ -138,7 +134,6 @@ export const PRICING_TIERS: PricingTier[] = [
       noWatermark: true,
       customModels: true,
       prioritySupport: true,
-      whiteLabel: true, // Max计划包含白标解决方案
       videoGeneration: true, // Max计划支持视频生成
       // 不支持的功能
       // 所有功能都已支持
