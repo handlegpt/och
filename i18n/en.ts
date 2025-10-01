@@ -281,7 +281,7 @@ export default {
         poweredBy: 'Powered by Nano Banana AI',
       },
       proFeatures: {
-        generations: '100 generations per month',
+        generations: '50 generations per month',
         quality: 'HD quality output',
         priority: 'Priority processing',
         styles: 'All art styles included',

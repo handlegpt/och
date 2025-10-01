@@ -272,7 +272,7 @@ export default {
         poweredBy: '由 Nano Banana AI 驱动',
       },
       professionalFeatures: {
-        generations: '100 次生成/月',
+        generations: '50 次生成/月',
         effects: '所有AI效果',
         batch: '批量处理',
         hd: '高清输出',
@@ -282,7 +282,7 @@ export default {
         support: '优先支持',
       },
       proFeatures: {
-        generations: '100 次生成/月',
+        generations: '50 次生成/月',
         quality: '高清质量输出',
         priority: '优先处理',
         styles: '包含所有艺术风格',
