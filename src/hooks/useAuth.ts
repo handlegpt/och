@@ -31,13 +31,19 @@ export const useAuthProvider = () => {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (event, session) => {
-      console.log('🔄 Auth state change:', event, session?.user?.email || 'no user')
+      // 只在开发环境输出认证状态变化日志
+      if (process.env.NODE_ENV === 'development') {
+        console.log('🔄 Auth state change:', event, session?.user?.email || 'no user')
+      }
 
       setSession(session)
       setUser(session?.user ?? null)
 
       if (session?.user) {
-        console.log('👤 User logged in, fetching profile...')
+        // 只在开发环境输出登录日志
+        if (process.env.NODE_ENV === 'development') {
+          console.log('👤 User logged in, fetching profile...')
+        }
         await fetchUserProfile(session.user.id)
 
         // 设置Sentry用户上下文

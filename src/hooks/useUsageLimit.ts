@@ -55,8 +55,6 @@ export const useUsageLimit = () => {
           user_uuid: user.id,
         })
 
-        console.log('Usage limit check result:', { data, error, user_id: user.id })
-
         if (error) {
           console.error('Error checking usage limit:', error)
           // 使用默认限制
@@ -68,7 +66,10 @@ export const useUsageLimit = () => {
           })
         } else if (data && data.length > 0) {
           const result = data[0] // 函数返回的是数组
-          console.log('Usage limit data:', result)
+          // 只在开发环境输出详细日志
+          if (process.env.NODE_ENV === 'development') {
+            console.log('Usage limit data:', result)
+          }
           setUsageLimit({
             dailyLimit: result.daily_limit || 3, // 实际是每月限制
             usedToday: result.used_today || 0, // 实际是本月已用
