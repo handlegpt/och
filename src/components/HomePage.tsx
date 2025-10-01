@@ -576,13 +576,8 @@ export const HomePage: React.FC = () => {
               </button>
             </div>
 
-            {/* Pro Plan */}
-            <div className='bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-6 border-2 border-[var(--accent-primary)] text-center relative'>
-              <div className='absolute -top-3 left-1/2 transform -translate-x-1/2'>
-                <div className='bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white text-xs px-4 py-1 rounded-full font-medium'>
-                  {t('home.pricing.mostPopular')}
-                </div>
-              </div>
+            {/* Basic Plan */}
+            <div className='bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-6 border border-[var(--border-primary)] text-center'>
               <div className='mb-4'>
                 <h3 className='text-2xl font-bold text-[var(--text-primary)] mb-2'>
                   {t('home.pricing.professional')}
@@ -616,8 +611,13 @@ export const HomePage: React.FC = () => {
               </button>
             </div>
 
-            {/* Enterprise Plan */}
-            <div className='bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-6 border border-[var(--border-primary)] text-center'>
+            {/* Pro Plan */}
+            <div className='bg-[var(--bg-card-alpha)] backdrop-blur-xl rounded-2xl p-6 border-2 border-[var(--accent-primary)] text-center relative'>
+              <div className='absolute -top-3 left-1/2 transform -translate-x-1/2'>
+                <div className='bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white text-xs px-4 py-1 rounded-full font-medium'>
+                  {t('home.pricing.mostPopular')}
+                </div>
+              </div>
               <div className='mb-4'>
                 <h3 className='text-2xl font-bold text-[var(--text-primary)] mb-2'>
                   {t('home.pricing.enterprise')}
