@@ -301,7 +301,7 @@ export default {
       },
       tryFree: '立即免费试用',
       selectPlan: '选择方案',
-      contactSales: '联系销售',
+      contactSales: '获取专业版',
       trusted: {
         title: '值得信赖与安全',
         subtitle: '基于先进 AI 技术构建',
@@ -641,7 +641,7 @@ export default {
       dailyGenerations: '每月 {count} 次生成',
       getStarted: '立即开始',
       selectPlan: '选择套餐',
-      contactSales: '联系销售',
+      contactSales: '获取专业版',
       featureComparison: '功能对比',
       featureComparisonDescription: '详细功能对比，帮助您选择最适合的方案',
       featureComparisonDetails: {

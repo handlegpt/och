@@ -273,7 +273,7 @@ export default {
       monthly: 'Monthly',
       tryFree: 'Try Free Now',
       upgradePro: 'Upgrade to Pro',
-      contactSales: 'Contact Sales',
+      contactSales: 'Get Pro',
       freeFeatures: {
         generations: '3 generations per day',
         quality: 'High quality output',
@@ -587,7 +587,7 @@ export default {
       dailyGenerations: '{count} generations per month',
       getStarted: 'Get Started',
       selectPlan: 'Select Plan',
-      contactSales: 'Contact Sales',
+      contactSales: 'Get Pro',
       featureComparison: 'Feature Comparison',
       featureComparisonDescription: 'Detailed feature comparison to help you choose the best plan',
       featureComparisonDetails: {
@@ -864,7 +864,7 @@ export default {
       dailyGenerations: '{count} generations per month',
       getStarted: 'Get Started',
       selectPlan: 'Select Plan',
-      contactSales: 'Contact Sales',
+      contactSales: 'Get Pro',
       featureComparison: 'Feature Comparison',
       featureComparisonDescription: 'Detailed feature comparison to help you choose the best plan',
       featureComparisonDetails: {

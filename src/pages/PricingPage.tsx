@@ -241,13 +241,13 @@ export const PricingPage: React.FC = () => {
               >
                 {tier.id === 'free'
                   ? t('app.pricing.getStarted')
-                  : tier.id === 'enterprise'
+                  : tier.id === 'max'
                     ? t('app.pricing.contactSales')
                     : t('app.pricing.selectPlan')}
               </button>
 
-              {/* 企业版特殊处理 */}
-              {tier.id === 'enterprise' && (
+              {/* Max版特殊处理 */}
+              {tier.id === 'max' && (
                 <div className='mt-4 text-center'>
                   <button className='text-[var(--accent-primary)] text-sm hover:underline'>
                     {t('app.pricing.contactSales')}

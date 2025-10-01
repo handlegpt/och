@@ -122,12 +122,12 @@ export const PaymentSuccessPage: React.FC = () => {
               <div className='flex justify-between'>
                 <span className='text-[var(--text-secondary)]'>计划</span>
                 <span className='text-[var(--text-primary)] font-medium'>
-                  {subscription.planId === 'standard'
-                    ? '标准版'
-                    : subscription.planId === 'professional'
+                  {subscription.planId === 'basic'
+                    ? '基础版'
+                    : subscription.planId === 'pro'
                       ? '专业版'
-                      : subscription.planId === 'enterprise'
-                        ? '企业版'
+                      : subscription.planId === 'max'
+                        ? '旗舰版'
                         : subscription.planId}
                 </span>
               </div>
