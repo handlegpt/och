@@ -288,7 +288,7 @@ export default {
         styles: '包含所有艺术风格',
       },
       enterpriseFeatures: {
-        generations: '无限生成',
+        generations: '200 次生成/月',
         effects: '所有AI效果',
         batch: '无限批量处理',
         hd: '4K输出',

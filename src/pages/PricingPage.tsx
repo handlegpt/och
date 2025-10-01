@@ -306,9 +306,7 @@ export const PricingPage: React.FC = () => {
                         : row.professional}
                     </td>
                     <td className='p-4 text-center text-[var(--text-secondary)]'>
-                      {row.enterprise.startsWith('pricing.')
-                        ? t(`app.${row.enterprise}`)
-                        : row.enterprise}
+                      {row.max.startsWith('pricing.') ? t(`app.${row.max}`) : row.max}
                     </td>
                   </tr>
                 ))}

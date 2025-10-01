@@ -287,7 +287,7 @@ export default {
         styles: 'All art styles included',
       },
       enterpriseFeatures: {
-        generations: 'Unlimited generations',
+        generations: '200 generations per month',
         quality: 'Ultra HD quality',
         api: 'API access',
         support: 'Priority support',
