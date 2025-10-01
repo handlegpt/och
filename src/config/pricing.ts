@@ -77,10 +77,12 @@ export const PRICING_TIERS: PricingTier[] = [
       apiCalls: 0,
     },
     features: {
+      // 支持的功能
       basicEffects: true,
       advancedEffects: true,
       batchProcessing: true,
       highResolution: true,
+      // 不支持的功能
       noWatermark: false, // Basic计划有水印
       apiAccess: false,
       commercialUse: false,
@@ -107,6 +109,7 @@ export const PRICING_TIERS: PricingTier[] = [
       videoMaxDuration: 20, // Pro计划视频最大20秒
     },
     features: {
+      // 支持的功能
       basicEffects: true,
       advancedEffects: true,
       batchProcessing: true,
@@ -115,10 +118,11 @@ export const PRICING_TIERS: PricingTier[] = [
       apiAccess: true,
       commercialUse: true,
       customModels: true,
-      prioritySupport: false, // Pro计划不包含优先支持
-      privateDeployment: false,
       whiteLabel: true, // Pro计划包含白标解决方案
       videoGeneration: true, // Pro计划支持视频生成
+      // 不支持的功能
+      prioritySupport: false, // Pro计划不包含优先支持
+      privateDeployment: false,
     },
     popular: true,
   },
@@ -138,6 +142,7 @@ export const PRICING_TIERS: PricingTier[] = [
       videoMaxDuration: 60, // Max计划视频最大60秒
     },
     features: {
+      // 支持的功能
       basicEffects: true,
       advancedEffects: true,
       batchProcessing: true,
@@ -147,9 +152,10 @@ export const PRICING_TIERS: PricingTier[] = [
       commercialUse: true,
       customModels: true,
       prioritySupport: true,
-      privateDeployment: true,
-      whiteLabel: false,
+      whiteLabel: true, // Max计划包含白标解决方案
       videoGeneration: true, // Max计划支持视频生成
+      // 不支持的功能
+      privateDeployment: false, // Max计划不包含私有部署
     },
     recommended: true,
   },
