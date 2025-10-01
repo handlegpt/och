@@ -272,7 +272,7 @@ export default {
       enterprise: 'Pro',
       monthly: 'Monthly',
       tryFree: 'Try Free Now',
-      upgradePro: 'Upgrade to Pro',
+      upgradePro: 'Get Basic',
       contactSales: 'Get Pro',
       freeFeatures: {
         generations: '3 generations per day',

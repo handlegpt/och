@@ -264,6 +264,7 @@ export default {
       monthly: '每月',
       yearly: '每年',
       mostPopular: '最受欢迎',
+      upgradePro: '获取基础版',
       freeFeatures: {
         generations: '3 次免费生成',
         quality: '标准质量',
