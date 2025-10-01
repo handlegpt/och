@@ -592,8 +592,8 @@ export default {
       featureComparisonDescription: 'Detailed feature comparison to help you choose the best plan',
       featureComparisonDetails: {
         dailyGenerations: 'Monthly Generations',
-        basicEffects: 'Basic AI Effects',
-        advancedEffects: 'Advanced AI Effects',
+        advancedEffects: 'All Style Templates Included',
+        imageDownload: 'Photo Download (PNG, JPG, WebP)',
         batchProcessing: 'Batch Processing',
         highResolution: 'High Resolution Output',
         noWatermark: 'No Watermark',
@@ -607,7 +607,7 @@ export default {
           dailyGenerations: '3 times',
         },
         standard: {
-          dailyGenerations: '800 times',
+          dailyGenerations: '200 times',
           batchProcessing: '10 images',
         },
         professional: {
@@ -618,10 +618,14 @@ export default {
           dailyGenerations: '2000 times',
           batchProcessing: 'Unlimited',
         },
+        max: {
+          dailyGenerations: '2000 times',
+          batchProcessing: 'Unlimited',
+        },
       },
       features: {
-        basicEffects: 'Basic AI Effects',
-        advancedEffects: 'Advanced AI Effects',
+        advancedEffects: 'All Style Templates Included',
+        imageDownload: 'Photo Download (PNG, JPG, WebP)',
         batchProcessing: 'Batch Processing',
         highResolution: 'High Resolution Output',
         noWatermark: 'No Watermark',
@@ -769,8 +773,7 @@ export default {
       'Detailed feature comparison to help you choose the most suitable plan',
     featureComparisonDetails: {
       dailyGenerations: 'Daily Generations',
-      basicEffects: 'Basic AI Effects',
-      advancedEffects: 'Advanced AI Effects',
+      advancedEffects: 'All Style Templates Included',
       batchProcessing: 'Batch Processing',
       highResolution: 'High Resolution Output',
       noWatermark: 'No Watermark',
@@ -796,8 +799,7 @@ export default {
       },
     },
     features: {
-      basicEffects: 'Basic AI Effects',
-      advancedEffects: 'Advanced AI Effects',
+      advancedEffects: 'All Style Templates Included',
       batchProcessing: 'Batch Processing',
       highResolution: 'High Resolution Output',
       noWatermark: 'No Watermark',
@@ -839,8 +841,7 @@ export default {
       a4: 'You can upgrade or downgrade your plan anytime in account settings. Changes will take effect in the next billing cycle.',
     },
     featureLabels: {
-      basicEffects: 'Basic AI Effects',
-      advancedEffects: 'Advanced AI Effects',
+      advancedEffects: 'All Style Templates Included',
       batchProcessing: 'Batch Processing',
       highResolution: 'High Resolution Output',
       noWatermark: 'No Watermark',
@@ -871,8 +872,8 @@ export default {
       featureComparisonDescription: 'Detailed feature comparison to help you choose the best plan',
       featureComparisonDetails: {
         dailyGenerations: 'Monthly Generations',
-        basicEffects: 'Basic AI Effects',
-        advancedEffects: 'Advanced AI Effects',
+        advancedEffects: 'All Style Templates Included',
+        imageDownload: 'Photo Download (PNG, JPG, WebP)',
         batchProcessing: 'Batch Processing',
         highResolution: 'High Resolution Output',
         noWatermark: 'No Watermark',
@@ -886,7 +887,7 @@ export default {
           dailyGenerations: '3 times',
         },
         standard: {
-          dailyGenerations: '800 times',
+          dailyGenerations: '200 times',
           batchProcessing: '10 images',
         },
         professional: {
@@ -897,10 +898,14 @@ export default {
           dailyGenerations: '2000 times',
           batchProcessing: 'Unlimited',
         },
+        max: {
+          dailyGenerations: '2000 times',
+          batchProcessing: 'Unlimited',
+        },
       },
       features: {
-        basicEffects: 'Basic AI Effects',
-        advancedEffects: 'Advanced AI Effects',
+        advancedEffects: 'All Style Templates Included',
+        imageDownload: 'Photo Download (PNG, JPG, WebP)',
         batchProcessing: 'Batch Processing',
         highResolution: 'High Resolution Output',
         noWatermark: 'No Watermark',

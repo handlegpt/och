@@ -15,14 +15,13 @@ export interface PricingTier {
     videoMaxDuration?: number // 视频最大时长（秒）
   }
   features: {
-    basicEffects: boolean
     advancedEffects: boolean
     batchProcessing: boolean
     highResolution: boolean
     noWatermark: boolean
-    customModels: boolean
     prioritySupport: boolean
     videoGeneration: boolean // 是否支持视频生成
+    imageDownload: boolean // 是否支持照片下载
   }
   popular?: boolean
   recommended?: boolean
@@ -44,12 +43,13 @@ export const PRICING_TIERS: PricingTier[] = [
       apiCalls: 0,
     },
     features: {
-      basicEffects: true,
-      advancedEffects: false,
+      // 支持的功能
+      advancedEffects: true, // 免费用户可以使用所有AI样式模板
+      imageDownload: true, // 所有计划都支持照片下载
+      // 不支持的功能
       batchProcessing: false,
       highResolution: false,
       noWatermark: false,
-      customModels: false,
       prioritySupport: false,
       videoGeneration: false, // 免费计划不支持视频生成
     },
@@ -70,14 +70,13 @@ export const PRICING_TIERS: PricingTier[] = [
     },
     features: {
       // 支持的功能
-      basicEffects: true,
       advancedEffects: true,
       batchProcessing: true,
       highResolution: true,
+      noWatermark: true, // Basic计划支持无水印
+      imageDownload: true, // 所有计划都支持照片下载
       // 不支持的功能
-      noWatermark: false, // Basic计划有水印
-      customModels: false,
-      prioritySupport: false,
+      prioritySupport: true, // Basic计划支持优先支持
       videoGeneration: false, // Basic计划不支持视频生成
     },
   },
@@ -98,15 +97,14 @@ export const PRICING_TIERS: PricingTier[] = [
     },
     features: {
       // 支持的功能
-      basicEffects: true,
       advancedEffects: true,
       batchProcessing: true,
       highResolution: true,
       noWatermark: true,
-      customModels: true,
       videoGeneration: true, // Pro计划支持视频生成
+      imageDownload: true, // 所有计划都支持照片下载
       // 不支持的功能
-      prioritySupport: false, // Pro计划不包含优先支持
+      prioritySupport: true, // Pro计划支持优先支持
     },
     popular: true,
   },
@@ -127,14 +125,13 @@ export const PRICING_TIERS: PricingTier[] = [
     },
     features: {
       // 支持的功能
-      basicEffects: true,
       advancedEffects: true,
       batchProcessing: true,
       highResolution: true,
       noWatermark: true,
-      customModels: true,
       prioritySupport: true,
       videoGeneration: true, // Max计划支持视频生成
+      imageDownload: true, // 所有计划都支持照片下载
       // 不支持的功能
       // 所有功能都已支持
     },
@@ -169,15 +166,15 @@ export const FEATURE_COMPARISON = [
     max: 'pricing.featureComparisonDetails.max.dailyGenerations',
   },
   {
-    feature: 'pricing.featureComparisonDetails.basicEffects',
+    feature: 'pricing.featureComparisonDetails.advancedEffects',
     free: '✅',
     standard: '✅',
     professional: '✅',
     max: '✅',
   },
   {
-    feature: 'pricing.featureComparisonDetails.advancedEffects',
-    free: '❌',
+    feature: 'pricing.featureComparisonDetails.imageDownload',
+    free: '✅',
     standard: '✅',
     professional: '✅',
     max: '✅',
@@ -204,38 +201,10 @@ export const FEATURE_COMPARISON = [
     max: '✅',
   },
   {
-    feature: 'pricing.featureComparisonDetails.apiAccess',
+    feature: 'pricing.featureComparisonDetails.videoGeneration',
     free: '❌',
     standard: '❌',
     professional: '✅',
-    max: '✅',
-  },
-  {
-    feature: 'pricing.featureComparisonDetails.commercialUse',
-    free: '❌',
-    standard: '❌',
-    professional: '✅',
-    max: '✅',
-  },
-  {
-    feature: 'pricing.featureComparisonDetails.customModels',
-    free: '❌',
-    standard: '❌',
-    professional: '✅',
-    max: '✅',
-  },
-  {
-    feature: 'pricing.featureComparisonDetails.privateDeployment',
-    free: '❌',
-    standard: '❌',
-    professional: '❌',
-    max: '✅',
-  },
-  {
-    feature: 'pricing.featureComparisonDetails.whiteLabel',
-    free: '❌',
-    standard: '❌',
-    professional: '❌',
     max: '✅',
   },
 ]

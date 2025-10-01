@@ -647,8 +647,8 @@ export default {
       featureComparisonDescription: '详细功能对比，帮助您选择最适合的方案',
       featureComparisonDetails: {
         dailyGenerations: '每月生成次数',
-        basicEffects: '基础AI效果',
-        advancedEffects: '高级AI效果',
+        advancedEffects: '所有AI样式模板',
+        imageDownload: '照片下载 (PNG, JPG, WebP)',
         batchProcessing: '批量处理',
         highResolution: '高分辨率输出',
         noWatermark: '无水印',
@@ -657,11 +657,12 @@ export default {
         customModels: '自定义模型',
         privateDeployment: '私有部署',
         whiteLabel: '白标解决方案',
+        videoGeneration: '视频生成',
         free: {
           dailyGenerations: '3次',
         },
         standard: {
-          dailyGenerations: '800次',
+          dailyGenerations: '200次',
           batchProcessing: '10张',
         },
         professional: {
@@ -672,10 +673,14 @@ export default {
           dailyGenerations: '2000次',
           batchProcessing: '无限制',
         },
+        max: {
+          dailyGenerations: '2000次',
+          batchProcessing: '无限制',
+        },
       },
       features: {
-        basicEffects: '基础AI效果',
-        advancedEffects: '高级AI效果',
+        advancedEffects: '所有AI样式模板',
+        imageDownload: '照片下载 (PNG, JPG, WebP)',
         batchProcessing: '批量处理',
         highResolution: '高分辨率输出',
         noWatermark: '无水印',
@@ -685,6 +690,7 @@ export default {
         prioritySupport: '优先支持',
         privateDeployment: '私有部署',
         whiteLabel: '白标解决方案',
+        videoGeneration: '视频生成',
       },
       tiers: {
         free: {
@@ -822,8 +828,7 @@ export default {
     featureComparisonDescription: '详细功能对比，帮助您选择最适合的方案',
     featureComparisonDetails: {
       dailyGenerations: '每日生成次数',
-      basicEffects: '基础AI效果',
-      advancedEffects: '高级AI效果',
+      advancedEffects: '所有AI样式模板',
       batchProcessing: '批量处理',
       highResolution: '高分辨率输出',
       noWatermark: '无水印',
@@ -833,6 +838,7 @@ export default {
       privateDeployment: '私有部署',
       whiteLabel: '白标解决方案',
       videoGeneration: '视频生成',
+      imageDownload: '照片下载 (PNG, JPG, WebP)',
       free: {
         dailyGenerations: '3次',
       },
@@ -850,8 +856,7 @@ export default {
       },
     },
     features: {
-      basicEffects: '基础AI效果',
-      advancedEffects: '高级AI效果',
+      advancedEffects: '所有AI样式模板',
       batchProcessing: '批量处理',
       highResolution: '高分辨率输出',
       noWatermark: '无水印',
@@ -893,8 +898,7 @@ export default {
       a4: '您可以在账户设置中随时升级或降级套餐，变更将在下个计费周期生效。',
     },
     featureLabels: {
-      basicEffects: '基础AI效果',
-      advancedEffects: '高级AI效果',
+      advancedEffects: '所有AI样式模板',
       batchProcessing: '批量处理',
       highResolution: '高分辨率输出',
       noWatermark: '无水印',
