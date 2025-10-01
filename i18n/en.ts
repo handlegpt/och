@@ -281,13 +281,13 @@ export default {
         poweredBy: 'Powered by Nano Banana AI',
       },
       proFeatures: {
-        generations: '50 generations per month',
+        generations: '800 generations per month',
         quality: 'HD quality output',
         priority: 'Priority processing',
         styles: 'All art styles included',
       },
       enterpriseFeatures: {
-        generations: '200 generations per month',
+        generations: '2000 generations per month',
         quality: 'Ultra HD quality',
         api: 'API access',
         support: 'Priority support',
@@ -606,15 +606,15 @@ export default {
           dailyGenerations: '3 times',
         },
         standard: {
-          dailyGenerations: '50 times',
+          dailyGenerations: '800 times',
           batchProcessing: '10 images',
         },
         professional: {
-          dailyGenerations: '200 times',
+          dailyGenerations: '800 times',
           batchProcessing: 'Unlimited',
         },
         enterprise: {
-          dailyGenerations: 'Unlimited',
+          dailyGenerations: '2000 times',
           batchProcessing: 'Unlimited',
         },
       },
@@ -883,15 +883,15 @@ export default {
           dailyGenerations: '3 times',
         },
         standard: {
-          dailyGenerations: '50 times',
+          dailyGenerations: '800 times',
           batchProcessing: '10 images',
         },
         professional: {
-          dailyGenerations: '200 times',
+          dailyGenerations: '800 times',
           batchProcessing: 'Unlimited',
         },
         enterprise: {
-          dailyGenerations: 'Unlimited',
+          dailyGenerations: '2000 times',
           batchProcessing: 'Unlimited',
         },
       },

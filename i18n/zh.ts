@@ -272,7 +272,7 @@ export default {
         poweredBy: '由 Nano Banana AI 驱动',
       },
       professionalFeatures: {
-        generations: '50 次生成/月',
+        generations: '800 次生成/月',
         effects: '所有AI效果',
         batch: '批量处理',
         hd: '高清输出',
@@ -282,13 +282,13 @@ export default {
         support: '优先支持',
       },
       proFeatures: {
-        generations: '50 次生成/月',
+        generations: '800 次生成/月',
         quality: '高清质量输出',
         priority: '优先处理',
         styles: '包含所有艺术风格',
       },
       enterpriseFeatures: {
-        generations: '200 次生成/月',
+        generations: '2000 次生成/月',
         effects: '所有AI效果',
         batch: '无限批量处理',
         hd: '4K输出',
@@ -661,15 +661,15 @@ export default {
           dailyGenerations: '3次',
         },
         standard: {
-          dailyGenerations: '50次',
+          dailyGenerations: '800次',
           batchProcessing: '10张',
         },
         professional: {
-          dailyGenerations: '200次',
+          dailyGenerations: '800次',
           batchProcessing: '无限制',
         },
         enterprise: {
-          dailyGenerations: '无限制',
+          dailyGenerations: '2000次',
           batchProcessing: '无限制',
         },
       },
@@ -840,11 +840,11 @@ export default {
         batchProcessing: '10张',
       },
       professional: {
-        dailyGenerations: '200次',
+        dailyGenerations: '800次',
         batchProcessing: '无限制',
       },
       enterprise: {
-        dailyGenerations: '无限制',
+        dailyGenerations: '2000次',
         batchProcessing: '无限制',
       },
     },

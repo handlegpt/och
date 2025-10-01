@@ -68,7 +68,7 @@ export const PRICING_TIERS: PricingTier[] = [
       yearly: 99.99,
     },
     limits: {
-      dailyGenerations: 50, // 每月50次
+      dailyGenerations: 200, // 每月200次
       maxBatchSize: 5,
       maxResolution: '2048x2048',
       apiCalls: 0,
@@ -96,7 +96,7 @@ export const PRICING_TIERS: PricingTier[] = [
       yearly: 299.99,
     },
     limits: {
-      dailyGenerations: 200, // 每月200次
+      dailyGenerations: 800, // 每月800次
       maxBatchSize: 20,
       maxResolution: '4096x4096',
       apiCalls: 1000, // 每月API调用次数
@@ -125,7 +125,7 @@ export const PRICING_TIERS: PricingTier[] = [
       yearly: 799.99,
     },
     limits: {
-      dailyGenerations: 500, // 每月500次
+      dailyGenerations: 2000, // 每月2000次
       maxBatchSize: -1, // 无限制
       maxResolution: '4096x4096',
       apiCalls: 5000, // 每月API调用次数
