@@ -81,7 +81,7 @@ export const PRICING_TIERS: PricingTier[] = [
       advancedEffects: true,
       batchProcessing: true,
       highResolution: true,
-      noWatermark: true,
+      noWatermark: false, // Basic计划有水印
       apiAccess: false,
       commercialUse: false,
       customModels: false,
