@@ -602,6 +602,7 @@ export default {
         customModels: 'Custom Models',
         privateDeployment: 'Private Deployment',
         whiteLabel: 'White Label Solution',
+        videoGeneration: 'Video Generation',
         free: {
           dailyGenerations: '3 times',
         },
@@ -630,6 +631,7 @@ export default {
         prioritySupport: 'Priority Support',
         privateDeployment: 'Private Deployment',
         whiteLabel: 'White Label Solution',
+        videoGeneration: 'Video Generation',
       },
       tiers: {
         free: {
@@ -879,6 +881,7 @@ export default {
         customModels: 'Custom Models',
         privateDeployment: 'Private Deployment',
         whiteLabel: 'White Label Solution',
+        videoGeneration: 'Video Generation',
         free: {
           dailyGenerations: '3 times',
         },
@@ -907,6 +910,7 @@ export default {
         prioritySupport: 'Priority Support',
         privateDeployment: 'Private Deployment',
         whiteLabel: 'White Label Solution',
+        videoGeneration: 'Video Generation',
       },
       tiers: {
         free: {

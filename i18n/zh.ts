@@ -832,6 +832,7 @@ export default {
       customModels: '自定义模型',
       privateDeployment: '私有部署',
       whiteLabel: '白标解决方案',
+      videoGeneration: '视频生成',
       free: {
         dailyGenerations: '3次',
       },
