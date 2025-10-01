@@ -79,10 +79,8 @@ export const HomePage: React.FC = () => {
   }, [])
 
   const handleStartCreating = useCallback(() => {
-    const newSearchParams = new URLSearchParams(searchParams)
-    newSearchParams.set('view', 'categories')
-    setSearchParams(newSearchParams, { replace: false })
-  }, [searchParams, setSearchParams])
+    navigate('/categories')
+  }, [navigate])
 
   // 如果用户选择了功能，显示生成界面
   // 检查URL参数或状态中是否有选中的功能
