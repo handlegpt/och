@@ -24,7 +24,6 @@ export interface PricingTier {
     commercialUse: boolean
     customModels: boolean
     prioritySupport: boolean
-    privateDeployment: boolean
     whiteLabel: boolean
     videoGeneration: boolean // 是否支持视频生成
   }
@@ -57,7 +56,6 @@ export const PRICING_TIERS: PricingTier[] = [
       commercialUse: false,
       customModels: false,
       prioritySupport: false,
-      privateDeployment: false,
       whiteLabel: false,
       videoGeneration: false, // 免费计划不支持视频生成
     },
@@ -88,7 +86,6 @@ export const PRICING_TIERS: PricingTier[] = [
       commercialUse: false,
       customModels: false,
       prioritySupport: false,
-      privateDeployment: false,
       whiteLabel: false,
       videoGeneration: false, // Basic计划不支持视频生成
     },
@@ -122,7 +119,6 @@ export const PRICING_TIERS: PricingTier[] = [
       videoGeneration: true, // Pro计划支持视频生成
       // 不支持的功能
       prioritySupport: false, // Pro计划不包含优先支持
-      privateDeployment: false,
     },
     popular: true,
   },
@@ -155,7 +151,7 @@ export const PRICING_TIERS: PricingTier[] = [
       whiteLabel: true, // Max计划包含白标解决方案
       videoGeneration: true, // Max计划支持视频生成
       // 不支持的功能
-      privateDeployment: false, // Max计划不包含私有部署
+      // 所有功能都已支持
     },
     recommended: true,
   },
