@@ -20,8 +20,6 @@ export interface PricingTier {
     batchProcessing: boolean
     highResolution: boolean
     noWatermark: boolean
-    apiAccess: boolean
-    commercialUse: boolean
     customModels: boolean
     prioritySupport: boolean
     whiteLabel: boolean
@@ -52,8 +50,6 @@ export const PRICING_TIERS: PricingTier[] = [
       batchProcessing: false,
       highResolution: false,
       noWatermark: false,
-      apiAccess: false,
-      commercialUse: false,
       customModels: false,
       prioritySupport: false,
       whiteLabel: false,
@@ -82,8 +78,6 @@ export const PRICING_TIERS: PricingTier[] = [
       highResolution: true,
       // 不支持的功能
       noWatermark: false, // Basic计划有水印
-      apiAccess: false,
-      commercialUse: false,
       customModels: false,
       prioritySupport: false,
       whiteLabel: false,
@@ -112,8 +106,6 @@ export const PRICING_TIERS: PricingTier[] = [
       batchProcessing: true,
       highResolution: true,
       noWatermark: true,
-      apiAccess: true,
-      commercialUse: true,
       customModels: true,
       whiteLabel: true, // Pro计划包含白标解决方案
       videoGeneration: true, // Pro计划支持视频生成
@@ -144,8 +136,6 @@ export const PRICING_TIERS: PricingTier[] = [
       batchProcessing: true,
       highResolution: true,
       noWatermark: true,
-      apiAccess: true,
-      commercialUse: true,
       customModels: true,
       prioritySupport: true,
       whiteLabel: true, // Max计划包含白标解决方案
