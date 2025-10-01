@@ -92,14 +92,14 @@ export const StructuredData: React.FC<StructuredDataProps> = ({ type = 'WebSite'
               },
               {
                 '@type': 'Offer',
-                name: 'Standard Plan',
+                name: 'Basic Plan',
                 price: '9.99',
                 priceCurrency: 'USD',
                 description: '50 daily generations, advanced AI effects',
               },
               {
                 '@type': 'Offer',
-                name: 'Professional Plan',
+                name: 'Pro Plan',
                 price: '19.99',
                 priceCurrency: 'USD',
                 description: '200 daily generations, all AI effects, API access',

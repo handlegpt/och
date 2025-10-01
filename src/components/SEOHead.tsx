@@ -143,7 +143,7 @@ export const SEO_CONFIGS = {
   pricing: {
     title: 'Pricing - Och AI',
     description:
-      'Choose the perfect plan for your AI image generation needs. Free, Standard, Professional, and Enterprise plans available.',
+      'Choose the perfect plan for your AI image generation needs. Free, Basic, and Pro plans available.',
     keywords: 'AI pricing, image generation pricing, Och AI plans, subscription pricing',
   },
   profile: {
