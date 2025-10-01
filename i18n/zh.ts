@@ -203,21 +203,21 @@ export default {
         promptBased: {
           title: '基于提示的局部编辑',
           description:
-            '使用 och.ai 进行精确、上下文感知的更新，不会破坏构图。优于传统图像编辑工具。',
+            '使用 Och AI 进行精确、上下文感知的更新，不会破坏构图。优于传统图像编辑工具。',
         },
         multiImage: {
           title: '多图像融合',
-          description: '使用 och.ai 技术无缝融合多张图像。先进的多图像上下文理解，适用于复杂构图。',
+          description: '使用 Och AI 技术无缝融合多张图像。先进的多图像上下文理解，适用于复杂构图。',
         },
         worldKnowledge: {
           title: '世界知识整合',
           description:
-            '利用先进AI的庞大知识库进行上下文准确的图像生成。och.ai 模型理解现实世界的关系和语义。',
+            '利用先进AI的庞大知识库进行上下文准确的图像生成。Och AI 模型理解现实世界的关系和语义。',
         },
         characterConsistency: {
           title: '角色身份保持',
           description:
-            '在编辑过程中保持完美的面部身份和风格一致性。在角色一致性方面领先的 LMArena och.ai 性能。',
+            '在编辑过程中保持完美的面部身份和风格一致性。在角色一致性方面领先的 LMArena Och AI 性能。',
         },
         sceneAware: {
           title: '场景感知处理',
@@ -227,14 +227,14 @@ export default {
         professionalContent: {
           title: '专业内容创作',
           description:
-            '为社交媒体、营销和故事讲述生成一致的AI驱动内容。学习如何在专业工作流程中使用 och.ai。',
+            '为社交媒体、营销和故事讲述生成一致的AI驱动内容。学习如何在专业工作流程中使用 Och AI。',
         },
       },
     },
     gallery: {
-      title: 'och.ai 画廊 - 真实案例',
+      title: 'Och AI 画廊 - 真实案例',
       subtitle:
-        '探索使用 och.ai 先进 AI 技术创建的精彩案例。了解 och.ai 如何提供优于其他模型的结果。',
+        '探索使用 Och AI 先进 AI 技术创建的精彩案例。了解 Och AI 如何提供优于其他模型的结果。',
       cases: {
         figurine: {
           title: '3D 手办转换',
@@ -324,10 +324,10 @@ export default {
       faq: {
         title: '常见问题',
         subtitle: '您需要了解的一切',
-        description: '获取关于 och.ai 和我们的 AI 图像生成服务的常见问题答案',
+        description: '获取关于 Och AI 和我们的 AI 图像生成服务的常见问题答案',
         questions: [
           {
-            question: 'och.ai 是如何工作的？',
+            question: 'Och AI 是如何工作的？',
             answer:
               '只需上传您的照片，选择 AI 艺术风格，几秒钟内即可获得转换后的图像。由 Nano Banana AI 技术驱动。',
           },
@@ -345,7 +345,7 @@ export default {
             answer: '当然可以！所有生成的图像都可以用于商业项目、社交媒体、营销材料等。',
           },
           {
-            question: 'och.ai 有什么不同？',
+            question: 'Och AI 有什么不同？',
             answer:
               '我们使用先进的 Nano Banana AI 技术，与其他 AI 工具相比具有卓越的角色一致性和场景保持能力。',
           },
@@ -359,7 +359,7 @@ export default {
       finalCta: {
         title: '准备好转换您的照片了吗？',
         subtitle:
-          '加入数千名创作者，使用 och.ai 创建令人惊叹的 AI 艺术作品。今天就开始 3 次免费生成！',
+          '加入数千名创作者，使用 Och AI 创建令人惊叹的 AI 艺术作品。今天就开始 3 次免费生成！',
         button: '立即免费试用',
         viewPricing: '查看价格',
         noCard: '无需信用卡 • 3 次免费生成 • 由 Nano Banana AI 驱动',
@@ -368,7 +368,7 @@ export default {
     testimonials: {
       title: '用户评价',
       subtitle:
-        '加入数千名创作者，使用 och.ai 创建令人惊叹的 AI 艺术作品。今天就开始 3 次免费生成！',
+        '加入数千名创作者，使用 Och AI 创建令人惊叹的 AI 艺术作品。今天就开始 3 次免费生成！',
       testimonial:
         '"效果惊人！3D 手办效果令人难以置信。比我尝试过的其他 AI 工具要好得多。" - 张女士',
       cta: '立即开始创作',
@@ -378,9 +378,9 @@ export default {
       title: '常见问题',
       questions: [
         {
-          question: 'och.ai 是如何工作的？',
+          question: 'Och AI 是如何工作的？',
           answer:
-            'och.ai 使用先进的AI技术将您的照片转换为各种艺术风格。只需上传您的照片，选择效果，几秒钟内就能获得转换后的图像。',
+            'Och AI 使用先进的AI技术将您的照片转换为各种艺术风格。只需上传您的照片，选择效果，几秒钟内就能获得转换后的图像。',
         },
         {
           question: '支持哪些图像格式？',

@@ -196,22 +196,22 @@ export default {
         promptBased: {
           title: 'Prompt-Based Local Editing',
           description:
-            'Use och.ai for precise, context-aware updates without breaking composition. Superior to traditional image editing tools.',
+            'Use Och AI for precise, context-aware updates without breaking composition. Superior to traditional image editing tools.',
         },
         multiImage: {
           title: 'Multi-Image Fusion',
           description:
-            'Seamlessly fuse multiple images using och.ai technology. Advanced multi-image context understanding for complex compositions.',
+            'Seamlessly fuse multiple images using Och AI technology. Advanced multi-image context understanding for complex compositions.',
         },
         worldKnowledge: {
           title: 'World Knowledge Integration',
           description:
-            "Leverage advanced AI's vast knowledge base for contextually accurate image generation. och.ai models understand real-world relationships and semantics.",
+            "Leverage advanced AI's vast knowledge base for contextually accurate image generation. Och AI models understand real-world relationships and semantics.",
         },
         characterConsistency: {
           title: 'Character Identity Preservation',
           description:
-            'Maintain perfect facial identity and style consistency during editing. Leading LMArena och.ai performance in character consistency.',
+            'Maintain perfect facial identity and style consistency during editing. Leading LMArena Och AI performance in character consistency.',
         },
         sceneAware: {
           title: 'Scene-Aware Processing',
@@ -221,7 +221,7 @@ export default {
         professionalContent: {
           title: 'Professional Content Creation',
           description:
-            'Generate consistent AI-driven content for social media, marketing and storytelling. Learn how to use och.ai in professional workflows.',
+            'Generate consistent AI-driven content for social media, marketing and storytelling. Learn how to use Och AI in professional workflows.',
         },
       },
     },
@@ -317,10 +317,10 @@ export default {
         title: 'Frequently Asked Questions',
         subtitle: 'Everything you need to know',
         description:
-          'Get answers to common questions about och.ai and our AI image generation service',
+          'Get answers to common questions about Och AI and our AI image generation service',
         questions: [
           {
-            question: 'How does och.ai work?',
+            question: 'How does Och AI work?',
             answer:
               'Simply upload your photo, choose an AI art style, and get your transformed image in seconds. Powered by Nano Banana AI technology.',
           },
@@ -340,7 +340,7 @@ export default {
               'Absolutely! All generated images can be used for commercial projects, social media, marketing materials, and more.',
           },
           {
-            question: 'What makes och.ai different?',
+            question: 'What makes Och AI different?',
             answer:
               'We use advanced Nano Banana AI technology with superior character consistency and scene preservation compared to other AI tools.',
           },
@@ -354,7 +354,7 @@ export default {
       finalCta: {
         title: 'Ready to transform your photos?',
         subtitle:
-          'Join thousands of creators using och.ai to create amazing AI artwork. Start with 3 free generations today!',
+          'Join thousands of creators using Och AI to create amazing AI artwork. Start with 3 free generations today!',
         button: 'Try Free Now',
         viewPricing: 'View Pricing',
         noCard: 'No credit card required • 3 free generations • Powered by Nano Banana AI',
