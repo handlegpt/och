@@ -272,7 +272,7 @@ export default {
         poweredBy: '由 Nano Banana AI 驱动',
       },
       professionalFeatures: {
-        generations: '800 次生成/月',
+        generations: '200 次生成/月',
         effects: '所有AI效果',
         batch: '批量处理',
         hd: '高清输出',
@@ -282,13 +282,13 @@ export default {
         support: '优先支持',
       },
       proFeatures: {
-        generations: '800 次生成/月',
+        generations: '200 次生成/月',
         quality: '高清质量输出',
         priority: '优先处理',
         styles: '包含所有艺术风格',
       },
       enterpriseFeatures: {
-        generations: '2000 次生成/月',
+        generations: '800 次生成/月',
         effects: '所有AI效果',
         batch: '无限批量处理',
         hd: '4K输出',
@@ -912,6 +912,8 @@ export default {
     enterPrompt: '请输入一个描述您想看到的更改的提示。',
     unknown: '发生未知错误。',
     useAsInputFailed: '无法使用生成的图像作为新输入。',
+    videoNotAllowed: '视频生成功能需要Pro或Max订阅计划',
+    permissionCheckFailed: '权限检查失败，请重试',
     title: '出现了一个错误',
     message: '很抱歉，应用程序遇到了一个意外错误。我们已经记录了这个问题，并会尽快修复。',
     retry: '重试',

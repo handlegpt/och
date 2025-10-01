@@ -171,6 +171,18 @@ export async function generateVideo(
   onProgress: (message: string) => void,
   userId?: string
 ): Promise<string> {
+  // 视频生成权限检查
+  if (userId) {
+    const { VideoPermissionService } = await import('../src/services/videoPermissionService')
+    const permission = await VideoPermissionService.checkVideoPermission(userId)
+
+    if (!permission.allowed) {
+      const error = new Error(permission.reason || 'Video generation not allowed')
+      ;(error as any).statusCode = 403
+      throw error
+    }
+  }
+
   // 速率限制检查
   const identifier = getUserIdentifier(userId)
   const limitResult = await generationRateLimiter.checkLimit(identifier)

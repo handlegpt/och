@@ -1,5 +1,6 @@
 import { useCallback } from 'react'
 import { generateVideo } from '../../services/geminiService'
+import { VideoPermissionService } from '../services/videoPermissionService'
 import type { GeneratedContent } from '../../types'
 import type { GenerationState, GenerationActions } from './useGenerationState'
 
@@ -22,6 +23,21 @@ export const useVideoGeneration = ({ state, actions, user, t }: UseVideoGenerati
     if (!promptToUse.trim()) {
       setError(t('app.error.enterPrompt'))
       return
+    }
+
+    // 检查视频生成权限
+    if (user?.id) {
+      try {
+        const permission = await VideoPermissionService.checkVideoPermission(user.id)
+        if (!permission.allowed) {
+          setError(permission.reason || t('app.error.videoNotAllowed'))
+          return
+        }
+      } catch (error) {
+        console.error('Permission check failed:', error)
+        setError(t('app.error.permissionCheckFailed'))
+        return
+      }
     }
 
     setIsLoading(true)

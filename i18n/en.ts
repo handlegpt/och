@@ -281,13 +281,13 @@ export default {
         poweredBy: 'Powered by Nano Banana AI',
       },
       proFeatures: {
-        generations: '800 generations per month',
+        generations: '200 generations per month',
         quality: 'HD quality output',
         priority: 'Priority processing',
         styles: 'All art styles included',
       },
       enterpriseFeatures: {
-        generations: '2000 generations per month',
+        generations: '800 generations per month',
         quality: 'Ultra HD quality',
         api: 'API access',
         support: 'Priority support',
@@ -946,6 +946,8 @@ export default {
     enterPrompt: 'Please enter a prompt describing the change you want to see.',
     unknown: 'An unknown error occurred.',
     useAsInputFailed: 'Could not use the generated image as a new input.',
+    videoNotAllowed: 'Video generation requires Pro or Max subscription plan',
+    permissionCheckFailed: 'Permission check failed, please try again',
     title: 'An Error Occurred',
     message:
       'Sorry, the application encountered an unexpected error. We have logged this issue and will fix it as soon as possible.',

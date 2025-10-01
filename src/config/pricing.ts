@@ -12,6 +12,7 @@ export interface PricingTier {
     maxBatchSize: number
     maxResolution: string
     apiCalls: number
+    videoMaxDuration?: number // 视频最大时长（秒）
   }
   features: {
     basicEffects: boolean
@@ -25,6 +26,7 @@ export interface PricingTier {
     prioritySupport: boolean
     privateDeployment: boolean
     whiteLabel: boolean
+    videoGeneration: boolean // 是否支持视频生成
   }
   popular?: boolean
   recommended?: boolean
@@ -57,6 +59,7 @@ export const PRICING_TIERS: PricingTier[] = [
       prioritySupport: false,
       privateDeployment: false,
       whiteLabel: false,
+      videoGeneration: false, // 免费计划不支持视频生成
     },
   },
   {
@@ -85,6 +88,7 @@ export const PRICING_TIERS: PricingTier[] = [
       prioritySupport: false,
       privateDeployment: false,
       whiteLabel: false,
+      videoGeneration: false, // Basic计划不支持视频生成
     },
   },
   {
@@ -100,6 +104,7 @@ export const PRICING_TIERS: PricingTier[] = [
       maxBatchSize: 20,
       maxResolution: '4096x4096',
       apiCalls: 1000, // 每月API调用次数
+      videoMaxDuration: 20, // Pro计划视频最大20秒
     },
     features: {
       basicEffects: true,
@@ -113,6 +118,7 @@ export const PRICING_TIERS: PricingTier[] = [
       prioritySupport: true,
       privateDeployment: false,
       whiteLabel: false,
+      videoGeneration: true, // Pro计划支持视频生成
     },
     popular: true,
   },
@@ -129,6 +135,7 @@ export const PRICING_TIERS: PricingTier[] = [
       maxBatchSize: -1, // 无限制
       maxResolution: '4096x4096',
       apiCalls: 5000, // 每月API调用次数
+      videoMaxDuration: 60, // Max计划视频最大60秒
     },
     features: {
       basicEffects: true,
@@ -142,6 +149,7 @@ export const PRICING_TIERS: PricingTier[] = [
       prioritySupport: true,
       privateDeployment: true,
       whiteLabel: false,
+      videoGeneration: true, // Max计划支持视频生成
     },
     recommended: true,
   },
