@@ -275,7 +275,7 @@ export default {
       upgradePro: 'Get Basic',
       contactSales: 'Get Pro',
       freeFeatures: {
-        generations: '3 generations per day',
+        generations: '3 generations per month',
         quality: 'High quality output',
         noCard: 'No credit card required',
         poweredBy: 'Powered by Nano Banana AI',

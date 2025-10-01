@@ -266,7 +266,7 @@ export default {
       mostPopular: '最受欢迎',
       upgradePro: '获取基础版',
       freeFeatures: {
-        generations: '3 次免费生成',
+        generations: '3 次生成/月',
         quality: '标准质量',
         noCard: '无需信用卡',
         poweredBy: '由 Nano Banana AI 驱动',
