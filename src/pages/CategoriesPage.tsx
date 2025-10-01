@@ -1,4 +1,4 @@
-import React, { useState, useCallback, lazy, Suspense } from 'react'
+import React, { useState, useCallback, lazy, Suspense, useEffect } from 'react'
 import { useTranslation } from '../../i18n/context'
 import { useAuth } from '../hooks/useAuth'
 import { useGenerationState } from '../hooks/useGenerationState'
@@ -17,6 +17,11 @@ export const CategoriesPage: React.FC = () => {
 
   const [showLoginPrompt, setShowLoginPrompt] = useState(false)
   const [showMagicLinkModal, setShowMagicLinkModal] = useState(false)
+
+  // 确保页面跳转时滚动到顶部
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const handleLoginRequired = useCallback(() => {
     setShowLoginPrompt(true)

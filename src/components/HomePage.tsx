@@ -79,6 +79,8 @@ export const HomePage: React.FC = () => {
   }, [])
 
   const handleStartCreating = useCallback(() => {
+    // 先滚动到顶部，然后跳转
+    window.scrollTo(0, 0)
     navigate('/categories')
   }, [navigate])
 
