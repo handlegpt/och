@@ -4,7 +4,8 @@
 -- 1. 首先查看当前用户
 SELECT 
   id,
-  email,
+  username,
+  display_name,
   subscription_tier,
   is_admin,
   created_at
@@ -13,7 +14,6 @@ ORDER BY created_at DESC
 LIMIT 5;
 
 -- 2. 将最新的用户设置为管理员
--- 注意：请将 'your-email@example.com' 替换为你的实际邮箱
 UPDATE user_profiles 
 SET 
   subscription_tier = 'admin',
@@ -27,7 +27,8 @@ WHERE id IN (
 -- 3. 验证管理员设置
 SELECT 
   id,
-  email,
+  username,
+  display_name,
   subscription_tier,
   is_admin,
   created_at

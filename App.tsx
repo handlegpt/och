@@ -16,6 +16,7 @@ import { AuthCallback } from './src/components/auth/AuthCallback'
 import { UsageLimitAlert } from './src/components/UsageLimitAlert'
 import { AdminDashboard } from './src/components/admin/AdminDashboard'
 import { Analytics } from './src/components/Analytics'
+import AuthTest from './src/components/AuthTest'
 
 const App: React.FC = () => {
   return (
@@ -36,6 +37,7 @@ const App: React.FC = () => {
             <Route path='/settings' element={<SettingsPage />} />
             <Route path='/admingame' element={<AdminDashboard />} />
             <Route path='/auth/callback' element={<AuthCallback />} />
+            <Route path='/auth-test' element={<AuthTest />} />
           </Routes>
 
           {/* 底部导航 */}

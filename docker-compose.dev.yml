@@ -5,10 +5,6 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile.dev
-      args:
-        - GEMINI_API_KEY=${GEMINI_API_KEY}
-        - VITE_SUPABASE_URL=${VITE_SUPABASE_URL}
-        - VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}
     ports:
       - "5173:5173"
     environment:
@@ -16,15 +12,11 @@ services:
       - GEMINI_API_KEY=${GEMINI_API_KEY}
       - VITE_SUPABASE_URL=${VITE_SUPABASE_URL}
       - VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}
+      - VITE_SENTRY_DSN=${VITE_SENTRY_DSN}
+      - VITE_STRIPE_PUBLISHABLE_KEY=${VITE_STRIPE_PUBLISHABLE_KEY}
+      - VITE_GA_TRACKING_ID=${VITE_GA_TRACKING_ID}
     volumes:
       - .:/app
       - /app/node_modules
-      - ./logs:/app/logs
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5173/"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 60s
-
+    command: npm run dev -- --host 0.0.0.0

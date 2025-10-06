@@ -1,4 +1,4 @@
-# Development Dockerfile
+n g# Development Dockerfile
 FROM node:20-alpine
 
 # Install curl for health check
@@ -7,38 +7,17 @@ RUN apk add --no-cache curl
 # Set working directory
 WORKDIR /app
 
-# Copy package files
+# Copy package files first for better caching
 COPY package*.json ./
 
-# Install all dependencies (including dev dependencies)
+# Install all dependencies
 RUN npm ci
 
 # Copy source code
 COPY . .
 
-# Set build-time environment variables
-ARG GEMINI_API_KEY
-ARG VITE_SUPABASE_URL
-ARG VITE_SUPABASE_ANON_KEY
-ENV GEMINI_API_KEY=$GEMINI_API_KEY
-ENV VITE_SUPABASE_URL=$VITE_SUPABASE_URL
-ENV VITE_SUPABASE_ANON_KEY=$VITE_SUPABASE_ANON_KEY
-
-# Create non-root user for security
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S ochai -u 1001
-
-# Change ownership of the app directory
-RUN chown -R ochai:nodejs /app
-USER ochai
-
-# Expose port
+# Expose development port
 EXPOSE 5173
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD curl -f http://localhost:5173/ || exit 1
-
-# Start the development server
-CMD ["npm", "run", "dev"]
-
+# Start development server with IPv4 binding
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]

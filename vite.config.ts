@@ -30,6 +30,11 @@ export default defineConfig(({ mode }) => {
   }
 
   return {
+    server: {
+      host: '0.0.0.0',
+      port: 5174,
+      strictPort: true,
+    },
     define: {
       // 只暴露客户端安全的环境变量
       'process.env.VITE_SENTRY_DSN': JSON.stringify(sentryDsn),
