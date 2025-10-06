@@ -45,8 +45,8 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install serve as a local dependency instead of global
-RUN npm install serve && npm cache clean --force
+# Install http-server as a local dependency instead of global
+RUN npm install http-server && npm cache clean --force
 
 # Copy built application from builder stage
 COPY --from=builder /app/dist ./dist
@@ -66,6 +66,5 @@ EXPOSE 4173
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
   CMD curl -f http://localhost:4173/ || exit 1
 
-# Start the application using static file server with IPv4 binding
-# serve defaults to binding to all interfaces (0.0.0.0)
-CMD ["npx", "serve", "-s", "dist", "-l", "4173"]
+# Start the application using http-server with IPv4 binding
+CMD ["npx", "http-server", "dist", "-p", "4173", "-a", "0.0.0.0"]
