@@ -52,6 +52,7 @@ export default [
   },
   {
     files: ['**/*.{js,jsx}'],
+    ignores: ['server.js'],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
@@ -71,6 +72,24 @@ export default [
       ...js.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
       'react-refresh/only-export-components': 'off',
+      'no-console': 'off',
+      'no-debugger': 'error',
+      'prefer-const': 'error',
+      'no-var': 'error',
+    },
+  },
+  {
+    files: ['server.js'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.node,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'script',
+      },
+    },
+    rules: {
+      ...js.configs.recommended.rules,
       'no-console': 'off',
       'no-debugger': 'error',
       'prefer-const': 'error',

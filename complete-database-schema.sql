@@ -133,6 +133,8 @@ ALTER TABLE user_favorites ENABLE ROW LEVEL SECURITY;
 ALTER TABLE usage_stats ENABLE ROW LEVEL SECURITY;
 ALTER TABLE rate_limits ENABLE ROW LEVEL SECURITY;
 ALTER TABLE user_subscriptions ENABLE ROW LEVEL SECURITY;
+ALTER TABLE subscription_plans ENABLE ROW LEVEL SECURITY;
+ALTER TABLE system_settings ENABLE ROW LEVEL SECURITY;
 
 -- 用户配置表 RLS 策略
 CREATE POLICY "Users can view own profile" ON user_profiles
@@ -187,6 +189,32 @@ CREATE POLICY "System can delete expired records" ON rate_limits
 -- 用户订阅表 RLS 策略
 CREATE POLICY "Users can view own subscriptions" ON user_subscriptions
   FOR SELECT USING (auth.uid() = user_id);
+
+-- 订阅计划表 RLS 策略
+CREATE POLICY "Anyone can view subscription plans" ON subscription_plans
+  FOR SELECT USING (true);
+
+CREATE POLICY "Only admins can modify subscription plans" ON subscription_plans
+  FOR ALL USING (
+    EXISTS (
+      SELECT 1 FROM user_profiles 
+      WHERE id = auth.uid() 
+      AND subscription_tier = 'admin'
+    )
+  );
+
+-- 系统设置表 RLS 策略
+CREATE POLICY "Anyone can view system settings" ON system_settings
+  FOR SELECT USING (true);
+
+CREATE POLICY "Only admins can modify system settings" ON system_settings
+  FOR ALL USING (
+    EXISTS (
+      SELECT 1 FROM user_profiles 
+      WHERE id = auth.uid() 
+      AND subscription_tier = 'admin'
+    )
+  );
 
 -- 创建触发器：自动创建用户配置
 CREATE OR REPLACE FUNCTION public.handle_new_user()

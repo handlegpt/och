@@ -51,6 +51,9 @@ RUN npm install http-server && npm cache clean --force
 # Copy built application from builder stage
 COPY --from=builder /app/dist ./dist
 
+# Copy custom server script
+COPY server.js ./
+
 # Create non-root user for security
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S ochai -u 1001
@@ -64,7 +67,7 @@ EXPOSE 4173
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD curl -f http://localhost:4173/ || exit 1
+  CMD curl -f http://localhost:4173/health || exit 1
 
-# Start the application using http-server with IPv4 binding
-CMD ["npx", "http-server", "dist", "-p", "4173", "-a", "0.0.0.0"]
+# Start the application using custom server with SPA routing support
+CMD ["node", "server.js"]
