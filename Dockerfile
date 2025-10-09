@@ -52,7 +52,7 @@ RUN npm install http-server && npm cache clean --force
 COPY --from=builder /app/dist ./dist
 
 # Copy custom server script
-COPY server.js ./
+COPY server.cjs ./
 
 # Create non-root user for security
 RUN addgroup -g 1001 -S nodejs
