@@ -54,6 +54,11 @@ export const UserInfo: React.FC = () => {
           </span>
           <span className='text-xs text-[var(--text-tertiary)]'>
             {userProfile?.subscription_tier || 'free'}
+            {process.env.NODE_ENV === 'development' && (
+              <span className='ml-2 text-xs opacity-50'>
+                (is_admin: {String(userProfile?.is_admin)})
+              </span>
+            )}
           </span>
         </div>
       </div>

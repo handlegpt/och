@@ -24,8 +24,13 @@ export const AdminDashboard: React.FC = () => {
     console.log('AdminDashboard - Debug info:', {
       user: user?.email,
       isAdmin,
-      userProfile: userProfile?.subscription_tier,
-      isAdminFlag: userProfile?.is_admin,
+      userProfile: userProfile,
+      subscription_tier: userProfile?.subscription_tier,
+      is_admin: userProfile?.is_admin,
+      checks: {
+        is_admin_true: userProfile?.is_admin === true,
+        subscription_admin: userProfile?.subscription_tier === 'admin',
+      },
     })
   }
 
