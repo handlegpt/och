@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS user_profiles (
   display_name VARCHAR(100),
   avatar_url TEXT,
   subscription_tier VARCHAR(20) DEFAULT 'free' CHECK (subscription_tier IN ('free', 'pro', 'enterprise', 'admin')),
+  is_admin BOOLEAN DEFAULT false,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
