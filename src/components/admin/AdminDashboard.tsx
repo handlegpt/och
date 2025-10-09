@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { supabase } from '../../lib/supabase'
-import { useAuth } from '../../hooks/useAuth'
+import { useAuthContext as useAuth } from '../auth/AuthProvider'
 
 interface AdminStats {
   totalUsers: number
@@ -10,7 +10,7 @@ interface AdminStats {
 }
 
 export const AdminDashboard: React.FC = () => {
-  const { user, isAdmin, userProfile } = useAuth()
+  const { user, isAdmin, userProfile, refreshUserProfile } = useAuth()
   const [stats, setStats] = useState<AdminStats>({
     totalUsers: 0,
     totalGenerations: 0,
@@ -18,6 +18,7 @@ export const AdminDashboard: React.FC = () => {
     activeUsers: 0,
   })
   const [loading, setLoading] = useState(true)
+  const [profileRefreshing, setProfileRefreshing] = useState(false)
 
   // 调试信息
   if (process.env.NODE_ENV === 'development') {
@@ -89,13 +90,52 @@ export const AdminDashboard: React.FC = () => {
         <div className='text-center p-8 bg-[var(--bg-card-alpha)] backdrop-blur-lg rounded-xl border border-[var(--border-primary)]'>
           <div className='text-6xl mb-4'>🚫</div>
           <h2 className='text-2xl font-bold text-[var(--text-primary)] mb-2'>访问被拒绝</h2>
-          <p className='text-[var(--text-secondary)] mb-6'>您没有管理员权限访问此页面。</p>
-          <button
-            onClick={() => (window.location.href = '/')}
-            className='px-6 py-3 bg-[var(--accent-primary)] text-[var(--text-on-accent)] rounded-lg hover:bg-[var(--accent-primary-hover)] transition-colors'
-          >
-            返回首页
-          </button>
+          <p className='text-[var(--text-secondary)] mb-4'>您没有管理员权限访问此页面。</p>
+
+          {/* 显示当前用户状态 */}
+          <div className='mb-6 p-4 bg-[var(--bg-secondary)] rounded-lg text-left'>
+            <h3 className='text-sm font-semibold text-[var(--text-primary)] mb-2'>当前状态:</h3>
+            <p className='text-xs text-[var(--text-secondary)]'>用户: {user?.email || '未登录'}</p>
+            <p className='text-xs text-[var(--text-secondary)]'>
+              显示名称: {userProfile?.display_name || '无'}
+            </p>
+            <p className='text-xs text-[var(--text-secondary)]'>
+              用户名: {userProfile?.username || '无'}
+            </p>
+            <p className='text-xs text-[var(--text-secondary)]'>
+              订阅等级: {userProfile?.subscription_tier || '无'}
+            </p>
+            <p className='text-xs text-[var(--text-secondary)]'>
+              管理员: {userProfile?.is_admin ? '是' : '否'}
+            </p>
+          </div>
+
+          <div className='flex gap-3 justify-center'>
+            <button
+              onClick={async () => {
+                setProfileRefreshing(true)
+                try {
+                  await refreshUserProfile()
+                  console.log('✅ 用户配置已刷新')
+                } catch (error) {
+                  console.error('❌ 刷新失败:', error)
+                } finally {
+                  setProfileRefreshing(false)
+                }
+              }}
+              disabled={profileRefreshing}
+              className='px-4 py-2 bg-[var(--accent-secondary)] text-[var(--text-on-accent)] rounded-lg hover:bg-[var(--accent-secondary-hover)] transition-colors disabled:opacity-50'
+            >
+              {profileRefreshing ? '刷新中...' : '刷新状态'}
+            </button>
+
+            <button
+              onClick={() => (window.location.href = '/')}
+              className='px-6 py-3 bg-[var(--accent-primary)] text-[var(--text-on-accent)] rounded-lg hover:bg-[var(--accent-primary-hover)] transition-colors'
+            >
+              返回首页
+            </button>
+          </div>
         </div>
       </div>
     )

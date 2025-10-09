@@ -13,6 +13,7 @@ interface AuthContextType {
   signOut: () => Promise<void>
   isAdmin: boolean
   userProfile: any
+  refreshUserProfile: () => Promise<void>
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
