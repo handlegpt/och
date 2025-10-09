@@ -85,19 +85,49 @@ async function createUserProfile() {
     }
 
     const email = user.email || ''
-    const username = email.split('@')[0] || 'user'
+    const baseUsername = email.split('@')[0] || 'user'
+
+    // 生成唯一的用户名
+    let username = baseUsername
+    let counter = 1
+
+    console.log('🔍 检查用户名可用性...')
+
+    while (true) {
+      const { data: existingUser } = await window.supabase
+        .from('user_profiles')
+        .select('id')
+        .eq('username', username)
+        .single()
+
+      if (!existingUser) {
+        break // 用户名可用
+      }
+
+      console.log(`⚠️ 用户名 "${username}" 已存在，尝试 "${baseUsername}${counter}"`)
+      username = `${baseUsername}${counter}`
+      counter++
+
+      if (counter > 100) {
+        // 防止无限循环，使用 UUID 后缀
+        username = `${baseUsername}_${user.id.slice(-8)}`
+        console.log(`⚠️ 使用 UUID 后缀: "${username}"`)
+        break
+      }
+    }
 
     console.log('🆕 创建用户配置...')
     console.log('- 用户ID:', user.id)
     console.log('- 邮箱:', email)
-    console.log('- 用户名:', username)
+    console.log('- 基础用户名:', baseUsername)
+    console.log('- 最终用户名:', username)
 
     const { data, error } = await window.supabase
       .from('user_profiles')
       .insert({
         id: user.id,
         username: username,
-        display_name: username,
+        display_name: baseUsername, // 显示名称使用原始邮箱前缀
         subscription_tier: 'admin', // 设置为管理员
         is_admin: true, // 设置为管理员
       })

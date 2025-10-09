@@ -23,24 +23,48 @@ FROM user_profiles
 WHERE id = '531cb8fd-cf3b-4f98-836a-fd79e6e0bd0e';
 
 -- 3. 如果用户配置不存在，创建它
-INSERT INTO user_profiles (
-  id, 
-  username, 
-  display_name, 
-  subscription_tier, 
-  is_admin
-) VALUES (
-  '531cb8fd-cf3b-4f98-836a-fd79e6e0bd0e',
-  'onehare',
-  'onehare',
-  'admin',  -- 设置为管理员
-  true      -- 设置为管理员
-) ON CONFLICT (id) DO UPDATE SET
-  username = EXCLUDED.username,
-  display_name = EXCLUDED.display_name,
-  subscription_tier = EXCLUDED.subscription_tier,
-  is_admin = EXCLUDED.is_admin,
-  updated_at = NOW();
+-- 首先检查用户名是否已存在
+DO $$
+DECLARE
+    target_user_id UUID := '531cb8fd-cf3b-4f98-836a-fd79e6e0bd0e';
+    base_username TEXT := 'onehare';
+    final_username TEXT := base_username;
+    counter INTEGER := 1;
+BEGIN
+    -- 检查用户名是否已存在
+    WHILE EXISTS (SELECT 1 FROM user_profiles WHERE username = final_username) LOOP
+        final_username := base_username || counter::TEXT;
+        counter := counter + 1;
+        
+        -- 防止无限循环
+        IF counter > 100 THEN
+            final_username := base_username || '_' || substring(target_user_id::TEXT, -8);
+            EXIT;
+        END IF;
+    END LOOP;
+    
+    -- 插入或更新用户配置
+    INSERT INTO user_profiles (
+        id, 
+        username, 
+        display_name, 
+        subscription_tier, 
+        is_admin
+    ) VALUES (
+        target_user_id,
+        final_username,
+        base_username,  -- 显示名称使用原始名称
+        'admin',        -- 设置为管理员
+        true            -- 设置为管理员
+    ) ON CONFLICT (id) DO UPDATE SET
+        username = EXCLUDED.username,
+        display_name = EXCLUDED.display_name,
+        subscription_tier = EXCLUDED.subscription_tier,
+        is_admin = EXCLUDED.is_admin,
+        updated_at = NOW();
+    
+    RAISE NOTICE '用户配置已创建/更新，用户名: %', final_username;
+END $$;
 
 -- 4. 验证修复结果
 SELECT 

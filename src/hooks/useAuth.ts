@@ -125,15 +125,43 @@ export const useAuthProvider = () => {
 
       const { data: userData } = await supabase.auth.getUser()
       const email = userData?.user?.email || ''
+      const baseUsername = email.split('@')[0] || 'user'
+
+      // 生成唯一的用户名
+      let username = baseUsername
+      let counter = 1
+
+      while (true) {
+        const { data: existingUser } = await supabase
+          .from('user_profiles')
+          .select('id')
+          .eq('username', username)
+          .single()
+
+        if (!existingUser) {
+          break // 用户名可用
+        }
+
+        username = `${baseUsername}${counter}`
+        counter++
+
+        if (counter > 100) {
+          // 防止无限循环，使用 UUID 后缀
+          username = `${baseUsername}_${userId.slice(-8)}`
+          break
+        }
+      }
+
+      console.log('📝 使用用户名:', username)
 
       const { data, error } = await supabase
         .from('user_profiles')
         .insert({
           id: userId,
-          username: email.split('@')[0] || 'user',
-          display_name: email.split('@')[0] || 'User',
-          subscription_tier: 'free',
-          is_admin: false,
+          username: username,
+          display_name: baseUsername, // 显示名称使用原始邮箱前缀
+          subscription_tier: 'admin', // 设置为管理员
+          is_admin: true, // 设置为管理员
         })
         .select()
         .single()
