@@ -68,7 +68,10 @@ export const useAuthProvider = () => {
   }, [])
 
   const fetchUserProfile = async (userId: string) => {
-    if (!supabase) return
+    if (!supabase) {
+      console.error('❌ Supabase 客户端未初始化')
+      return
+    }
 
     try {
       console.log('🔄 获取用户配置:', userId)
@@ -79,9 +82,21 @@ export const useAuthProvider = () => {
         .eq('id', userId)
         .single()
 
-      if (error && error.code !== 'PGRST116') {
-        // PGRST116 = no rows returned
-        console.error('❌ 获取用户配置失败:', error)
+      if (error) {
+        console.error('❌ 获取用户配置失败:', {
+          code: error.code,
+          message: error.message,
+          details: error.details,
+          hint: error.hint,
+          userId: userId,
+        })
+
+        // 如果是用户配置不存在，尝试创建默认配置
+        if (error.code === 'PGRST116') {
+          console.log('🆕 用户配置不存在，尝试创建默认配置...')
+          await createDefaultUserProfile(userId)
+          return
+        }
         return
       }
 
@@ -96,6 +111,42 @@ export const useAuthProvider = () => {
       setUserProfile(data)
     } catch (error) {
       console.error('❌ 获取用户配置异常:', error)
+    }
+  }
+
+  const createDefaultUserProfile = async (userId: string) => {
+    if (!supabase) {
+      console.error('❌ Supabase 客户端未初始化')
+      return
+    }
+
+    try {
+      console.log('🆕 创建默认用户配置:', userId)
+
+      const { data: userData } = await supabase.auth.getUser()
+      const email = userData?.user?.email || ''
+
+      const { data, error } = await supabase
+        .from('user_profiles')
+        .insert({
+          id: userId,
+          username: email.split('@')[0] || 'user',
+          display_name: email.split('@')[0] || 'User',
+          subscription_tier: 'free',
+          is_admin: false,
+        })
+        .select()
+        .single()
+
+      if (error) {
+        console.error('❌ 创建用户配置失败:', error)
+        return
+      }
+
+      console.log('✅ 默认用户配置创建成功:', data)
+      setUserProfile(data)
+    } catch (error) {
+      console.error('❌ 创建用户配置异常:', error)
     }
   }
 
