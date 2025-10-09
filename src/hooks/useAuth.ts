@@ -270,12 +270,20 @@ export const useAuthProvider = () => {
     }
   }
 
-  const isAdmin =
-    userProfile?.is_admin === true ||
-    userProfile?.subscription_tier === 'admin' ||
-    user?.email?.includes('@och.ai') ||
-    user?.email === 'admin@och.ai' ||
-    user?.email === 'your-email@example.com' // 添加你的邮箱
+  const isAdmin = userProfile?.is_admin === true || userProfile?.subscription_tier === 'admin'
+
+  // 调试日志
+  if (process.env.NODE_ENV === 'development' && user) {
+    console.log('🔍 Admin permission check:', {
+      userEmail: user.email,
+      userProfile: userProfile,
+      isAdmin: isAdmin,
+      checks: {
+        is_admin: userProfile?.is_admin === true,
+        subscription_tier: userProfile?.subscription_tier === 'admin',
+      },
+    })
+  }
 
   return {
     user,
