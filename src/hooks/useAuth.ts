@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { User, Session } from '@supabase/supabase-js'
 import { supabase } from '../lib/supabase'
 import { setSentryUser, clearSentryUser, captureUserAction } from '../lib/sentry'
@@ -67,7 +67,7 @@ export const useAuthProvider = () => {
     return () => subscription.unsubscribe()
   }, [])
 
-  const fetchUserProfile = async (userId: string) => {
+  const fetchUserProfile = useCallback(async (userId: string) => {
     if (!supabase) {
       console.error('❌ Supabase 客户端未初始化')
       return
@@ -97,6 +97,14 @@ export const useAuthProvider = () => {
           await createDefaultUserProfile(userId)
           return
         }
+
+        // 如果是权限问题，尝试直接创建
+        if (error.code === '42501' || error.message.includes('permission')) {
+          console.log('🔒 权限问题，尝试直接创建用户配置...')
+          await createDefaultUserProfile(userId)
+          return
+        }
+
         return
       }
 
@@ -112,7 +120,7 @@ export const useAuthProvider = () => {
     } catch (error) {
       console.error('❌ 获取用户配置异常:', error)
     }
-  }
+  }, [])
 
   const createDefaultUserProfile = async (userId: string) => {
     if (!supabase) {
