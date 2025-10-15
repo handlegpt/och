@@ -10,63 +10,6 @@ export const useAuthProvider = () => {
   const [loading, setLoading] = useState(true)
   const [userProfile, setUserProfile] = useState<any>(null)
 
-  useEffect(() => {
-    if (!supabase) {
-      console.warn('Supabase client not initialized')
-      setLoading(false)
-      return
-    }
-
-    // 获取初始会话
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session)
-      setUser(session?.user ?? null)
-      if (session?.user) {
-        fetchUserProfile(session.user.id)
-      }
-      setLoading(false)
-    })
-
-    // 监听认证状态变化
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (event, session) => {
-      // 只在开发环境输出认证状态变化日志
-      if (process.env.NODE_ENV === 'development') {
-        console.log('🔄 Auth state change:', event, session?.user?.email || 'no user')
-      }
-
-      setSession(session)
-      setUser(session?.user ?? null)
-
-      if (session?.user) {
-        // 只在开发环境输出登录日志
-        if (process.env.NODE_ENV === 'development') {
-          console.log('👤 User logged in, fetching profile...')
-        }
-        await fetchUserProfile(session.user.id)
-
-        // 设置Sentry用户上下文
-        setSentryUser(session.user)
-        captureUserAction('user_login', {
-          userId: session.user.id,
-          email: session.user.email,
-        })
-      } else {
-        console.log('👋 User logged out, clearing profile...')
-        setUserProfile(null)
-
-        // 清除Sentry用户上下文
-        clearSentryUser()
-        captureUserAction('user_logout')
-      }
-
-      setLoading(false)
-    })
-
-    return () => subscription.unsubscribe()
-  }, [fetchUserProfile])
-
   const fetchUserProfile = useCallback(async (userId: string) => {
     if (!supabase) {
       console.error('❌ Supabase 客户端未初始化')
@@ -185,6 +128,63 @@ export const useAuthProvider = () => {
       console.error('❌ 创建用户配置异常:', error)
     }
   }
+
+  useEffect(() => {
+    if (!supabase) {
+      console.warn('Supabase client not initialized')
+      setLoading(false)
+      return
+    }
+
+    // 获取初始会话
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session)
+      setUser(session?.user ?? null)
+      if (session?.user) {
+        fetchUserProfile(session.user.id)
+      }
+      setLoading(false)
+    })
+
+    // 监听认证状态变化
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(async (event, session) => {
+      // 只在开发环境输出认证状态变化日志
+      if (process.env.NODE_ENV === 'development') {
+        console.log('🔄 Auth state change:', event, session?.user?.email || 'no user')
+      }
+
+      setSession(session)
+      setUser(session?.user ?? null)
+
+      if (session?.user) {
+        // 只在开发环境输出登录日志
+        if (process.env.NODE_ENV === 'development') {
+          console.log('👤 User logged in, fetching profile...')
+        }
+        await fetchUserProfile(session.user.id)
+
+        // 设置Sentry用户上下文
+        setSentryUser(session.user)
+        captureUserAction('user_login', {
+          userId: session.user.id,
+          email: session.user.email,
+        })
+      } else {
+        console.log('👋 User logged out, clearing profile...')
+        setUserProfile(null)
+
+        // 清除Sentry用户上下文
+        clearSentryUser()
+        captureUserAction('user_logout')
+      }
+
+      setLoading(false)
+    })
+
+    return () => subscription.unsubscribe()
+  }, [fetchUserProfile])
 
   const signIn = async (email: string, password: string) => {
     if (!supabase) throw new Error('Supabase client not initialized')
