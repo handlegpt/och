@@ -26,6 +26,12 @@ export const supabase =
       })
     : null
 
+// 在开发环境中将 Supabase 客户端暴露到 window 对象，方便调试
+if (typeof window !== 'undefined' && supabase) {
+  ;(window as any).supabase = supabase
+  console.log('🔧 Supabase client exposed to window.supabase for debugging')
+}
+
 // 数据库类型定义
 export interface Database {
   public: {
