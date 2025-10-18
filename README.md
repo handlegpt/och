@@ -113,8 +113,6 @@
 ### 🌐 访问方式
 
 - **官方网站**: [https://och.ai](https://och.ai)
-- **技术支持**: support@och.ai
-- **商务合作**: business@och.ai
 
 ---
 
@@ -227,8 +225,6 @@ A powerful AI image generation and editing platform offering 50+ professional-gr
 ### 🌐 Contact Information
 
 - **Official Website**: [https://och.ai](https://och.ai)
-- **Technical Support**: support@och.ai
-- **Business Cooperation**: business@och.ai
 
 ---
 
